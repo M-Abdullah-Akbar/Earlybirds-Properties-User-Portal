@@ -979,8 +979,8 @@
 ===============================================================================*/
 .section-work-together {
   .wg-partner {
-    background-color: var(--Secondary);
-    padding-bottom: 328px;
+    background-color: white;
+    padding-bottom: 250px;
   }
   .wg-appraisal {
     margin-top: calc(-11% - 13px);
@@ -988,8 +988,8 @@
   }
   &.style-2 {
     .wg-partner {
-      background-color: unset;
-      padding-bottom: unset;
+      background-color: white;
+      padding-bottom: 328px;
     }
   }
 }

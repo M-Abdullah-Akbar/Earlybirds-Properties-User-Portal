@@ -23,8 +23,23 @@ export default function Nav() {
       <li className={"/" == pathname ? "current-menu" : ""}>
         <Link href={`/`}>Home</Link>
       </li>
-      <li className={"/properties" == pathname ? "current-menu" : ""}>
-        <Link href={`/properties`}>Listing</Link>
+      <li className={"/buy" == pathname ? "current-menu" : ""}>
+        <Link href={`/buy`}>Buy</Link>
+      </li>
+      <li className={"/sell" == pathname ? "current-menu" : ""}>
+        <Link href={`/sell`}>Sell</Link>
+      </li>
+      <li className={"/rent" == pathname ? "current-menu" : ""}>
+        <Link href={`/rent`}>Rent</Link>
+      </li>
+      <li className={"/off-plan" == pathname ? "current-menu" : ""}>
+        <Link href={`/off-plan`}>Off Plan Properties</Link>
+      </li>
+      <li className={"/area-in-uae" == pathname ? "current-menu" : ""}>
+        <Link href={`/area-in-uae`}>Area in UAE</Link>
+      </li>
+      <li className={"/developers-in-uae" == pathname ? "current-menu" : ""}>
+        <Link href={`/developers-in-uae`}>Developers in UAE</Link>
       </li>
       <li className={"/about-us" == pathname ? "current-menu" : ""}>
         <Link href={`/about-us`}>About Us</Link>
@@ -144,9 +159,9 @@ export default function Nav() {
           ))}
         </ul>
       </li>*/}
-      <li className={"/contact-us" == pathname ? "current-menu" : ""}>
+      {/*<li className={"/contact-us" == pathname ? "current-menu" : ""}>
         <Link href={`/contact-us`}>Contact Us</Link>
-      </li>
+      </li>*/}
     </>
   );
 }

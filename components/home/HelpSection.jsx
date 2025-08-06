@@ -8,19 +8,19 @@ import Image from "next/image";
 import { Pagination } from "swiper/modules";
 export default function HelpSection() {
   return (
-    <div className="section-help style-1 tf-spacing-7">
+    <div className="section-help style-1 mt-5">
       <div className="tf-container-2">
         <div className="row">
           <div className="col-12">
             <div className="heading-section text-center mb-68 gap-33">
               <h2 className="title fw-5 split-text effect-right">
-                <SplitTextAnimation text="See how Proty can help" />
+                <SplitTextAnimation text="WHAT WE PROVIDE" />
               </h2>
-              <p className="text-1 text-color-default split-text split-lines-transform">
+              {/*<p className="text-1 text-color-default split-text split-lines-transform">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                 sit amet dapibus justo. Nam nec libero diam. <br />
                 Pellentesque vel efficitur justo. Ut at ipsum turpis.
-              </p>
+              </p>*/}
             </div>
             <Swiper
               dir="ltr"

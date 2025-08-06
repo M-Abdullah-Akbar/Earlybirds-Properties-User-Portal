@@ -1,178 +1,83 @@
 "use client";
-import OdometerComponent from "@/components/common/OdometerComponent";
-import Image from "next/image";
-import { testimonials5 } from "@/data/testimonials";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { slides } from "@/data/testimonials";
+import React from "react";
+import { EffectCards, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
+import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 export default function Testimonials() {
   return (
-    <div className="section-testimonials style-4 mt-5">
+    <div className="section-testimonials style-2 mt-5">
       <div className="tf-container">
-        <div className="row">
-          <div className="col-lg-4 left">
-            <div className="heading-section mb-62 gap-32">
-              <h2 className="title split-text effect-right">
-                <SplitTextAnimation text="Tursted by thousands of people all across the globe" />
-              </h2>
-              <p className="text-1 split-text split-lines-transform">
-                We are committed to building long-term relationships with our
-                clients based on trust and integrity.
-              </p>
-            </div>
-            <div className="content">
-              <div className="counter-item style-5 mb-30">
-                <div className="count">
-                  <div className="counter-number">
-                    <div className="odometer style-5 style-5-1">
-                      <OdometerComponent max={9} />
-                    </div>
-                    <span>.500</span>
-                    <span className="sub plus">+</span>
-                  </div>
-                  <p className="text-1 mt_-5">Happy Clients</p>
-                </div>
-              </div>
-              <ul className="img-group">
-                <li>
-                  <Image
-                    alt="avatar"
-                    src="/images/avatar/avatar-4.jpg"
-                    width={128}
-                    height={128}
-                  />
-                </li>
-                <li>
-                  <Image
-                    alt="avatar"
-                    src="/images/avatar/avatar-5.jpg"
-                    width={128}
-                    height={128}
-                  />
-                </li>
-                <li>
-                  <Image
-                    alt="avatar"
-                    src="/images/avatar/avatar-6.jpg"
-                    width={128}
-                    height={128}
-                  />
-                </li>
-                <li>
-                  <Image
-                    alt="avatar"
-                    src="/images/avatar/avatar-7.jpg"
-                    width={128}
-                    height={128}
-                  />
-                </li>
-                <li>
-                  <Image
-                    alt="avatar"
-                    src="/images/avatar/avatar-8.jpg"
-                    width={128}
-                    height={128}
-                  />
-                </li>
-              </ul>
-            </div>
+        <div className="heading-section text-center gap-33 mb-48 testimonial-heading">
+          <div className="title text-color-heading text-display-4 fw-5 split-text effect-right">
+            <SplitTextAnimation text="What our customers says" />
           </div>
-          <div className="col-lg-8 right">
-            <div className="tf-grid-layout md-col-2 wrap home-10-testimonials">
-              <Swiper
-                dir="ltr"
-                direction="vertical"
-                className="infiniteslide autoplay-linear slider-1"
-                data-clone={1}
-                data-style="up"
-                slidesPerView={"auto"}
-                spaceBetween={30}
-                autoplay={{
-                  pauseOnMouseEnter: true,
-                  reverseDirection: true,
-                  delay: 1,
-                }} // Equivalent to data-autoplay & data-autoplaytime
-                slidesPerGroupAuto
-                speed={5000} // Equivalent to data-speed
-                loop
-                modules={[Autoplay]}
-              >
-                {testimonials5.map((testimonial, index) => (
-                  <SwiperSlide className="wg-testimonial style-2" key={index}>
-                    <div className="ratings">
-                      {/* Render stars based on the rating */}
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <i className="icon-star" key={i} />
-                      ))}
+          {/*<p
+            className="text-1 text-color-default split-text split-lines-transform"
+            data-wow-duration="1.5s"
+            data-wow-delay="0s"
+          >
+            Our vision is to be the premier real estate company in New York,
+            recognized for our unwavering <br />
+            commitment to excellence, innovation, and community impact.
+          </p>*/}
+        </div>
+        <div className="relative">
+          <Swiper
+            dir="ltr"
+            className="swiper sw-fipcard style-pagination "
+            slidesPerView={1}
+            initialSlide={1}
+            effect={"cards"}
+            grabCursor={true}
+            centeredSlides
+            cardsEffect={{
+              slideShadows: false,
+
+              perSlideOffset: 8,
+              perSlideRotate: 10,
+            }}
+            modules={[EffectCards, Navigation, Pagination]}
+            pagination={{
+              el: ".spd26",
+            }}
+            navigation={{
+              prevEl: ".snbp14",
+              nextEl: ".snbn14",
+            }}
+          >
+            {slides.map((slide) => (
+              <SwiperSlide key={slide.id} className="swiper-slide">
+                <div className="wg-testimonial style-5 style-bg-white">
+                  <p className="text-11 description text-color-default fw-3">
+                    {slide.description}
+                  </p>
+                  <div className="author">
+                    <div className="avatar">
+                      <Image alt="" width={51} height={51} src={slide.avatar} />
                     </div>
-                    <p className="text-1 description">
-                      {testimonial.description}
-                    </p>
-                    <div className="author">
-                      <div className="avatar">
-                        <Image
-                          alt=""
-                          src={testimonial.avatar}
-                          width={testimonial.width}
-                          height={testimonial.height}
-                        />
+                    <div className="content">
+                      <div className="name text-1">
+                        <a href="#" className="text-color-heading link">
+                          {slide.name}
+                        </a>
                       </div>
-                      <div className="content">
-                        <h6 className="name">
-                          <a href="#">{testimonial.name}</a>
-                        </h6>
-                        <p className="text-2">{testimonial.role}</p>
-                      </div>
+                      <p className="text-color-heading-2">{slide.role}</p>
                     </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <Swiper
-                dir="ltr"
-                direction="vertical"
-                className="infiniteslide autoplay-linear"
-                slidesPerView={"auto"}
-                slidesPerGroupAuto
-                spaceBetween={30}
-                loop
-                autoplay={{
-                  pauseOnMouseEnter: true,
-                  delay: 1,
-                }} // Equivalent to data-autoplay & data-autoplaytime
-                speed={5000} // Equivalent to data-speed
-                modules={[Autoplay, FreeMode]}
-              >
-                {testimonials5.map((testimonial, index) => (
-                  <SwiperSlide className="wg-testimonial style-2" key={index}>
-                    <div className="ratings">
-                      {/* Render stars based on the rating */}
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <i className="icon-star" key={i} />
-                      ))}
-                    </div>
-                    <p className="text-1 description">
-                      {testimonial.description}
-                    </p>
-                    <div className="author">
-                      <div className="avatar">
-                        <Image
-                          alt=""
-                          src={testimonial.avatar}
-                          width={testimonial.width}
-                          height={testimonial.height}
-                        />
-                      </div>
-                      <div className="content">
-                        <h6 className="name">
-                          <a href="#">{testimonial.name}</a>
-                        </h6>
-                        <p className="text-2">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+
+            {/* Pagination */}
+            <div className="sw-pagination sw-pagination-fipcard text-center mt-20 spd26" />
+          </Swiper>
+          <div className="swiper-button-prev sw-button sw-fipcard-prev md-hide snbp14">
+            <i className="icon-arrow-left-3" />
+          </div>
+          <div className="swiper-button-next sw-button sw-fipcard-next md-hide snbn14">
+            <i className="icon-arrow-right-3" />
           </div>
         </div>
       </div>

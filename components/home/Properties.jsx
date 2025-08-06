@@ -1,137 +1,209 @@
 "use client";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { useEffect } from "react";
 import Image from "next/image";
-import { properties9 } from "@/data/properties";
-gsap.registerPlugin(ScrollTrigger);
-export default function Properties3() {
-  useEffect(() => {
-    const stackElements = document.querySelectorAll(".stack-element");
-
-    if (stackElements.length > 0) {
-      let totalHeight;
-      let scrollTriggerInstances = [];
-
-      const updateTotalHeight = () => {
-        const stackContentWrap = document.querySelector(".stack-content-wrap");
-        totalHeight = stackContentWrap.offsetHeight;
-
-        // Kill existing ScrollTrigger instances
-        scrollTriggerInstances.forEach((instance) => {
-          instance.kill();
-        });
-        scrollTriggerInstances = [];
-
-        // Loop through each element and create ScrollTrigger instances
-        document.querySelectorAll(".element").forEach((element, index) => {
-          const tabHeight = element.offsetHeight;
-          totalHeight -= tabHeight;
-
-          const pinTrigger = ScrollTrigger.create({
-            trigger: element,
-            scrub: 1,
-            start: "top 80",
-            end: `+=${totalHeight}`,
-            pin: true,
-            pinSpacing: false,
-            animation: gsap.to(element, {
-              scale: 0.9,
-            }),
-          });
-
-          scrollTriggerInstances.push(pinTrigger);
-        });
-      };
-
-      // Initial call to set up ScrollTriggers
-      updateTotalHeight();
-
-      // Add resize event listener
-      window.addEventListener("resize", updateTotalHeight);
-
-      // Cleanup function
-      return () => {
-        window.removeEventListener("resize", updateTotalHeight);
-        scrollTriggerInstances.forEach((instance) => {
-          instance.kill();
-        });
-      };
-    }
-  }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+import { properties } from "@/data/properties";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+export default function Properties({ title }) {
   return (
-    <div className="section-best-property mt-5">
+    <section className="section-listing mt-5">
       <div className="tf-container">
-        <div className="heading-title text-center split-text effect-scale">
-          BEST PROPERTY
-        </div>
-        <div className="stack-element layout-2">
-          <div className="stack-content-wrap">
-            {properties9.map((property) => (
-              <div className="box-house style-5 element" key={property.id}>
-                <div className="image-wrap">
-                  <Link href={`/property-detail/${property.id}`}>
-                    <Image
-                      className="lazyload"
-                      data-src={property.imageSrc}
-                      alt={property.title}
-                      src={property.imageSrc}
-                      width={property.imageWidth}
-                      height={property.imageHeight}
-                    />
-                  </Link>
-                </div>
-                <div className="content">
-                  <div className="heading">
-                    <div className="left">
-                      <div className="title text-13 fw-6">
-                        <Link href={`/property-detail/${property.id}`}>
+        <div className="row">
+          <div className="col-12">
+            <div className="heading-section text-center ">
+              <h2 className="title split-text effect-right">
+                <SplitTextAnimation text={title} />
+              </h2>
+              {/*<p className="text-1 split-text split-lines-transform">
+                Thousands of luxury home enthusiasts just like you visit our
+                website.
+              </p>*/}
+            </div>
+            <div
+              dir="ltr"
+              className="swiper style-pagination tf-sw-mobile-1 sw-swiper-767"
+              data-screen={767}
+              data-preview={1}
+              data-space={15}
+            >
+              <div className="swiper-wrapper tf-layout-mobile-md md-col-2  lg-col-3 ">
+                {properties.map((property, i) => (
+                  <div key={i} className="swiper-slide">
+                    <div className="box-house hover-img ">
+                      <div className="image-wrap">
+                        <Link href={`/property-detail-v1/${property.id}`}>
+                          <Image
+                            className="lazyload"
+                            alt=""
+                            src={property.imageSrc}
+                            width={600}
+                            height={401}
+                          />
+                        </Link>
+                        <ul className="box-tag flex gap-8 ">
+                          <li className="flat-tag text-4 bg-main fw-6 text_white">
+                            Featured
+                          </li>
+                          <li className="flat-tag text-4 bg-3 fw-6 text_white">
+                            For Sale
+                          </li>
+                        </ul>
+                        <div className="list-btn flex gap-8 ">
+                          <a href="#" className="btn-icon save hover-tooltip">
+                            <i className="icon-save" />
+                            <span className="tooltip">Add Favorite</span>
+                          </a>
+                          <a href="#" className="btn-icon find hover-tooltip">
+                            <i className="icon-find-plus" />
+                            <span className="tooltip">Quick View</span>
+                          </a>
+                        </div>
+                      </div>
+                      <div className="content">
+                        <h5 className="title">
+                          <Link href={`/property-detail-v1/${property.id}`}>
+                            {property.title}
+                          </Link>
+                        </h5>
+                        <p className="location text-1 line-clamp-1 ">
+                          <i className="icon-location" /> {property.location}
+                        </p>
+                        <ul className="meta-list flex">
+                          <li className="text-1 flex">
+                            <span>{property.beds}</span>Beds
+                          </li>
+                          <li className="text-1 flex">
+                            <span>{property.baths}</span>Baths
+                          </li>
+                          <li className="text-1 flex">
+                            <span>{property.sqft}</span>Sqft
+                          </li>
+                        </ul>
+                        <div className="bot flex justify-between items-center">
+                          <h5 className="price">
+                            ${property.price.toLocaleString()}
+                          </h5>
+                          <div className="wrap-btn flex">
+                            <a
+                              href="#"
+                              className="compare flex gap-8 items-center text-1"
+                            >
+                              <i className="icon-compare" />
+                              Compare
+                            </a>
+                            <Link
+                              href={`/property-detail-v1/${property.id}`}
+                              className="tf-btn style-border pd-4"
+                            >
+                              Details
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="sw-pagination sw-pagination-mb-1 text-center d-lg-none d-block" />
+            </div>
+            <Swiper
+              dir="ltr"
+              className="swiper style-pagination tf-sw-mobile-1 sw-swiper-767"
+              modules={[Pagination]}
+              pagination={{
+                clickable: true,
+                el: ".spd446",
+              }}
+              spaceBetween={15}
+            >
+              {properties.map((property, i) => (
+                <SwiperSlide key={i} className="swiper-slide">
+                  <div className="box-house hover-img ">
+                    <div className="image-wrap">
+                      <Link href={`/property-detail-v1/${property.id}`}>
+                        <Image
+                          className="lazyload"
+                          alt=""
+                          src={property.imageSrc}
+                          width={600}
+                          height={401}
+                        />
+                      </Link>
+                      <ul className="box-tag flex gap-8 ">
+                        <li className="flat-tag text-4 bg-main fw-6 text_white">
+                          Featured
+                        </li>
+                        <li className="flat-tag text-4 bg-3 fw-6 text_white">
+                          For Sale
+                        </li>
+                      </ul>
+                      <div className="list-btn flex gap-8 ">
+                        <a href="#" className="btn-icon save hover-tooltip">
+                          <i className="icon-save" />
+                          <span className="tooltip">Add Favorite</span>
+                        </a>
+                        <a href="#" className="btn-icon find hover-tooltip">
+                          <i className="icon-find-plus" />
+                          <span className="tooltip">Quick View</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div className="content">
+                      <h5 className="title">
+                        <Link href={`/property-detail-v1/${property.id}`}>
                           {property.title}
                         </Link>
-                      </div>
-                      <p className="location text-16 flex items-center gap-6">
-                        <i className="icon-location-5" /> {property.location}
+                      </h5>
+                      <p className="location text-1 line-clamp-1 ">
+                        <i className="icon-location" /> {property.location}
                       </p>
-                    </div>
-                    {/*<div className="tag text-1 lh-20">
-                      <i className="icon-file" />
-                      {property.category}
-                    </div>*/}
-                  </div>
-                  <div className="bot flex justify-between items-center">
-                    <div className="left">
-                      {/*<h4 className="price">${property.price}</h4>*/}
                       <ul className="meta-list flex">
                         <li className="text-1 flex">
-                          <i className="icon-bed-4" />
-                          <span>{property.beds}</span>
+                          <span>{property.beds}</span>Beds
                         </li>
                         <li className="text-1 flex">
-                          <i className="icon-bath-1" />
-                          <span>{property.baths}</span>
+                          <span>{property.baths}</span>Baths
                         </li>
                         <li className="text-1 flex">
-                          <i className="icon-sqft-1" />
                           <span>{property.sqft}</span>Sqft
                         </li>
                       </ul>
-                    </div>
-                    <div className="wrap-btn flex">
-                      <Link
-                        href={`/property-detail/${property.id}`}
-                        className="tf-btn style-border pd-4"
-                      >
-                        Details
-                      </Link>
+                      <div className="bot flex justify-between items-center">
+                        <h5 className="price">
+                          ${property.price.toLocaleString()}
+                        </h5>
+                        <div className="wrap-btn flex">
+                          <a
+                            href="#"
+                            className="compare flex gap-8 items-center text-1"
+                          >
+                            <i className="icon-compare" />
+                            Compare
+                          </a>
+                          <Link
+                            href={`/property-detail-v1/${property.id}`}
+                            className="tf-btn style-border pd-4"
+                          >
+                            Details
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                </SwiperSlide>
+              ))}
+
+              <div className="sw-pagination sw-pagination-mb-1 text-center d-lg-none d-block spd446" />
+            </Swiper>
+            <div className="text-center mt-5 flex justify-center">
+              <Link href="/properties" className="tf-btn style-border pd-4">
+                Load More Listings
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

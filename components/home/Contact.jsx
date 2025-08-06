@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <div className="tf-spacing-7">
+    <div className="mt-5 mb-5">
       <div className="section-contact style-3">
         <div className="tf-container">
           <div className="row justify-content-end">
