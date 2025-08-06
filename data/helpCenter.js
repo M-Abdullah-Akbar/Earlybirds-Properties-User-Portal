@@ -26,6 +26,7 @@ export const boxHelpData = [
     title: "Buy a property",
     description: "Hire a professional to find the perfect Dubai home. Help us find the best mortgage rates and buy a house in Dubai.",
     delay: ".0s",
+    pageUrl: "/buy",
   },
   {
     id: 2,
@@ -33,6 +34,7 @@ export const boxHelpData = [
     title: "Rent a property",
     description: "View the best rentals in Dubai. We provide rental income insights and handle all property leasing.",
     delay: ".1s",
+    pageUrl: "/rent",
   },
   {
     id: 3,
@@ -40,5 +42,6 @@ export const boxHelpData = [
     title: "Sell a property",
     description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale.",
     delay: ".2s",
+    pageUrl: "/sell",
   },
 ];

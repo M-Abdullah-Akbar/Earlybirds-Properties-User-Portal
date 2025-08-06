@@ -70,7 +70,7 @@ export default function HelpSection() {
                       <h4 className="text_white mb-12">{box.title}</h4>
                       <p className="text-1 text_white">{box.description}</p>
                     </div>
-                    <Link href={`/contact`} className="tf-btn">
+                    <Link href={box.pageUrl} className="tf-btn">
                       <i className="icon-arrow-up-right" />
                     </Link>
                   </div>

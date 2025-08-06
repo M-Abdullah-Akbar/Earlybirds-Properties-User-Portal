@@ -7,17 +7,17 @@ export default function Partners() {
   const propertyTypes = [
     {
       type: "Apartment",
-      image: "/images/partners/1.png",
+      image: "/images/section/box-house-10.jpg",
       description: "Modern apartments with stunning city views"
     },
     {
       type: "Townhouse",
-      image: "/images/partners/2.png", 
+      image: "/images/section/box-house-11.jpg", 
       description: "Contemporary townhouses with elegant design"
     },
     {
       type: "Villa",
-      image: "/images/partners/3.png",
+      image: "/images/section/box-house-12.jpg",
       description: "Luxurious villas with private amenities"
     }
   ];
@@ -75,11 +75,11 @@ export default function Partners() {
                 </p>
               </div>
 
-            <div className="text-center mt-5">
-              <Link href="/properties" className="tf-btn style-border pd-4">
-                Explore Properties
-              </Link>
-            </div>
+              <div className="text-center mt-5">
+                <Link href="/properties" className="tf-btn style-border pd-4">
+                  Explore Properties
+                </Link>
+              </div>
             </div>
           </div>
         </div>

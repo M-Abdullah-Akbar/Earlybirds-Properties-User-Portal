@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
 export default function BrandSlider({
-  parentClass = "infiniteslide wrap-partners mb-40",
+  parentClass = "infiniteslide wrap-partners mt-5",
 }) {
   return (
     <Swiper

@@ -3,7 +3,7 @@ import React from "react";
 import SplitTextAnimation from "./SplitTextAnimation";
 
 export default function Brands({
-  parentClass = "section-work-together style-2 tf-spacing-1",
+  parentClass = "section-work-together style-2 mt-5",
 }) {
   return (
     <section className={parentClass}>

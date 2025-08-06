@@ -4,7 +4,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import { aboutData } from "@/data/about";
 import React from "react";
-import Testimonials from "@/components/home/Testimonials";
+import Testimonials from "@/components/sell/Testimonials";
 import Brands from "@/components/home/Brands";
 import Services from "@/components/services/Services";
 

@@ -32,11 +32,11 @@ export default function Nav() {
       <li className={"/rent" == pathname ? "current-menu" : ""}>
         <Link href={`/rent`}>Rent</Link>
       </li>
-      <li className={"/off-plan" == pathname ? "current-menu" : ""}>
-        <Link href={`/off-plan`}>Off Plan Properties</Link>
+      <li className={"/off-plan-properties" == pathname ? "current-menu" : ""}>
+        <Link href={`/off-plan-properties`}>Off Plan Properties</Link>
       </li>
-      <li className={"/area-in-uae" == pathname ? "current-menu" : ""}>
-        <Link href={`/area-in-uae`}>Area in UAE</Link>
+      <li className={"/areas-in-uae" == pathname ? "current-menu" : ""}>
+        <Link href={`/areas-in-uae`}>Areas in UAE</Link>
       </li>
       <li className={"/developers-in-uae" == pathname ? "current-menu" : ""}>
         <Link href={`/developers-in-uae`}>Developers in UAE</Link>

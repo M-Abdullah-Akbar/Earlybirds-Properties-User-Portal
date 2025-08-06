@@ -32,7 +32,7 @@ export default function Properties({ title }) {
                   <div key={i} className="swiper-slide">
                     <div className="box-house hover-img ">
                       <div className="image-wrap">
-                        <Link href={`/property-detail-v1/${property.id}`}>
+                        <Link href={`/property-detail/${property.id}`}>
                           <Image
                             className="lazyload"
                             alt=""
@@ -49,7 +49,7 @@ export default function Properties({ title }) {
                             For Sale
                           </li>
                         </ul>
-                        <div className="list-btn flex gap-8 ">
+                        {/*<div className="list-btn flex gap-8 ">
                           <a href="#" className="btn-icon save hover-tooltip">
                             <i className="icon-save" />
                             <span className="tooltip">Add Favorite</span>
@@ -58,11 +58,11 @@ export default function Properties({ title }) {
                             <i className="icon-find-plus" />
                             <span className="tooltip">Quick View</span>
                           </a>
-                        </div>
+                        </div>*/}
                       </div>
                       <div className="content">
                         <h5 className="title">
-                          <Link href={`/property-detail-v1/${property.id}`}>
+                          <Link href={`/property-detail/${property.id}`}>
                             {property.title}
                           </Link>
                         </h5>
@@ -81,19 +81,19 @@ export default function Properties({ title }) {
                           </li>
                         </ul>
                         <div className="bot flex justify-between items-center">
-                          <h5 className="price">
+                          {/*<h5 className="price">
                             ${property.price.toLocaleString()}
-                          </h5>
+                          </h5>*/}
                           <div className="wrap-btn flex">
-                            <a
+                            {/*<a
                               href="#"
                               className="compare flex gap-8 items-center text-1"
                             >
                               <i className="icon-compare" />
                               Compare
-                            </a>
+                            </a>*/}
                             <Link
-                              href={`/property-detail-v1/${property.id}`}
+                              href={`/property-detail/${property.id}`}
                               className="tf-btn style-border pd-4"
                             >
                               Details
