@@ -44,4 +44,20 @@ export const boxHelpData = [
     delay: ".2s",
     pageUrl: "/sell",
   },
+  { 
+    id: 4,
+    imageSrc: "/images/section/box-help-3.jpg",
+    title: "Sell a property",
+    description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale. We will help you find the best price for your property.",
+    delay: ".2s",
+    pageUrl: "/sell",
+  },
+  {
+    id: 5,
+    imageSrc: "/images/section/box-help-3.jpg",
+    title: "Sell a property",
+    description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale. We will help you find the best price for your property.",
+    delay: ".2s",
+    pageUrl: "/sell",
+  },
 ];

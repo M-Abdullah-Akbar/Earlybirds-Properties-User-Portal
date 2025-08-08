@@ -1,22 +1,30 @@
-import { properties11 } from "@/data/properties";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function PropertyGridItems({ showItems = properties11.length }) {
+export default function PropertyGridItems({ properties = [], showItems }) {
+  // If no properties provided, return empty
+  if (!properties || properties.length === 0) {
+    return null;
+  }
+
+  // Limit items if showItems is specified
+  const displayProperties = showItems ? properties.slice(0, showItems) : properties;
+  console.log(displayProperties);
+
   return (
     <>
-      {properties11.slice(0, showItems).map((property) => (
-        <div className="box-house hover-img" key={property.id}>
+      {displayProperties.map((property) => (
+        <div className="box-house hover-img" key={property._id || property.id}>
           <div className="image-wrap">
-            <Link href={`/property-detail/${property.id}`}>
+            <Link href={`/property-detail/${property._id || property.id}`}>
               <Image
                 className="lazyload"
-                data-src={property.imageSrc}
-                alt={property.title}
-                src={property.imageSrc}
-                width={property.imageWidth}
-                height={property.imageHeight}
+                data-src={property.images?.[0]?.url || property.imageSrc || "/images/section/placeholder.jpg"}
+                alt={property.title || property.name}
+                src={property.images?.[0]?.url || property.imageSrc || "/images/section/placeholder.jpg"}
+                width={400}
+                height={300}
               />
             </Link>
             <ul className="box-tag flex gap-8">
@@ -25,9 +33,9 @@ export default function PropertyGridItems({ showItems = properties11.length }) {
                   Featured
                 </li>
               )}
-              {property.forSale && (
+              {(property.listingType || property.propertyType) && (
                 <li className="flat-tag text-4 bg-3 fw-6 text_white">
-                  For Sale
+                  {(property.listingType || property.propertyType) === 'sale' ? 'For Sale' : 'For Rent'}
                 </li>
               )}
             </ul>
@@ -44,33 +52,42 @@ export default function PropertyGridItems({ showItems = properties11.length }) {
           </div>
           <div className="content">
             <h5 className="title">
-              <Link href={`/property-detail/${property.id}`}>
-                {property.title}
+              <Link href={`/property-detail/${property._id || property.id}`}>
+                {property.title || property.name}
               </Link>
             </h5>
             <p className="location text-1 flex items-center gap-6">
-              <i className="icon-location" /> {property.location}
+              <i className="icon-location" /> 
+              {typeof property.location === 'string' ? property.location : 
+               property.location?.address || 
+               `${property.area || ''} ${property.emirate || ''}`.trim() || 
+               'Location not specified'}
             </p>
             <ul className="meta-list flex">
               <li className="text-1 flex">
-                <span>{property.beds}</span>Beds
+                <span>{property.details?.bedrooms || property.beds || 0}</span>Beds
               </li>
               <li className="text-1 flex">
-                <span>{property.baths}</span>Baths
+                <span>{property.details?.bathrooms || property.baths || 0}</span>Baths
               </li>
               <li className="text-1 flex">
-                <span>{property.sqft}</span>Sqft
+                <span>{property.details?.area || property.sqft || 0}</span>Sqft
               </li>
             </ul>
             <div className="bot flex justify-between items-center">
-              {/*<h5 className="price">${property.price}</h5>*/}
+              {property.price && (
+                <h5 className="price">
+                  AED {typeof property.price === 'number' ? property.price.toLocaleString() : property.price}
+                  {(property.listingType || property.propertyType) === 'rent' && <span className="text-sm">/year</span>}
+                </h5>
+              )}
               <div className="wrap-btn flex">
                 {/*<a href="#" className="compare flex gap-8 items-center text-1">
                   <i className="icon-compare" />
                   Compare
                 </a>*/}
                 <Link
-                  href={`/property-detail/${property.id}`}
+                  href={`/property-detail/${property._id || property.id}`}
                   className="tf-btn style-border pd-4"
                 >
                   Details

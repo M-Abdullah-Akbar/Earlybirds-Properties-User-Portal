@@ -1,6 +1,66 @@
 import React from "react";
 
 export default function PropertyOverview({ property }) {
+  // Helper function to get display location
+  const getDisplayLocation = () => {
+    if (typeof property.location === 'string') {
+      return property.location;
+    }
+    if (property.location?.address) {
+      return property.location.address;
+    }
+    const areaEmirate = `${property.area || ''} ${property.emirate || ''}`.trim();
+    return areaEmirate || 'Location not specified';
+  };
+
+  // Helper function to get property ID
+  const getPropertyId = () => {
+    return property._id || property.id || 'N/A';
+  };
+
+  // Helper function to get property type
+  const getPropertyType = () => {
+    return property.propertyType || property.listingType || 'N/A';
+  };
+
+  // Helper function to get land size
+  const getLandSize = () => {
+    if (property.details?.landArea) {
+      return `${property.details.landArea} ${property.details.areaUnit || 'SqFt'}`;
+    }
+    return 'N/A';
+  };
+
+  // Helper function to get parking spaces
+  const getParkingSpaces = () => {
+    if (property.details?.parking?.spaces) {
+      return property.details.parking.spaces;
+    }
+    return 'N/A';
+  };
+
+  // Helper function to get year built
+  const getYearBuilt = () => {
+    return property.details?.yearBuilt || 'N/A';
+  };
+
+  // Helper function to get bedrooms
+  const getBedrooms = () => {
+    return property.details?.bedrooms || property.bedrooms || 'N/A';
+  };
+
+  // Helper function to get bathrooms
+  const getBathrooms = () => {
+    return property.details?.bathrooms || property.bathrooms || 'N/A';
+  };
+
+  // Helper function to get area
+  const getArea = () => {
+    const area = property.details?.area || property.sqft || property.size;
+    const unit = property.details?.areaUnit || 'SqFt';
+    return area ? `${area} ${unit}` : 'N/A';
+  };
+
   return (
     <>
       <div className="heading flex justify-between">
@@ -12,17 +72,17 @@ export default function PropertyOverview({ property }) {
         <div className="feature">
           <p className="location text-1 flex items-center gap-10">
             <i className="icon-location" />
-            {property.location}
+            {getDisplayLocation()}
           </p>
           <ul className="meta-list flex">
             <li className="text-1 flex">
-              <span>{property.beds}</span>Bed
+              <span>{getBedrooms()}</span>Bed
             </li>
             <li className="text-1 flex">
-              <span>{property.baths}</span>Bath
+              <span>{getBathrooms()}</span>Bath
             </li>
             <li className="text-1 flex">
-              <span>{property.sqft}</span>Sqft
+              <span>{getArea()}</span>
             </li>
           </ul>
         </div>
@@ -35,7 +95,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">ID:</div>
-              <div className="text-1 text-color-heading">2297</div>
+              <div className="text-1 text-color-heading">{getPropertyId()}</div>
             </div>
           </div>
           <div className="box-icon">
@@ -44,7 +104,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Bathrooms:</div>
-              <div className="text-1 text-color-heading">2 Rooms</div>
+              <div className="text-1 text-color-heading">{getBathrooms()} Rooms</div>
             </div>
           </div>
         </div>
@@ -55,7 +115,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Type:</div>
-              <div className="text-1 text-color-heading">Hourse</div>
+              <div className="text-1 text-color-heading">{getPropertyType()}</div>
             </div>
           </div>
           <div className="box-icon">
@@ -64,7 +124,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Land Size:</div>
-              <div className="text-1 text-color-heading">2,000 SqFt</div>
+              <div className="text-1 text-color-heading">{getLandSize()}</div>
             </div>
           </div>
         </div>
@@ -75,7 +135,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Garages</div>
-              <div className="text-1 text-color-heading">1</div>
+              <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
             </div>
           </div>
           <div className="box-icon">
@@ -84,7 +144,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Year Built:</div>
-              <div className="text-1 text-color-heading">2023</div>
+              <div className="text-1 text-color-heading">{getYearBuilt()}</div>
             </div>
           </div>
         </div>
@@ -95,7 +155,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Bedrooms:</div>
-              <div className="text-1 text-color-heading">2 Rooms</div>
+              <div className="text-1 text-color-heading">{getBedrooms()} Rooms</div>
             </div>
           </div>
           <div className="box-icon">
@@ -104,7 +164,7 @@ export default function PropertyOverview({ property }) {
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Size:</div>
-              <div className="text-1 text-color-heading">900 SqFt</div>
+              <div className="text-1 text-color-heading">{getArea()}</div>
             </div>
           </div>
         </div>

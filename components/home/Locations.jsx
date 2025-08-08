@@ -105,7 +105,6 @@ export default function Locations() {
           display: flex;
           gap: 40px;
           align-items: stretch;
-          background: #f8f9fa;
           padding: 40px;
           border-radius: 12px;
         }

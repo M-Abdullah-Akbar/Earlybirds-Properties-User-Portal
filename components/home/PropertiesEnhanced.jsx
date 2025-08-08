@@ -91,7 +91,10 @@ export default function Properties3() {
                         </Link>
                       </div>
                       <p className="location text-16 flex items-center gap-6">
-                        <i className="icon-location-5" /> {property.location}
+                        <i className="icon-location-5" /> {typeof property.location === 'string' ? property.location : 
+                 property.location?.address || 
+                 `${property.area || ''} ${property.emirate || ''}`.trim() || 
+                 'Location not specified'}
                       </p>
                     </div>
                     {/*<div className="tag text-1 lh-20">

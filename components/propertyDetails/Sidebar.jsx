@@ -2,14 +2,61 @@
 import React from "react";
 import Image from "next/image";
 
-export default function Sidebar() {
+export default function Sidebar({ property }) {
+  // Helper function to format price
+  const formatPrice = () => {
+    if (!property?.price) return 'Price on request';
+    
+    const currency = property.currency || 'AED';
+    const priceType = property.priceType || 'fixed';
+    
+    // Format price with commas
+    const formattedPrice = new Intl.NumberFormat('en-US').format(property.price);
+    
+    if (priceType === 'monthly') {
+      return `${currency} ${formattedPrice}/month`;
+    } else if (priceType === 'yearly') {
+      return `${currency} ${formattedPrice}/year`;
+    } else {
+      return `${currency} ${formattedPrice}`;
+    }
+  };
+
+  // Helper function to get listing type
+  const getListingType = () => {
+    const listingType = property?.listingType;
+    if (listingType === 'sale') return 'For Sale';
+    if (listingType === 'rent') return 'For Rent';
+    return property?.propertyType || 'For Sale';
+  };
+
+  // Helper function to get property status
+  const getPropertyStatus = () => {
+    return property?.status || 'Available';
+  };
+
   return (
     <div className="tf-sidebar sticky-sidebar">
-      <form
+      {/* Property Price Card */}
+      {/*<div className="property-price-card mb-30">
+        <div className="price-info">
+          <h3 className="price text-4 fw-6 text-color-primary mb-10">
+            {formatPrice()}
+          </h3>
+          <div className="listing-type text-2 text-color-default mb-15">
+            {getListingType()}
+          </div>
+          <div className="status text-1 text-color-success">
+            Status: {getPropertyStatus()}
+          </div>
+        </div>
+      </div>*/}
+
+      {/*<form
         className="form-contact-seller mb-30"
         onSubmit={(e) => e.preventDefault()}
       >
-        {/*<h4 className="heading-title mb-30">Contact Sellers</h4>
+        <h4 className="heading-title mb-30">Contact Sellers</h4>
         <div className="seller-info">
           <div className="avartar">
             <Image
@@ -32,7 +79,7 @@ export default function Sidebar() {
               </li>
             </ul>
           </div>
-        </div>*/}
+        </div>
         <h4 className="heading-title mb-30">Contact Us</h4>
         <fieldset className="mb-12">
           <input
@@ -58,7 +105,7 @@ export default function Sidebar() {
         <a href="#" className="tf-btn bg-color-primary w-full">
           Send message
         </a>
-      </form>
+      </form>*/}
       <div className="sidebar-ads mb-30">
         <div className="image-wrap">
           <Image
@@ -86,7 +133,7 @@ export default function Sidebar() {
             <div className="text-addres">
               <p>
                 Connect with a trusted agent who knows the market inside out -
-                whether you’re buying or selling.
+                whether you're buying or selling.
               </p>
             </div>
           </div>

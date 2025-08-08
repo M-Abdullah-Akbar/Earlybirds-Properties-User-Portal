@@ -14,7 +14,7 @@ export default function Home() {
       <div id="wrapper" className="counter-scroll">
         <Header />
         <div className="main-content overflow-hidden">
-            <Properties defaultGrid />
+            <Properties defaultGrid propertyType="rent" />
             <Cta />
         </div>
         <Footer parentClass="style-2" />

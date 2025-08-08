@@ -8,6 +8,8 @@ import Locations from "@/components/home/Locations";
 import Properties from "@/components/home/Properties";
 import Testimonials from "@/components/sell/Testimonials";
 import React from "react";
+import AboutSection from "@/components/home/AboutSection";
+import OffplanProjects from "@/components/home/OffplanProjects";
 
 export const metadata = {
   title: "Home || Proty - Real Estate React Nextjs Template",
@@ -20,8 +22,10 @@ export default function Home() {
         <Header />
         <Hero />
         <div className="main-content overflow-hidden">
-          <Properties title="Properties For Sale" />
-          <Properties title="Properties For Rent" />
+          {/* <Properties title="Properties For Sale" />
+          <Properties title="Properties For Rent" /> */}
+          <AboutSection />
+          <OffplanProjects />
           <HelpSection />
           <Locations />
           <Partners />

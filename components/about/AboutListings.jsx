@@ -63,7 +63,10 @@ export default function Listings() {
                   </Link>
                 </h5>
                 <p className="location text-1 flex items-center gap-6">
-                  <i className="icon-location" /> {property.location}
+                  <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
+                 property.location?.address || 
+                 `${property.area || ''} ${property.emirate || ''}`.trim() || 
+                 'Location not specified'}
                 </p>
                 <ul className="meta-list flex">
                   <li className="text-1 flex">

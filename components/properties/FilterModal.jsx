@@ -1,10 +1,108 @@
 "use client";
 import Slider from "rc-slider";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { locationAPI, propertyAPI } from "@/utils/api";
 
-export default function FilterModal() {
-  const [priceRange, setPriceRange] = useState([100, 700]);
-  const [sizeRange, setSizeRange] = useState([200, 820]);
+export default function FilterModal({ onFilterChange }) {
+  const [priceRange, setPriceRange] = useState([100000, 5000000]);
+  const [sizeRange, setSizeRange] = useState([200, 5000]);
+  const [filters, setFilters] = useState({
+    propertyType: "",
+    emirate: "",
+    area: "",
+    bedrooms: "",
+    bathrooms: "",
+    amenities: []
+  });
+  
+  const [emirates, setEmirates] = useState([]);
+  const [areas, setAreas] = useState([]);
+  const [propertyTypes, setPropertyTypes] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Load initial data
+  useEffect(() => {
+    loadInitialData();
+  }, []);
+
+  const loadInitialData = async () => {
+    try {
+      setLoading(true);
+      
+      // Load emirates
+      const emiratesResponse = await locationAPI.getEmirates();
+      if (emiratesResponse.success) {
+        setEmirates(emiratesResponse.data || []);
+      }
+
+      // Load property types
+      const typesResponse = await propertyAPI.getPropertyTypes();
+      if (typesResponse.success) {
+        setPropertyTypes(typesResponse.data || []);
+      }
+    } catch (error) {
+      console.error("Error loading filter data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load areas when emirate changes
+  const handleEmirateChange = async (emirate) => {
+    setFilters(prev => ({ ...prev, emirate, area: "" }));
+    setAreas([]);
+    
+    if (emirate) {
+      try {
+        const response = await locationAPI.getAreas(emirate);
+        if (response.success) {
+          setAreas(response.data || []);
+        }
+      } catch (error) {
+        console.error("Error loading areas:", error);
+      }
+    }
+  };
+
+  // Apply filters
+  const applyFilters = () => {
+    const filterParams = {
+      ...filters,
+      minPrice: priceRange[0],
+      maxPrice: priceRange[1],
+      minSize: sizeRange[0],
+      maxSize: sizeRange[1]
+    };
+    
+    if (onFilterChange) {
+      onFilterChange(filterParams);
+    }
+    
+    // Close modal
+    const modal = document.getElementById('modalFilter');
+    if (modal) {
+      const modalInstance = bootstrap.Modal.getInstance(modal);
+      if (modalInstance) {
+        modalInstance.hide();
+      }
+    }
+  };
+
+  // Reset filters
+  const resetFilters = () => {
+    setPriceRange([100000, 5000000]);
+    setSizeRange([200, 5000]);
+    setFilters({
+      propertyType: "",
+      emirate: "",
+      area: "",
+      bedrooms: "",
+      bathrooms: "",
+      amenities: []
+    });
+    setAreas([]);
+  };
+
   return (
     <div className="modal modal-filter fade" id="modalFilter">
       <div className="modal-dialog modal-dialog-centered">
@@ -17,25 +115,26 @@ export default function FilterModal() {
                 data-bs-dismiss="modal"
               />
             </div>
+            
             <div className="group-price">
               <div className="widget-price">
                 <div className="box-title-price">
-                  <span className="title-price">Price</span>
+                  <span className="title-price">Price (AED)</span>
                   <div className="caption-price">
                     <span>from</span>{" "}
                     <span className="value fw-6" id="slider-range-value1">
-                      ${priceRange[0].toLocaleString()}
+                      {priceRange[0].toLocaleString()}
                     </span>{" "}
                     <span>to</span>
                     <span className="value fw-6" id="slider-range-value2">
                       {" "}
-                      ${priceRange[1].toLocaleString()}
+                      {priceRange[1].toLocaleString()}
                     </span>
                   </div>
                 </div>
                 <Slider
                   range
-                  max={1000}
+                  max={10000000}
                   min={0}
                   value={priceRange}
                   onChange={setPriceRange}
@@ -43,7 +142,7 @@ export default function FilterModal() {
               </div>
               <div className="widget-price">
                 <div className="box-title-price">
-                  <span className="title-price">Size range</span>
+                  <span className="title-price">Size range (sqft)</span>
                   <div className="caption-price">
                     <span>from</span>{" "}
                     <span className="value fw-6" id="slider-range-value01">
@@ -57,242 +156,199 @@ export default function FilterModal() {
                 </div>
                 <Slider
                   range
-                  max={1000}
+                  max={10000}
                   min={0}
                   value={sizeRange}
                   onChange={setSizeRange}
                 />
               </div>
             </div>
+            
             <div className="group-select">
               <div className="box-select">
                 <div className="nice-select" tabIndex={0}>
-                  <span className="current">Province / States</span>
+                  <span className="current">
+                    {filters.propertyType || "Property Type"}
+                  </span>
                   <ul className="list">
-                    <li data-value={1} className="option">
-                      California
+                    <li 
+                      data-value="" 
+                      className="option"
+                      onClick={() => setFilters(prev => ({ ...prev, propertyType: "" }))}
+                    >
+                      Any Type
                     </li>
-                    <li data-value={2} className="option selected">
-                      Texas
-                    </li>
-                    <li data-value={3} className="option">
-                      Florida
-                    </li>
-                    <li data-value={4} className="option">
-                      New York
-                    </li>
-                    <li data-value={5} className="option">
-                      Illinois
-                    </li>
-                    <li data-value={6} className="option">
-                      Washington
-                    </li>
-                    <li data-value={7} className="option">
-                      Pennsylvania
-                    </li>
-                    <li data-value={8} className="option">
-                      Ohio
-                    </li>
-                    <li data-value={9} className="option">
-                      Georgia
-                    </li>
-                    <li data-value={10} className="option">
-                      North Carolina
-                    </li>
+                    {propertyTypes.map((type, index) => (
+                      <li 
+                        key={index}
+                        data-value={type} 
+                        className="option"
+                        onClick={() => setFilters(prev => ({ ...prev, propertyType: type }))}
+                      >
+                        {type}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
+              
               <div className="box-select">
                 <div className="nice-select" tabIndex={0}>
-                  <span className="current">Rooms</span>
+                  <span className="current">
+                    {filters.emirate || "Emirate"}
+                  </span>
                   <ul className="list">
-                    <li data-value={1} className="option">
-                      1
+                    <li 
+                      data-value="" 
+                      className="option"
+                      onClick={() => handleEmirateChange("")}
+                    >
+                      Any Emirate
                     </li>
-                    <li data-value={2} className="option selected">
-                      2
-                    </li>
-                    <li data-value={3} className="option">
-                      3
-                    </li>
-                    <li data-value={4} className="option">
-                      4
-                    </li>
-                    <li data-value={5} className="option">
-                      5
-                    </li>
-                    <li data-value={6} className="option">
-                      6
-                    </li>
-                    <li data-value={7} className="option">
-                      7
-                    </li>
-                    <li data-value={8} className="option">
-                      8
-                    </li>
-                    <li data-value={9} className="option">
-                      9
-                    </li>
-                    <li data-value={10} className="option">
-                      10
-                    </li>
+                    {emirates.map((emirate, index) => (
+                      <li 
+                        key={index}
+                        data-value={emirate} 
+                        className="option"
+                        onClick={() => handleEmirateChange(emirate)}
+                      >
+                        {emirate}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
+              
               <div className="box-select">
                 <div className="nice-select" tabIndex={0}>
-                  <span className="current">Bath: Any</span>
+                  <span className="current">
+                    {filters.area || "Area"}
+                  </span>
                   <ul className="list">
-                    <li data-value={1} className="option">
-                      1
+                    <li 
+                      data-value="" 
+                      className="option"
+                      onClick={() => setFilters(prev => ({ ...prev, area: "" }))}
+                    >
+                      Any Area
                     </li>
-                    <li data-value={2} className="option selected">
-                      2
-                    </li>
-                    <li data-value={3} className="option">
-                      3
-                    </li>
-                    <li data-value={4} className="option">
-                      4
-                    </li>
+                    {areas.map((area, index) => (
+                      <li 
+                        key={index}
+                        data-value={area} 
+                        className="option"
+                        onClick={() => setFilters(prev => ({ ...prev, area }))}
+                      >
+                        {area}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
+              
               <div className="box-select">
                 <div className="nice-select" tabIndex={0}>
-                  <span className="current">Beds: Any</span>
+                  <span className="current">
+                    {filters.bedrooms || "Bedrooms"}
+                  </span>
                   <ul className="list">
-                    <li data-value={1} className="option">
-                      1
+                    <li 
+                      data-value="" 
+                      className="option"
+                      onClick={() => setFilters(prev => ({ ...prev, bedrooms: "" }))}
+                    >
+                      Any
                     </li>
-                    <li data-value={2} className="option selected">
-                      2
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                      <li 
+                        key={num}
+                        data-value={num} 
+                        className="option"
+                        onClick={() => setFilters(prev => ({ ...prev, bedrooms: num }))}
+                      >
+                        {num}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="box-select">
+                <div className="nice-select" tabIndex={0}>
+                  <span className="current">
+                    {filters.bathrooms || "Bathrooms"}
+                  </span>
+                  <ul className="list">
+                    <li 
+                      data-value="" 
+                      className="option"
+                      onClick={() => setFilters(prev => ({ ...prev, bathrooms: "" }))}
+                    >
+                      Any
                     </li>
-                    <li data-value={3} className="option">
-                      3
-                    </li>
-                    <li data-value={4} className="option">
-                      4
-                    </li>
-                    <li data-value={5} className="option">
-                      5
-                    </li>
-                    <li data-value={6} className="option">
-                      6
-                    </li>
+                    {[1, 2, 3, 4, 5, 6].map((num) => (
+                      <li 
+                        key={num}
+                        data-value={num} 
+                        className="option"
+                        onClick={() => setFilters(prev => ({ ...prev, bathrooms: num }))}
+                      >
+                        {num}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </div>
+            
             <div className="group-checkbox">
               <div className="title text-4 fw-6">Amenities:</div>
               <div className="group-amenities">
-                <fieldset className="checkbox-item style-1">
-                  <label>
-                    <span className="text-4">Bed linens</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4"> Carbon alarm</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Check-in lockbox </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Coffee maker </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4"> Fireplace</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Extra pillows </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">First aid kit </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1">
-                  <label>
-                    <span className="text-4">Hangers </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Iron</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4"> Microwave</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Fireplace</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1">
-                  <label>
-                    <span className="text-4"> Refrigerator</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Security cameras </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4"> Smoke alarm</span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
-                <fieldset className="checkbox-item style-1 mt-12">
-                  <label>
-                    <span className="text-4">Fireplace </span>
-                    <input type="checkbox" />
-                    <span className="btn-checkbox" />
-                  </label>
-                </fieldset>
+                {[
+                  "Parking", "Gym", "Pool", "Garden", "Balcony", "Elevator", 
+                  "Security", "Central AC", "Furnished", "Pet Friendly"
+                ].map((amenity, index) => (
+                  <fieldset key={index} className="checkbox-item style-1 mt-12">
+                    <label>
+                      <span className="text-4">{amenity}</span>
+                      <input 
+                        type="checkbox" 
+                        checked={filters.amenities.includes(amenity)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setFilters(prev => ({
+                              ...prev,
+                              amenities: [...prev.amenities, amenity]
+                            }));
+                          } else {
+                            setFilters(prev => ({
+                              ...prev,
+                              amenities: prev.amenities.filter(a => a !== amenity)
+                            }));
+                          }
+                        }}
+                      />
+                      <span className="btn-checkbox" />
+                    </label>
+                  </fieldset>
+                ))}
               </div>
+            </div>
+            
+            <div className="group-btn flex gap-12 mt-24">
+              <button 
+                className="tf-btn style-1 w-full"
+                onClick={applyFilters}
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Apply Filters"}
+              </button>
+              <button 
+                className="tf-btn style-border w-full"
+                onClick={resetFilters}
+              >
+                Reset
+              </button>
             </div>
           </div>
         </div>

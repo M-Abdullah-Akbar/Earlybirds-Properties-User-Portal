@@ -17,16 +17,16 @@ export default function Details({ property }) {
             <div className="wg-property box-overview">
               <PropertyOverview property={property} />
             </div>
-            <div className="wg-property video">
+            {/*<div className="wg-property video">
               <VideoReview />
-            </div>
+            </div>*/}
             <div className="wg-property box-property-detail">
-              <ExtraInfo />
+              <ExtraInfo property={property} />
             </div>
             <div className="wg-property box-amenities">
-              <Features />
+              <Features property={property} />
             </div>
-            <div className="wg-property single-property-floor">
+            {/*<div className="wg-property single-property-floor">
               <FloorPlan />
             </div>
             <div className="wg-property box-attachments">
@@ -34,10 +34,10 @@ export default function Details({ property }) {
             </div>
             <div className="wg-property mb-0 box-comment">
               <Reviews />
-            </div>
+            </div>*/}
           </div>
           <div className="col-xl-4 col-lg-5">
-            <Sidebar />
+            <Sidebar property={property} />
           </div>
         </div>
       </div>

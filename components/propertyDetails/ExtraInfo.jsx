@@ -1,6 +1,77 @@
 import React from "react";
 
-export default function ExtraInfo() {
+export default function ExtraInfo({ property }) {
+  // Helper function to format price
+  const formatPrice = () => {
+    if (!property?.price) return 'Price on request';
+    
+    const currency = property.currency || 'AED';
+    const priceType = property.priceType || 'fixed';
+    
+    // Format price with commas
+    const formattedPrice = new Intl.NumberFormat('en-US').format(property.price);
+    
+    if (priceType === 'monthly') {
+      return `${currency} ${formattedPrice}/month`;
+    } else if (priceType === 'yearly') {
+      return `${currency} ${formattedPrice}/year`;
+    } else {
+      return `${currency} ${formattedPrice}`;
+    }
+  };
+
+  // Helper function to get property ID
+  const getPropertyId = () => {
+    return property?._id || property?.id || 'N/A';
+  };
+
+  // Helper function to get property type
+  const getPropertyType = () => {
+    return property?.propertyType || property?.listingType || 'N/A';
+  };
+
+  // Helper function to get property status
+  const getPropertyStatus = () => {
+    return property?.status || 'Available';
+  };
+
+  // Helper function to get area
+  const getArea = () => {
+    const area = property?.details?.area || property?.sqft || property?.size;
+    const unit = property?.details?.areaUnit || 'SqFt';
+    return area ? `${area} ${unit}` : 'N/A';
+  };
+
+  // Helper function to get bedrooms
+  const getBedrooms = () => {
+    return property?.details?.bedrooms || property?.bedrooms || 'N/A';
+  };
+
+  // Helper function to get bathrooms
+  const getBathrooms = () => {
+    return property?.details?.bathrooms || property?.bathrooms || 'N/A';
+  };
+
+  // Helper function to get year built
+  const getYearBuilt = () => {
+    return property?.details?.yearBuilt || 'N/A';
+  };
+
+  // Helper function to get parking spaces
+  const getParkingSpaces = () => {
+    return property?.details?.parking?.spaces || 'N/A';
+  };
+
+  // Helper function to get total rooms
+  const getTotalRooms = () => {
+    const beds = getBedrooms();
+    const baths = getBathrooms();
+    if (beds === 'N/A' && baths === 'N/A') return 'N/A';
+    const totalBeds = beds === 'N/A' ? 0 : parseInt(beds);
+    const totalBaths = baths === 'N/A' ? 0 : parseInt(baths);
+    return totalBeds + totalBaths;
+  };
+
   return (
     <>
       <div className="wg-title text-11 fw-6 text-color-heading">
@@ -8,11 +79,7 @@ export default function ExtraInfo() {
       </div>
       <div className="content">
         <p className="description text-1">
-          3 Units in North Hollywood with upside potential through construction
-          of an ADU (buyer to verify). Unit mix consists of (3) 3+1 bath units.
-          The building is a total of 2, 660 square feet and situated on a 6, 001
-          square foot lot. Easy access to the 101, 170, and 134 freeways. The
-          building is separately metered for gas and electricity.
+          {property?.description || 'No description available for this property.'}
         </p>
         {/*<a href="#" className="tf-btn-link style-hover-rotate">
           <span>Read More </span>
@@ -63,45 +130,45 @@ export default function ExtraInfo() {
         <ul>
           <li className="flex">
             <p className="fw-6">ID</p>
-            <p>#1234</p>
+            <p>#{getPropertyId()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Price</p>
-            <p>$7,500</p>
+            <p>{formatPrice()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Size</p>
-            <p>150 sqft</p>
+            <p>{getArea()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Rooms</p>
-            <p>9</p>
+            <p>{getTotalRooms()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Baths</p>
-            <p>3</p>
+            <p>{getBathrooms()}</p>
           </li>
         </ul>
         <ul>
           <li className="flex">
             <p className="fw-6">Beds</p>
-            <p>7.328</p>
+            <p>{getBedrooms()}</p>
           </li>
           <li className="flex">
-            <p className="fw-6">Year buit</p>
-            <p>2022</p>
+            <p className="fw-6">Year built</p>
+            <p>{getYearBuilt()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Type</p>
-            <p>Villa</p>
+            <p>{getPropertyType()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Status</p>
-            <p>For sale</p>
+            <p>{getPropertyStatus()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Garage</p>
-            <p>1</p>
+            <p>{getParkingSpaces()}</p>
           </li>
         </ul>
       </div>

@@ -67,7 +67,10 @@ export default function Properties({ title }) {
                           </Link>
                         </h5>
                         <p className="location text-1 line-clamp-1 ">
-                          <i className="icon-location" /> {property.location}
+                          <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
+                           property.location?.address || 
+                           `${property.area || ''} ${property.emirate || ''}`.trim() || 
+                           'Location not specified'}
                         </p>
                         <ul className="meta-list flex">
                           <li className="text-1 flex">
@@ -156,7 +159,10 @@ export default function Properties({ title }) {
                         </Link>
                       </h5>
                       <p className="location text-1 line-clamp-1 ">
-                        <i className="icon-location" /> {property.location}
+                        <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
+                         property.location?.address || 
+                         `${property.area || ''} ${property.emirate || ''}`.trim() || 
+                         'Location not specified'}
                       </p>
                       <ul className="meta-list flex">
                         <li className="text-1 flex">
