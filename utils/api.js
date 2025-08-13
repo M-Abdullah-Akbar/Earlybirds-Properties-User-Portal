@@ -1,37 +1,185 @@
 import axios from "axios";
 
 // Base API configuration
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = "https://556778af93ac.ngrok-free.app/api";
 
 // Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
+    "ngrok-skip-browser-warning": "true",
   },
 });
+
+// Add request interceptor to include auth token (optional for user portal)
+{/*api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);*/}
 
 // Add response interceptor to handle errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Check if response is HTML instead of JSON (common with ngrok)
+    if (error.response?.data && typeof error.response.data === 'string' && error.response.data.includes('<!DOCTYPE html>')) {
+      console.error('Received HTML response instead of JSON. This usually means the API endpoint is not accessible or ngrok requires the warning to be bypassed.');
+      throw new Error('API server returned HTML instead of JSON. The ngrok tunnel may have expired or the backend server is not running. Please check the backend connection.');
+    }
+    
+    // Check for ngrok-specific errors
+    if (error.response?.status === 0 || error.code === 'ERR_NETWORK') {
+      console.error('Network error - ngrok tunnel may be down:', error);
+      throw new Error('Unable to connect to the API server. The ngrok tunnel may have expired or the backend server is not running. Please check the backend connection.');
+    }
+    
+    // Check for ngrok warning page
+    if (error.response?.data && typeof error.response.data === 'string' && error.response.data.includes('ngrok')) {
+      console.error('Ngrok warning page detected. User needs to accept the ngrok warning.');
+      throw new Error('Ngrok security warning detected. Please visit the API URL in your browser and accept the warning, then refresh this page.');
+    }
+    
     console.error("API Error:", error.response?.data || error.message);
     return Promise.reject(error);
   }
 );
 
-// Static property types data
+// Static data for user portal (since backend doesn't provide these endpoints for users)
 const PROPERTY_TYPES = [
-  "apartment",
-  "villa", 
-  "house",
-  "townhouse",
-  "penthouse",
-  "studio",
-  "duplex",
-  "commercial",
-  "land"
+  "apartment", "villa", "house", "townhouse", "penthouse", 
+  "studio", "duplex", "commercial", "land"
 ];
+
+const LISTING_TYPES = ["sale", "rent"];
+
+const PROPERTY_STATUS = ["available", "sold", "rented", "pending", "draft", "archived"];
+
+const AREA_UNITS = ["sqft", "sqm"];
+
+const PARKING_TYPES = ["covered", "open", "garage", "street"];
+
+const PRICE_TYPES = ["total", "per_sqft", "per_sqm"];
+
+const CURRENCIES = ["AED"];
+
+const COUNTRIES = ["UAE"];
+
+// Emirates and areas mapping for user portal
+const EMIRATES = [
+  "Dubai", "Abu Dhabi", "Sharjah", "Ajman", 
+  "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"
+];
+
+const EMIRATE_AREA_MAP = {
+  Dubai: [
+    "Downtown Dubai", "Dubai Marina", "Jumeirah Beach Residence (JBR)", "Palm Jumeirah",
+    "Business Bay", "DIFC", "Dubai Hills Estate", "Arabian Ranches", "Jumeirah Village Circle (JVC)",
+    "Dubai Sports City", "Motor City", "The Greens", "Emirates Hills", "Jumeirah", "Bur Dubai",
+    "Deira", "Al Barsha", "Dubai Investment Park (DIP)", "International City", "Discovery Gardens",
+    "Mirdif", "Festival City", "Silicon Oasis", "Dubai South", "Al Furjan", "Damac Hills",
+    "Town Square", "Dubai Land", "Al Mizhar", "Al Warqa"
+  ],
+  "Abu Dhabi": [
+    "Abu Dhabi City", "Al Reem Island", "Saadiyat Island", "Yas Island", "Al Reef",
+    "Khalifa City", "Mohammed Bin Zayed City", "Al Shamkha", "Al Rahba", "Masdar City",
+    "Corniche Area", "Tourist Club Area", "Electra Street", "Hamdan Street", "Al Bateen",
+    "Al Mushrif", "Al Karamah", "Al Manhal", "Al Khalidiyah", "Al Markaziyah"
+  ],
+  Sharjah: [
+    "Sharjah City", "Al Majaz", "Al Qasba", "Al Nahda", "Muweilah", "Al Warqa",
+    "University City", "Al Taawun", "Al Qadisiya"
+  ],
+  Ajman: [
+    "Ajman City", "Al Nuaimiya", "Al Rashidiya", "Al Zahra", "Al Hamidiya"
+  ],
+  "Ras Al Khaimah": [
+    "Ras Al Khaimah City", "Al Hamra", "Al Marjan Island", "Al Nakheel", "Al Dhait"
+  ],
+  Fujairah: [
+    "Fujairah City", "Al Faseel", "Al Taween", "Al Aqah"
+  ],
+  "Umm Al Quwain": [
+    "Umm Al Quwain City", "Al Salamah", "Al Raas"
+  ]
+};
+
+// Property Type - Amenities mapping for user portal
+const PROPERTY_TYPE_AMENITIES_MAP = {
+  apartment: [
+    "Air Conditioning", "Central Heating", "Built-in Wardrobes", "Balcony", "City View", 
+    "Sea View", "Marina View", "High Floor", "Elevator", "Swimming Pool", "Gym", 
+    "Security", "24/7 Security", "CCTV", "Concierge", "Parking", "Covered Parking", 
+    "Internet Ready", "Cable TV Ready", "Intercom", "Maintenance", "Cleaning Service", 
+    "Pets Allowed", "Furnished", "Semi Furnished", "Unfurnished"
+  ],
+  villa: [
+    "Private Pool", "Private Garden", "Garage", "Maid Room", "Driver Room", "Study Room", 
+    "Walk-in Closet", "Multiple Living Areas", "Formal Dining", "Family Room", "Home Office", 
+    "Storage Room", "Laundry Room", "BBQ Area", "Outdoor Kitchen", "Jacuzzi", "Fireplace", 
+    "High Ceilings", "Marble Floors", "Wooden Floors", "Smart Home", "Solar Panels", 
+    "Generator Backup", "Security System", "CCTV", "Landscaped Garden", "Tree-lined Street", 
+    "Gated Community", "Beach Access"
+  ],
+  house: [
+    "Garden", "Garage", "Maid Room", "Study Room", "Storage Room", "Laundry Room", 
+    "Fireplace", "High Ceilings", "Wooden Floors", "Modern Kitchen", "Built-in Wardrobes", 
+    "Walk-in Closet", "Multiple Bathrooms", "Family Room", "Dining Room", "Home Office", 
+    "BBQ Area", "Covered Parking", "Air Conditioning", "Central Heating", "Security System", 
+    "Intercom", "Internet Ready", "Furnished", "Semi Furnished", "Unfurnished"
+  ],
+  townhouse: [
+    "Private Garden", "Garage", "Maid Room", "Study Room", "Storage Room", "Laundry Room", 
+    "Multiple Levels", "Terrace", "Rooftop Access", "Modern Kitchen", "Built-in Wardrobes", 
+    "Walk-in Closet", "Family Room", "Dining Room", "Home Office", "BBQ Area", "Covered Parking", 
+    "Air Conditioning", "Central Heating", "Community Pool", "Community Gym", "Playground", 
+    "Security", "Gated Community", "Maintenance", "Landscaping"
+  ],
+  penthouse: [
+    "Private Pool", "Private Terrace", "Rooftop Access", "Panoramic Views", "Sky Lounge", 
+    "Private Elevator", "High-end Finishes", "Marble Floors", "Floor-to-ceiling Windows", 
+    "Smart Home System", "Home Automation", "Premium Kitchen", "Wine Cellar", "Walk-in Closet", 
+    "Master Suite", "Jacuzzi", "Steam Room", "Home Theater", "Study Room", "Maid Room", 
+    "Driver Room", "Laundry Room", "Storage Room", "Private Garage", "Concierge Service", 
+    "24/7 Security", "Valet Parking"
+  ],
+  studio: [
+    "Air Conditioning", "Built-in Wardrobes", "Balcony", "City View", "Sea View", "High Floor", 
+    "Modern Kitchen", "Marble Floors", "Wooden Floors", "Swimming Pool", "Gym", "Security", 
+    "Elevator", "Parking", "Covered Parking", "Internet Ready", "Cable TV Ready", "Intercom", 
+    "Maintenance", "Furnished", "Semi Furnished", "Unfurnished", "Compact Design", "Efficient Layout"
+  ],
+  duplex: [
+    "Two Levels", "Private Entrance", "Terrace", "Garden", "Garage", "Maid Room", "Study Room", 
+    "Storage Room", "Laundry Room", "Multiple Living Areas", "Formal Dining", "Modern Kitchen", 
+    "Built-in Wardrobes", "Walk-in Closet", "Master Suite", "Family Room", "Home Office", 
+    "BBQ Area", "Air Conditioning", "Central Heating", "High Ceilings", "Wooden Floors", 
+    "Marble Floors", "Smart Home", "Security System", "Covered Parking"
+  ],
+  commercial: [
+    "Prime Location", "High Visibility", "Street Frontage", "Parking Available", "Air Conditioning", 
+    "Central Heating", "Elevator", "Loading Dock", "Storage Space", "Conference Room", 
+    "Reception Area", "Private Offices", "Open Plan Layout", "Kitchen Facilities", "Bathroom Facilities", 
+    "Security System", "CCTV", "Fire Safety System", "Backup Generator", "High Speed Internet", 
+    "Phone Lines", "Disabled Access", "24/7 Access", "Maintenance Service", "Cleaning Service", 
+    "Signage Rights", "Public Transport Access"
+  ],
+  land: [
+    "Residential Zoning", "Commercial Zoning", "Mixed Use Zoning", "Corner Plot", "Main Road Access", 
+    "Utilities Connected", "Electricity Ready", "Water Connection", "Sewage Connection", "Internet Ready", 
+    "Planning Permission", "Building Permit Ready", "Flat Terrain", "Elevated Position", "Sea Frontage", 
+    "Beach Access", "Investment Opportunity", "Development Potential", "Gated Community", "Security", 
+    "Landscaping Allowed", "No Restrictions", "Freehold", "Leasehold"
+  ]
+};
 
 // Helper function to get display location from property
 export const getDisplayLocation = (property) => {
@@ -57,7 +205,7 @@ const transformPropertyData = (property) => {
     location: getDisplayLocation(property),
     // Map backend details structure to frontend expected structure
     bedrooms: property.details?.bedrooms || property.bedrooms || 0,
-    bathrooms: property.details?.bathrooms || property.bathrooms || 0,
+    bathrooms: property.details?.bathrooms || property.baths || 0,
     size: property.details?.area || property.size || 0,
     sqft: property.details?.area || property.sqft || 0,
     // Map backend image structure to frontend expected structure
@@ -68,16 +216,16 @@ const transformPropertyData = (property) => {
     propertyType: property.listingType || property.propertyType,
     // Add beds and baths for compatibility
     beds: property.details?.bedrooms || property.bedrooms || 0,
-    baths: property.details?.bathrooms || property.bathrooms || 0
+    baths: property.details?.bathrooms || property.baths || 0
   };
   
   console.log("Transformed property:", transformed.title);
   return transformed;
 };
 
-// Property API functions for user portal
+// Property API functions for user portal (only public endpoints)
 export const propertyAPI = {
-  // Get all properties with filtering and pagination
+  // Get all properties with filtering and pagination - GET /api/properties
   getProperties: async (params = {}) => {
     console.log("getProperties called with params:", params);
     
@@ -93,7 +241,7 @@ export const propertyAPI = {
     return response.data;
   },
 
-  // Get single property
+  // Get single property - GET /api/properties/:id
   getProperty: async (id) => {
     const response = await api.get(`/properties/${id}`);
     
@@ -103,73 +251,6 @@ export const propertyAPI = {
     }
     
     return response.data;
-  },
-
-  // Get property types (using static data since backend requires auth)
-  getPropertyTypes: async () => {
-    return {
-      success: true,
-      data: PROPERTY_TYPES,
-      message: "Property types retrieved successfully"
-    };
-  },
-
-  // Get amenities for property type (using static data since backend requires auth)
-  getAmenitiesForPropertyType: async (propertyType) => {
-    // Static amenities data for different property types
-    const amenitiesMap = {
-      apartment: [
-        "Balcony", "Gym", "Swimming Pool", "Parking", "Security", "Elevator",
-        "Air Conditioning", "Furnished", "Pet Friendly", "Garden"
-      ],
-      villa: [
-        "Private Pool", "Garden", "Parking", "Security", "Maid's Room",
-        "Air Conditioning", "Furnished", "Pet Friendly", "BBQ Area"
-      ],
-      house: [
-        "Garden", "Parking", "Security", "Air Conditioning", "Furnished",
-        "Pet Friendly", "Storage Room", "Utility Room"
-      ],
-      townhouse: [
-        "Garden", "Parking", "Security", "Air Conditioning", "Furnished",
-        "Pet Friendly", "Small Pool", "BBQ Area"
-      ],
-      penthouse: [
-        "Private Pool", "Terrace", "Parking", "Security", "Air Conditioning",
-        "Furnished", "Pet Friendly", "Panoramic Views", "Private Elevator"
-      ],
-      studio: [
-        "Air Conditioning", "Furnished", "Security", "Parking", "Gym"
-      ],
-      duplex: [
-        "Garden", "Parking", "Security", "Air Conditioning", "Furnished",
-        "Pet Friendly", "Private Entrance", "Storage"
-      ],
-      commercial: [
-        "Parking", "Security", "Air Conditioning", "Loading Dock",
-        "Warehouse Space", "Office Space", "High Ceilings"
-      ],
-      land: [
-        "Fenced", "Utilities Available", "Road Access", "Zoning Approved"
-      ]
-    };
-    
-    const amenities = amenitiesMap[propertyType] || [];
-    return {
-      success: true,
-      data: amenities,
-      message: `Amenities for ${propertyType} retrieved successfully`
-    };
-  },
-
-  // Get areas for emirate (using static data since backend requires auth)
-  getAreasForEmirate: async (emirate) => {
-    const areas = EMIRATE_AREA_MAP[emirate] || [];
-    return {
-      success: true,
-      data: areas,
-      message: `Areas for ${emirate} retrieved successfully`
-    };
   },
 
   // Get featured properties
@@ -194,7 +275,7 @@ export const propertyAPI = {
   getPropertiesByType: async (type, params = {}) => {
     const response = await api.get("/properties", { 
       params: { 
-        propertyType: type,
+        listingType: type,
         status: 'available',
         ...params
       } 
@@ -248,113 +329,125 @@ export const propertyAPI = {
     
     return response.data;
   },
+
+  // Get related properties (exclude current property)
+  getRelatedProperties: async (currentPropertyId, params = {}) => {
+    const response = await api.get("/properties", { 
+      params: {
+        status: 'available',
+        ...params
+      } 
+    });
+    
+    // Transform and filter out current property
+    if (response.data && response.data.properties) {
+      let properties = response.data.properties
+        .map(transformPropertyData)
+        .filter(property => property._id !== currentPropertyId)
+        .slice(0, 4); // Limit to 4 related properties
+      
+      response.data.properties = properties;
+    }
+    
+    return response.data;
+  }
 };
 
-// Static data (since backend doesn't have location routes or requires auth)
-const EMIRATES = [
-  "Dubai",
-  "Abu Dhabi", 
-  "Sharjah",
-  "Ajman",
-  "Ras Al Khaimah",
-  "Fujairah",
-  "Umm Al Quwain"
-];
+// Static data API functions for user portal (since backend doesn't provide these endpoints for users)
+export const staticDataAPI = {
+  // Get all available property types
+  getPropertyTypes: async () => {
+    return {
+      success: true,
+      data: PROPERTY_TYPES,
+      message: "Property types retrieved successfully"
+    };
+  },
 
-const EMIRATE_AREA_MAP = {
-  Dubai: [
-    "Downtown Dubai",
-    "Dubai Marina",
-    "Jumeirah Beach Residence (JBR)",
-    "Palm Jumeirah",
-    "Business Bay",
-    "DIFC",
-    "Dubai Hills Estate",
-    "Arabian Ranches",
-    "Jumeirah Village Circle (JVC)",
-    "Dubai Sports City",
-    "Motor City",
-    "The Greens",
-    "Emirates Hills",
-    "Jumeirah",
-    "Bur Dubai",
-    "Deira",
-    "Al Barsha",
-    "Dubai Investment Park (DIP)",
-    "International City",
-    "Discovery Gardens",
-    "Mirdif",
-    "Festival City",
-    "Silicon Oasis",
-    "Dubai South",
-    "Al Furjan",
-    "Damac Hills",
-    "Town Square",
-    "Dubai Land",
-    "Al Mizhar",
-    "Al Warqa"
-  ],
-  "Abu Dhabi": [
-    "Abu Dhabi City",
-    "Al Reem Island",
-    "Saadiyat Island",
-    "Yas Island",
-    "Al Reef",
-    "Khalifa City",
-    "Mohammed Bin Zayed City",
-    "Al Shamkha",
-    "Al Rahba",
-    "Masdar City",
-    "Corniche Area",
-    "Tourist Club Area",
-    "Electra Street",
-    "Hamdan Street",
-    "Al Bateen",
-    "Al Mushrif",
-    "Al Karamah",
-    "Al Manhal",
-    "Al Khalidiyah",
-    "Al Markaziyah"
-  ],
-  Sharjah: [
-    "Sharjah City",
-    "Al Majaz",
-    "Al Qasba",
-    "Al Nahda",
-    "Muweilah",
-    "Al Warqa",
-    "University City",
-    "Al Taawun",
-    "Al Qadisiya"
-  ],
-  Ajman: [
-    "Ajman City",
-    "Al Nuaimiya",
-    "Al Rashidiya",
-    "Al Zahra",
-    "Al Hamidiya"
-  ],
-  "Ras Al Khaimah": [
-    "Ras Al Khaimah City",
-    "Al Hamra",
-    "Al Marjan Island",
-    "Al Nakheel",
-    "Al Dhait"
-  ],
-  Fujairah: [
-    "Fujairah City",
-    "Al Faseel",
-    "Al Taween",
-    "Al Aqah"
-  ],
-  "Umm Al Quwain": [
-    "Umm Al Quwain City",
-    "Al Salamah",
-    "Al Raas"
-  ]
+  // Get all available listing types
+  getListingTypes: async () => {
+    return {
+      success: true,
+      data: LISTING_TYPES,
+      message: "Listing types retrieved successfully"
+    };
+  },
+
+  // Get all available property statuses
+  getPropertyStatuses: async () => {
+    return {
+      success: true,
+      data: PROPERTY_STATUS,
+      message: "Property statuses retrieved successfully"
+    };
+  },
+
+  // Get all available area units
+  getAreaUnits: async () => {
+    return {
+      success: true,
+      data: AREA_UNITS,
+      message: "Area units retrieved successfully"
+    };
+  },
+
+  // Get all available parking types
+  getParkingTypes: async () => {
+    return {
+      success: true,
+      data: PARKING_TYPES,
+      message: "Parking types retrieved successfully"
+    };
+  },
+
+  // Get all available price types
+  getPriceTypes: async () => {
+    return {
+      success: true,
+      data: PRICE_TYPES,
+      message: "Price types retrieved successfully"
+    };
+  },
+
+  // Get all available currencies
+  getCurrencies: async () => {
+    return {
+      success: true,
+      data: CURRENCIES,
+      message: "Currencies retrieved successfully"
+    };
+  },
+
+  // Get all available countries
+  getCountries: async () => {
+    return {
+      success: true,
+      data: COUNTRIES,
+      message: "Countries retrieved successfully"
+    };
+  },
+
+  // Get amenities for specific property type
+  getAmenitiesForPropertyType: async (propertyType) => {
+    const amenities = PROPERTY_TYPE_AMENITIES_MAP[propertyType] || [];
+    return {
+      success: true,
+      data: amenities,
+      message: `Amenities for ${propertyType} retrieved successfully`
+    };
+  },
+
+  // Get all available amenities for all property types
+  getAllAmenities: async () => {
+    return {
+      success: true,
+      data: PROPERTY_TYPE_AMENITIES_MAP,
+      message: "All amenities retrieved successfully"
+    };
+  }
 };
 
-// Location API functions (using static data)
+// Location API functions for user portal (using static data)
 export const locationAPI = {
   // Get all emirates
   getEmirates: async () => {
@@ -382,22 +475,8 @@ export const locationAPI = {
       data: EMIRATE_AREA_MAP,
       message: "Areas retrieved successfully"
     };
-  },
+  }
 };
 
-// Developer API functions
-export const developerAPI = {
-  // Get all developers
-  getDevelopers: async (params = {}) => {
-    const response = await api.get("/developers", { params });
-    return response.data;
-  },
-
-  // Get single developer
-  getDeveloper: async (id) => {
-    const response = await api.get(`/developers/${id}`);
-    return response.data;
-  },
-};
-
+// Export the main API instance for direct use if needed
 export default api;

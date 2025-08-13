@@ -101,7 +101,7 @@ export default function Properties({ defaultGrid = false, propertyType = "" }) {
 
   return (
     <>
-      <section className="section-property-layout">
+      <section className="section-property-layout mt-5">
         <div className="tf-container">
           <div className="row">
             <div className="col-12">

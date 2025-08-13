@@ -22,7 +22,7 @@ export const slides = [
 export const boxHelpData = [
   {
     id: 1,
-    imageSrc: "/images/section/box-help-1.jpg",
+    imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.50.26 PM.jpeg",
     title: "Buy a property",
     description: "Hire a professional to find the perfect Dubai home. Help us find the best mortgage rates and buy a house in Dubai.",
     delay: ".0s",
@@ -30,7 +30,7 @@ export const boxHelpData = [
   },
   {
     id: 2,
-    imageSrc: "/images/section/box-help-2.jpg",
+    imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.50.26 PM.jpeg",
     title: "Rent a property",
     description: "View the best rentals in Dubai. We provide rental income insights and handle all property leasing.",
     delay: ".1s",
@@ -38,7 +38,7 @@ export const boxHelpData = [
   },
   {
     id: 3,
-    imageSrc: "/images/section/box-help-3.jpg",
+    imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.50.26 PM.jpeg",
     title: "Sell a property",
     description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale.",
     delay: ".2s",
@@ -46,17 +46,17 @@ export const boxHelpData = [
   },
   { 
     id: 4,
-    imageSrc: "/images/section/box-help-3.jpg",
-    title: "Sell a property",
-    description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale. We will help you find the best price for your property.",
+    imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.50.26 PM.jpeg",
+    title: "Commercial Properties",
+    description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale.",
     delay: ".2s",
     pageUrl: "/sell",
   },
   {
     id: 5,
-    imageSrc: "/images/section/box-help-3.jpg",
-    title: "Sell a property",
-    description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale. We will help you find the best price for your property.",
+    imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.50.26 PM.jpeg",
+    title: "Property Management",
+    description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale.",
     delay: ".2s",
     pageUrl: "/sell",
   },

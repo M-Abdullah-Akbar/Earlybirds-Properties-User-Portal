@@ -3,6 +3,7 @@ import Header from "@/components/headers/Header";
 import React from "react";
 import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
+import BuyAbout from "@/components/buy/About";
 
 export const metadata = {
   title: "Buy || Proty - Real Estate React Nextjs Template",
@@ -15,6 +16,7 @@ export default function Home() {
         <Header />
         <div className="main-content overflow-hidden">
             <Properties defaultGrid propertyType="sale" />
+            <BuyAbout />
             <Cta />
         </div>
         <Footer parentClass="style-2" />

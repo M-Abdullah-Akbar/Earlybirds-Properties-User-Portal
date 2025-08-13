@@ -77,7 +77,7 @@ export default function HelpSection() {
                 </SwiperSlide>
               ))}
 
-              <div className="sw-pagination sw-pagination-layout text-center d-lg-none d-block mt-20 spd5" />
+              {/* <div className="sw-pagination sw-pagination-layout text-center d-lg-none d-block mt-20 spd5" /> */}
             </Swiper>
           </div>
         </div>

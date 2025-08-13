@@ -1,7 +1,7 @@
 "use client";
 import Slider from "rc-slider";
 import React, { useState, useEffect } from "react";
-import { locationAPI, propertyAPI } from "@/utils/api";
+import { locationAPI, staticDataAPI } from "@/utils/api";
 
 export default function FilterModal({ onFilterChange }) {
   const [priceRange, setPriceRange] = useState([100000, 5000000]);
@@ -36,7 +36,7 @@ export default function FilterModal({ onFilterChange }) {
       }
 
       // Load property types
-      const typesResponse = await propertyAPI.getPropertyTypes();
+      const typesResponse = await staticDataAPI.getPropertyTypes();
       if (typesResponse.success) {
         setPropertyTypes(typesResponse.data || []);
       }

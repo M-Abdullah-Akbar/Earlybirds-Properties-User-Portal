@@ -19,6 +19,8 @@ export default async function page({ params }) {
   try {
     // Fetch property data from backend
     const response = await propertyAPI.getProperty(id);
+
+    
     
     if (!response.success || !response.data?.property) {
       notFound();

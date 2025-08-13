@@ -1,7 +1,7 @@
 // Admin Portal Configuration
 export const ADMIN_CONFIG = {
-  // Default admin portal URL
-  PORTAL_URL: process.env.NEXT_PUBLIC_ADMIN_PORTAL_URL,
+  // Default admin portal URL with fallback for development
+  PORTAL_URL: process.env.NEXT_PUBLIC_ADMIN_PORTAL_URL || 'http://localhost:3001',
   
   // Redirect delay in seconds
   REDIRECT_DELAY: 2,
@@ -11,7 +11,7 @@ export const ADMIN_CONFIG = {
   
   // Get the full admin URL with path
   getAdminUrl: (path = '') => {
-    const baseUrl = ADMIN_CONFIG.PORTAL_URL;
+    const baseUrl = ADMIN_CONFIG.PORTAL_URL || 'http://localhost:3001';
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     return cleanPath ? `${baseUrl}/${cleanPath}` : baseUrl;
   }

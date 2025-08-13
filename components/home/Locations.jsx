@@ -8,26 +8,26 @@ export default function Locations() {
   const dubaiLocations = [
     {
       id: 1,
-      imageSrc: "/images/section/box-house-10.jpg",
+      imageSrc: "/images/photo-1531586024505-b040066c2d5b.jpeg",
       alt: "Downtown Dubai",
       title: "Downtown Dubai",
     },
     {
       id: 2,
-      imageSrc: "/images/section/box-house-11.jpg",
+      imageSrc: "/images/photo-1531586024505-b040066c2d5b.jpeg",
       alt: "Dubai Marina",
       title: "Dubai Marina",
     },
     {
       id: 3,
-      imageSrc: "/images/section/box-house-12.jpg",
+      imageSrc: "/images/photo-1531586024505-b040066c2d5b.jpeg",
       alt: "Palm Jumeirah",
       title: "Palm Jumeirah",
     },
   ];
 
   return (
-    <section className="section-categories-neighborhoods mt-5">
+    <section className="section-pre-approved mt-5">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">
@@ -36,21 +36,16 @@ export default function Locations() {
               <div className="dubai-skyline-panel">
                 <div className="skyline-image-container">
                   <Image
-                    src="/images/section/box-house-13.jpg"
+                    src="/images/a32f87e3-fa14-49d7-9b57-6609b895530e.jpg"
                     alt="Dubai Skyline"
                     width={600}
                     height={400}
                     className="skyline-image"
                   />
-                  {/*<div className="explore-button">
-                    <button className="btn-explore">
-                      Explore More <i className="icon-arrow-right"></i>
-                    </button>
-                  </div>*/}
                   <div className="explore-button">
                     <Link
                       href="/properties"
-                      className="tf-btn style-border pd-4"
+                      className="tf-btn bg-color-primary pd-4"
                     >
                       Explore Properties
                     </Link>
@@ -60,15 +55,11 @@ export default function Locations() {
 
               {/* Right Panel - Content and Location Cards */}
               <div className="dubai-content-panel">
-                <div className="heading-section mb-48">
+                <div className="heading-section">
                   <h2 className="title split-text effect-right">
                     <SplitTextAnimation text="Find the Best Residential Areas in Dubai" />
                   </h2>
-                  <p
-                    className="text-1 wow animate__fadeInUp animate__animated"
-                    data-wow-duration="1.5s"
-                    data-wow-delay="0s"
-                  >
+                  <p className="text-1 split-text split-lines-transform text-color-default">
                     Top Areas In Dubai, UAE
                   </p>
                 </div>
@@ -86,7 +77,7 @@ export default function Locations() {
                           className="location-image"
                         />
                         <div className="card-overlay">
-                          <h6 className="text_white">
+                          <h6 className="text-white">
                             <Link href={`/properties`}>{location.title}</Link>
                           </h6>
                         </div>
@@ -133,25 +124,6 @@ export default function Locations() {
           right: 20px;
         }
 
-        .btn-explore {
-          background: #000;
-          color: #fff;
-          border: none;
-          padding: 12px 24px;
-          border-radius: 6px;
-          font-weight: 500;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          transition: all 0.3s ease;
-        }
-
-        .btn-explore:hover {
-          background: #333;
-          transform: translateY(-2px);
-        }
-
         .dubai-content-panel {
           flex: 1;
           display: flex;
@@ -160,19 +132,6 @@ export default function Locations() {
 
         .heading-section {
           margin-bottom: 30px;
-        }
-
-        .heading-section h2 {
-          font-size: 2.5rem;
-          font-weight: 700;
-          color: #000;
-          margin-bottom: 10px;
-        }
-
-        .heading-section p {
-          font-size: 1.1rem;
-          color: #666;
-          margin: 0;
         }
 
         .dubai-location-cards {
@@ -204,15 +163,29 @@ export default function Locations() {
           bottom: 0;
           left: 0;
           right: 0;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
           padding: 20px;
-          color: #fff;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+          text-align: center;
         }
 
         .card-overlay h6 {
           margin: 0;
-          font-size: 1.1rem;
+          font-size: 1.2rem;
           font-weight: 600;
+          color: white;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+          letter-spacing: 0.5px;
+        }
+
+        .card-overlay h6 a {
+          color: white;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .card-overlay h6 a:hover {
+          color: #f0f0f0;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 1);
         }
 
         @media (max-width: 768px) {
@@ -223,10 +196,6 @@ export default function Locations() {
 
           .dubai-location-cards {
             flex-direction: column;
-          }
-
-          .heading-section h2 {
-            font-size: 2rem;
           }
         }
       `}</style>
