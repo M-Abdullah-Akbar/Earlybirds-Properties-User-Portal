@@ -5,7 +5,7 @@ import Contact from "@/components/home/Contact";
 import HelpSection from "@/components/home/HelpSection";
 import Hero from "@/components/home/Hero";
 import Locations from "@/components/home/Locations";
-import Properties from "@/components/home/Properties";
+//import Properties from "@/components/home/Properties";
 import Testimonials from "@/components/sell/Testimonials";
 import React from "react";
 import AboutSection from "@/components/home/AboutSection";

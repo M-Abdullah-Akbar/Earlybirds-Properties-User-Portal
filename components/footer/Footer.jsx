@@ -82,9 +82,9 @@ export default function Footer2({ parentClass = "" }) {
                   <Image
                     id="logo_footer"
                     alt="logo-footer"
-                    width={272}
-                    height={85}
-                    src="/images/logo/logo-2@2x.png"
+                    width={90}
+                    height={70}
+                    src="/images/logo/Earlybird_Logo.png"
                   />
                 </Link>
               </div>

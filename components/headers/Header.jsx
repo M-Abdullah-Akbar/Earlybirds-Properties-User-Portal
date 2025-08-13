@@ -10,10 +10,10 @@ export default function Header8() {
             <Link href={`/`} className="site-logo">
               <img
                 className="logo_header"
-                alt=""
-                data-light="/images/logo/logo@2x.png"
-                data-dark="/images/logo/logo-2@2x.png"
-                src="/images/logo/logo@2x.png"
+                alt="Earlybirds-Properties-Logo"
+                data-light="/images/logo/Earlybird_Logo.png"
+                data-dark="/images/logo/Earlybird_Logo.png"
+                src="/images/logo/Earlybird_Logo.png"
               />
             </Link>
           </div>

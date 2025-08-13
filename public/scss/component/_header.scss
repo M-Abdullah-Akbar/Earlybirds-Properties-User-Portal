@@ -1,4 +1,5 @@
 @use "../abstracts/mixin";
+@use "../abstracts/variable";
 
 .tf-top-bar {
     border-bottom: 1px solid var(--Line);
@@ -99,10 +100,10 @@
         color: var(--Primary);
     }
     .header-logo {
-        padding: 21px 0px 15px;
+        padding: 20px 0px 20px;
         img {
-            width: 136px;
-            height: 42px;
+            width: 90px;
+            height: 70px;
         }
     }
     .tf-btn {

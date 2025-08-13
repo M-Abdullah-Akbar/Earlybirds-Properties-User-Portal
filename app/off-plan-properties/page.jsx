@@ -15,7 +15,7 @@ export default function OffPlanProperties() {
         <Header />
         <div className="main-content overflow-hidden">
           <Properties title="Off-plan properties for sale in Dubai with EarlyBirds Properties" />
-          <About />
+          {/* <About /> */}
         </div>
         <Footer parentClass="style-2" />
       </div>
