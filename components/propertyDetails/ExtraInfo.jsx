@@ -128,31 +128,31 @@ export default function ExtraInfo({ property }) {
       </div>
       <div className="box">
         <ul>
-          <li className="flex">
+          {/*<li className="flex">
             <p className="fw-6">ID</p>
             <p>#{getPropertyId()}</p>
-          </li>
+          </li>*/}
           <li className="flex">
             <p className="fw-6">Price</p>
             <p>{formatPrice()}</p>
           </li>
           <li className="flex">
-            <p className="fw-6">Size</p>
-            <p>{getArea()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Rooms</p>
-            <p>{getTotalRooms()}</p>
+            <p className="fw-6">Beds</p>
+            <p>{getBedrooms()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Baths</p>
             <p>{getBathrooms()}</p>
           </li>
+          <li className="flex">
+            <p className="fw-6">Status</p>
+            <p>{getPropertyStatus()}</p>
+          </li>
         </ul>
         <ul>
           <li className="flex">
-            <p className="fw-6">Beds</p>
-            <p>{getBedrooms()}</p>
+            <p className="fw-6">Size</p>
+            <p>{getArea()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Year built</p>
@@ -161,10 +161,6 @@ export default function ExtraInfo({ property }) {
           <li className="flex">
             <p className="fw-6">Type</p>
             <p>{getPropertyType()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Status</p>
-            <p>{getPropertyStatus()}</p>
           </li>
           <li className="flex">
             <p className="fw-6">Garage</p>

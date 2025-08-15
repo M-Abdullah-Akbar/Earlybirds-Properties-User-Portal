@@ -27,6 +27,7 @@ export default function Sidebar({ property }) {
     const listingType = property?.listingType;
     if (listingType === 'sale') return 'For Sale';
     if (listingType === 'rent') return 'For Rent';
+    if (listingType === 'off plan') return 'Off Plan';
     return property?.propertyType || 'For Sale';
   };
 

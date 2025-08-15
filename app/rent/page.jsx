@@ -6,16 +6,28 @@ import Properties from "@/components/properties/Properties";
 import RentAbout from "@/components/rent/About";
 
 export const metadata = {
-  title: "Rent || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+  title: "Rent || Earlybirds - Properties User Portal",
+  description: "Earlybirds - Properties User Portal",
 };
-export default function Home() {
+
+export default async function Rent({ searchParams }) {
+  const params = await searchParams;
+  const propertyType = params?.propertyType || "";
+  const emirate = params?.emirate || "";
+
   return (
     <>
       <div id="wrapper" className="counter-scroll">
         <Header />
         <div className="main-content overflow-hidden">
-            <Properties defaultGrid propertyType="rent" />
+            <Properties 
+              defaultGrid 
+              propertyType="rent" 
+              initialFilters={{
+                propertyType: propertyType || "",
+                emirate: emirate || ""
+              }}
+            />
             <RentAbout />
             <Cta />
         </div>

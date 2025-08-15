@@ -15,19 +15,18 @@ export const metadata = {
   title: "Home || Proty - Real Estate React Nextjs Template",
   description: "Proty - Real Estate React Nextjs Template",
 };
+
 export default function Home() {
   return (
     <>
       <div id="wrapper" className="counter-scroll">
         <Header />
-        <Hero />
         <div className="main-content overflow-hidden">
-          {/* <Properties title="Properties For Sale" />
-          <Properties title="Properties For Rent" /> */}
+          <Hero />
           <AboutSection />
-          <OffplanProjects />
           <HelpSection />
           <Locations />
+          <OffplanProjects />
           <Partners />
           <Testimonials />
           <Contact />

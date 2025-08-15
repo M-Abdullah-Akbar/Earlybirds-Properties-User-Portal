@@ -33,7 +33,10 @@ export default function PropertyListItems({ properties = [], showItems }) {
               )}
               {(property.listingType || property.propertyType) && (
                 <li className="flat-tag text-4 bg-3 fw-6 text_white">
-                  {(property.listingType || property.propertyType) === 'sale' ? 'For Sale' : 'For Rent'}
+                  {(property.listingType || property.propertyType) === 'sale' ? 'For Sale' : 
+                   (property.listingType || property.propertyType) === 'rent' ? 'For Rent' :
+                   (property.listingType || property.propertyType) === 'off plan' ? 'Off Plan' : 
+                   'For Sale'}
                 </li>
               )}
             </ul>
@@ -77,6 +80,7 @@ export default function PropertyListItems({ properties = [], showItems }) {
                 <h5 className="price">
                   AED {typeof property.price === 'number' ? property.price.toLocaleString() : property.price}
                   {(property.listingType || property.propertyType) === 'rent' && <span className="text-sm">/year</span>}
+                  {(property.listingType || property.propertyType) === 'off plan' && <span className="text-sm">starting from</span>}
                 </h5>
               )}
               <div className="wrap-btn flex">

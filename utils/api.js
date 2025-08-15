@@ -1,14 +1,14 @@
 import axios from "axios";
 
 // Base API configuration
-const API_BASE_URL = "https://556778af93ac.ngrok-free.app/api";
+const API_BASE_URL = "http://13.60.13.251/api";
 
 // Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    "ngrok-skip-browser-warning": "true",
+    //"ngrok-skip-browser-warning": "true",
   },
 });
 
@@ -59,7 +59,7 @@ const PROPERTY_TYPES = [
   "studio", "duplex", "commercial", "land"
 ];
 
-const LISTING_TYPES = ["sale", "rent"];
+const LISTING_TYPES = ["sale", "rent", "off plan"];
 
 const PROPERTY_STATUS = ["available", "sold", "rented", "pending", "draft", "archived"];
 

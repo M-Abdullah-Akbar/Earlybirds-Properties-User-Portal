@@ -7,17 +7,17 @@ export default function Partners() {
   const propertyTypes = [
     {
       type: "Apartment",
-      image: "/images/photo-1531586024505-b040066c2d5b.jpeg",
+      image: "/images/IMG-20250813-WA0088.jpg",
       description: "Modern apartments with stunning city views"
     },
     {
       type: "Townhouse",
-      image: "/images/photo-1531586024505-b040066c2d5b.jpeg", 
+      image: "/images/IMG-20250813-WA0089.jpg", 
       description: "Contemporary townhouses with elegant design"
     },
     {
       type: "Villa",
-      image: "/images/photo-1531586024505-b040066c2d5b.jpeg",
+      image: "/images/IMG-20250813-WA0090.jpg",
       description: "Luxurious villas with private amenities"
     }
   ];
@@ -62,15 +62,12 @@ export default function Partners() {
               
               <div className="text-content">
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  Explore the finest properties in Dubai and embrace a lifestyle of unmatched luxury and comfort!
+                  At Early Bird Properties, we present to you a well-selected range of luxury apartments, chic townhouses, and luxury villas available throughout the UAE.
                 </p>
                 
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  Tamani Properties, a leading real estate company in Dubai, offers a diverse range of premium apartments, townhouses, and villas for sale across the UAE.
-                </p>
-                
-                <p className="text-1 split-text split-lines-transform text-color-default mb-4">
-                  Looking for the perfect home? Dubai's real estate market presents incredible opportunities for those who value elegance and sophistication. Whether you're a luxury seeker or simply want to elevate your living experience, trust one of Dubai's most reputable real estate agencies to guide you. Find your dream home and step into a world of refined living today!
+                  Are you looking for a dream home? Dubai’s property market is full of stylish, luxurious options. People who value elegance can find their comfort choice. Whether you’re chasing the high life or simply want to upgrade your lifestyle, let one of Dubai’s most trusted real estate experts guide you. Find the perfect place to call home and start living the refined life you deserve.
+
                 </p>
               </div>
 
@@ -103,7 +100,7 @@ export default function Partners() {
 
         .property-image {
           position: relative;
-          height: 240px;
+          height: 170px;
           overflow: hidden;
         }
 

@@ -1,5 +1,5 @@
 "use client";
-import { services } from "@/data/menu";
+import { buyMenu, rentMenu, services } from "@/data/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -23,14 +23,54 @@ export default function Nav() {
       <li className={"/" == pathname ? "current-menu" : ""}>
         <Link href={`/`}>Home</Link>
       </li>
-      <li className={"/buy" == pathname ? "current-menu" : ""}>
+      <li
+        className={`has-child ${
+          buyMenu.some(
+            (elm) =>
+              elm.href == pathname ||
+              pathname.includes(`${elm.href.split("?")[0]}`)
+          )
+            ? "current-menu"
+            : ""
+        }`}
+      >
         <Link href={`/buy`}>Buy</Link>
+        <ul className="submenu">
+          {buyMenu.map((item, index) => (
+            <li
+              key={index}
+              className={pathname == item.href ? "current-item" : ""}
+            >
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          ))}
+        </ul>
       </li>
       <li className={"/sell" == pathname ? "current-menu" : ""}>
         <Link href={`/sell`}>Sell</Link>
       </li>
-      <li className={"/rent" == pathname ? "current-menu" : ""}>
+      <li
+        className={`has-child ${
+          rentMenu.some(
+            (elm) =>
+              elm.href == pathname ||
+              pathname.includes(`${elm.href.split("?")[0]}`)
+          )
+            ? "current-menu"
+            : ""
+        }`}
+      >
         <Link href={`/rent`}>Rent</Link>
+        <ul className="submenu">
+          {rentMenu.map((item, index) => (
+            <li
+              key={index}
+              className={pathname == item.href ? "current-item" : ""}
+            >
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          ))}
+        </ul>
       </li>
       <li className={"/off-plan-properties" == pathname ? "current-menu" : ""}>
         <Link href={`/off-plan-properties`}>Off Plan Properties</Link>
@@ -38,9 +78,9 @@ export default function Nav() {
       <li className={"/areas-in-uae" == pathname ? "current-menu" : ""}>
         <Link href={`/areas-in-uae`}>Areas in UAE</Link>
       </li>
-      <li className={"/developers-in-uae" == pathname ? "current-menu" : ""}>
+      {/*<li className={"/developers-in-uae" == pathname ? "current-menu" : ""}>
         <Link href={`/developers-in-uae`}>Developers in UAE</Link>
-      </li>
+      </li>*/}
       <li className={"/about-us" == pathname ? "current-menu" : ""}>
         <Link href={`/about-us`}>About Us</Link>
       </li>

@@ -49,14 +49,14 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <SwiperSlide className="swiper-slide" key={index}>
                   <div className="wg-testimonial text-center">
-                    <div className="avatar">
+                    {/*<div className="avatar">
                       <Image
                         alt=""
                         width={200}
                         height={200}
                         src={testimonial.avatarSrc}
                       />
-                    </div>
+                    </div>*/}
                     <p className="text-1 description">
                       {testimonial.description}
                     </p>

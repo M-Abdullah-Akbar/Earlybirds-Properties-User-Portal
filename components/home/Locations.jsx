@@ -8,19 +8,19 @@ export default function Locations() {
   const dubaiLocations = [
     {
       id: 1,
-      imageSrc: "/images/photo-1531586024505-b040066c2d5b.jpeg",
+      imageSrc: "/images/IMG-20250813-WA0081.jpg",
       alt: "Downtown Dubai",
       title: "Downtown Dubai",
     },
     {
       id: 2,
-      imageSrc: "/images/photo-1531586024505-b040066c2d5b.jpeg",
+      imageSrc: "/images/IMG-20250813-WA0079.jpg",
       alt: "Dubai Marina",
       title: "Dubai Marina",
     },
     {
       id: 3,
-      imageSrc: "/images/photo-1531586024505-b040066c2d5b.jpeg",
+      imageSrc: "/images/IMG-20250813-WA0082.jpg",
       alt: "Palm Jumeirah",
       title: "Palm Jumeirah",
     },
@@ -36,7 +36,7 @@ export default function Locations() {
               <div className="dubai-skyline-panel">
                 <div className="skyline-image-container">
                   <Image
-                    src="/images/a32f87e3-fa14-49d7-9b57-6609b895530e.jpg"
+                    src="/images/IMG-20250813-WA0080.jpg"
                     alt="Dubai Skyline"
                     width={600}
                     height={400}

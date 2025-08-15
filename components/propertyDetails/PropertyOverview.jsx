@@ -89,13 +89,22 @@ export default function PropertyOverview({ property }) {
       </div>
       <div className="info-detail">
         <div className="wrap-box">
-          <div className="box-icon">
+          {/*<div className="box-icon">
             <div className="icons">
               <i className="icon-HouseLine" />
             </div>
             <div className="content">
               <div className="text-4 text-color-default">ID:</div>
               <div className="text-1 text-color-heading">{getPropertyId()}</div>
+            </div>
+          </div>*/}
+          <div className="box-icon">
+            <div className="icons">
+              <i className="icon-Bed-2" />
+            </div>
+            <div className="content">
+              <div className="text-4 text-color-default">Bedrooms:</div>
+              <div className="text-1 text-color-heading">{getBedrooms()} Rooms</div>
             </div>
           </div>
           <div className="box-icon">
@@ -120,6 +129,26 @@ export default function PropertyOverview({ property }) {
           </div>
           <div className="box-icon">
             <div className="icons">
+              <i className="icon-Garage-1" />
+            </div>
+            <div className="content">
+              <div className="text-4 text-color-default">Garages</div>
+              <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
+            </div>
+          </div>
+        </div>
+        <div className="wrap-box">
+          <div className="box-icon">
+            <div className="icons">
+              <i className="icon-Ruler" />
+            </div>
+            <div className="content">
+              <div className="text-4 text-color-default">Size:</div>
+              <div className="text-1 text-color-heading">{getArea()}</div>
+            </div>
+          </div>
+          <div className="box-icon">
+            <div className="icons">
               <i className="icon-Crop" />
             </div>
             <div className="content">
@@ -131,40 +160,11 @@ export default function PropertyOverview({ property }) {
         <div className="wrap-box">
           <div className="box-icon">
             <div className="icons">
-              <i className="icon-Garage-1" />
-            </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Garages</div>
-              <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
-            </div>
-          </div>
-          <div className="box-icon">
-            <div className="icons">
               <i className="icon-Hammer" />
             </div>
             <div className="content">
               <div className="text-4 text-color-default">Year Built:</div>
               <div className="text-1 text-color-heading">{getYearBuilt()}</div>
-            </div>
-          </div>
-        </div>
-        <div className="wrap-box">
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Bed-2" />
-            </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Bedrooms:</div>
-              <div className="text-1 text-color-heading">{getBedrooms()} Rooms</div>
-            </div>
-          </div>
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Ruler" />
-            </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Size:</div>
-              <div className="text-1 text-color-heading">{getArea()}</div>
             </div>
           </div>
         </div>

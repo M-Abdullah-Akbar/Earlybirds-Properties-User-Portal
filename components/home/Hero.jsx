@@ -1,14 +1,116 @@
 "use client";
 import DropdownSelect from "@/components/common/DropdownSelect";
-import SearchForm from "@/components/common/SearchForm";
-import React, { useState } from "react";
+//import SearchForm from "@/components/common/SearchForm";
+import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Hero() {
-  // State to track the active item
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // State to track the active item (For sale/For rent)
   const [activeItem, setActiveItem] = useState("For sale");
+  
+  // State for search filters
+  const [searchFilters, setSearchFilters] = useState({
+    propertyType: "",
+    location: "",
+    listingType: "sale" // Default to sale
+  });
 
   // Array of items to render
-  const items = ["For sale", "For rent"];
+  const items = ["For sale", "For rent", "Off Plan"];
+
+  // Initialize state from URL parameters
+  useEffect(() => {
+    const listingType = searchParams.get("listingType");
+    const propertyType = searchParams.get("propertyType");
+    const emirate = searchParams.get("emirate");
+
+    if (listingType) {
+      let item = "For sale"; // Default
+      if (listingType === "rent") {
+        item = "For rent";
+      } else if (listingType === "off plan") {
+        item = "Off Plan";
+      }
+      setActiveItem(item);
+      setSearchFilters(prev => ({ ...prev, listingType }));
+    }
+
+    if (propertyType) {
+      setSearchFilters(prev => ({ ...prev, propertyType }));
+    }
+
+    if (emirate) {
+      setSearchFilters(prev => ({ ...prev, location: emirate }));
+    }
+  }, [searchParams]);
+
+  // Handle property type selection
+  const handlePropertyTypeChange = (propertyType) => {
+    setSearchFilters(prev => ({
+      ...prev,
+      propertyType: propertyType === "Property type" ? "" : propertyType
+    }));
+  };
+
+  // Handle location selection
+  const handleLocationChange = (location) => {
+    setSearchFilters(prev => ({
+      ...prev,
+      location: location === "Location" ? "" : location
+    }));
+  };
+
+  // Handle listing type change (For sale/For rent/Off Plan)
+  const handleListingTypeChange = (item) => {
+    setActiveItem(item);
+    let listingType = "sale"; // Default
+    
+    if (item === "For rent") {
+      listingType = "rent";
+    } else if (item === "Off Plan") {
+      listingType = "off plan";
+    }
+    
+    setSearchFilters(prev => ({
+      ...prev,
+      listingType
+    }));
+  };
+
+  // Handle search button click
+  const handleSearch = () => {
+    // Build query parameters
+    const queryParams = new URLSearchParams();
+    
+    if (searchFilters.propertyType) {
+      queryParams.append("propertyType", searchFilters.propertyType);
+    }
+    
+    if (searchFilters.location) {
+      queryParams.append("emirate", searchFilters.location);
+    }
+    
+    // Determine which page to navigate to based on listing type
+    let targetPage = "/buy"; // Default
+    
+    if (searchFilters.listingType === "rent") {
+      targetPage = "/rent";
+    } else if (searchFilters.listingType === "off plan") {
+      targetPage = "/off-plan-properties";
+    }
+    
+    // Add query parameters to the target page
+    const queryString = queryParams.toString();
+    if (queryString) {
+      router.push(`${targetPage}?${queryString}`);
+    } else {
+      router.push(targetPage);
+    }
+  };
+
   return (
     <div className="page-title home02">
       <div className="tf-container">
@@ -29,7 +131,7 @@ export default function Hero() {
                       className={`item-title ${
                         activeItem === item ? "active" : ""
                       }`}
-                      onClick={() => setActiveItem(item)} // Set the active item on click
+                      onClick={() => handleListingTypeChange(item)}
                     >
                       {item}
                     </li>
@@ -38,122 +140,48 @@ export default function Hero() {
                 <div className="wg-filter">
                   <div className="widget-content-inner active">
                     <div className="form-title">
-                      {/*<form className="w-full">
-                        <fieldset>
-                          <input
-                            type="text"
-                            placeholder="Address, City, ZIP..."
-                          />
-                        </fieldset>
-                      </form>*/}
-
                       <DropdownSelect
                         options={[
                           "Property type",
-                          "Bungalow",
-                          "Apartment",
-                          "House",
-                          "Smart Home",
+                          "apartment",
+                          "villa",
+                          "townhouse",
+                          "penthouse",
+                          "office",
+                          "studio"
                         ]}
                         addtionalParentClass=""
+                        onChange={handlePropertyTypeChange}
+                        defaultOption="Property type"
+                        selectedValue={searchFilters.propertyType || "Property type"}
                       />
 
                       <DropdownSelect
                         options={[
                           "Location",
-                          "Texas",
-                          "Florida",
-                          "New York",
-                          "Illinois",
-                          "Washington",
-                          "Pennsylvania",
-                          "Ohio",
+                          "Dubai",
+                          "Abu Dhabi",
+                          "Sharjah",
+                          "Ajman",
+                          "Ras al Khaimah",
+                          "Umm al Quwain",
+                          "Fujairah",
                         ]}
                         addtionalParentClass=""
+                        onChange={handleLocationChange}
+                        defaultOption="Location"
+                        selectedValue={searchFilters.location || "Location"}
                       />
                       <div className="wrap-btn">
-                        <div className="btn-filter show-form searchFormToggler">
-                          <div className="icons">
-                            <svg
-                              width={24}
-                              height={24}
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M21 4H14"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M10 4H3"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M21 12H12"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M8 12H3"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M21 20H16"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M12 20H3"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M14 2V6"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M8 10V14"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                              <path
-                                d="M16 18V22"
-                                stroke="#F1913D"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <a href="#" className="tf-btn bg-color-primary pd-3">
+                        <button 
+                          className="tf-btn bg-color-primary pd-3"
+                          onClick={handleSearch}
+                        >
                           Search <i className="icon-MagnifyingGlass fw-6" />
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>
-                  <SearchForm />
                 </div>
               </div>
             </div>

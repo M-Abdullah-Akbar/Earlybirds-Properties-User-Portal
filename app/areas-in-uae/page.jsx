@@ -14,7 +14,11 @@ export default function Home() {
       <div id="wrapper" className="counter-scroll">
         <Header />
         <div className="main-content overflow-hidden">
-            <Properties defaultGrid />
+            <Properties defaultGrid propertyType="areas-in-uae" 
+              initialFilters={{
+                propertyType: "",
+                emirate: ""
+              }} />
             <Cta />
         </div>
         <Footer parentClass="style-2" />

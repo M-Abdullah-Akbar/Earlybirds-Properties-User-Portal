@@ -16,7 +16,7 @@ export default function OffplanProjects() {
     {
       id: 2,
       city: "ABU DHABI",
-      imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.52.06 PM (1).jpeg",
+      imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.52.06 PM.jpeg",
       alt: "Abu Dhabi Skyline",
       propertyCount: "207",
     },
@@ -30,7 +30,7 @@ export default function OffplanProjects() {
     {
       id: 4,
       city: "RAS AL KHAIMAH",
-      imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.43.00 PM.jpeg",
+      imageSrc: "/images/TOYQDZA66VEPTHPU6UJQ7GI6AE.jpg",
       alt: "Ras Al Khaimah Skyline",
       propertyCount: "67",
     },

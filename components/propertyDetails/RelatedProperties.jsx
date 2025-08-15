@@ -110,6 +110,9 @@ export default function RelatedProperties({ property }) {
                         {prop.listingType === 'rent' && (
                           <li className="flat-tag text-4 bg-2 fw-6 text_white">For Rent</li>
                         )}
+                        {prop.listingType === 'off plan' && (
+                          <li className="flat-tag text-4 bg-1 fw-6 text_white">Off Plan</li>
+                        )}
                       </ul>
                     </div>
                     <div className="content">
