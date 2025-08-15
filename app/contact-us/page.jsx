@@ -1,4 +1,4 @@
-import Brands from "@/components/common/Brands";
+import Brands from "@/components/home/Brands";
 import Cta from "@/components/common/Cta";
 import About from "@/components/contact/About";
 import Contact from "@/components/contact/Contact";

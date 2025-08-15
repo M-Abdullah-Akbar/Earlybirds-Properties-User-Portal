@@ -3,7 +3,7 @@ import React from "react";
 import SplitTextAnimation from "../common/SplitTextAnimation";
 export default function Brands() {
   return (
-    <div className="mt-5">
+    <div className="mt-5 mb-40">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">

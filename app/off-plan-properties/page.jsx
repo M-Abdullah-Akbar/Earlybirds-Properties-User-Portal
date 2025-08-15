@@ -1,4 +1,4 @@
-
+import Cta from "@/components/common/Cta";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import Properties from "@/components/properties/Properties";
@@ -11,9 +11,10 @@ export const metadata = {
 };
 
 
-export default function OffPlanProperties({ searchParams }) {
-  const propertyType = searchParams?.propertyType || "";
-  const emirate = searchParams?.emirate || "";
+export default async function OffPlanProperties({ searchParams }) {
+  const params = await searchParams;
+  const propertyType = params?.propertyType || "";
+  const emirate = params?.emirate || "";
 
   return (
     <>
@@ -29,6 +30,7 @@ export default function OffPlanProperties({ searchParams }) {
             }}
           />
           {/* <About /> */}
+          <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>
