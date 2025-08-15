@@ -7,7 +7,7 @@ import Hero from "@/components/home/Hero";
 import Locations from "@/components/home/Locations";
 //import Properties from "@/components/home/Properties";
 import Testimonials from "@/components/sell/Testimonials";
-import React from "react";
+import React, { Suspense } from "react";
 import AboutSection from "@/components/home/AboutSection";
 import OffplanProjects from "@/components/home/OffplanProjects";
 
@@ -22,7 +22,9 @@ export default function Home() {
       <div id="wrapper" className="counter-scroll">
         <Header />
         <div className="main-content overflow-hidden">
-          <Hero />
+          <Suspense fallback={<div className="hero-loading">Loading...</div>}>
+            <Hero />
+          </Suspense>
           <AboutSection />
           <HelpSection />
           <Locations />
