@@ -2,12 +2,12 @@
 import { testimonials } from "@/data/testimonials";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
+//import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { Navigation, Pagination } from "swiper/modules";
 export default function Testimonials() {
   return (
-    <div className="section-testimonials mt-5">
+    <div className="section-testimonials mt-5 mb-10">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">

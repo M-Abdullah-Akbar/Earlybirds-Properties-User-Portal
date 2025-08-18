@@ -3,7 +3,7 @@ import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 
 export default function BuyAbout() {
   return (
-    <section className="section-pre-approved mt-5">
+    <section className="section-pre-approved">
       <div className="tf-container">
         <div className="row">
           <div className="col-lg-12">

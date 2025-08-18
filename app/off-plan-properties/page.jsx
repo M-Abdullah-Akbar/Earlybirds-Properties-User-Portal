@@ -2,7 +2,7 @@ import Cta from "@/components/common/Cta";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import Properties from "@/components/properties/Properties";
-//import About from "@/components/off-plan/About";
+import About from "@/components/off-plan/About";
 import React from "react";
 
 export const metadata = {
@@ -29,7 +29,7 @@ export default async function OffPlanProperties({ searchParams }) {
               emirate: emirate || ""
             }}
           />
-          {/* <About /> */}
+          <About />
           <Cta />
         </div>
         <Footer parentClass="style-2" />

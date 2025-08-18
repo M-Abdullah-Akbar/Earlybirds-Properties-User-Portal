@@ -434,8 +434,17 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                 </div>
               )}
 
+              {/* No Results */}
+              {!loading && !error && properties.length === 0 && (
+                <div className="text-center py-5">
+                  <div className="alert alert-info" role="alert">
+                    No properties found matching your criteria.
+                  </div>
+                </div>
+              )}
+
               {/* Pagination */}
-              {!loading && !error && !usingFilteredResults && pagination.totalPages > 1 && (
+              {!loading && !error && !usingFilteredResults && (
                 <div className="wrap-pagination">
                   <p className="text-1">
                     Showing {((pagination.currentPage - 1) * pagination.itemsPerPage) + 1}-{Math.min(pagination.currentPage * pagination.itemsPerPage, pagination.totalItems)} of {pagination.totalItems} results.
@@ -501,7 +510,7 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                           }
                         }}
                       >
-                        <i className="icon-arrow-left" />
+                        <i className="icon-arrow-right" />
                       </a>
                     </li>
                   </ul>
@@ -522,15 +531,6 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                   </p>
                 </div>
               )}*/}
-
-              {/* No Results */}
-              {!loading && !error && properties.length === 0 && (
-                <div className="text-center py-5">
-                  <div className="alert alert-info" role="alert">
-                    No properties found matching your criteria.
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

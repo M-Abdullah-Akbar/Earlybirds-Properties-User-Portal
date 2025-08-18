@@ -45,6 +45,16 @@ export default function Slider4({ property }) {
                       thumbnail={elm.src}
                       width={1280}
                       height={680}
+                      content={
+                        <div className="pswp-img-container">
+                          <img 
+                            src={elm.src} 
+                            alt={elm.alt} 
+                            style={{ maxWidth: '100%', height: 'auto' }} 
+                            crossOrigin="anonymous"
+                          />
+                        </div>
+                      }
                     >
                       {({ ref, open }) => (
                         <a
@@ -59,6 +69,8 @@ export default function Slider4({ property }) {
                             src={elm.src}
                             width={1280}
                             height={680}
+                            priority={i === 0} // Add priority to first image (LCP)
+                            style={{ width: '100%', height: 'auto' }} // Maintain aspect ratio
                           />
                         </a>
                       )}

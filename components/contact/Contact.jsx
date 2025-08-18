@@ -1,9 +1,84 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import DropdownSelect from "../common/DropdownSelect";
+import axios from "axios";
 //import MapComponent from "../common/MapComponent";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    interest: "Select",
+    message: ""
+  });
+  const [success, setSuccess] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleInterestChange = (value) => {
+    setFormData(prev => ({
+      ...prev,
+      interest: value
+    }));
+  };
+
+  const handleShowMessage = () => {
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      // Send email using a service or API
+      const response = await axios.post(
+        "https://express-brevomail.vercel.app/api/send-email",
+        {
+          to: "muhammedabdullahakbar@gmail.com",
+          subject: `Contact Form: ${formData.interest} Inquiry from ${formData.name}`,
+          html: `
+            <h2>Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone}</p>
+            <p><strong>Interest:</strong> ${formData.interest}</p>
+            <p><strong>Message:</strong> ${formData.message}</p>
+          `
+        }
+      );
+
+      if ([200, 201].includes(response.status)) {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          interest: "Select",
+          message: ""
+        });
+        setSuccess(true);
+        handleShowMessage();
+      } else {
+        setSuccess(false);
+        handleShowMessage();
+      }
+    } catch (error) {
+      console.error("Error sending email:", error.response?.data || "An error occurred");
+      setSuccess(false);
+      handleShowMessage();
+    }
+  };
+
   return (
     <section className="section-top-map style-2">
       {/*<div className="wrap-map">
@@ -22,9 +97,14 @@ export default function Contact() {
             <div className="col-12">
               <form
                 id="contactform"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit}
                 className="form-contact"
               >
+                {showMessage && (
+                  <div className={`message-box ${success ? 'success' : 'error'}`}>
+                    <p>{success ? 'Your message has been sent successfully!' : 'Failed to send message. Please try again.'}</p>
+                  </div>
+                )}
                 <div className="heading-section">
                   <h2 className="title">We Would Love to Hear From You</h2>
                   <p className="text-1">
@@ -41,17 +121,21 @@ export default function Contact() {
                       placeholder="Your name"
                       name="name"
                       id="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       required
                     />
                   </fieldset>
                   <fieldset>
                     <label htmlFor="email">Email:</label>
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       placeholder="Email"
                       name="email"
                       id="email-contact"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                     />
                   </fieldset>
@@ -65,6 +149,8 @@ export default function Contact() {
                       placeholder="Your phone number"
                       name="phone"
                       id="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       required
                     />
                   </fieldset>
@@ -74,8 +160,10 @@ export default function Contact() {
                     </label>
 
                     <DropdownSelect
-                      options={["Select", "Location", "Rent", "Sale"]}
+                      options={["Select", "Rent", "Sale"]}
                       addtionalParentClass=""
+                      defaultValue={formData.interest}
+                      onChange={handleInterestChange}
                     />
                   </div>
                 </div>
@@ -87,8 +175,9 @@ export default function Contact() {
                     rows={10}
                     placeholder="Message"
                     id="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     required
-                    defaultValue={""}
                   />
                 </fieldset>
                 <div className="send-wrap">

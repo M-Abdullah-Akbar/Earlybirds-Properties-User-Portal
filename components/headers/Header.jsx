@@ -26,9 +26,41 @@ export default function Header8() {
             <div className="btn-add">
               <Link
                 className="tf-btn style-border rounded-cycle height-3 pd-23"
-                href={`/contact-us`}
+                href={`/book-a-consultation`}
               >
-                Book a visit
+                Book a Consultation
+                <span>
+                  <svg
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 7H17V17"
+                      stroke="#F1913D"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M7 17L17 7"
+                      stroke="#F1913D"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>{" "}
+                </span>
+              </Link>
+            </div>
+            <div className="btn-add">
+              <Link
+                className="tf-btn style-border rounded-cycle height-3 pd-23"
+                href={`/instant-valuation`}
+              >
+                Instant Valuation 
                 <span>
                   <svg
                     width={24}

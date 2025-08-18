@@ -16,8 +16,8 @@ export default function Sell() {
         <Header />
         <Hero />
         <div className="main-content overflow-hidden">
-          <Testimonials />
           <About />
+          <Testimonials />
         </div>
         <Footer parentClass="style-2" />
       </div>

@@ -3,6 +3,8 @@ import Header from "@/components/headers/Header";
 import React from "react";
 import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
+import About from "@/components/areas-in-uae/About";
+
 
 export const metadata = {
   title: "Areas in UAE || Proty - Real Estate React Nextjs Template",
@@ -19,6 +21,7 @@ export default function Home() {
                 propertyType: "",
                 emirate: ""
               }} />
+            <About />
             <Cta />
         </div>
         <Footer parentClass="style-2" />
