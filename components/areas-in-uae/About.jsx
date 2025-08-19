@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function RentAbout() {
+export default function AreasInUaeAbout() {
   return (
     <section className="section-pre-approved">
       <div className="tf-container">

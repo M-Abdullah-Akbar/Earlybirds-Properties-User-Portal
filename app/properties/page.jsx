@@ -6,10 +6,11 @@ import React from "react";
 
 export const metadata = {
   title:
-    "Property List || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+    "Property List || Earlybirds - Real Estate",
+  description: "Earlybirds - Real Estate",
 };
-export default function page() {
+export default function PropertiesPage() {
+
   return (
     <>
       <div id="wrapper" className="counter-scroll">

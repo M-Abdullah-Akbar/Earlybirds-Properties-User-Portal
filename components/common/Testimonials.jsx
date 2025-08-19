@@ -4,7 +4,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 //import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 export default function Testimonials() {
   return (
     <div className="section-testimonials mt-5 mb-10">
@@ -37,7 +37,7 @@ export default function Testimonials() {
                   spaceBetween: 40,
                 },
               }}
-              modules={[Pagination, Navigation]}
+              modules={[Pagination, Navigation, Autoplay]}
               pagination={{
                 el: ".spd8",
               }}
@@ -45,6 +45,14 @@ export default function Testimonials() {
                 prevEl: ".snbp3",
                 nextEl: ".snbn3",
               }}
+              loop={true}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+              }}
+              speed={800}
+              grabCursor={true}
             >
               {testimonials.map((testimonial, index) => (
                 <SwiperSlide className="swiper-slide" key={index}>
@@ -60,13 +68,13 @@ export default function Testimonials() {
                     <p className="text-1 description">
                       {testimonial.description}
                     </p>
-                    <div className="ratings justify-center">
+                    {/*<div className="ratings justify-center">
                       <i className="icon-star" />
                       <i className="icon-star" />
                       <i className="icon-star" />
                       <i className="icon-star" />
                       <i className="icon-star" />
-                    </div>
+                    </div>*/}
                     <div className="author">
                       <h6 className="name">
                         <a href="#">{testimonial.name}</a>

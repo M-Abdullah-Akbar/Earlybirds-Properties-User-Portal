@@ -2,14 +2,16 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import Hero from "@/components/sell/Hero";
 import About from "@/components/sell/About";
-import Testimonials from "@/components/sell/Testimonials";
+import Testimonials from "@/components/common/Testimonials";
+import Faqs from "@/components/common/Faqs";
 import React from "react";
 
 export const metadata = {
-  title: "Sell || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+  title: "Sell || Earlybirds - Real Estate",
+  description: "Earlybirds - Real Estate",
 };
-export default function Sell() {
+export default function SellPage() {
+
   return (
     <>
       <div id="wrapper" className="counter-scroll">
@@ -17,6 +19,7 @@ export default function Sell() {
         <Hero />
         <div className="main-content overflow-hidden">
           <About />
+          <Faqs pageType="sell" />
           <Testimonials />
         </div>
         <Footer parentClass="style-2" />

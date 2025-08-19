@@ -5,10 +5,10 @@ import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
 
 export const metadata = {
-  title: "Developers in UAE || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+  title: "Developers in UAE || Earlybirds - Real Estate",
+  description: "Earlybirds - Real Estate",
 };
-export default function Home() {
+export default function DeveloperInUaePage() {
   return (
     <>
       <div id="wrapper" className="counter-scroll">

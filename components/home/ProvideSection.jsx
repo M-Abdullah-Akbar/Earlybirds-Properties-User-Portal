@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import Image from "next/image";
-import { Pagination } from "swiper/modules";
-export default function HelpSection() {
+import { Pagination, Autoplay } from "swiper/modules";
+
+export default function ProvideSection() {
   return (
     <div className="section-help style-1 mt-5">
       <div className="tf-container-2">
@@ -44,10 +45,18 @@ export default function HelpSection() {
                   spaceBetween: 32,
                 },
               }}
-              modules={[Pagination]}
+              modules={[Pagination, Autoplay]}
               pagination={{
                 el: ".spd5",
               }}
+              loop={true}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+              }}
+              speed={800}
+              grabCursor={true}
             >
               {boxHelpData.map((box) => (
                 <SwiperSlide className="swiper-slide" key={box.id}>

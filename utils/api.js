@@ -478,5 +478,33 @@ export const locationAPI = {
   }
 };
 
+// Email API functions for user portal
+export const emailAPI = {
+  // Send contact form email
+  sendContactEmail: async (formData) => {
+    const response = await api.post("/email/contact", formData);
+    return response.data;
+  },
+  
+  // Send instant valuation email
+  sendInstantValuationEmail: async (formData) => {
+    const response = await api.post("/email/instant-valuation", formData);
+    return response.data;
+  }
+};
+
+// Upload API functions for user portal
+export const uploadAPI = {
+  // Upload images
+  uploadImages: async (formData) => {
+    const response = await api.post("/upload/images", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  }
+};
+
 // Export the main API instance for direct use if needed
 export default api;

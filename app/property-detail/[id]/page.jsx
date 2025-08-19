@@ -9,11 +9,11 @@ import { propertyAPI } from "@/utils/api";
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "Property Details || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+  title: "Property Details || Earlybirds - Real Estate",
+  description: "Earlybirds - Real Estate",
 }; 
 
-export default async function page({ params }) {
+export default async function PropertyDetailPage({ params }) {
   const { id } = await params;
 
   try {

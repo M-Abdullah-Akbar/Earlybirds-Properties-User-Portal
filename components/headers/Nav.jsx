@@ -1,5 +1,5 @@
 "use client";
-import { buyMenu, rentMenu, services } from "@/data/menu";
+import { buyMenu, offPlanMenu, rentMenu, services } from "@/data/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -72,8 +72,28 @@ export default function Nav() {
           ))}
         </ul>
       </li>
-      <li className={"/off-plan-properties" == pathname ? "current-menu" : ""}>
-        <Link href={`/off-plan-properties`}>Off Plan Properties</Link>
+      <li
+        className={`has-child ${
+          offPlanMenu.some(
+            (elm) =>
+              elm.href == pathname ||
+              pathname.includes(`${elm.href.split("?")[0]}`)
+          )
+            ? "current-menu"
+            : ""
+        }`}
+      >
+        <Link href={`/off-plan-properties`}>Off-Plan Properties</Link>
+        <ul className="submenu">
+          {offPlanMenu.map((item, index) => (
+            <li
+              key={index}
+              className={pathname == item.href ? "current-item" : ""}
+            >
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          ))}
+        </ul>
       </li>
       <li className={"/areas-in-uae" == pathname ? "current-menu" : ""}>
         <Link href={`/areas-in-uae`}>Areas in UAE</Link>

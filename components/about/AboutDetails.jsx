@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import Listings from "./AboutListings";
-import Link from "next/link";
+//import Listings from "./AboutListings";
+//import Link from "next/link";
 import Image from "next/image";
-import { properties4 } from "@/data/properties";
+//import { properties4 } from "@/data/properties";
 export default function AboutDetails({ agency }) {
   return (
     <section className="section-agency-details ">

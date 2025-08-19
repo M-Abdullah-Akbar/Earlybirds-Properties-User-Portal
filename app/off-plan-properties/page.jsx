@@ -3,6 +3,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import Properties from "@/components/properties/Properties";
 import About from "@/components/off-plan/About";
+import Faqs from "@/components/common/Faqs";
 import React from "react";
 
 export const metadata = {
@@ -11,7 +12,8 @@ export const metadata = {
 };
 
 
-export default async function OffPlanProperties({ searchParams }) {
+export default async function OffPlanPropertiesPage({ searchParams }) {
+
   const params = await searchParams;
   const propertyType = params?.propertyType || "";
   const emirate = params?.emirate || "";
@@ -30,6 +32,7 @@ export default async function OffPlanProperties({ searchParams }) {
             }}
           />
           <About />
+          <Faqs pageType="off-plan" />
           <Cta />
         </div>
         <Footer parentClass="style-2" />

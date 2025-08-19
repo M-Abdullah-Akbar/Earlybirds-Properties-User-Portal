@@ -16,7 +16,7 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
     currentPage: 1,
     totalPages: 1,
     totalItems: 0,
-    itemsPerPage: 20
+    itemsPerPage: 10
   });
   
   // Map propertyType to listingType for backend API
@@ -375,11 +375,11 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                     <LayoutHandler defaultGrid={defaultGrid} />
                   </ul>
 
-                  <DropdownSelect
+                  {/*<DropdownSelect
                     addtionalParentClass="select-filter list-sort"
                     options={["Sort by (Default)", "Newest", "Oldest", "Price: Low to High", "Price: High to Low"]}
                     onChange={handleSortChange}
-                  />
+                  />*/}
                 </div>
               </div>
 

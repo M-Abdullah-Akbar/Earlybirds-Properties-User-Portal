@@ -1,19 +1,19 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import Partners from "@/components/home/Partners";
-import Contact from "@/components/home/Contact";
-import HelpSection from "@/components/home/HelpSection";
+import Contact from "@/components/common/Contact";
+import ProvideSection from "@/components/home/ProvideSection";
 import Hero from "@/components/home/Hero";
 import Locations from "@/components/home/Locations";
 //import Properties from "@/components/home/Properties";
-import Testimonials from "@/components/sell/Testimonials";
+import Testimonials from "@/components/common/Testimonials";
 import React, { Suspense } from "react";
 import AboutSection from "@/components/home/AboutSection";
 import OffplanProjects from "@/components/home/OffplanProjects";
 
 export const metadata = {
-  title: "Home || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+  title: "Home || Earlybirds - Real Estate React",
+  description: "Earlybirds - Real Estate React",
 };
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
             <Hero />
           </Suspense>
           <AboutSection />
-          <HelpSection />
+          <ProvideSection />
           <Locations />
           <OffplanProjects />
           <Partners />

@@ -4,13 +4,14 @@ import React from "react";
 import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
 import BuyAbout from "@/components/buy/About";
+import Faqs from "@/components/common/Faqs";
 
 export const metadata = {
   title: "Buy || Earlybirds - Properties User Portal",
   description: "Earlybirds - Properties User Portal",
 };
 
-export default async function Buy({ searchParams }) {
+export default async function BuyPage({ searchParams }) {
   const params = await searchParams;
   const propertyType = params?.propertyType || "";
   const emirate = params?.emirate || "";
@@ -29,6 +30,7 @@ export default async function Buy({ searchParams }) {
               }}
             />
             <BuyAbout />
+            <Faqs pageType="buy" />
             <Cta />
         </div>
         <Footer parentClass="style-2" />

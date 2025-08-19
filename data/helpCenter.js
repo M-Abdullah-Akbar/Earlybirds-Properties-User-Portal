@@ -1,24 +1,3 @@
-export const slides = [
-  {
-    id: 1,
-    imageSrc: "/images/section/box-help-1.jpg",
-    title: "Buy or rent a property",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-  },
-  {
-    id: 2,
-    imageSrc: "/images/section/box-help-2.jpg",
-    title: "Advertise your property",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-  },
-  {
-    id: 3,
-    imageSrc: "/images/section/box-help-3.jpg",
-    title: "Advertise your property",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-  },
-];
-
 export const boxHelpData = [
   {
     id: 1,
@@ -33,31 +12,31 @@ export const boxHelpData = [
     imageSrc: "/images/IMG-20250813-WA0092.jpg",
     title: "Sell a property",
     description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale.",
-    delay: ".1s",
-    pageUrl: "/rent",
+    delay: ".0s",
+    pageUrl: "/sell",
   },
   {
     id: 3,
     imageSrc: "/images/IMG-20250813-WA0093.jpg",
     title: "Rent a property",
     description: "View the best rentals in Dubai. We provide rental income insights and handle all property leasing.",
-    delay: ".2s",
-    pageUrl: "/sell",
+    delay: ".0s",
+    pageUrl: "/rent",
   },
   { 
     id: 4,
     imageSrc: "/images/IMG-20250813-WA0094.jpg",
     title: "Commercial Properties",
     description: "Unlock your business potential with our carefully selected commercial properties. Each property is selected carefully to maximize visitors, strengthen brand visibility, and secure long-term investment returns.",
-    delay: ".2s",
-    pageUrl: "/sell",
+    delay: ".0s",
+    pageUrl: "/services",
   },
   {
     id: 5,
     imageSrc: "/images/IMG-20250813-WA0091.jpg",
     title: "Property Management",
     description: "From getting trustworthy renters to handling maintenance, our skilled property management team ensures smooth operations, lowers empty units, and increases your overall profit.",
-    delay: ".2s",
-    pageUrl: "/sell",
+    delay: ".0s",
+    pageUrl: "/services",
   },
 ];

@@ -1,0 +1,11 @@
+/* Scroll behavior fix for section navigation */
+#commercial-properties,
+#property-management,
+#holiday-homes,
+#mortgage {
+  scroll-margin-top: 250px; /* Adjust based on your header height */
+}
+
+html {
+  scroll-behavior: smooth;
+}

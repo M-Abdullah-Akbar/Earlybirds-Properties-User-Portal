@@ -1,33 +1,18 @@
-import BrandSlider from "./BrandSlider";
 import React from "react";
-import SplitTextAnimation from "./SplitTextAnimation";
+import CommonBrands from "./CommonBrands";
 
 export default function Brands({
   parentClass = "section-work-together style-2 mt-5",
 }) {
   return (
-    <section className={parentClass}>
-      <div className="wg-partner">
-        <div className="tf-container">
-          <div className="row">
-            <div className="col-12 wrap-partners">
-              <div className="heading-section text-center mb-48">
-                <h2 className="title split-text effect-right">
-                  <SplitTextAnimation text="Let’s Work Together" />
-                </h2>
-                <p className="text-1 split-text effect-right">
-                  <SplitTextAnimation
-                    text="Thousands of luxury home enthusiasts just like you visit our
-                  website."
-                  />
-                </p>
-              </div>
-              <BrandSlider parentClass="infiniteslide wrap-partners mb-40" />
-              <BrandSlider parentClass="infiniteslide wrap-partners partner-slider-reverse" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CommonBrands
+      parentClass={parentClass}
+      title="Let's Work Together"
+      description="Thousands of luxury home enthusiasts just like you visit our website."
+      containerClass="wg-partner"
+      sliderCount={2}
+      reverseSecondSlider={true}
+    />
   );
 }
+

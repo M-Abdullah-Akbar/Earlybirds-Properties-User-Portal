@@ -4,13 +4,15 @@ import React from "react";
 import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
 import RentAbout from "@/components/rent/About";
+import Faqs from "@/components/common/Faqs";
 
 export const metadata = {
   title: "Rent || Earlybirds - Properties User Portal",
   description: "Earlybirds - Properties User Portal",
 };
 
-export default async function Rent({ searchParams }) {
+export default async function RentPage({ searchParams }) {
+
   const params = await searchParams;
   const propertyType = params?.propertyType || "";
   const emirate = params?.emirate || "";
@@ -29,6 +31,7 @@ export default async function Rent({ searchParams }) {
               }}
             />
             <RentAbout />
+            <Faqs pageType="rent" />
             <Cta />
         </div>
         <Footer parentClass="style-2" />

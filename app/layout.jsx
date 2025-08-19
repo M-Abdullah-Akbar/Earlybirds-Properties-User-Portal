@@ -4,6 +4,7 @@ import "../public/main.scss";
 import "odometer/themes/odometer-theme-default.css"; // Import theme
 import "photoswipe/style.css";
 import "rc-slider/assets/index.css";
+import "../public/css/scroll-fix.css"; // Import scroll fix styles
 import { usePathname } from "next/navigation";
 import BackToTop from "@/components/common/BackToTop";
 import MobileMenu from "@/components/headers/MobileMenu";
