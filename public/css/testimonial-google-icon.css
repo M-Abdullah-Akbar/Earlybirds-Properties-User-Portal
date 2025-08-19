@@ -1,0 +1,28 @@
+.google-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.google-icon svg {
+  transition: transform 0.3s ease;
+}
+
+.google-icon:hover svg {
+  transform: scale(1.2);
+}
+
+/* Google's official brand colors */
+.google-icon svg path:first-child {
+  fill: #4285F4; /* Google Blue */
+}
+
+.wg-testimonial .author {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.wg-testimonial .author .name {
+  margin-bottom: 0;
+}

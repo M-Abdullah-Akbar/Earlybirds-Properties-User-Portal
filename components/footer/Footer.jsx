@@ -107,7 +107,8 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Call us</div>
                     <h6>
-                      <a href="#"> +971 566914193</a><br></br>
+                      <a href="#"> +971 566914193</a>
+                      <br></br>
                       <a href="#"> +971 568577007</a>
                     </h6>
                   </div>
@@ -131,8 +132,36 @@ export default function Footer2({ parentClass = "" }) {
               <div className="footer-description col-lg-5 col-md-6">
                 <h5 className="title lh-30 mb-2">About Us</h5>
                 <p className="text-1">
-                  Welcome to EarlyBirds Properties, your trusted partner in the dynamic world of Dubai real estate. We stand proud as a leading real estate company with over a decade of unwavering dedication and expertise.
+                  Welcome to EarlyBirds Properties, your trusted partner in the
+                  dynamic world of Dubai real estate. We stand proud as a
+                  leading real estate company with over a decade of unwavering
+                  dedication and expertise.
                 </p>
+                <div className="wrap-social mt-5">
+                  <div className="text-3 fw-6 text_white">Follow us</div>
+                  <ul className="tf-social">
+                    <li>
+                      <a href="#">
+                        <i className="icon-fb" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="icon-X" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="icon-linked" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="icon-ins" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
               {footerData.map((column, index) => (
                 <div className="col-lg-3 col-md-6" key={index}>
@@ -303,31 +332,6 @@ export default function Footer2({ parentClass = "" }) {
               Copyright © {new Date().getFullYear()}{" "}
               <span className="fw-7">Earlybird Real Estate LLC.</span>
             </p>
-            <div className="wrap-social">
-              <div className="text-3 fw-6 text_white">Follow us</div>
-              <ul className="tf-social">
-                <li>
-                  <a href="#">
-                    <i className="icon-fb" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon-X" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon-linked" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon-ins" />
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

@@ -408,7 +408,7 @@
       height: 100%;
       img {
         width: 100%;
-        min-height: 450px;
+        min-height: 200px;
         object-fit: cover;
       }
       &::after {
@@ -957,6 +957,23 @@
     overflow: hidden;
     img {
       width: 100%;
+    }
+  }
+  .image-wrap1 {
+    border-radius: 24px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+    }
+  }
+  .image-wrap2 {
+    border-radius: 24px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 400px;
     }
   }
   &.style-2 {

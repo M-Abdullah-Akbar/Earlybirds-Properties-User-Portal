@@ -175,15 +175,17 @@ export default function About() {
               </ul>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 flex items-center">
+
             <div className="image-wrap">
+
               <Image
                 className="lazyload"
-                data-src="/images/section/section-contact-2.jpg"
+                data-src="/images/a2afe468-ab96-4e53-a939-f1fe33351448.jpg"
                 alt=""
                 width={550}
                 height={560}
-                src="/images/section/section-contact-2.jpg"
+                src="/images/a2afe468-ab96-4e53-a939-f1fe33351448.jpg"
               />
             </div>
           </div>

@@ -2,14 +2,14 @@
 import React from "react";
 import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
-import DropdownSelect from "@/components/common/DropdownSelect";
+//import DropdownSelect from "@/components/common/DropdownSelect";
 export default function LoanCalculator() {
   return (
     <>
       <section className="section-pre-approved mt-5">
         <div className="tf-container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-6 flex items-center">
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">
@@ -138,7 +138,7 @@ export default function LoanCalculator() {
                 />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 flex items-center">
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">

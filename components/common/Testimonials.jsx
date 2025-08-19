@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 //import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { FaGoogle } from "react-icons/fa";
 export default function Testimonials() {
   return (
     <div className="section-testimonials mt-5 mb-20">
@@ -64,35 +65,42 @@ export default function Testimonials() {
                         src={testimonial.avatarSrc}
                       />
                     </div>*/}
-                    <p className="text-1 description">
-                      {testimonial.description}
-                    </p>
-                    {/*<div className="ratings justify-center">
-                      <i className="icon-star" />
-                      <i className="icon-star" />
-                      <i className="icon-star" />
-                      <i className="icon-star" />
-                      <i className="icon-star" />
-                    </div>*/}
                     <div className="author">
                       <h6 className="name">
                         <a href="#">{testimonial.name}</a>
                       </h6>
-                      {/*<p className="text-2">{testimonial.role}</p>*/}
+                    </div>
+                    {/*<div className="google-icon mb-2">
+                        <FaGoogle style={{ fontSize: '24px', color: '#4285F4' }} />
+                    </div>*/}
+                    {/*<p className="text-2">{testimonial.role}</p>*/}
+                    <div className="ratings justify-center mt-3">
+                      <i className="icon-star" />
+                      <i className="icon-star" />
+                      <i className="icon-star" />
+                      <i className="icon-star" />
+                      <i className="icon-star" />
+                    </div>
+                    <div className="mt-0">
+                      <p className="text-1 description">
+                        {testimonial.description}
+                      </p>
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
 
-              {/*<div className="sw-wrap-btn mt-48">
-                <div className="swiper-button-prev sw-button nav-prev-layout snbp3">
-                  <i className="icon-arrow-left-3" />
+              {/* Navigation buttons commented out
+                <div className="sw-wrap-btn mt-48">
+                  <div className="swiper-button-prev sw-button nav-prev-layout snbp3">
+                    <i className="icon-arrow-left-3" />
+                  </div>
+                  <div className="sw-pagination sw-pagination-layout text-center spd8" />
+                  <div className="swiper-button-next sw-button nav-next-layout snbn3">
+                    <i className="icon-arrow-right-3" />
+                  </div>
                 </div>
-                <div className="sw-pagination sw-pagination-layout text-center spd8" />
-                <div className="swiper-button-next sw-button nav-next-layout snbn3">
-                  <i className="icon-arrow-right-3" />
-                </div>
-              </div>*/}
+              */}
             </Swiper>
           </div>
         </div>

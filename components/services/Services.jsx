@@ -3,7 +3,7 @@ import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 export default function Services() {
   return (
-    <div className="section-help style-3 tf-spacing-7 pb-0">
+    <div className="section-help style-3 tf-spacing-7 pb-0 mt-5">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">
