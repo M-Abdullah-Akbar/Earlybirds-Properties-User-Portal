@@ -23,7 +23,7 @@ export default async function AboutUsPage({ params }) {
       <div id="wrapper">
         <Header />
         <div className="main-content mt-5">
-          <AboutDetails agency={agency} />
+          {/*<AboutDetails agency={agency} />*/}
           <Services />
           <Brands />
           <Testimonials />

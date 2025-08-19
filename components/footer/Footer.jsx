@@ -131,10 +131,7 @@ export default function Footer2({ parentClass = "" }) {
               <div className="footer-description col-lg-5 col-md-6">
                 <h5 className="title lh-30 mb-2">About Us</h5>
                 <p className="text-1">
-                  Our Real Estate Inc company is committed to delivering a
-                  high level of expertise, customer service, and attention to
-                  detail to the marketing and sales of luxury real estate, and
-                  rental properties.
+                  Welcome to EarlyBirds Properties, your trusted partner in the dynamic world of Dubai real estate. We stand proud as a leading real estate company with over a decade of unwavering dedication and expertise.
                 </p>
               </div>
               {footerData.map((column, index) => (
