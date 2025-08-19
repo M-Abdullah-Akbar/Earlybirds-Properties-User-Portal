@@ -107,7 +107,8 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Call us</div>
                     <h6>
-                      <a href="#"> +971 566914193</a>
+                      <a href="#"> +971 566914193</a><br></br>
+                      <a href="#"> +971 568577007</a>
                     </h6>
                   </div>
                 </div>
@@ -127,8 +128,17 @@ export default function Footer2({ parentClass = "" }) {
           </div>
           <div className="footer-main">
             <div className="row">
+              <div className="footer-description col-lg-4 col-md-6">
+                <h5 className="title lh-30 mb-2">About Us</h5>
+                <p className="text-1">
+                  Our Real Estate Inc company is committed to delivering a
+                  high level of expertise, customer service, and attention to
+                  detail to the marketing and sales of luxury real estate, and
+                  rental properties.
+                </p>
+              </div>
               {footerData.map((column, index) => (
-                <div className="col-lg-3 col-md-6" key={index}>
+                <div className="col-lg-4 col-md-6" key={index}>
                   <div
                     className={`footer-menu-list footer-col-block ${
                       column.className || ""
@@ -152,7 +162,7 @@ export default function Footer2({ parentClass = "" }) {
                   </div>
                 </div>
               ))}
-              <div className="col-lg-3 col-md-6">
+              <div className="col-lg-4 col-md-6">
                 <div className="footer-menu-list newsletter">
                   <h5 className="title lh-30 mb-19">Newsletter</h5>
                   <div className="sib-form">
