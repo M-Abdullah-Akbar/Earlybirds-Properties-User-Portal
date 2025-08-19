@@ -128,7 +128,7 @@ export default function Footer2({ parentClass = "" }) {
           </div>
           <div className="footer-main">
             <div className="row">
-              <div className="footer-description col-lg-4 col-md-6">
+              <div className="footer-description col-lg-5 col-md-6">
                 <h5 className="title lh-30 mb-2">About Us</h5>
                 <p className="text-1">
                   Our Real Estate Inc company is committed to delivering a
@@ -138,7 +138,7 @@ export default function Footer2({ parentClass = "" }) {
                 </p>
               </div>
               {footerData.map((column, index) => (
-                <div className="col-lg-4 col-md-6" key={index}>
+                <div className="col-lg-3 col-md-6" key={index}>
                   <div
                     className={`footer-menu-list footer-col-block ${
                       column.className || ""
