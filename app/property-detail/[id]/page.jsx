@@ -36,7 +36,6 @@ export default async function PropertyDetailPage({ params }) {
             <Slider property={property} />
             <Details property={property} />
             <RelatedProperties property={property} />
-            <Cta />
           </div>
           <Footer parentClass="style-2" />
         </div>

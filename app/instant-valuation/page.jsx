@@ -20,7 +20,6 @@ export default function InstantValuationPage() {
           <InstantValuationForm />
           <About />
           <Brands />
-          <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>

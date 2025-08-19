@@ -31,7 +31,6 @@ export default function page() {
               </div>
             </div>
           </div>
-          <Cta />
         </div>
 
         <Footer parentClass="style-2" />

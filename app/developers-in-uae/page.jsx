@@ -15,7 +15,6 @@ export default function DeveloperInUaePage() {
         <Header />
         <div className="main-content overflow-hidden">
             <Properties defaultGrid />
-            <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>

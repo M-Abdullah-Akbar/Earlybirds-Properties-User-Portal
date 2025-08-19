@@ -48,7 +48,7 @@ export default function About() {
                   </div>
                   <div className="content">
                     <div className="sub">Office address</div>
-                    <p>102 Ingraham St, Brooklyn, NY 11237</p>
+                    <p>1502 A prime business center JVC Dubai</p>
                   </div>
                 </li>
                 <li>
@@ -91,8 +91,9 @@ export default function About() {
                     </svg>
                   </div>
                   <div className="content">
-                    <div className="sub">Office address</div>
-                    <div className="phone">(603) 555-0123</div>
+                    <div className="sub">Phone Number</div>
+                    <div className="phone">+971 566914193</div>
+                    <div className="phone">+971 568577007</div>
                   </div>
                 </li>
                 <li>
@@ -167,8 +168,8 @@ export default function About() {
                     </svg>
                   </div>
                   <div className="content">
-                    <div className="sub">Office address</div>
-                    <a href="#">themesflat@gmail.com</a>
+                    <div className="sub">Email Address</div>
+                    <a href="#">info@earlybirdsproperties.com</a>
                   </div>
                 </li>
               </ul>

@@ -95,9 +95,9 @@ export default function Nav() {
           ))}
         </ul>
       </li>
-      <li className={"/areas-in-uae" == pathname ? "current-menu" : ""}>
+      {/*<li className={"/areas-in-uae" == pathname ? "current-menu" : ""}>
         <Link href={`/areas-in-uae`}>Areas in UAE</Link>
-      </li>
+      </li>*/}
       {/*<li className={"/developers-in-uae" == pathname ? "current-menu" : ""}>
         <Link href={`/developers-in-uae`}>Developers in UAE</Link>
       </li>*/}
@@ -126,6 +126,9 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+      </li>
+      <li className={"/contact-us" == pathname ? "current-menu" : ""}>
+        <Link href={`/contact-us`}>Contact Us</Link>
       </li>
       {/*<li
         className={`has-child style-2 ${

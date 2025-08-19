@@ -33,7 +33,6 @@ export default async function OffPlanPropertiesPage({ searchParams }) {
           />
           <About />
           <Faqs pageType="off-plan" />
-          <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>

@@ -7,17 +7,16 @@ import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 export default function Testimonials() {
   return (
-    <div className="section-testimonials mt-5 mb-10">
+    <div className="section-testimonials mt-5 mb-20">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">
             <div className="heading-section text-center mb-48">
               <h2 className="title split-text effect-right">
-                <SplitTextAnimation text="Clients Testimonials" />
+                <SplitTextAnimation text="What Our Clients Say" />
               </h2>
               <p className="text-1 split-text split-lines-transform">
-                Thousands of luxury home enthusiasts just like you visit our
-                website.
+                We are thrilled to have served so many investors in finding their ideal properties. Below are testimonies from some of our clients regarding their experience with Early Bird Properties:
               </p>
             </div>
             <Swiper
@@ -79,13 +78,13 @@ export default function Testimonials() {
                       <h6 className="name">
                         <a href="#">{testimonial.name}</a>
                       </h6>
-                      <p className="text-2">{testimonial.role}</p>
+                      {/*<p className="text-2">{testimonial.role}</p>*/}
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
 
-              <div className="sw-wrap-btn mt-48">
+              {/*<div className="sw-wrap-btn mt-48">
                 <div className="swiper-button-prev sw-button nav-prev-layout snbp3">
                   <i className="icon-arrow-left-3" />
                 </div>
@@ -93,7 +92,7 @@ export default function Testimonials() {
                 <div className="swiper-button-next sw-button nav-next-layout snbn3">
                   <i className="icon-arrow-right-3" />
                 </div>
-              </div>
+              </div>*/}
             </Swiper>
           </div>
         </div>

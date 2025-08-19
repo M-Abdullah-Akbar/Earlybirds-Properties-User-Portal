@@ -17,7 +17,6 @@ export default function PropertiesPage() {
         <Header />
         <div className="main-content ">
           <Properties defaultGrid />
-          <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>

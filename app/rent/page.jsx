@@ -32,7 +32,6 @@ export default async function RentPage({ searchParams }) {
             />
             <RentAbout />
             <Faqs pageType="rent" />
-            <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>

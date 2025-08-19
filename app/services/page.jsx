@@ -3,9 +3,9 @@ import React from "react";
 import Header from "@/components/headers/Header";
 import Footer from "@/components/footer/Footer";
 //import Services from '@/components/services/Services'
-import Cta from "@/components/common/Cta";
+//import Cta from "@/components/common/Cta";
 import WelcomeSection from "@/components/services/WelcomeSection";
-import Hero from "@/components/services/Hero";
+//import Hero from "@/components/services/Hero";
 import CommercialPropertiesAbout from "@/components/services/CommercialPropertiesAbout";
 import HolidayHomesAbout from "@/components/services/HolidayHomesAbout";
 import MortgageAbout from "@/components/services/MortgageAbout";
@@ -36,8 +36,7 @@ export default function ServicesPage() {
     <>
       <div id="wrapper">
         <Header />
-        <div className="main-content">
-          <Hero />
+        <div className="main-content mb-10">
           <WelcomeSection />
           {/*<Services />*/}
           <div id="commercial-properties">
@@ -51,9 +50,6 @@ export default function ServicesPage() {
           </div>
           <div id="property-management">
             <PropertyManagementAbout />
-          </div>
-          <div className="mt-5">
-            <Cta />
           </div>
         </div>
         <Footer parentClass="style-2" />

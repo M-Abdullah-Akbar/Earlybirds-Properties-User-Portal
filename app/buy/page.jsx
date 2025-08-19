@@ -31,7 +31,6 @@ export default async function BuyPage({ searchParams }) {
             />
             <BuyAbout />
             <Faqs pageType="buy" />
-            <Cta />
         </div>
         <Footer parentClass="style-2" />
       </div>

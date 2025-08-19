@@ -27,9 +27,6 @@ export default async function AboutUsPage({ params }) {
           <Services />
           <Brands />
           <Testimonials />
-          <div className="mt-5">
-            <Cta />
-          </div>
         </div>
         <Footer parentClass="style-2" />
       </div>

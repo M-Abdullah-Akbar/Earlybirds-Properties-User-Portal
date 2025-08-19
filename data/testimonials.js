@@ -2,15 +2,15 @@ export const testimonials = [
   {
     avatarSrc: "/images/avatar/testimonials-3.jpg",
     description:
-      "Phasellus efficitur dictum urna, non elementum mauris mollis a. Duis lacinia arcu ac lorem ultricies porta. Maecenas eleifend malesuada egestas. In eu eros hendrerit, pharetra justo id, blandit orci.",
-    name: "Ronald Richards",
+      `"Start to finish, the staff was amazing. They made purchasing my first investment property totally stress-free."`,
+    name: "Michael R. – New York",
     role: "CEO Themesflat",
   },
   {
     avatarSrc: "/images/avatar/testimonials-2.jpg",
     description:
-      "Proin auctor, mauris at tristique ullamcorper, nunc nisi sagittis velit, eget blandit dolor arcu sed ante. Fusce euismod varius massa, id viverra nisl semper ut. Aliquam felis eros, eleifend non faucibus at.",
-    name: "Courtney Henry",
+      `"They heard my requirements and procured me the ideal house in a matter of weeks. Pro and actually caring service."`,
+    name: "Sarah L. – California",
     role: "CEO Themesflat",
   },
   {
@@ -23,15 +23,57 @@ export const testimonials = [
   {
     avatarSrc: "/images/avatar/testimonials-3.jpg",
     description:
-      "Sed eget nibh eros. Phasellus pharetra ac leo et auctor. Donec libero dui, blandit id nulla laoreet, pellentesque egestas ante. Etiam mollis tincidunt elit, sit amet sodales tellus finibus ut. Orci varius natoque.",
-    name: "Annette Black",
+      `"I have dealt with plenty of real estate companies in the past, but Early Bird Properties is in a different league—honest, transparent, and proficient."`,
+    name: "David K. – Texas",
     role: "CEO Themesflat",
   },
   {
     avatarSrc: "/images/avatar/testimonials-3.jpg",
     description:
-      "Phasellus efficitur dictum urna, non elementum mauris mollis a. Duis lacinia arcu ac lorem ultricies porta. Maecenas eleifend malesuada egestas. In eu eros hendrerit, pharetra justo id, blandit orci.",
-    name: "Ronald Richards",
+      `"I was apprehensive to sell my property, but their expert advice and market expertise landed me an amazing deal."`,
+    name: "Emily W. – Florida",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `"The team went out of their way to locate a rental property that fit within my budget and lifestyle. Highly recommended."`,
+    name: "James B. – Illinois",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `"Timely responses, sound guidance, and smooth execution—what more would a client desire?"`,
+    name: "Olivia M. – Colorado",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `"They treated my investment as if it were their own. I have complete faith in them with my portfolio of real estate."`,
+    name: "Robert H. – Arizona",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“The most professional and friendly real estate company I’ve dealt with. They genuinely care about their clients.”`,
+    name: "Sophia C. – Washington",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“They made the relocation process so easy for my family. Every detail was handled with care.”`,
+    name: "Daniel S. – Massachusetts",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“Buying property can be overwhelming, but with Early Bird Properties, it felt simple and even exciting. Truly grateful!”`,
+    name: "Grace T. – Virginia",
     role: "CEO Themesflat",
   },
 ];
