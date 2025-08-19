@@ -34,12 +34,12 @@ export default function Services() {
                 </div>
                 <div className="content">
                   <h5 className="title">
-                    <a href="/services/commercial-properties">Commercial Properties</a>
+                    <a href="/services#commercial-properties">Commercial Properties</a>
                   </h5>
                   <p className="text-1">
                     Looking for expert commercial property agents in Dubai to help you secure the perfect investment?
                   </p>
-                  <a href="/services/commercial-properties" className="tf-btn-link color-3">
+                  <a href="/services#commercial-properties" className="tf-btn-link color-3">
                     <span>Learn More</span>
                   </a>
                 </div>
@@ -54,12 +54,12 @@ export default function Services() {
                 </div>
                 <div className="content">
                   <h5 className="title">
-                    <a href="/services/property-management">Property Management</a>
+                    <a href="/services#property-management">Property Management</a>
                   </h5>
                   <p className="text-1">
                   We manage, so YOU don’t have to. At Early Birds Properties, we don’t just handle property management—we redefine it. 
                   </p>
-                  <a href="/services/property-management" className="tf-btn-link color-3">
+                  <a href="/services#property-management" className="tf-btn-link color-3">
                     <span>Learn More</span>
                   </a>
                 </div>
@@ -74,12 +74,12 @@ export default function Services() {
                 </div>
                 <div className="content">
                   <h5 className="title">
-                    <a href="/services/holiday-homes">Holiday Homes</a>
+                    <a href="/services#holiday-homes">Holiday Homes</a>
                   </h5>
                   <p className="text-1">
                     Explore our curated selection of holiday homes in Dubai at Early Birds Properties and secure an investment designed to deliver exceptional value.
                   </p>
-                  <a href="/services/holiday-homes" className="tf-btn-link color-3">
+                  <a href="/services#holiday-homes" className="tf-btn-link color-3">
                     <span>Learn More</span>
                   </a>
                 </div>
@@ -94,12 +94,12 @@ export default function Services() {
                 </div>
                 <div className="content">
                   <h5 className="title">
-                    <a href="/services/mortgage">Mortgage</a>
+                    <a href="/services#mortgage">Mortgage</a>
                   </h5>
                   <p className="text-1">
                     At Early Birds Properties, we also understand the importance of finding the right mortgage solution tailored to your specific needs.
                   </p>
-                  <a href="/services/mortgage" className="tf-btn-link color-3">
+                  <a href="/services#mortgage" className="tf-btn-link color-3">
                     <span>Learn More</span>
                   </a>
                 </div>
