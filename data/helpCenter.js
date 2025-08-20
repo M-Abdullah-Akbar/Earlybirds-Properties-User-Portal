@@ -1,19 +1,19 @@
 export const boxHelpData = [
   {
-    id: 1,
-    imageSrc: "/images/IMG-20250813-WA0095.jpg",
-    title: "Buy a property",
-    description: "Hire a professional to find the perfect Dubai home. Help us find the best mortgage rates and buy a house in Dubai.",
-    delay: ".0s",
-    pageUrl: "/buy",
-  },
-  {
     id: 2,
     imageSrc: "/images/IMG-20250813-WA0092.jpg",
     title: "Sell a property",
     description: "Maximise your property. Due to Dubai's competitive market, we guarantee a quick and profitable sale.",
     delay: ".0s",
     pageUrl: "/sell",
+  },
+  {
+    id: 1,
+    imageSrc: "/images/IMG-20250813-WA0095.jpg",
+    title: "Buy a property",
+    description: "Hire a professional to find the perfect Dubai home. Help us find the best mortgage rates and buy a house in Dubai.",
+    delay: ".0s",
+    pageUrl: "/buy",
   },
   {
     id: 3,

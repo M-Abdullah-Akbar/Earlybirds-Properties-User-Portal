@@ -51,11 +51,11 @@ export default function ProvideSection() {
               }}
               loop={true}
               autoplay={{
-                delay: 2000,
+                delay: 3000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
               }}
-              speed={800}
+              speed={1000}
               grabCursor={true}
             >
               {boxHelpData.map((box) => (

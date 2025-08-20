@@ -34,14 +34,28 @@ export default function WelcomeSection() {
             <div className="content">
               <div className="heading-section mb-32 gap-30">
                 <h2 className="title split-text effect-right fw-5">
-                  <SplitTextAnimation text="Welcome to Earlybird Properties" />
+                  <SplitTextAnimation text="Our Services" />
                 </h2>
                 <p
                   className="text-1 text-color-default wow animate__fadeInUp animate__animated"
                   data-wow-duration="1.5s"
                   data-wow-delay="0s"
                 >
-                  At Earlybird Properties, we're more than just a real estate company; we're architects of dreams, crafting spaces where life flourishes and businesses thrive. With a rich history spanning 12 years, we've established ourselves as a trusted leader in the real estate market, renowned for our unwavering commitment to excellence, innovation, and client satisfaction.
+                  We make property easy and hassle-free at Early Bird Properties. We will assist you at each step if you are looking to buy, sell, or rent your property. We assist buyers in finding their ideal investment property. Sellers can rely on us for showcasing their property and linking them with serious purchasers for an optimal price.
+                </p>
+                <p
+                  className="text-1 text-color-default wow animate__fadeInUp animate__animated"
+                  data-wow-duration="1.5s"
+                  data-wow-delay="0s"
+                >
+                  We also simplify renting and leasing by connecting landlords with tenants and locating comfortable homes. Home financing can prove to be complicated at times, but our specialists are there to get you connected with our trusted lenders. If you are relocating to a new city, we have relocation assistance as well to ease your relocation. At Early Bird Properties, our aim is plain and simple: <strong>helping you make your real estate aspirations a reality with ease and confidence.</strong>
+                </p>
+                <p
+                  className="text-1 text-color-default wow animate__fadeInUp animate__animated"
+                  data-wow-duration="1.5s"
+                  data-wow-delay="0s"
+                >
+                  Our services are:
                 </p>
               </div>
               <ul className="list d-flex flex-column gap-12 mb-32">
@@ -51,7 +65,7 @@ export default function WelcomeSection() {
                   data-wow-delay="0s"
                 >
                   <i className="icon-check-cycle text-color-primary fs-24" />
-                  Nam malesuada risus non tortor laoreet fringilla.
+                  Commercial Properties
                 </li>
                 <li
                   className="d-flex align-items-center text-1 fw-3 text-color-default gap-8 wow animate__fadeInUp animate__animated"
@@ -59,7 +73,7 @@ export default function WelcomeSection() {
                   data-wow-delay="0.1s"
                 >
                   <i className="icon-check-cycle text-color-primary fs-24" />
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Property Management
                 </li>
                 <li
                   className="d-flex align-items-center text-1 fw-3 text-color-default gap-8 wow animate__fadeInUp animate__animated"
@@ -67,7 +81,7 @@ export default function WelcomeSection() {
                   data-wow-delay="0.2s"
                 >
                   <i className="icon-check-cycle text-color-primary fs-24" />
-                  Ut malesuada dolor convallis erat iaculis varius.
+                  Holiday Homes
                 </li>
                 <li
                   className="d-flex align-items-center text-1 fw-3 text-color-default gap-8 wow animate__fadeInUp animate__animated"
@@ -75,11 +89,11 @@ export default function WelcomeSection() {
                   data-wow-delay="0.3s"
                 >
                   <i className="icon-check-cycle text-color-primary fs-24" />
-                  Sed ultrices erat in nisi pulvinar tristique.
+                  Mortgage
                 </li>
               </ul>
               <a
-                href="#"
+                href="/buy"
                 className="tf-btn bg-color-primary pd-4 rounded-cycle height-3 wow animate__fadeInUp animate__animated"
                 data-wow-duration="1.5s"
                 data-wow-delay="0s"
