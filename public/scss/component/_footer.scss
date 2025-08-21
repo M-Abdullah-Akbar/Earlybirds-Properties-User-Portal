@@ -157,6 +157,7 @@
     .title-mobile {
         display: none;
         position: relative;
+        cursor: pointer;
         &::after {
             position: absolute;
             content: "";
@@ -178,6 +179,15 @@
             height: 12px;
             background-color: var(--White);
             transition: 0.25s ease-in-out;
+        }
+    }
+    .tf-collapse-content {
+        height: auto;
+        overflow: hidden;
+        transition: height 0.3s ease;
+        
+        li:first-child {
+            margin-top: 15px;
         }
     }
     &.open {

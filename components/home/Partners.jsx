@@ -27,7 +27,7 @@ export default function Partners() {
       <div className="tf-container">
         <div className="row align-items-center">
           {/* Left Section - Property Type Cards */}
-          <div className="col-lg-6">
+          <div className="col-lg-6 order-lg-1 order-2">
             <div className="property-cards-container">
               <div className="row g-4">
                 {propertyTypes.map((property, index) => (
@@ -52,7 +52,7 @@ export default function Partners() {
           </div>
 
           {/* Right Section - Content */}
-          <div className="col-lg-6">
+          <div className="col-lg-6 order-lg-2 order-1">
             <div className="content-section">
               <div className="heading-section">
                 <h2 className="title split-text effect-right">
@@ -81,68 +81,7 @@ export default function Partners() {
         </div>
       </div>
 
-      <style jsx>{`
-        .property-cards-container {
-          padding-right: 30px;
-        }
-
-        .property-card {
-          position: relative;
-          border-radius: 15px;
-          overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease;
-        }
-
-        .property-card:hover {
-          transform: translateY(-5px);
-        }
-
-        .property-image {
-          position: relative;
-          height: 170px;
-          overflow: hidden;
-        }
-
-        .property-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .property-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-          padding: 20px;
-          text-align: center;
-        }
-
-        .property-type {
-          color: white;
-          font-size: 18px;
-          font-weight: 600;
-          margin: 0;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .content-section {
-          padding-left: 30px;
-        }
-
-        @media (max-width: 991px) {
-          .property-cards-container {
-            padding-right: 0;
-            margin-bottom: 40px;
-          }
-          
-          .content-section {
-            padding-left: 0;
-          }
-        }
-      `}</style>
+      {/* Styles moved to _partners.scss */}
     </section>
   );
 }

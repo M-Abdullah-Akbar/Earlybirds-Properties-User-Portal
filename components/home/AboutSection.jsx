@@ -126,7 +126,7 @@ export default function LoanCalculator() {
       <section className="section-pre-approved mt-5">
         <div className="tf-container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-6 order-lg-1 order-2">
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
@@ -138,7 +138,7 @@ export default function LoanCalculator() {
                 />
               </div>
             </div>
-            <div className="col-lg-6 flex items-center">
+            <div className="col-lg-6 flex items-center order-lg-2 order-1">
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">

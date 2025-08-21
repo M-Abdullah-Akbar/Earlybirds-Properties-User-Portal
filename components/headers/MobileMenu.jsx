@@ -33,7 +33,7 @@ export default function MobileMenu() {
               alt=""
               src="/images/logo/Earlybird_Logo.png"
               width={100}
-              height={80}
+              height={100}
             />
           </Link>
         </div>

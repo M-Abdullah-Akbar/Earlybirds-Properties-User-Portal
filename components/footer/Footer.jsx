@@ -5,33 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import { footerData } from "@/data/footerLinks";
 export default function Footer2({ parentClass = "" }) {
-  useEffect(() => {
-    const headings = document.querySelectorAll(".footer-heading-mobile");
-
-    const toggleOpen = (event) => {
-      const parent = event.target.closest(".footer-col-block");
-      const content = parent.querySelector(".tf-collapse-content");
-
-      if (parent.classList.contains("open")) {
-        parent.classList.remove("open");
-        content.style.height = "0px";
-      } else {
-        parent.classList.add("open");
-        content.style.height = content.scrollHeight + 10 + "px";
-      }
-    };
-
-    headings.forEach((heading) => {
-      heading.addEventListener("click", toggleOpen);
-    });
-
-    // Clean up event listeners when the component unmounts
-    return () => {
-      headings.forEach((heading) => {
-        heading.removeEventListener("click", toggleOpen);
-      });
-    };
-  }, []); // Empty dependency array means this will run only once on mount
+  // Mobile footer links are now always visible, no need for toggle functionality
 
   const [success, setSuccess] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
@@ -173,7 +147,7 @@ export default function Footer2({ parentClass = "" }) {
                     <h5 className="title lh-30 title-desktop">
                       {column.title}
                     </h5>
-                    <h5 className="title lh-30 title-mobile">{column.title}</h5>
+                    <h5 className="title lh-30 title-mobile footer-heading-mobile">{column.title}</h5>
                     <ul className="tf-collapse-content">
                       {column.links.map((link, linkIndex) => (
                         <li key={linkIndex}>

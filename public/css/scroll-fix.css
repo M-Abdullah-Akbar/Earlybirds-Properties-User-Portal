@@ -3,7 +3,7 @@
 #property-management,
 #holiday-homes,
 #mortgage {
-  scroll-margin-top: 250px; /* Adjust based on your header height */
+  scroll-margin-top: 200px; /* Adjust based on your header height */
 }
 
 html {

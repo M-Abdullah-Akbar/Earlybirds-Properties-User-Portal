@@ -32,9 +32,9 @@ export default function AboutUsSection() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/IMG_1791(1).jpg"
+                  data-src="/images/founder.jpg"
                   alt=""
-                  src="/images/IMG_1791(1).jpg"
+                  src="/images/founder.jpg"
                   width={300}
                   height={100}
                 />
@@ -46,7 +46,7 @@ export default function AboutUsSection() {
       <section className="section-pre-approved mt-5">
         <div className="tf-container">
           <div className="row flex items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 order-lg-1 order-2">
               <div className="image-wrap2 img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"

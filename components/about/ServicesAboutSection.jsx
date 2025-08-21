@@ -1,12 +1,31 @@
 import React from "react";
 import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
-export default function Services() {
+export default function ServicesAboutSection() {
   return (
-    <div className="section-help style-3 tf-spacing-7">
+    <div className="section-help style-3 tf-spacing-7 pb-0 mt-5">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">
+            <div className="heading-section text-center gap-30 mb-56">
+              <h2 className="title split-text effect-right">
+                <SplitTextAnimation text="Our Services" />
+              </h2>
+              <p
+                className="text-1 wow animate__fadeInUp animate__animated"
+                data-wow-duration="1.5s"
+                data-wow-delay="0s"
+              >
+                We make property easy and hassle-free at Early Bird Properties. We will assist you at each step if you are looking to buy, sell, or rent your property. We assist buyers in finding their ideal investment property. Sellers can rely on us for showcasing their property and linking them with serious purchasers for an optimal price.
+              </p>
+              <p
+                className="text-1 wow animate__fadeInUp animate__animated"
+                data-wow-duration="1.5s"
+                data-wow-delay="0s"
+              >
+                We also simplify renting and leasing by connecting landlords with tenants and locating comfortable homes. Home financing can prove to be complicated at times, but our specialists are there to get you connected with our trusted lenders. If you are relocating to a new city, we have relocation assistance as well to ease your relocation. At Early Bird Properties, our aim is plain and simple: <strong>helping you make your real estate aspirations a reality with ease and confidence</strong>.
+              </p>
+            </div>
             <div className="tf-grid-layout md-col-2 mb-6">
               <div
                 className="icons-box style-3 wow animate__zoomIn animate__animated"
@@ -14,7 +33,7 @@ export default function Services() {
                 data-wow-delay="0s"
               >
                 <div className="tf-icon">
-                  <i className="icon-commercial" />
+                  <i className="icon-agent-2" />
                 </div>
                 <div className="content">
                   <h5 className="title">
@@ -34,7 +53,7 @@ export default function Services() {
                 data-wow-delay="0s"
               >
                 <div className="tf-icon">
-                  <i className="icon-location-2" />
+                  <i className="icon-location-4" />
                 </div>
                 <div className="content">
                   <h5 className="title">

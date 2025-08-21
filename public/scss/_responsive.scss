@@ -1922,10 +1922,17 @@
       .title {
         &.title-mobile {
           display: block;
+          cursor: default;
+          &::before, &::after {
+            display: none;
+          }
         }
         &.title-desktop {
           display: none;
         }
+      }
+      .tf-collapse-content {
+        height: auto !important;
       }
     }
   }

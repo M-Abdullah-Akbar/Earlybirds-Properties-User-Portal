@@ -304,6 +304,11 @@
             --Note: #a8abae;
             --Line: #ececec;
             --Secondary: #2c2e33;
+            
+            .footer-col-block .title-mobile::before,
+            .footer-col-block .title-mobile::after {
+                background-color: #ffffff;
+            }
         }
         .project-item {
             &.style-1 {

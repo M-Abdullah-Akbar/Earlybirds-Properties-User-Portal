@@ -1,0 +1,69 @@
+// Partners Component Styles
+
+.section-pre-approved {
+  .property-cards-container {
+    padding-right: 30px;
+  }
+
+  .property-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .property-image {
+    position: relative;
+    height: 170px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .property-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 20px;
+    text-align: center;
+  }
+
+  .property-type {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .content-section {
+    padding-left: 30px;
+  }
+
+  // Mobile styles
+  @media (max-width: 991px) {
+    .property-cards-container {
+      padding-right: 0;
+      margin-bottom: 40px;
+    }
+    
+    .content-section {
+      padding-left: 0;
+    }
+    
+    .text-center .tf-btn {
+      margin-bottom: 30px;
+    }
+  }
+}
