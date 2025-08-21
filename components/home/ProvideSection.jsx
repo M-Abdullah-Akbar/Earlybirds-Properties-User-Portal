@@ -51,7 +51,7 @@ export default function ProvideSection() {
               }}
               loop={true}
               autoplay={{
-                delay: 3000,
+                delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
               }}

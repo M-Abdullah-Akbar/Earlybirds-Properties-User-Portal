@@ -148,7 +148,7 @@ export default function Hero() {
                     </div>
                   </div>
                 </div>
-                {/*<div className="col-lg-5">
+                <div className="col-lg-5">
                   <form
                     className="form-get-in-touch"
                     onSubmit={(e) => e.preventDefault()}
@@ -221,7 +221,7 @@ export default function Hero() {
                       </a>
                     </div>
                   </form>
-                </div>*/}
+                </div>
               </div>
             </div>
           </div>
