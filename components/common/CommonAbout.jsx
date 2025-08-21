@@ -14,9 +14,9 @@ export default function CommonAbout({
           <div className="col-lg-12">
             <div className="content">
               <div className="heading-section">
-                <h2 className="title split-text effect-right">
+                <h3 className="title split-text effect-right">
                   <SplitTextAnimation text={title} />
-                </h2>
+                </h3>
                 {Array.isArray(description) ? (
                   description.map((paragraph, index) => (
                     <p
@@ -35,9 +35,9 @@ export default function CommonAbout({
 
               {sections.map((section, index) => (
                 <div className="heading-section" key={index}>
-                  <h3 className="title split-text effect-right text-color-heading">
+                  <h4 className="title split-text effect-right text-color-heading">
                     {section.title}
-                  </h3>
+                  </h4>
                   {section.description && (
                     <p className="text-1 split-text split-lines-transform text-color-default">
                       {section.description}
@@ -66,9 +66,9 @@ export default function CommonAbout({
                     section.subsections.map((subsection, subIndex) => (
                       <div className="subsection" key={subIndex}>
                         {subsection.title && (
-                          <h4 className="subtitle text-color-heading">
+                          <h5 className="subtitle text-color-heading">
                             {subsection.title}
-                          </h4>
+                          </h5>
                         )}
                         {subsection.description && (
                           <p className="text-1 split-text split-lines-transform text-color-default">

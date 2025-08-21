@@ -278,7 +278,7 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
           <div className="row">
             <div className="col-12">
               <div className="box-title">
-                <h1>
+                <h2>
                   {propertyType === "sale" ? "Properties for Sale" : 
                    propertyType === "rent" ? "Properties for Rent" : 
                    propertyType === "off-plan" ? "Off-Plan Properties" :
@@ -288,7 +288,7 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                       Filtered Results ({filteredResultsCount})
                     </span>
                   )}
-                </h1>
+                </h2>
                 <div className="right">
                   <div
                     className="filter-popup"
