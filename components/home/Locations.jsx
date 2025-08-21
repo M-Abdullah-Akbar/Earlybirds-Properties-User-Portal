@@ -33,7 +33,7 @@ export default function Locations() {
           <div className="col-12">
             <div className="dubai-locations-container">
               {/* Left Panel - Dubai Skyline Image */}
-              <div className="dubai-skyline-panel">
+              <div className="dubai-skyline-panel order-lg-1 order-2">
                 <div className="skyline-image-container">
                   <Image
                     src="/images/IMG-20250813-WA0080.jpg"

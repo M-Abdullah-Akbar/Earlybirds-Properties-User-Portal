@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+//import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 export default function Services() {
   return (
-    <div className="section-help style-3 tf-spacing-7">
+    <div className="section-help style-1">
       <div className="tf-container">
         <div className="row">
           <div className="col-12">
-            <div className="tf-grid-layout md-col-2 mb-6">
+            <div className="tf-grid-layout md-col-2 mb-3">
               <div
                 className="icons-box style-3 wow animate__zoomIn animate__animated"
                 data-wow-duration="1.5s"
@@ -92,7 +92,7 @@ export default function Services() {
           </div>
         </div>
       </div>
-      <div className="item text-center">
+      <div className="item text-center mt-2">
         <Image
           alt=""
           src="/images/section/section-help.png"

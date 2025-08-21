@@ -104,7 +104,7 @@ export default function Footer2({ parentClass = "" }) {
           <div className="footer-main">
             <div className="row">
               <div className="footer-description col-lg-5 col-md-6">
-                <h5 className="title lh-30 mb-2">About Us</h5>
+                <h5 className="title text-white lh-30 mb-2">About Us</h5>
                 <p className="text-1">
                   Welcome to EarlyBirds Properties, your trusted partner in the
                   dynamic world of Dubai real estate. We stand proud as a
@@ -115,7 +115,7 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="text-3 fw-6 text_white">Follow us</div>
                   <ul className="tf-social">
                     <li>
-                      <a href="#">
+                      <a href="https://web.facebook.com/Earlybirdproperties">
                         <i className="icon-fb" />
                       </a>
                     </li>
@@ -125,12 +125,12 @@ export default function Footer2({ parentClass = "" }) {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="http://linkedin.com/in/earlybirds-managing">
                         <i className="icon-linked" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="https://www.instagram.com/earlybirdsproperties">
                         <i className="icon-ins" />
                       </a>
                     </li>

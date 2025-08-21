@@ -14,8 +14,8 @@ export default function ProvideSection() {
         <div className="row">
           <div className="col-12">
             <div className="heading-section text-center mb-68 gap-33">
-              <h2 className="title fw-5 split-text effect-right">
-                <SplitTextAnimation text="WHAT WE PROVIDE" />
+              <h2 className="title split-text effect-right">
+                <SplitTextAnimation text="What We Provide" />
               </h2>
               {/*<p className="text-1 text-color-default split-text split-lines-transform">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
@@ -76,7 +76,7 @@ export default function ProvideSection() {
                       />
                     </div>
                     <div className="content">
-                      <h4 className="text_white mb-12">{box.title}</h4>
+                      <h3 className="text_white mb-12">{box.title}</h3>
                       <p className="text-1 text_white">{box.description}</p>
                     </div>
                     <Link href={box.pageUrl} className="tf-btn">
