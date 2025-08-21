@@ -32,7 +32,7 @@ export default function MobileMenu() {
             <Image
               alt=""
               src="/images/logo/Earlybird_Logo.png"
-              width={100}
+              width={120}
               height={100}
             />
           </Link>
@@ -173,9 +173,12 @@ export default function MobileMenu() {
                 </ul>
               </div>
             </li>
-            <li className={`menu-item ${"/areas-in-uae" == pathname ? "current-item" : ""}`}>
+            {/*<li className={`menu-item ${"/areas-in-uae" == pathname ? "current-item" : ""}`}>
               <Link href={`/areas-in-uae`} className="item-menu-mobile">Areas in UAE</Link>
-            </li>
+            </li>*/}
+            {/*<li className={`menu-item ${"/developers-in-uae" == pathname ? "current-item" : ""}`}>
+              <Link href={`/developers-in-uae`} className="item-menu-mobile">Developers in UAE</Link>
+            </li>*/}
             <li className={`menu-item ${"/about-us" == pathname ? "current-item" : ""}`}>
               <Link href={`/about-us`} className="item-menu-mobile">About Us</Link>
             </li>
@@ -220,8 +223,14 @@ export default function MobileMenu() {
                 </ul>
               </div>
             </li>
+            <li className={`menu-item ${"/blog" == pathname ? "current-item" : ""}`}>
+              <Link href={`/blog`} className="item-menu-mobile">Blog</Link>
+            </li>
+            <li className={`menu-item ${"/faq" == pathname ? "current-item" : ""}`}>
+              <Link href={`/faq`} className="item-menu-mobile">Faq's</Link>
+            </li>
           </ul>
-          <div className="support">
+          {/*<div className="support">
             <a href="#" className="text-need">
               {" "}
               Need help?
@@ -261,7 +270,7 @@ export default function MobileMenu() {
                 </div>
               </li>
             </ul>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>

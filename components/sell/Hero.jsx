@@ -13,7 +13,7 @@ export default function Hero() {
                 <p className="text-1 text-color-default fw-4 mb-5">
                   Let our experts guide you through the selling process and help you get the best value for your property. We provide comprehensive market analysis and personalized selling strategies.
                 </p>
-                <div className="wrap-btn mt-5">
+                <div className="wrap-btn mt-5 mb-10">
                   <a
                     href="#"
                     className="tf-btn bg-color-primary pd-26 btn-border rounded-cycle"

@@ -56,8 +56,8 @@ export default function Footer2({ parentClass = "" }) {
                   <Image
                     id="logo_footer"
                     alt="logo-footer"
-                    width={90}
-                    height={70}
+                    width={120}
+                    height={100}
                     src="/images/logo/Earlybird_Logo.png"
                   />
                 </Link>
