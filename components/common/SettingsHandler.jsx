@@ -76,7 +76,7 @@ export default function SettingsHandler() {
         </a>
       </div>
       <div className="popup-setting-container">
-        <div className="btn-RTL mb-20">
+        {/*<div className="btn-RTL mb-20">
           <span className="title text-1 fw-5 text-color-heading mb-8">
             RTL:
           </span>
@@ -87,7 +87,7 @@ export default function SettingsHandler() {
           >
             {isRtl ? "ltr" : "rtl"}
           </a>
-        </div>
+        </div>*/}
         <div className="toggle-container">
           <span className="title text-1 fw-5 text-color-heading mb-8">
             Theme Mode:
