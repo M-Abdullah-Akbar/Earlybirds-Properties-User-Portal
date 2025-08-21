@@ -6,8 +6,6 @@ export const services = [
 ];
 
 export const buyMenu = [
-  { href: "/buy?emirate=Dubai", label: "All Properties for Sale in Dubai" },
-  { href: "/buy?emirate=Abu+Dhabi", label: "All Properties for Sale in Abu Dhabi" },
   { href: "/buy?propertyType=apartment", label: "Apartments for Sale" },
   { href: "/buy?propertyType=villa", label: "Villas for Sale" },
   { href: "/buy?propertyType=townhouse", label: "Townhouses for Sale" },
@@ -17,8 +15,6 @@ export const buyMenu = [
 ];
 
 export const rentMenu = [
-  { href: "/rent?emirate=Dubai", label: "All Properties for Rent in Dubai" },
-  { href: "/rent?emirate=Abu+Dhabi", label: "All Properties for Rent in Abu Dhabi" },
   { href: "/rent?propertyType=apartment", label: "Apartments for Rent" },
   { href: "/rent?propertyType=villa", label: "Villas for Rent" },
   { href: "/rent?propertyType=townhouse", label: "Townhouses for Rent" },
@@ -28,8 +24,6 @@ export const rentMenu = [
 ];
 
 export const offPlanMenu = [
-  { href: "/off-plan-properties?emirate=Dubai", label: "Dubai" },
-  { href: "/off-plan-properties?emirate=Abu+Dhabi", label: "Abu Dhabi" },
   { href: "/off-plan-properties?propertyType=apartment", label: "Apartments" },
   { href: "/off-plan-properties?propertyType=villa", label: "Villas" },
   { href: "/off-plan-properties?propertyType=townhouse", label: "Townhouses" },
