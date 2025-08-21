@@ -47,7 +47,7 @@ export default function AboutUsSection() {
         <div className="tf-container">
           <div className="row flex items-center">
             <div className="col-lg-6 order-lg-1 order-2">
-              <div className="image-wrap2 img-animation wow animate__animated">
+              <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
                   data-src="/images/f1b5756e-afde-41b3-b877-6e905dad7085.jpg"
@@ -58,7 +58,7 @@ export default function AboutUsSection() {
                 />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 order-lg-2 order-1">
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">
