@@ -48,7 +48,7 @@ export default function About() {
                   </div>
                   <div className="content">
                     <div className="sub">Office address</div>
-                    <a href="#">1502 A prime business center JVC Dubai</a>
+                    <p>1502 A prime business center JVC Dubai</p>
                   </div>
                 </li>
                 <li>
@@ -92,8 +92,8 @@ export default function About() {
                   </div>
                   <div className="content">
                     <div className="sub">Phone Number</div>
-                    <a href="#">+971 566914193</a><br></br>
-                    <a href="#">+971 568577007</a>
+                    <p>+971 566914193</p><br></br>
+                    <p>+971 568577007</p>
                   </div>
                 </li>
                 <li>
@@ -169,7 +169,7 @@ export default function About() {
                   </div>
                   <div className="content">
                     <div className="sub">Email Address</div>
-                    <a href="#">info@earlybirdsproperties.com</a>
+                    <p>info@earlybirdsproperties.com</p>
                   </div>
                 </li>
               </ul>

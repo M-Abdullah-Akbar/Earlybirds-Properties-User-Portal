@@ -58,6 +58,9 @@
 .icon-linked:before {
   content: "\e905";
 }
+.icon-youtube:before {
+  content: "\ea9d";
+}
 .icon-star:before {
   content: "\e906";
 }

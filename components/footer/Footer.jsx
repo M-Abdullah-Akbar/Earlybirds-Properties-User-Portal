@@ -115,22 +115,22 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="text-3 fw-6 text_white">Follow us</div>
                   <ul className="tf-social">
                     <li>
-                      <a href="https://web.facebook.com/Earlybirdproperties">
+                      <a href="https://web.facebook.com/Earlybirdproperties" target="_blank" rel="noopener noreferrer">
                         <i className="icon-fb" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
-                        <i className="icon-X" />
+                      <a href="https://www.youtube.com/@EarlybirdProperties" target="_blank" rel="noopener noreferrer">
+                        <img src="/icons/youtube-icon.svg" alt="YouTube" width="24" height="24" style={{ filter: 'invert(1)' }} />
                       </a>
                     </li>
                     <li>
-                      <a href="http://linkedin.com/in/earlybirds-managing">
+                      <a href="http://linkedin.com/in/earlybirds-managing" target="_blank" rel="noopener noreferrer">
                         <i className="icon-linked" />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/earlybirdsproperties">
+                      <a href="https://www.instagram.com/earlybirdsproperties" target="_blank" rel="noopener noreferrer">
                         <i className="icon-ins" />
                       </a>
                     </li>
