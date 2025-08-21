@@ -39,14 +39,14 @@ export default function Header8() {
                   >
                     <path
                       d="M7 7H17V17"
-                      stroke="#F1913D"
+                      stroke="#bd8c31"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M7 17L17 7"
-                      stroke="#F1913D"
+                      stroke="#bd8c31"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -71,14 +71,14 @@ export default function Header8() {
                   >
                     <path
                       d="M7 7H17V17"
-                      stroke="#F1913D"
+                      stroke="#bd8c31"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M7 17L17 7"
-                      stroke="#F1913D"
+                      stroke="#bd8c31"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
