@@ -127,8 +127,11 @@ export default function Nav() {
           ))}
         </ul>
       </li>
-      <li className={"/contact-us" == pathname ? "current-menu" : ""}>
-        <Link href={`/contact-us`}>Contact Us</Link>
+      <li className={"/blog" == pathname ? "current-menu" : ""}>
+        <Link href={`/blog`}>Blog</Link>
+      </li>
+      <li className={"/faqs" == pathname ? "current-menu" : ""}>
+        <Link href={`/faq`}>Faq's</Link>
       </li>
       {/*<li
         className={`has-child style-2 ${
