@@ -24,7 +24,7 @@ export default function LoanCalculator() {
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <a href="#" className="tf-btn bg-color-primary pd-6 fw-7">
+                  <a href="/buy" className="tf-btn bg-color-primary pd-6 fw-7">
                     Find More
                   </a>
                 </div>
@@ -151,7 +151,7 @@ export default function LoanCalculator() {
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <a href="#" className="tf-btn bg-color-primary pd-6 fw-7">
+                  <a href="/rent" className="tf-btn bg-color-primary pd-6 fw-7">
                     Find More
                   </a>
                 </div>
