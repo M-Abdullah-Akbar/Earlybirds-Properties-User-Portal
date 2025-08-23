@@ -15,10 +15,10 @@ export default function Hero() {
                 </p>
                 <div className="wrap-btn mt-5 mb-10">
                   <a
-                    href="#"
+                    href="/instant-valuation"
                     className="tf-btn bg-color-primary pd-26 btn-border rounded-cycle"
                   >
-                    Get Free Valuation
+                    Get Instant Valuation
                     <i className="icon-arrow-up-right" />
                   </a>
                 </div>

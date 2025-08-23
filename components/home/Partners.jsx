@@ -7,7 +7,7 @@ export default function Partners() {
   const propertyTypes = [
     {
       type: "Apartment",
-      image: "/images/IMG-20250813-WA0088.jpg",
+      image: "/images/IMG_1919.jpg",
       description: "Modern apartments with stunning city views"
     },
     {
@@ -17,7 +17,7 @@ export default function Partners() {
     },
     {
       type: "Villa",
-      image: "/images/IMG-20250813-WA0090.jpg",
+      image: "/images/a40aaa14-c272-47bb-b784-e82c6a9aa0a9.jpg",
       description: "Luxurious villas with private amenities"
     }
   ];
@@ -38,7 +38,7 @@ export default function Partners() {
                           src={property.image}
                           alt={property.type}
                           width={300}
-                          height={400}
+                          height={300}
                         />
                         <div className="property-overlay">
                           <h3 className="property-type">{property.type}</h3>
