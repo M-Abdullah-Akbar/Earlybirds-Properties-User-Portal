@@ -1,10 +1,10 @@
 import axios from "axios";
 
 // Base API configuration
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = "https://earlybirds-properties-backend-dix46kl2y.vercel.app/api";
 
 // Create axios instance
-const api = axios.create({
+const api = axios.create({  
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
