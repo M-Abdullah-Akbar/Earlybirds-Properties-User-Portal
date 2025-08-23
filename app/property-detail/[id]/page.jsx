@@ -1,6 +1,6 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
-import Cta from "@/components/common/Cta";
+//import Cta from "@/components/common/Cta";
 import Details from "@/components/propertyDetails/Details";
 import RelatedProperties from "@/components/propertyDetails/RelatedProperties";
 import Slider from "@/components/propertyDetails/Slider";
