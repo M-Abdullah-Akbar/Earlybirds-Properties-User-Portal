@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base API configuration
-const API_BASE_URL = "https://earlybirds-properties-backend-dix46kl2y.vercel.app/api";
+const API_BASE_URL = "https://earlybirds-properties-backend.vercel.app/api";
 
 // Create axios instance
 const api = axios.create({  
