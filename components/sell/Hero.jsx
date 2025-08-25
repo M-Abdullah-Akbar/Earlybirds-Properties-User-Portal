@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="tf-container">
           <div className="row">
             <div className="col-md-6 flex items-center">
-              <div className="content-left">
+              {/*<div className="content-left">
                 <h2 className="text-color-heading title-section mb-4">Sell Your Property With Confidence</h2>
                 <p className="text-1 text-color-default fw-4 mb-5">
                   Let our experts guide you through the selling process and help you get the best value for your property. We provide comprehensive market analysis and personalized selling strategies.
@@ -22,7 +22,7 @@ export default function Hero() {
                     <i className="icon-arrow-up-right" />
                   </a>
                 </div>
-              </div>
+              </div>*/}
             </div>
             <div className="col-md-6">
               <form

@@ -1022,7 +1022,7 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
               >
                 {filterLoading ? "Loading..." : "Apply Filters"}
               </button>
-              <button 
+             <button 
                 className="tf-btn style-border w-full"
                 onClick={previewFilters}
                 disabled={loading || filterLoading || !areFiltersValid()}

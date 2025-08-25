@@ -119,7 +119,7 @@ export default function Hero() {
             <div className="content-inner">
               <div className="heading-title">
                 <h1 className="title">Earlybird Properties</h1>
-                <p className="h6 fw-4">
+                <p className="h6 fw-4" style={{ whiteSpace: 'nowrap' }}>
                   Discover the Ideal Space for Your Loved Ones
                 </p>
               </div>
@@ -143,12 +143,12 @@ export default function Hero() {
                       <DropdownSelect
                         options={[
                           "Property type",
-                          "apartment",
-                          "villa",
-                          "townhouse",
-                          "penthouse",
-                          "office",
-                          "studio"
+                          "Apartment",
+                          "Villa",
+                          "Townhouse",
+                          "Penthouse",
+                          "Office",
+                          "Studio"
                         ]}
                         addtionalParentClass=""
                         onChange={handlePropertyTypeChange}

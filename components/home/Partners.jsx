@@ -12,7 +12,7 @@ export default function Partners() {
     },
     {
       type: "Townhouse",
-      image: "/images/IMG-20250813-WA0089.jpg", 
+      image: "/images/IMG_1921.jpg", 
       description: "Contemporary townhouses with elegant design"
     },
     {

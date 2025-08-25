@@ -127,9 +127,9 @@ export default function Nav() {
           ))}
         </ul>
       </li>
-      <li className={"/blog" == pathname ? "current-menu" : ""}>
+      {/*<li className={"/blog" == pathname ? "current-menu" : ""}>
         <Link href={`/blog`}>Blog</Link>
-      </li>
+      </li>*/}
       <li className={"/faqs" == pathname ? "current-menu" : ""}>
         <Link href={`/faq`}>Faq's</Link>
       </li>

@@ -19,7 +19,7 @@ export default function LoanCalculator() {
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
                     Explore handpicked apartments, villas, penthouses, and
-                    mansions — all designed to match your lifestyle. Your
+                    mansions all designed to match your lifestyle. Your
                     perfect home is just a click away.
                   </p>
                 </div>
@@ -145,8 +145,8 @@ export default function LoanCalculator() {
                     <SplitTextAnimation text="Rental Homes for Everyone" />
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    Discover a curated collection of premium rental properties —
-                    from modern apartments to spacious villas — offering
+                    Discover a curated collection of premium rental properties
+                    from modern apartments to spacious villas offering
                     comfort, style, and a refined lifestyle for every budget.
                   </p>
                 </div>

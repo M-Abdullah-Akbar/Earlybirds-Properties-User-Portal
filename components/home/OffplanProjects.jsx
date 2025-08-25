@@ -44,7 +44,7 @@ export default function OffplanProjects() {
             {/* Heading Section */}
             <div className="heading-section mb-48">
               <h2 className="title split-text effect-right">
-                <SplitTextAnimation text="Offplan Projects" />
+                <SplitTextAnimation text="Off Plan Projects" />
               </h2>
               <p className="text-1 split-text split-lines-transform">
                 New off-plan developments
