@@ -50,7 +50,13 @@ export default function Footer2({ parentClass = "" }) {
       <div className="tf-container">
         <div className="row">
           <div className="col-12">
-            <div className="footer-top">
+            <div className="footer-top" style={{ 
+                display: 'flex', 
+                flexDirection: 'row', 
+                alignItems: 'center', 
+                gap: '20px',
+                flexWrap: 'wrap'
+              }}>
               <div className="footer-logo">
                 <Link href={`/`}>
                   <Image
@@ -62,19 +68,29 @@ export default function Footer2({ parentClass = "" }) {
                   />
                 </Link>
               </div>
-              <div className="wrap-contact-item style-1">
-                <div className="contact-item">
+              <div className="wrap-contact-item style-1" style={{ 
+                display: 'flex', 
+                flexDirection: 'row', 
+                justifyContent: 'space-between', 
+                flexWrap: 'wrap', 
+                flex: 1,
+                gap: '10px'
+              }}>
+                <div className="contact-item" style={{ minWidth: '250px', margin: '5px 0' }}>
                   <div className="icons">
                     <i className="icon-location-6" />
                   </div>
                   <div className="content">
                     <div className="title text-1">Office Address</div>
                     <h6>
-                      <a href="#">1502 A prime business center JVC Dubai </a>
+                      <a href="#">
+                        1st Floor Al Masraf Bank Al Goze 1, sh. Zayed Road 3-A94
+                        Office
+                      </a>
                     </h6>
                   </div>
                 </div>
-                <div className="contact-item">
+                <div className="contact-item" style={{ minWidth: '200px', margin: '5px 0' }}>
                   <div className="icons">
                     <i className="icon-phone-2" />
                   </div>
@@ -82,19 +98,19 @@ export default function Footer2({ parentClass = "" }) {
                     <div className="title text-1">Call us</div>
                     <h6>
                       <a href="#"> +971 566914193</a>
-                      <br></br>
-                      <a href="#"> +971 568577007</a>
+                      {" / "}
+                      <a href="#"> +971 561615675</a>
                     </h6>
                   </div>
                 </div>
-                <div className="contact-item">
+                <div className="contact-item" style={{ minWidth: '200px', margin: '5px 0' }}>
                   <div className="icons">
                     <i className="icon-letter-2" />
                   </div>
                   <div className="content">
                     <div className="title text-1">Email Address</div>
                     <h6 className="fw-4">
-                      <a href="#">info@earlybirdsproperties.com</a>
+                      <a href="#">inquiry@earlybirdsproperties.com</a>
                     </h6>
                   </div>
                 </div>
@@ -115,22 +131,44 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="text-3 fw-6 text_white">Follow us</div>
                   <ul className="tf-social">
                     <li>
-                      <a href="https://web.facebook.com/Earlybirdproperties" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://web.facebook.com/Earlybirdproperties"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="icon-fb" />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.youtube.com/@EarlybirdProperties" target="_blank" rel="noopener noreferrer">
-                        <img src="/icons/youtube-icon.svg" alt="YouTube" width="24" height="24" style={{ filter: 'invert(1)' }} />
+                      <a
+                        href="https://www.youtube.com/@EarlybirdProperties"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          src="/icons/youtube-icon.svg"
+                          alt="YouTube"
+                          width="24"
+                          height="24"
+                          style={{ filter: "invert(1)" }}
+                        />
                       </a>
                     </li>
                     <li>
-                      <a href="http://linkedin.com/in/earlybirds-managing" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="http://linkedin.com/in/earlybirds-managing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="icon-linked" />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/earlybirdsproperties" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://www.instagram.com/earlybirdsproperties"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="icon-ins" />
                       </a>
                     </li>
@@ -147,7 +185,9 @@ export default function Footer2({ parentClass = "" }) {
                     <h5 className="title lh-30 title-desktop">
                       {column.title}
                     </h5>
-                    <h5 className="title lh-30 title-mobile footer-heading-mobile">{column.title}</h5>
+                    <h5 className="title lh-30 title-mobile footer-heading-mobile">
+                      {column.title}
+                    </h5>
                     <ul className="tf-collapse-content">
                       {column.links.map((link, linkIndex) => (
                         <li key={linkIndex}>

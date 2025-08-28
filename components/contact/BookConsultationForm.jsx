@@ -57,7 +57,7 @@ export default function BookConsultationForm() {
       // Send email using our API utility
       const response = await emailAPI.sendContactEmail({
         ...formData,
-        recipient: "muhammedabdullahakbar@gmail.com" // You can set this as needed
+        recipient: "admin@earlybirdsproperties.com" // You can set this as needed
       });
 
       if (response.success) {

@@ -150,7 +150,7 @@ export default function Facts() {
                 letterSpacing: "0.5px"
               }}>
                 <SplitTextAnimation 
-                  text="Market leader in real estate" 
+                  text="Market Leader in Real Estate" 
                   style={{ color: isDarkMode ? "#ffffff" : "#2c2e33" }} 
                 />
               </h2>
@@ -212,7 +212,7 @@ export default function Facts() {
                   </div>
                   <p className="text-1 mt_-9" style={{ 
                     marginTop: "10px", 
-                    fontSize: "1.1rem",
+                    fontSize: "1.7rem",
                     color: isDarkMode ? "rgba(255, 255, 255, 0.7)" : "inherit"
                   }}>{item.label}</p>
                 </div>

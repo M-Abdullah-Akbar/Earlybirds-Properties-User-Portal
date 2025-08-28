@@ -43,8 +43,7 @@ export const counterData = [
     iconBgColor: "rgba(42, 133, 255, 0.1)"
   },
   {
-    value: 2,
-    subText: ".200",
+    value: 200,
     label: "Happy clients",
     className: "style-4-2",
     icon: "users",
@@ -60,8 +59,7 @@ export const counterData = [
     iconBgColor: "rgba(142, 89, 255, 0.1)"
   },
   {
-    value: 2,
-    subText: ".500",
+    value: 2000,
     label: "Property Available",
     className: "style-4-4",
     icon: "building",
