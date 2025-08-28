@@ -24,11 +24,11 @@ export const rentMenu = [
 ];
 
 export const offPlanMenu = [
-  { href: "/off-plan-properties?propertyType=apartment", label: "Dubai" },
-  { href: "/off-plan-properties?propertyType=villa", label: "Abu Dhabi" },
-  { href: "/off-plan-properties?propertyType=townhouse", label: "Sharjah" },
-  { href: "/off-plan-properties?propertyType=penthouse", label: "Ajman" },
-  { href: "/off-plan-properties?propertyType=office", label: "Ras al Khaimah" },
-  { href: "/off-plan-properties?propertyType=studio", label: "Umm al Quwain" },
-  { href: "/off-plan-properties?propertyType=studio", label: "Fujairah" },
+  { href: "/off-plan-properties?emirate=Dubai", label: "Dubai" },
+  { href: "/off-plan-properties?emirate=Abu+Dhabi", label: "Abu Dhabi" },
+  { href: "/off-plan-properties?emirate=Sharjah", label: "Sharjah" },
+  { href: "/off-plan-properties?emirate=Ajman", label: "Ajman" },
+  { href: "/off-plan-properties?emirate=Ras+Al+Khaimah", label: "Ras al Khaimah" },
+  { href: "/off-plan-properties?emirate=Umm+Al+Quwain", label: "Umm al Quwain" },
+  { href: "/off-plan-properties?emirate=Fujairah", label: "Fujairah" },
 ];

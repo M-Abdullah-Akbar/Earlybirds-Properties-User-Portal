@@ -75,15 +75,21 @@ export default function PropertyOverview({ property }) {
             {getDisplayLocation()}
           </p>
           <ul className="meta-list flex">
-            <li className="text-1 flex">
-              <span>{getBedrooms()}</span>Bed
-            </li>
-            <li className="text-1 flex">
-              <span>{getBathrooms()}</span>Bath
-            </li>
-            <li className="text-1 flex">
-              <span>{getArea()}</span>
-            </li>
+            {getBedrooms() !== 'N/A' && (
+              <li className="text-1 flex">
+                <span>{getBedrooms()}</span>Bed
+              </li>
+            )}
+            {getBathrooms() !== 'N/A' && (
+              <li className="text-1 flex">
+                <span>{getBathrooms()}</span>Bath
+              </li>
+            )}
+            {getArea() !== 'N/A' && (
+              <li className="text-1 flex">
+                <span>{getArea()}</span>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -98,75 +104,89 @@ export default function PropertyOverview({ property }) {
               <div className="text-1 text-color-heading">{getPropertyId()}</div>
             </div>
           </div>*/}
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Bed-2" />
+          {getBedrooms() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Bed-2" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Bedrooms:</div>
+                <div className="text-1 text-color-heading">{getBedrooms()} Rooms</div>
+              </div>
             </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Bedrooms:</div>
-              <div className="text-1 text-color-heading">{getBedrooms()} Rooms</div>
+          )}
+          {getBathrooms() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Bathtub" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Bathrooms:</div>
+                <div className="text-1 text-color-heading">{getBathrooms()} Rooms</div>
+              </div>
             </div>
-          </div>
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Bathtub" />
-            </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Bathrooms:</div>
-              <div className="text-1 text-color-heading">{getBathrooms()} Rooms</div>
-            </div>
-          </div>
+          )}
         </div>
         <div className="wrap-box">
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-SlidersHorizontal" />
+          {getPropertyType() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-SlidersHorizontal" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Type:</div>
+                <div className="text-1 text-color-heading">{getPropertyType()}</div>
+              </div>
             </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Type:</div>
-              <div className="text-1 text-color-heading">{getPropertyType()}</div>
+          )}
+          {getParkingSpaces() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Garage-1" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Garages</div>
+                <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
+              </div>
             </div>
-          </div>
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Garage-1" />
-            </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Garages</div>
-              <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
-            </div>
-          </div>
+          )}
         </div>
         <div className="wrap-box">
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Ruler" />
+          {getArea() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Ruler" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Size:</div>
+                <div className="text-1 text-color-heading">{getArea()}</div>
+              </div>
             </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Size:</div>
-              <div className="text-1 text-color-heading">{getArea()}</div>
+          )}
+          {getLandSize() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Crop" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Land Size:</div>
+                <div className="text-1 text-color-heading">{getLandSize()}</div>
+              </div>
             </div>
-          </div>
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Crop" />
-            </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Land Size:</div>
-              <div className="text-1 text-color-heading">{getLandSize()}</div>
-            </div>
-          </div>
+          )}
         </div>
         <div className="wrap-box">
-          <div className="box-icon">
-            <div className="icons">
-              <i className="icon-Hammer" />
+          {getYearBuilt() !== 'N/A' && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Hammer" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Year Built:</div>
+                <div className="text-1 text-color-heading">{getYearBuilt()}</div>
+              </div>
             </div>
-            <div className="content">
-              <div className="text-4 text-color-default">Year Built:</div>
-              <div className="text-1 text-color-heading">{getYearBuilt()}</div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </>

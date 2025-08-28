@@ -76,11 +76,10 @@ export default function PropertyListItems({ properties = [], showItems }) {
               </li>
             </ul>
             <div className="bot flex justify-between items-center">
-              {property.price && (
+              {property.price && (property.listingType || property.propertyType) !== 'off plan' && (
                 <h5 className="price">
                   AED {typeof property.price === 'number' ? property.price.toLocaleString() : property.price}
                   {(property.listingType || property.propertyType) === 'rent' && <span className="text-sm">/year</span>}
-                  {(property.listingType || property.propertyType) === 'off plan' && <span className="text-sm">starting from</span>}
                 </h5>
               )}
               <div className="wrap-btn flex">

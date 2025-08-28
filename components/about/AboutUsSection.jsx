@@ -32,9 +32,9 @@ export default function AboutUsSection() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/founder.jpg"
-                  alt=""
-                  src="/images/founder.jpg"
+                  data-src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence.jpg"
+                  alt="Early Bird Properties: Trust, transparency, and commitment in real estate."
+                  src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence.jpg"
                   width={300}
                   height={100}
                 />
@@ -50,9 +50,9 @@ export default function AboutUsSection() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/f1b5756e-afde-41b3-b877-6e905dad7085.jpg"
-                  alt=""
-                  src="/images/f1b5756e-afde-41b3-b877-6e905dad7085.jpg"
+                  data-src="/images/Meet-the-Early-Bird-Properties-Team-Your-Real-Estate-Partners.jpg"
+                  alt="The team at Early Bird Properties: Experts dedicated to your success."
+                  src="/images/Meet-the-Early-Bird-Properties-Team-Your-Real-Estate-Partners.jpg"
                   width={300}
                   height={100}
                 />

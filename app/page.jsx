@@ -10,10 +10,11 @@ import Testimonials from "@/components/common/Testimonials";
 import React, { Suspense } from "react";
 import AboutSection from "@/components/home/AboutSection";
 import OffplanProjects from "@/components/home/OffplanProjects";
+import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
-  title: "Home || Earlybirds - Real Estate React",
-  description: "Earlybirds - Real Estate React",
+  title: "Buy, Sell & Rent Properties in Dubai | Earlybird",
+  description: "Find luxury villas, apartments & commercial spaces in Dubai. Buy, sell or rent properties easily with Earlybird Properties.",
 };
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
       <div id="wrapper" className="counter-scroll">
         <Header />
         <div className="main-content overflow-hidden">
-          <Suspense fallback={<div className="hero-loading">Loading...</div>}>
+          <Suspense fallback={<div className="hero-loading"><img src="/images/blank.png" alt="Luxury apartments and properties in Dubai skyline – Buy, Sell, Rent with Earlybird Properties" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>}>
             <Hero />
           </Suspense>
           <AboutSection />
@@ -31,6 +32,7 @@ export default function Home() {
           <OffplanProjects />
           <Partners />
           <Testimonials />
+          <CtaEnhanced />
           <Contact />
         </div>
         <Footer parentClass="style-2" />

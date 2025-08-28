@@ -9,29 +9,33 @@ export default function OffplanProjects() {
     {
       id: 1,
       city: "DUBAI",
-      imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.52.06 PM (2).jpeg",
-      alt: "Dubai Skyline",
+      imageSrc: "/images/Off-Plan-Projects-in-dubai.jpeg",
+      pageUrl: "/off-plan-properties?emirate=Dubai",
+      alt: "Off-plan property developments in dubai. Discover new investment opportunities with EarlyBird Properties.",
       propertyCount: "1739",
     },
     {
       id: 2,
       city: "ABU DHABI",
-      imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.52.06 PM.jpeg",
-      alt: "Abu Dhabi Skyline",
+      imageSrc: "/images/Off-Plan-Projects-in-abu-dhabi.jpeg",
+      pageUrl: "/off-plan-properties?emirate=Abu+Dhabi",
+      alt: "Off-plan property developments in Abu Dhabi. Discover new investment opportunities with EarlyBird Properties.",
       propertyCount: "207",
     },
     {
       id: 3,
       city: "SHARJAH",
-      imageSrc: "/images/WhatsApp Image 2025-08-12 at 5.52.05 PM.jpeg",
-      alt: "Sharjah Skyline",
+      imageSrc: "/images/Off-Plan-Projects-in-sharjah.jpeg",
+      pageUrl: "/off-plan-properties?emirate=Sharjah",
+      alt: "Off-plan property developments in Sharjah. Discover new investment opportunities with EarlyBird Properties.",
       propertyCount: "137",
     },
     {
       id: 4,
       city: "RAS AL KHAIMAH",
-      imageSrc: "/images/TOYQDZA66VEPTHPU6UJQ7GI6AE.jpg",
-      alt: "Ras Al Khaimah Skyline",
+      imageSrc: "/images/Off-Plan-Projects-in-Ras-Al-khaimah.jpg",
+      pageUrl: "/off-plan-properties?emirate=Ras+Al+Khaimah",
+      alt: "Off-plan property developments in Ras al khaimah. Discover new investment opportunities with EarlyBird Properties",
       propertyCount: "67",
     },
   ];
@@ -94,7 +98,7 @@ export default function OffplanProjects() {
                       textAlign: 'center',
                     }}>
                       <h6 className="text-1 fw-6">
-                        {city.city}
+                        <Link href={city.pageUrl}>{city.city}</Link>
                       </h6>
                     </div>
                   </div>

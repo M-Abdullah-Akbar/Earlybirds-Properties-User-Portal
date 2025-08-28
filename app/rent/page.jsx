@@ -1,10 +1,11 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import React from "react";
-import Cta from "@/components/common/Cta";
+//import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
 import RentAbout from "@/components/rent/About";
 import Faqs from "@/components/common/Faqs";
+import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
   title: "Rent || Earlybirds - Properties User Portal",
@@ -32,6 +33,7 @@ export default async function RentPage({ searchParams }) {
             />
             <RentAbout />
             <Faqs pageType="rent" />
+            <CtaEnhanced />
         </div>
         <Footer parentClass="style-2" />
       </div>

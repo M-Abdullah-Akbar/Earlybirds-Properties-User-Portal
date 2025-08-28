@@ -51,7 +51,7 @@ export default function ProvideSection() {
               }}
               loop={true}
               autoplay={{
-                delay: 4000,
+                delay: 1000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
               }}
@@ -69,14 +69,14 @@ export default function ProvideSection() {
                       <Image
                         className="lazyload"
                         data-src={box.imageSrc}
-                        alt=""
+                        alt={box.alt}
                         src={box.imageSrc}
                         width={592}
                         height={366}
                       />
                     </div>
                     <div className="content">
-                      <h3 className="text_white mb-12">{box.title}</h3>
+                      <h3 className="text_white mb-12"><a href={box.pageUrl}>{box.title}</a></h3>
                       <p className="text-1 text_white">{box.description}</p>
                     </div>
                     <Link href={box.pageUrl} className="tf-btn">

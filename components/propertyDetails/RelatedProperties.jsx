@@ -126,20 +126,29 @@ export default function RelatedProperties({ property }) {
                         {prop.location?.address || prop.location || 'Location not specified'}
                       </p>
                       <ul className="meta-list flex">
-                        <li className="text-1 flex">
-                          <span>{prop.details?.bedrooms || 0}</span>Beds
-                        </li>
-                        <li className="text-1 flex">
-                          <span>{prop.details?.bathrooms || 0}</span>Baths
-                        </li>
-                        <li className="text-1 flex">
-                          <span>{prop.details?.area || 0}</span>Sqft
-                        </li>
+                        {(prop.details?.bedrooms || 0) > 0 && (
+                          <li className="text-1 flex">
+                            <span>{prop.details?.bedrooms}</span>Beds
+                          </li>
+                        )}
+                        {(prop.details?.bathrooms || 0) > 0 && (
+                          <li className="text-1 flex">
+                            <span>{prop.details?.bathrooms}</span>Baths
+                          </li>
+                        )}
+                        {(prop.details?.area || 0) > 0 && (
+                          <li className="text-1 flex">
+                            <span>{prop.details?.area}</span>Sqft
+                          </li>
+                        )}
                       </ul>
                       <div className="bot flex justify-between items-center">
-                        <h5 className="price">
-                          {prop.price ? `${prop.currency || 'AED'} ${new Intl.NumberFormat('en-US').format(prop.price)}` : 'Price on request'}
-                        </h5>
+                        {prop.price && (prop.listingType || prop.propertyType) !== 'off plan' && (
+                          <h5 className="price">
+                            {`${prop.currency || 'AED'} ${new Intl.NumberFormat('en-US').format(prop.price)}`}
+                            {(prop.listingType || prop.propertyType) === 'rent' && <span className="text-sm">/year</span>}
+                          </h5>
+                        )}
                         <div className="wrap-btn flex">
                           <Link
                             href={`/property-detail/${prop._id}`}

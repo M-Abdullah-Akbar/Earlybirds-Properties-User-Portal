@@ -18,8 +18,8 @@ export default function LoanCalculator() {
                     <SplitTextAnimation text=" Your Dream Home" />
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    Explore handpicked apartments, villas, penthouses, and
-                    mansions all designed to match your lifestyle. Your
+                    Explore handpicked <a href="/buy?propertyType=apartment">apartments</a>, <a href="/buy?propertyType=villa">villas</a>, <a href="/buy?propertyType=penthouse">penthouse</a>, and
+                    <a href="/buy?propertyType=townhouse">townhouses</a> all designed to match your lifestyle. Your
                     perfect home is just a click away.
                   </p>
                 </div>
@@ -112,9 +112,9 @@ export default function LoanCalculator() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/happy-caucasian-family-holding-hands-and-going-fro-2024-10-18-08-39-45-utc (1).jpg"
-                  alt=""
-                  src="/images/happy-caucasian-family-holding-hands-and-going-fro-2024-10-18-08-39-45-utc (1).jpg"
+                  data-src="/images/Buy-Luxury-Villas-in-Dubai-Earlybird-Properties.jpg"
+                  alt="Family in front of luxury villa for sale in Dubai – Dream Homes with Earlybird Properties"
+                  src="/images/Buy-Luxury-Villas-in-Dubai-Earlybird-Properties.jpg"
                   width={400}
                   height={290}
                 />
@@ -130,9 +130,9 @@ export default function LoanCalculator() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/835b26df-b5e7-4a36-9b65-afe3a7e8a3ac.jpg"
-                  alt=""
-                  src="/images/835b26df-b5e7-4a36-9b65-afe3a7e8a3ac.jpg"
+                  data-src="/images/Rent-Apartments-Villas-in-Dubai-Earlybird-Properties.jpg"
+                  alt="Modern furnished living room in Dubai rental property – Premium Apartments and Villas"
+                  src="/images/Rent-Apartments-Villas-in-Dubai-Earlybird-Properties.jpg"
                   width={400}
                   height={290}
                 />
@@ -146,7 +146,7 @@ export default function LoanCalculator() {
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
                     Discover a curated collection of premium rental properties
-                    from modern apartments to spacious villas offering
+                    from modern apartments to spacious <a href="/rent?propertyType=villa">villas</a> offering
                     comfort, style, and a refined lifestyle for every budget.
                   </p>
                 </div>

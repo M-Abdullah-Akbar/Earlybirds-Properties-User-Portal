@@ -5,6 +5,7 @@ import About from "@/components/sell/About";
 import Testimonials from "@/components/common/Testimonials";
 import Faqs from "@/components/common/Faqs";
 import React from "react";
+import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
   title: "Sell || Earlybirds - Real Estate",
@@ -20,6 +21,7 @@ export default function SellPage() {
         <div className="main-content overflow-hidden">
           <About />
           <Faqs pageType="sell" />
+          <CtaEnhanced />
           <Testimonials />
         </div>
         <Footer parentClass="style-2" />

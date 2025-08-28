@@ -31,9 +31,9 @@ export default function JoinTeamSection() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/9151e7e7-488e-4da8-8f29-b0aaff5f8bfe.jpg"
-                  alt=""
-                  src="/images/9151e7e7-488e-4da8-8f29-b0aaff5f8bfe.jpg"
+                  data-src="/images/Join-Our-Team-at-Early-Bird-Properties-Real-Estate-Careers.jpg"
+                  alt="Join Early Bird Properties: Passionate individuals wanted for real estate careers."
+                  src="/images/Join-Our-Team-at-Early-Bird-Properties-Real-Estate-Careers.jpg"
                   width={300}
                   height={100}
                 />

@@ -132,40 +132,56 @@ export default function ExtraInfo({ property }) {
             <p className="fw-6">ID</p>
             <p>#{getPropertyId()}</p>
           </li>*/}
-          <li className="flex">
-            <p className="fw-6">Price</p>
-            <p>{formatPrice()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Beds</p>
-            <p>{getBedrooms()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Baths</p>
-            <p>{getBathrooms()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Status</p>
-            <p>{getPropertyStatus()}</p>
-          </li>
+          {(property?.listingType || property?.propertyType) !== 'off plan' && (
+            <li className="flex">
+              <p className="fw-6">Price</p>
+              <p>{formatPrice()}</p>
+            </li>
+          )}
+          {getBedrooms() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Beds</p>
+              <p>{getBedrooms()}</p>
+            </li>
+          )}
+          {getBathrooms() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Baths</p>
+              <p>{getBathrooms()}</p>
+            </li>
+          )}
+          {getPropertyStatus() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Status</p>
+              <p>{getPropertyStatus()}</p>
+            </li>
+          )}
         </ul>
         <ul>
-          <li className="flex">
-            <p className="fw-6">Size</p>
-            <p>{getArea()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Year built</p>
-            <p>{getYearBuilt()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Type</p>
-            <p>{getPropertyType()}</p>
-          </li>
-          <li className="flex">
-            <p className="fw-6">Garage</p>
-            <p>{getParkingSpaces()}</p>
-          </li>
+          {getArea() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Size</p>
+              <p>{getArea()}</p>
+            </li>
+          )}
+          {getYearBuilt() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Year built</p>
+              <p>{getYearBuilt()}</p>
+            </li>
+          )}
+          {getPropertyType() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Type</p>
+              <p>{getPropertyType()}</p>
+            </li>
+          )}
+          {getParkingSpaces() !== 'N/A' && (
+            <li className="flex">
+              <p className="fw-6">Garage</p>
+              <p>{getParkingSpaces()}</p>
+            </li>
+          )}
         </ul>
       </div>
     </>

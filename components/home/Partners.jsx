@@ -7,18 +7,18 @@ export default function Partners() {
   const propertyTypes = [
     {
       type: "Apartment",
-      image: "/images/IMG_1919.jpg",
-      description: "Modern apartments with stunning city views"
+      image: "/images/Luxury-Apartments.jpg",
+      alt: "Luxury apartments, for sale in Dubai, available through EarlyBird Properties."
     },
     {
       type: "Townhouse",
-      image: "/images/IMG_1921.jpg", 
-      description: "Contemporary townhouses with elegant design"
+      image: "/images/Townhouse.jpg", 
+      alt: "Luxury Townhouse, for sale in Dubai, available through EarlyBird Properties."
     },
     {
       type: "Villa",
-      image: "/images/a40aaa14-c272-47bb-b784-e82c6a9aa0a9.jpg",
-      description: "Luxurious villas with private amenities"
+      image: "/images/Villas-in-Dubai.jpg",
+      alt: "Elegant villas, for sale in Dubai, available through EarlyBird Properties."
     }
   ];
 
@@ -62,17 +62,17 @@ export default function Partners() {
               
               <div className="text-content">
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  At Early Bird Properties, we present to you a well-selected range of luxury apartments, chic townhouses, and luxury villas available throughout the UAE.
+                  At <Link href="/about-us">Early Bird Properties</Link>, we present to you a well-selected range of luxury apartments, chic townhouses, and luxury villas available throughout the UAE.
                 </p>
                 
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  Are you looking for a dream home? Dubai’s property market is full of stylish, luxurious options. People who value elegance can find their comfort choice. Whether you’re chasing the high life or simply want to upgrade your lifestyle, let one of Dubai’s most trusted real estate experts guide you. Find the perfect place to call home and start living the refined life you deserve.
+                  Are you looking for a <Link href="/buy">dream home</Link>? Dubai’s property market is full of stylish, luxurious options. People who value elegance can find their comfort choice. Whether you’re chasing the high life or simply want to upgrade your lifestyle, let one of Dubai’s most trusted real estate experts guide you. Find the perfect place to call home and start living the refined life you deserve.
 
                 </p>
               </div>
 
               <div className="text-center mt-5">
-                <Link href="/properties" className="tf-btn style-border pd-4">
+                <Link href="/buy" className="tf-btn style-border pd-4">
                   Explore Properties
                 </Link>
               </div>

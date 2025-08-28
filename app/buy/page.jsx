@@ -1,10 +1,11 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import React from "react";
-import Cta from "@/components/common/Cta";
+//import Cta from "@/components/common/Cta";
 import Properties from "@/components/properties/Properties";
 import BuyAbout from "@/components/buy/About";
 import Faqs from "@/components/common/Faqs";
+import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
   title: "Buy || Earlybirds - Properties User Portal",
@@ -31,6 +32,7 @@ export default async function BuyPage({ searchParams }) {
             />
             <BuyAbout />
             <Faqs pageType="buy" />
+            <CtaEnhanced />
         </div>
         <Footer parentClass="style-2" />
       </div>
