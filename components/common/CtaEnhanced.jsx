@@ -1,8 +1,33 @@
+"use client"
 import React from "react";
 import SplitTextAnimation from "./SplitTextAnimation";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function CtaEnhanced() {
+  const pathname = usePathname();
+  
+  // Determine the appropriate href and button text based on the current page
+  const getCtaDetails = () => {
+    if (pathname.includes('/sell')) {
+      return {
+        href: "/instant-valuation",
+        text: "Get your instant valuation"
+      };
+    } else if (pathname.includes('/buy') || pathname.includes('/rent') || pathname.includes('/off-plan-properties')) {
+      return {
+        href: "/book-a-consultation",
+        text: "Book a Consultation"
+      };
+    }
+    return {
+      href: "/book-a-consultation",
+      text: "Book a Consultation"
+    }; // Default fallback
+  };
+  
+  const ctaDetails = getCtaDetails();
+  
   return (
     <div className="wg-appraisal ">
       <div className="tf-container">
@@ -23,8 +48,8 @@ function CtaEnhanced() {
                   website.
                 </p>
               </div>
-              <a href="/book-a-consultation" className="tf-btn bg-color-primary fw-7 pd-11">
-                Request your free appraisal
+              <a href={ctaDetails.href} className="tf-btn bg-color-primary fw-7 pd-11">
+                {ctaDetails.text}
               </a>
               <div
                 className="person wow animate__fadeInRight animate__animated"

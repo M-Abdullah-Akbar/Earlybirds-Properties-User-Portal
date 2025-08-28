@@ -18,8 +18,7 @@ export default function LoanCalculator() {
                     <SplitTextAnimation text=" Your Dream Home" />
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    Explore handpicked <a href="/buy?propertyType=apartment">apartments</a>, <a href="/buy?propertyType=villa">villas</a>, <a href="/buy?propertyType=penthouse">penthouse</a>, and
-                    <a href="/buy?propertyType=townhouse">townhouses</a> all designed to match your lifestyle. Your
+                    Explore handpicked <a href="/buy?propertyType=apartment">apartments</a>, <a href="/buy?propertyType=villa">villas</a>, <a href="/buy?propertyType=penthouse">penthouse</a>, and <a href="/buy?propertyType=townhouse">townhouses</a> all designed to match your lifestyle. Your
                     perfect home is just a click away.
                   </p>
                 </div>
