@@ -131,7 +131,7 @@ const InstantValuationForm = () => {
       // Send the valuation request
       const response = await emailAPI.sendInstantValuationEmail({
         ...valuationData,
-        recipient: "muhammedabdullahakbar@gmail.com" // Set the recipient email address
+        recipient: "inquiry@earlybirdsproperties.com" // Set the recipient email address
       });
 
       if (response.success) {
