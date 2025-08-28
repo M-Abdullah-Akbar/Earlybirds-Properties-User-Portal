@@ -8,8 +8,8 @@ import React from "react";
 import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
-  title: "Sell || Earlybirds - Real Estate",
-  description: "Earlybirds - Real Estate",
+  title: "Sell Property in UAE | Earlybirds",
+  description: "Sell your UAE property fast with Earlybirds Properties. Get expert help & top market value for your home or investment.",
 };
 export default function SellPage() {
 

@@ -9,8 +9,8 @@ import Cta from "@/components/common/Cta";
 import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
-  title: "Off-Plan Properties || Earlybirds - Properties User Portal",
-  description: "Earlybirds - Properties User Portal",
+  title: "Off-Plan Properties UAE | Earlybirds",
+  description: "Invest in off-plan projects in UAE with Earlybirds Properties. Secure homes & high ROI in upcoming residential projects.",
 };
 
 

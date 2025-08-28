@@ -9,8 +9,8 @@ import React from "react";
 import Contact from "@/components/common/Contact";
 
 export const metadata = {
-  title: "Contact Us || Earlybirds Properties",
-  description: "Earlybirds Properties",
+  title: "Contact Earlybirds Properties | UAE",
+  description: "Get in touch with Earlybirds Properties for property inquiries, sales, rentals, or off-plan projects. Expert support in UAE real estate.",
 };
 export default function ContactUsPage() {
   return (

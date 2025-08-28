@@ -5,8 +5,8 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata = {
-  title: "Page Not Found || Proty - Real Estate React Nextjs Template",
-  description: "Proty - Real Estate React Nextjs Template",
+  title: "Top UAE Property Questions | Earlybirds",
+  description: "Got questions about buying, selling, renting, or off-plan properties in UAE? Earlybirds Properties answers all your real estate queries!",
 };
 export default function page() {
   return (

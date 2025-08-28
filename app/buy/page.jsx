@@ -8,8 +8,8 @@ import Faqs from "@/components/common/Faqs";
 import CtaEnhanced from "@/components/common/CtaEnhanced";
 
 export const metadata = {
-  title: "Buy || Earlybirds - Properties User Portal",
-  description: "Earlybirds - Properties User Portal",
+  title: "Buy Properties in UAE | Earlybirds",
+  description: "Find villas, apartments & townhouses for sale in UAE with Earlybirds Properties. Your dream home awaits!",
 };
 
 export default async function BuyPage({ searchParams }) {

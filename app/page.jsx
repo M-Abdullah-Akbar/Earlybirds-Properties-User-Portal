@@ -11,6 +11,7 @@ import React, { Suspense } from "react";
 import AboutSection from "@/components/home/AboutSection";
 import OffplanProjects from "@/components/home/OffplanProjects";
 import CtaEnhanced from "@/components/common/CtaEnhanced";
+import Facts from "@/components/home/Facts";
 
 export const metadata = {
   title: "Buy, Sell & Rent Properties in Dubai | Earlybird",
@@ -30,6 +31,7 @@ export default function Home() {
           <ProvideSection />
           {/*<Locations />*/}
           <OffplanProjects />
+          <Facts />
           <Partners />
           <Testimonials />
           {/*<CtaEnhanced />*/}

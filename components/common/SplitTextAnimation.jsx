@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 
 export default function SplitTextAnimation({
   text = "Grow your business with a new website.",
+  style = {}
 }) {
   const htmlString = `
     <span
@@ -45,6 +46,7 @@ export default function SplitTextAnimation({
           "--word-total": text.split(" ").length,
           "--char-total": text.split("").length,
           visibility: "visible",
+          ...style, // Inherit any styles passed from parent
         }}
       >
         {text
@@ -54,15 +56,15 @@ export default function SplitTextAnimation({
             <React.Fragment key={i}>
               <span
                 className="word"
-                data-word="Grow"
-                style={{ "--word-index": i }}
+                data-word={elm}
+                style={{ "--word-index": i, ...style }}
               >
                 {elm.split("").map((elm2, i2) => (
                   <span
                     key={i2}
                     className="char"
-                    data-char="G"
-                    style={{ "--char-index": i + i2 }}
+                    data-char={elm2}
+                    style={{ "--char-index": i + i2, ...style }}
                   >
                     {elm2}
                   </span>

@@ -10,8 +10,8 @@ import ServicesAboutSection from "@/components/about/ServicesAboutSection";
 
 
 export const metadata = {
-  title: "About Us || Earlybird Properties",
-  description: "Earlybird Properties",
+  title: "About Earlybirds Properties | UAE",
+  description: "Learn about Earlybirds Properties, a trusted UAE real estate company helping clients buy, sell, rent, and invest in properties.",
 };
 export default async function AboutUsPage({ params }) {
   const { id } = await params;

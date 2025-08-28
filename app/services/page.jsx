@@ -5,8 +5,8 @@ import Services from '@/components/services/Services';
 import WelcomeSection from "@/components/services/WelcomeSection";
 
 export const metadata = {
-  title: "Services || Earlybirds - Real Estate",
-  description: "Earlybirds - Real Estate",
+  title: "Real Estate Services UAE | Earlybirds",
+  description: "Explore real estate services by Earlybirds Properties: buying, selling, renting, and off-plan investments across UAE.",
 };
 
 export default function ServicesPage() {
