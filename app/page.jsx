@@ -28,11 +28,11 @@ export default function Home() {
           </Suspense>
           <AboutSection />
           <ProvideSection />
-          <Locations />
+          {/*<Locations />*/}
           <OffplanProjects />
           <Partners />
           <Testimonials />
-          <CtaEnhanced />
+          {/*<CtaEnhanced />*/}
           <Contact />
         </div>
         <Footer parentClass="style-2" />

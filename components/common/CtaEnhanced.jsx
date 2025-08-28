@@ -23,7 +23,7 @@ function CtaEnhanced() {
                   website.
                 </p>
               </div>
-              <a href="#" className="tf-btn bg-color-primary fw-7 pd-11">
+              <a href="/book-a-consultation" className="tf-btn bg-color-primary fw-7 pd-11">
                 Request your free appraisal
               </a>
               <div
