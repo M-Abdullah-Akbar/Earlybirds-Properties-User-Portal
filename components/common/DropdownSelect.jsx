@@ -26,12 +26,10 @@ export default function DropdownSelect({
   
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!selectRef.current.contains(event.target)) {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
         selectRef.current.classList.remove("open");
       }
     };
-
-    // Add event listeners to each dropdown element
 
     // Add a global click event listener to detect outside clicks
     document.addEventListener("click", handleClickOutside);
@@ -42,33 +40,10 @@ export default function DropdownSelect({
     };
   }, []);
 
-  useEffect(() => {
-    // Function to handle clicks outside the select or options
-    const handleClickOutside = (event) => {
-      if (
-        selectRef.current &&
-        selectRef.current.contains(event.target) &&
-        optionsRef.current &&
-        !optionsRef.current.contains(event.target)
-      ) {
-        // Close the options if clicked outside
-        toggleDropdown();
-      }
-    };
-
-    // Add event listener on mount
-    document.addEventListener("click", handleClickOutside);
-
-    // Cleanup event listener on unmount
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
   return (
     <>
       <div className={`nice-select ${addtionalParentClass}`} ref={selectRef}>
-        <span className="current">
+        <span className="current" onClick={toggleDropdown}>
           {selectedValue || selected || defaultOption || options[0]}
         </span>
         <ul className="list" ref={optionsRef}>

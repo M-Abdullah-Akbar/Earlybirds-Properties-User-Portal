@@ -1,11 +1,11 @@
 import React from "react";
 import PropertyOverview from "./PropertyOverview";
-import VideoReview from "./VideoReview";
+//import VideoReview from "./VideoReview";
 import ExtraInfo from "./ExtraInfo";
 import Features from "./Features";
-import FloorPlan from "./FloorPlan";
-import Attachments from "./Attachments";
-import Reviews from "./Reviews";
+//import FloorPlan from "./FloorPlan";
+//import Attachments from "./Attachments";
+//import Reviews from "./Reviews";
 import Sidebar from "./Sidebar";
 
 export default function Details({ property }) {

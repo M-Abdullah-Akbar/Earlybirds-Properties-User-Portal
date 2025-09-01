@@ -2,9 +2,12 @@
 import React, { useState } from "react";
 import DropdownSelect from "../common/DropdownSelect";
 import { emailAPI } from "../../utils/api";
+import { useAnalytics } from "@/contexts/AnalyticsContext";
 //import MapComponent from "../common/MapComponent";
 
 export default function BookConsultationForm() {
+  const { trackContactForm, trackClick } = useAnalytics();
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -53,14 +56,33 @@ export default function BookConsultationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Track form submission attempt
+    trackContactForm('Book Consultation Form', null, {
+      propertyStatus: formData.propertyStatus,
+      userInfo: formData.userInfo,
+      hasMaxPrice: !!formData.maxPrice,
+      hasMinSize: !!formData.minSize,
+      bedrooms: formData.bedrooms,
+      bathrooms: formData.bathrooms,
+      hasMessage: !!formData.message,
+      source: 'consultation_form'
+    });
+    
     try {
       // Send email using our API utility
       const response = await emailAPI.sendContactEmail({
         ...formData,
-        recipient: "inquiry@earlybirdsproperties.com" // You can set this as needed
+        recipient: "info@earlybirdsproperties.com" // You can set this as needed
       });
 
       if (response.success) {
+        // Track successful form submission
+        trackClick('Form Submitted Successfully', {
+          formType: 'consultation',
+          success: true,
+          userEmail: formData.email
+        });
+        
         setFormData({
           firstName: "",
           lastName: "",
@@ -77,11 +99,26 @@ export default function BookConsultationForm() {
         setSuccess(true);
         handleShowMessage();
       } else {
+        // Track failed form submission
+        trackClick('Form Submission Failed', {
+          formType: 'consultation',
+          success: false,
+          error: 'API response unsuccessful'
+        });
+        
         setSuccess(false);
         handleShowMessage();
       }
     } catch (error) {
       console.error("Error sending email:", error.response?.data || error.message || "An error occurred");
+      
+      // Track form submission error
+      trackClick('Form Submission Error', {
+        formType: 'consultation',
+        success: false,
+        error: error.message || 'Unknown error'
+      });
+      
       setSuccess(false);
       handleShowMessage();
     }

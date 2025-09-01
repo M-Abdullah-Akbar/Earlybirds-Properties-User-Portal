@@ -3,10 +3,12 @@ import DropdownSelect from "@/components/common/DropdownSelect";
 //import SearchForm from "@/components/common/SearchForm";
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useAnalytics } from "@/contexts/AnalyticsContext";
 
 export default function Hero() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { trackSearch, trackClick, trackNavigation, trackFilterUsage } = useAnalytics();
   
   // State to track the active item (For sale/For rent)
   const [activeItem, setActiveItem] = useState("For sale");
@@ -53,6 +55,14 @@ export default function Hero() {
       ...prev,
       propertyType: propertyType === "Property type" ? "" : propertyType
     }));
+    
+    // Track filter usage
+    if (propertyType !== "Property type") {
+      trackFilterUsage('propertyType', propertyType, {
+        source: 'hero_search',
+        listingType: searchFilters.listingType
+      });
+    }
   };
 
   // Handle location selection
@@ -61,6 +71,14 @@ export default function Hero() {
       ...prev,
       location: location === "Location" ? "" : location
     }));
+    
+    // Track filter usage
+    if (location !== "Location") {
+      trackFilterUsage('location', location, {
+        source: 'hero_search',
+        listingType: searchFilters.listingType
+      });
+    }
   };
 
   // Handle listing type change (For sale/For rent/Off Plan)
@@ -78,6 +96,13 @@ export default function Hero() {
       ...prev,
       listingType
     }));
+    
+    // Track listing type selection
+    trackClick(`Listing Type: ${item}`, {
+      source: 'hero_search',
+      listingType: listingType,
+      previousType: searchFilters.listingType
+    });
   };
 
   // Handle search button click
@@ -102,8 +127,23 @@ export default function Hero() {
       targetPage = "/off-plan-properties";
     }
     
-    // Add query parameters to the target page
+    // Track search action
+    trackSearch(
+      `${searchFilters.propertyType || 'Any'} in ${searchFilters.location || 'Any Location'}`,
+      {
+        propertyType: searchFilters.propertyType || null,
+        location: searchFilters.location || null,
+        listingType: searchFilters.listingType
+      },
+      0 // Results count will be updated on the results page
+    );
+    
+    // Track navigation
     const queryString = queryParams.toString();
+    const fullTargetUrl = queryString ? `${targetPage}?${queryString}` : targetPage;
+    trackNavigation('/', fullTargetUrl, 'search');
+    
+    // Navigate to results page
     if (queryString) {
       router.push(`${targetPage}?${queryString}`);
     } else {

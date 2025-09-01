@@ -1,26 +1,9 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { RentPriceDisplay, SalePriceDisplay } from "@/components/common/PriceDisplay";
 
 export default function Sidebar({ property }) {
-  // Helper function to format price
-  const formatPrice = () => {
-    if (!property?.price) return 'Price on request';
-    
-    const currency = property.currency || 'AED';
-    const priceType = property.priceType || 'fixed';
-    
-    // Format price with commas
-    const formattedPrice = new Intl.NumberFormat('en-US').format(property.price);
-    
-    if (priceType === 'monthly') {
-      return `${currency} ${formattedPrice}/month`;
-    } else if (priceType === 'yearly') {
-      return `${currency} ${formattedPrice}/year`;
-    } else {
-      return `${currency} ${formattedPrice}`;
-    }
-  };
 
   // Helper function to get listing type
   const getListingType = () => {
@@ -39,10 +22,21 @@ export default function Sidebar({ property }) {
   return (
     <div className="tf-sidebar sticky-sidebar">
       {/* Property Price Card */}
-      {/*<div className="property-price-card mb-30">
+      <div className="property-price-card mb-30">
         <div className="price-info">
           <h3 className="price text-4 fw-6 text-color-primary mb-10">
-            {formatPrice()}
+            {property?.listingType === 'rent' ? (
+              <RentPriceDisplay 
+                price={property?.price}
+                period={property?.priceType === 'yearly' ? 'year' : 'month'}
+                priceOnRequest={!property?.price || property?.price === 0}
+              />
+            ) : (
+              <SalePriceDisplay 
+                price={property?.price}
+                priceOnRequest={!property?.price || property?.price === 0}
+              />
+            )}
           </h3>
           <div className="listing-type text-2 text-color-default mb-15">
             {getListingType()}
@@ -51,7 +45,7 @@ export default function Sidebar({ property }) {
             Status: {getPropertyStatus()}
           </div>
         </div>
-      </div>*/}
+      </div>
 
       {/*<form
         className="form-contact-seller mb-30"

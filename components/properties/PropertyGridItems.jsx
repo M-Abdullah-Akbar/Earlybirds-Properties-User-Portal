@@ -1,8 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useAnalytics } from "@/contexts/AnalyticsContext";
+import { RentPriceDisplay, SalePriceDisplay } from "@/components/common/PriceDisplay";
 
 export default function PropertyGridItems({ properties = [], showItems }) {
+  const { trackPropertyView, trackClick } = useAnalytics();
+  
   // If no properties provided, return empty
   if (!properties || properties.length === 0) {
     return null;
@@ -13,13 +17,36 @@ export default function PropertyGridItems({ properties = [], showItems }) {
     ? properties.slice(0, showItems)
     : properties;
   console.log(displayProperties);
+  
+  // Handle property click tracking
+  const handlePropertyClick = (property) => {
+    trackPropertyView(property._id || property.id, {
+      title: property.title || property.name,
+      type: property.propertyType,
+      price: property.price,
+      location: typeof property.location === 'string' ? property.location : property.location?.emirate,
+      listingType: property.listingType,
+      source: 'property_grid',
+      featured: property.featured || false
+    });
+    
+    trackClick('Property Card', {
+      propertyId: property._id || property.id,
+      propertyTitle: property.title || property.name,
+      source: 'grid_view',
+      listingType: property.listingType
+    });
+  };
 
   return (
     <>
       {displayProperties.map((property) => (
         <div className="box-house hover-img" key={property._id || property.id}>
           <div className="image-wrap">
-            <Link href={`/property-detail/${property._id || property.id}`}>
+            <Link 
+              href={`/property-detail/${property._id || property.id}`}
+              onClick={() => handlePropertyClick(property)}
+            >
               <Image
                 className="lazyload"
                 data-src={
@@ -69,7 +96,10 @@ export default function PropertyGridItems({ properties = [], showItems }) {
           </div>
           <div className="content">
             <h5 className="title">
-              <Link href={`/property-detail/${property._id || property.id}`}>
+              <Link 
+                href={`/property-detail/${property._id || property.id}`}
+                onClick={() => handlePropertyClick(property)}
+              >
                 {property.title || property.name}
               </Link>
             </h5>
@@ -101,12 +131,18 @@ export default function PropertyGridItems({ properties = [], showItems }) {
                 (property.listingType || property.propertyType) !==
                   "off plan" && (
                   <h5 className="price">
-                    AED{" "}
-                    {typeof property.price === "number"
-                      ? property.price.toLocaleString()
-                      : property.price}
-                    {(property.listingType || property.propertyType) ===
-                      "rent" && <span className="text-sm">/month</span>}
+                    {(property.listingType || property.propertyType) === "rent" ? (
+                      <RentPriceDisplay 
+                        price={property.price}
+                        period="month"
+                        priceOnRequest={!property.price || property.price === 0}
+                      />
+                    ) : (
+                      <SalePriceDisplay 
+                        price={property.price}
+                        priceOnRequest={!property.price || property.price === 0}
+                      />
+                    )}
                   </h5>
                 )}
               <div className="wrap-btn flex">

@@ -375,11 +375,13 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                     <LayoutHandler defaultGrid={defaultGrid} />
                   </ul>
 
-                  {/*<DropdownSelect
-                    addtionalParentClass="select-filter list-sort"
-                    options={["Sort by (Default)", "Newest", "Oldest", "Price: Low to High", "Price: High to Low"]}
-                    onChange={handleSortChange}
-                  />*/}
+                  {/*<div className="d-flex gap-3 align-items-center">
+                    <DropdownSelect
+                      addtionalParentClass="select-filter list-sort"
+                      options={["Sort by (Default)", "Newest", "Oldest", "Price: Low to High", "Price: High to Low"]}
+                      onChange={handleSortChange}
+                    />
+                  </div>*/}
                 </div>
               </div>
 

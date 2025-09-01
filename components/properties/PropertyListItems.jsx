@@ -1,15 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useAnalytics } from "@/contexts/AnalyticsContext";
+import { RentPriceDisplay, SalePriceDisplay } from "@/components/common/PriceDisplay";
 
 export default function PropertyListItems({ properties = [], showItems }) {
+  const { trackPropertyView, trackClick } = useAnalytics();
+  
   // If no properties provided, return empty
   if (!properties || properties.length === 0) {
     return null;
   }
 
   // Limit items if showItems is specified
-  const displayProperties = showItems ? properties.slice(0, showItems) : properties;
+  const displayProperties = showItems
+    ? properties.slice(0, showItems)
+    : properties;
+    
+  // Handle property click tracking
+  const handlePropertyClick = (property) => {
+    trackPropertyView(property._id || property.id, {
+      title: property.title || property.name,
+      type: property.propertyType,
+      price: property.price,
+      location: typeof property.location === 'string' ? property.location : property.location?.emirate,
+      listingType: property.listingType,
+      source: 'property_list',
+      featured: property.featured || false
+    });
+    
+    trackClick('Property Card', {
+      propertyId: property._id || property.id,
+      propertyTitle: property.title || property.name,
+      source: 'list_view',
+      listingType: property.listingType
+    });
+  };
 
   return (
     <>
@@ -53,7 +79,10 @@ export default function PropertyListItems({ properties = [], showItems }) {
           </div>
           <div className="content">
             <h5 className="title">
-              <Link href={`/property-detail/${property._id || property.id}`}>
+              <Link 
+                href={`/property-detail/${property._id || property.id}`}
+                onClick={() => handlePropertyClick(property)}
+              >
                 {property.title || property.name}
               </Link>
             </h5>
@@ -78,8 +107,18 @@ export default function PropertyListItems({ properties = [], showItems }) {
             <div className="bot flex justify-between items-center">
               {property.price && (property.listingType || property.propertyType) !== 'off plan' && (
                 <h5 className="price">
-                  AED {typeof property.price === 'number' ? property.price.toLocaleString() : property.price}
-                  {(property.listingType || property.propertyType) === 'rent' && <span className="text-sm">/year</span>}
+                  {(property.listingType || property.propertyType) === 'rent' ? (
+                    <RentPriceDisplay 
+                      price={property.price}
+                      period="year"
+                      priceOnRequest={!property.price || property.price === 0}
+                    />
+                  ) : (
+                    <SalePriceDisplay 
+                      price={property.price}
+                      priceOnRequest={!property.price || property.price === 0}
+                    />
+                  )}
                 </h5>
               )}
               <div className="wrap-btn flex">

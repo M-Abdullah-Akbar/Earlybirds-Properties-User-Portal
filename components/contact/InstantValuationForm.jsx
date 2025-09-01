@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import { emailAPI, uploadAPI, staticDataAPI, locationAPI } from "@/utils/api";
 import { toast } from "react-toastify";
+import { useAnalytics } from "@/contexts/AnalyticsContext";
 
 const InstantValuationForm = () => {
+  const { trackContactForm, trackClick } = useAnalytics();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -79,6 +82,19 @@ const InstantValuationForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage({ type: "", text: "" });
+
+    // Track form submission attempt
+    trackContactForm('Instant Valuation Form', null, {
+      propertyStatus: formData.propertyStatus,
+      propertyType: formData.propertyType,
+      emirate: formData.emirate,
+      beds: formData.beds,
+      size: formData.size,
+      hasPrice: !!formData.price,
+      hasImages: formData.images.length > 0,
+      imageCount: formData.images.length,
+      source: 'valuation_form'
+    });
 
     try {
       // First, upload images if any

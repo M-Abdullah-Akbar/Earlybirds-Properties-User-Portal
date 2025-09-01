@@ -6,13 +6,21 @@ import "photoswipe/style.css";
 import "rc-slider/assets/index.css";
 import "../public/css/scroll-fix.css"; // Import scroll fix styles
 import "../public/css/testimonial-google-icon.css"; // Import Google icon styles
+
 import { usePathname } from "next/navigation";
 import BackToTop from "@/components/common/BackToTop";
 import MobileMenu from "@/components/headers/MobileMenu";
 import SettingsHandler from "@/components/common/SettingsHandler";
+import FloatingWhatsapp from "@/components/common/FloatingWhatsapp";
+import { AnalyticsProvider } from "@/contexts/AnalyticsContext";
+
+import PageTracker from "@/components/analytics/PageTracker";
+import UserTracker from "@/components/analytics/UserTracker";
+import Script from "next/script";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+  
   if (typeof window !== "undefined") {
     import("bootstrap/dist/js/bootstrap.esm").then((module) => {
       // Module is imported, you can access any exported functionality if
@@ -72,11 +80,32 @@ export default function RootLayout({ children }) {
   }, []);
   return (
     <html lang="en">
+      <head>
+        <title>Earlybirds Properties - UAE Real Estate</title>
+        <meta name="description" content="Find your dream property in UAE with Earlybirds Properties" />
+      </head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-S4QBVTS4KN"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-S4QBVTS4KN');
+        `}
+      </Script>
       <body className="popup-loader">
-        {children}
-        <MobileMenu />
-        <BackToTop />
-        <SettingsHandler />
+        <AnalyticsProvider>
+          <PageTracker />
+          <UserTracker />
+          {children}
+          <MobileMenu />
+          <BackToTop />
+          <SettingsHandler />
+          <FloatingWhatsapp />
+        </AnalyticsProvider>
       </body>
     </html>
   );
