@@ -11,7 +11,7 @@
     padding: 16px;
     box-sizing: border-box;
     clear: both;
-    cursor: pointer;
+    cursor: default;
     font-size: 15px;
     line-height: 18.75px;
     font-weight: 400;
@@ -34,6 +34,7 @@
         transform: translateY(-50%) rotate(0);
         @include mixin.transition3();
         z-index: 1;
+        pointer-events: none;
     }
     > span {
         font-weight: 400;

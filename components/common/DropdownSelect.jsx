@@ -43,7 +43,7 @@ export default function DropdownSelect({
   return (
     <>
       <div className={`nice-select ${addtionalParentClass}`} ref={selectRef}>
-        <span className="current" onClick={toggleDropdown}>
+        <span className="current" onClick={toggleDropdown} style={{ cursor: 'pointer', display: 'block', width: '100%', height: '100%', position: 'relative', zIndex: 2 }}>
           {selectedValue || selected || defaultOption || options[0]}
         </span>
         <ul className="list" ref={optionsRef}>

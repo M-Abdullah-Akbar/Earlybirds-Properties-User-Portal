@@ -23,6 +23,8 @@ export default function BookConsultationForm() {
   });
   const [success, setSuccess] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,8 +55,46 @@ export default function BookConsultationForm() {
     }, 3000);
   };
 
+  // Validate form data
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+    
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+    
+    if (formData.propertyStatus === 'Select') {
+      newErrors.propertyStatus = 'Please select a property status';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setErrors({});
     
     // Track form submission attempt
     trackContactForm('Book Consultation Form', null, {
@@ -69,11 +109,24 @@ export default function BookConsultationForm() {
     });
     
     try {
+      // Prepare data for backend API
+      const submitData = {
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        propertyStatus: formData.propertyStatus !== 'Select' ? formData.propertyStatus : '',
+        userInfo: formData.userInfo !== 'Select' ? formData.userInfo : '',
+        maxPrice: formData.maxPrice,
+        minSize: formData.minSize,
+        bedrooms: formData.bedrooms,
+        bathrooms: formData.bathrooms,
+        message: formData.message.trim(),
+        recipient: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "info@earlybirdsproperties.com"
+      };
+
       // Send email using our API utility
-      const response = await emailAPI.sendContactEmail({
-        ...formData,
-        recipient: "info@earlybirdsproperties.com" // You can set this as needed
-      });
+      const response = await emailAPI.sendContactEmail(submitData);
 
       if (response.success) {
         // Track successful form submission
@@ -83,6 +136,7 @@ export default function BookConsultationForm() {
           userEmail: formData.email
         });
         
+        // Reset form
         setFormData({
           firstName: "",
           lastName: "",
@@ -103,24 +157,30 @@ export default function BookConsultationForm() {
         trackClick('Form Submission Failed', {
           formType: 'consultation',
           success: false,
-          error: 'API response unsuccessful'
+          error: response.message || 'API response unsuccessful'
         });
         
         setSuccess(false);
         handleShowMessage();
       }
     } catch (error) {
-      console.error("Error sending email:", error.response?.data || error.message || "An error occurred");
+      console.error("Error sending email:", error.message || "An error occurred");
       
       // Track form submission error
       trackClick('Form Submission Error', {
         formType: 'consultation',
         success: false,
-        error: error.message || 'Unknown error'
+        error: error.message || 'Unknown error',
+        status: error.status || 'unknown'
       });
       
+      // Set user-friendly error message
+      const errorMessage = error.message || 'Failed to send your message. Please try again later.';
+      setErrors({ general: errorMessage });
       setSuccess(false);
       handleShowMessage();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -150,164 +210,266 @@ export default function BookConsultationForm() {
                     <p>{success ? 'Your message has been sent successfully!' : 'Failed to send message. Please try again.'}</p>
                   </div>
                 )}
-                <div className="heading-section">
-                  <h2 className="title">We Would Love to Hear From You</h2>
-                  <p className="text-1">
+                {errors.general && (
+                  <div className="message-box error">
+                    <p>{errors.general}</p>
+                  </div>
+                )}
+                <div className="heading-section text-center mb-5">
+                  <h2 className="title mb-3" style={{ color: 'var(--Primary)' }}>We Would Love to Hear From You</h2>
+                  <p className="text-1" style={{ color: 'var(--Text)' }}>
                     We'll get to know you to understand your selling goals,
                     explain the selling process so you know what to expect.
                   </p>
                 </div>
-                <div className="cols">
-                  <fieldset>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Your first name"
-                      name="firstName"
-                      id="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                    />
-                  </fieldset>
-                  <fieldset>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Your last name"
-                      name="lastName"
-                      id="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
-                    />
-                  </fieldset>
-                </div>
-                <div className="cols">
-                  <fieldset>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Email"
-                      name="email"
-                      id="email-contact"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </fieldset>
-                  <fieldset>
-                    <label htmlFor="phone">Phone number:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Your phone number"
-                      name="phone"
-                      id="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                    />
-                  </fieldset>
-                </div>
-                <div className="cols">
-                  <div className="select">
-                    <label className="text-1 fw-6 mb-12">
-                      Property Status
-                    </label>
-                    <DropdownSelect
-                      options={["Select", "Buy", "Sell", "Rent", "Mortgage"]}
-                      addtionalParentClass=""
-                      defaultValue={formData.propertyStatus}
-                      onChange={handlePropertyStatusChange}
-                    />
+                <div className="row mb-4">
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="firstName" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>First Name <span style={{ color: 'var(--Color-2)' }}>*</span></label>
+                      <input
+                        type="text"
+                        className={`form-control form-control-lg ${errors.firstName ? 'is-invalid' : ''}`}
+                        placeholder="Enter your first name"
+                        name="firstName"
+                        id="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                      {errors.firstName && <div className="invalid-feedback">{errors.firstName}</div>}
+                    </fieldset>
                   </div>
-                  <div className="select">
-                    <label className="text-1 fw-6 mb-12">
-                      I am a
-                    </label>
-                    <DropdownSelect
-                      options={["Select", "Buyer", "Seller", "Tenant", "Broker"]}
-                      addtionalParentClass=""
-                      defaultValue={formData.userInfo}
-                      onChange={handleUserInfoChange}
-                    />
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="lastName" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Last Name <span style={{ color: 'var(--Color-2)' }}>*</span></label>
+                      <input
+                        type="text"
+                        className={`form-control form-control-lg ${errors.lastName ? 'is-invalid' : ''}`}
+                        placeholder="Enter your last name"
+                        name="lastName"
+                        id="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                      {errors.lastName && <div className="invalid-feedback">{errors.lastName}</div>}
+                    </fieldset>
                   </div>
                 </div>
-                <div className="cols">
-                  <fieldset>
-                    <label htmlFor="maxPrice">Max. Price:</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Maximum price"
-                      name="maxPrice"
-                      id="maxPrice"
-                      value={formData.maxPrice}
-                      onChange={handleChange}
-                    />
-                  </fieldset>
-                  <fieldset>
-                    <label htmlFor="minSize">Min. Size (Sq Ft):</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Minimum size in square feet"
-                      name="minSize"
-                      id="minSize"
-                      value={formData.minSize}
-                      onChange={handleChange}
-                    />
-                  </fieldset>
+                <div className="row mb-4">
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="email" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Email Address <span style={{ color: 'var(--Color-2)' }}>*</span></label>
+                      <input
+                        type="email"
+                        className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
+                        placeholder="Enter your email address"
+                        name="email"
+                        id="email-contact"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                      {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                    </fieldset>
+                  </div>
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="phone" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Phone Number</label>
+                      <input
+                        type="tel"
+                        className="form-control form-control-lg"
+                        placeholder="Enter your phone number"
+                        name="phone"
+                        id="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                    </fieldset>
+                  </div>
                 </div>
-                <div className="cols">
-                  <fieldset>
-                    <label htmlFor="bedrooms">Bedrooms:</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Number of bedrooms"
-                      name="bedrooms"
-                      id="bedrooms"
-                      value={formData.bedrooms}
-                      onChange={handleChange}
-                    />
-                  </fieldset>
-                  <fieldset>
-                    <label htmlFor="bathrooms">Bathrooms:</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Number of bathrooms"
-                      name="bathrooms"
-                      id="bathrooms"
-                      value={formData.bathrooms}
-                      onChange={handleChange}
-                    />
-                  </fieldset>
+                <div className="row mb-4">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>
+                        Property Status <span style={{ color: 'var(--Color-2)' }}>*</span>
+                      </label>
+                      <DropdownSelect
+                        options={["Select", "Buy", "Sell", "Rent", "Mortgage"]}
+                        addtionalParentClass={`form-select-lg ${errors.propertyStatus ? 'error' : ''}`}
+                        defaultValue={formData.propertyStatus}
+                        onChange={handlePropertyStatusChange}
+                      />
+                      {errors.propertyStatus && <div className="invalid-feedback d-block">{errors.propertyStatus}</div>}
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>
+                        I am a
+                      </label>
+                      <DropdownSelect
+                        options={["Select", "Buyer", "Seller", "Tenant", "Broker"]}
+                        addtionalParentClass="form-select-lg"
+                        defaultValue={formData.userInfo}
+                        onChange={handleUserInfoChange}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <fieldset>
-                  <label htmlFor="message">Your Message:</label>
-                  <textarea
-                    name="message"
-                    cols={30}
-                    rows={10}
-                    placeholder="Message"
-                    id="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </fieldset>
-                <div className="send-wrap">
+                <div className="row mb-4">
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="maxPrice" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Maximum Price (AED)</label>
+                      <input
+                        type="number"
+                        className="form-control form-control-lg"
+                        placeholder="Enter maximum price"
+                        name="maxPrice"
+                        id="maxPrice"
+                        value={formData.maxPrice}
+                        onChange={handleChange}
+                        min="0"
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                    </fieldset>
+                  </div>
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="minSize" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Minimum Size (Sq Ft)</label>
+                      <input
+                        type="number"
+                        className="form-control form-control-lg"
+                        placeholder="Enter minimum size"
+                        name="minSize"
+                        id="minSize"
+                        value={formData.minSize}
+                        onChange={handleChange}
+                        min="0"
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                    </fieldset>
+                  </div>
+                </div>
+                <div className="row mb-4">
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="bedrooms" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Bedrooms</label>
+                      <input
+                        type="number"
+                        className="form-control form-control-lg"
+                        placeholder="Number of bedrooms"
+                        name="bedrooms"
+                        id="bedrooms"
+                        value={formData.bedrooms}
+                        onChange={handleChange}
+                        min="0"
+                        max="10"
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                    </fieldset>
+                  </div>
+                  <div className="col-md-6">
+                    <fieldset className="form-group">
+                      <label htmlFor="bathrooms" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Bathrooms</label>
+                      <input
+                        type="number"
+                        className="form-control form-control-lg"
+                        placeholder="Number of bathrooms"
+                        name="bathrooms"
+                        id="bathrooms"
+                        value={formData.bathrooms}
+                        onChange={handleChange}
+                        min="0"
+                        max="10"
+                        style={{
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                    </fieldset>
+                  </div>
+                </div>
+                <div className="row mb-4">
+                  <div className="col-12">
+                    <fieldset className="form-group">
+                      <label htmlFor="message" className="form-label fw-6 mb-2" style={{ color: 'var(--Heading)' }}>Your Message <span style={{ color: 'var(--Color-2)' }}>*</span></label>
+                      <textarea
+                        name="message"
+                        rows={6}
+                        placeholder="Tell us about your property requirements, preferred location, budget, or any specific questions you have..."
+                        id="message"
+                        className={`form-control form-control-lg ${errors.message ? 'is-invalid' : ''}`}
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        style={{ 
+                          resize: 'vertical', 
+                          minHeight: '120px',
+                          backgroundColor: 'var(--Background)',
+                          borderColor: 'var(--Border)',
+                          color: 'var(--Text)'
+                        }}
+                      />
+                      {errors.message && <div className="invalid-feedback">{errors.message}</div>}
+                    </fieldset>
+                  </div>
+                </div>
+                <div className="text-center mt-4">
                   <button
-                    className="tf-btn bg-color-primary fw-7 pd-8"
+                    className="tf-btn fw-7 pd-16 btn-lg px-5 py-3"
                     type="submit"
+                    disabled={isSubmitting}
+                    style={{ 
+                      minWidth: '200px', 
+                      borderRadius: '8px', 
+                      fontSize: '16px',
+                      backgroundColor: 'var(--Primary)',
+                      borderColor: 'var(--Primary)',
+                      color: '#ffffff'
+                    }}
                   >
-                    Contact our experts
+                    {isSubmitting ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Sending...
+                      </>
+                    ) : (
+                      'Contact Our Experts'
+                    )}
                   </button>
                 </div>
               </form>

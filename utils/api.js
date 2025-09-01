@@ -48,8 +48,44 @@ api.interceptors.response.use(
       throw new Error('Ngrok security warning detected. Please visit the API URL in your browser and accept the warning, then refresh this page.');
     }
     
-    console.error("API Error:", error.response?.data || error.message);
-    return Promise.reject(error);
+    // Log detailed error information
+    const errorDetails = {
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      data: error.response?.data,
+      message: error.message,
+      url: error.config?.url,
+      method: error.config?.method
+    };
+    
+    console.error("API Error Details:", errorDetails);
+    
+    // Create a more informative error message
+    let errorMessage = 'An error occurred while connecting to the server.';
+    
+    if (error.response) {
+      // Server responded with error status
+      if (error.response.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error.response.status === 404) {
+        errorMessage = 'API endpoint not found. Please check if the backend server is running.';
+      } else if (error.response.status === 500) {
+        errorMessage = 'Internal server error. Please try again later.';
+      } else if (error.response.status >= 400) {
+        errorMessage = `Server error (${error.response.status}): ${error.response.statusText || 'Unknown error'}`;
+      }
+    } else if (error.request) {
+      // Request was made but no response received
+      errorMessage = 'Unable to connect to the server. Please check your internet connection and try again.';
+    }
+    
+    // Create enhanced error object
+    const enhancedError = new Error(errorMessage);
+    enhancedError.originalError = error;
+    enhancedError.response = error.response;
+    enhancedError.status = error.response?.status;
+    
+    return Promise.reject(enhancedError);
   }
 );
 
