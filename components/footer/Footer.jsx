@@ -90,15 +90,13 @@ export default function Footer2({ parentClass = "" }) {
                     </h6>
                   </div>
                 </div>
-                <div className="contact-item" style={{ minWidth: '200px', margin: '5px 0' }}>
+                <div className="contact-item" style={{ minWidth: '300px', margin: '5px 0' }}>
                   <div className="icons">
                     <i className="icon-phone-2" />
                   </div>
                   <div className="content">
                     <div className="title text-1">Call us</div>
                     <h6>
-                      <a href="#"> +971 566914193</a>
-                      {" / "}
                       <a href="#"> +971 561615675</a>
                     </h6>
                   </div>
