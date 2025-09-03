@@ -110,7 +110,7 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Email Address</div>
                     <h6 className="fw-4">
-                      <a href="#">inquiry@earlybirdsproperties.com</a>
+                      <a href="#">info@earlybirdsproperties.com</a>
                     </h6>
                   </div>
                 </div>

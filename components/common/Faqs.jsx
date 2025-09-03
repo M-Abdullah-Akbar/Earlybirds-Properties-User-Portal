@@ -2,7 +2,7 @@
 //import Image from "next/image";
 //import Link from "next/link";
 import React, { useState } from "react";
-import { areasInUaeFaqsData, buyFaqsData, rentFaqsData, sellFaqsData, offPlanFaqsData } from "@/data/faqs";
+import { areasInUaeFaqsData, buyFaqsData, rentFaqsData, sellFaqsData, offPlanFaqsData, faqsData } from "@/data/faqs";
 
 export default function Faqs({ pageType = "areas-in-uae" }) {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -22,16 +22,18 @@ export default function Faqs({ pageType = "areas-in-uae" }) {
         return sellFaqsData;
       case "off-plan":
         return offPlanFaqsData;
+      case "faqs":
+        return faqsData;
       default:
         return areasInUaeFaqsData;
     }
   };
 
-  const faqsData = getFaqData();
+  const fetchedFaqsData = getFaqData();
 
   // Split the FAQs into two columns
-  const leftColumnFaqs = faqsData.slice(0, Math.ceil(faqsData.length / 2));
-  const rightColumnFaqs = faqsData.slice(Math.ceil(faqsData.length / 2));
+  const leftColumnFaqs = fetchedFaqsData.slice(0, Math.ceil(fetchedFaqsData.length / 2));
+  const rightColumnFaqs = fetchedFaqsData.slice(Math.ceil(fetchedFaqsData.length / 2));
 
   return (
     <section className="section-faq py-80">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useAnalytics } from "@/contexts/AnalyticsContext";
-import { RentPriceDisplay, SalePriceDisplay } from "@/components/common/PriceDisplay";
+import CurrencyConverter from "@/components/common/CurrencyConverter";
 
 export default function PropertyGridItems({ properties = [], showItems }) {
   const { trackPropertyView, trackClick } = useAnalytics();
@@ -130,20 +130,14 @@ export default function PropertyGridItems({ properties = [], showItems }) {
               {property.price &&
                 (property.listingType || property.propertyType) !==
                   "off plan" && (
-                  <h5 className="price">
-                    {(property.listingType || property.propertyType) === "rent" ? (
-                      <RentPriceDisplay 
-                        price={property.price}
-                        period="month"
-                        priceOnRequest={!property.price || property.price === 0}
-                      />
-                    ) : (
-                      <SalePriceDisplay 
-                        price={property.price}
-                        priceOnRequest={!property.price || property.price === 0}
-                      />
-                    )}
-                  </h5>
+                  <div className="price-wrapper">
+                    <CurrencyConverter 
+                      price={property.price} 
+                      baseCurrency="AED"
+                      className="currency-converter-wrapper"
+                      compact={false}
+                    />
+                  </div>
                 )}
               <div className="wrap-btn flex">
                 {/*<a href="#" className="compare flex gap-8 items-center text-1">

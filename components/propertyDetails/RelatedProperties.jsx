@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { propertyAPI } from "@/utils/api";
-import { RentPriceDisplay, SalePriceDisplay } from "@/components/common/PriceDisplay";
 
 export default function RelatedProperties({ property }) {
   const [relatedProperties, setRelatedProperties] = useState([]);
@@ -146,20 +145,7 @@ export default function RelatedProperties({ property }) {
                       <div className="bot flex justify-between items-center">
                         {prop.price && (prop.listingType || prop.propertyType) !== 'off plan' && (
                           <h5 className="price">
-                            {(prop.listingType || prop.propertyType) === 'rent' ? (
-                              <RentPriceDisplay 
-                                price={prop.price}
-                                baseCurrency={prop.currency || "AED"}
-                                period="year"
-                                priceOnRequest={!prop.price || prop.price === 0}
-                              />
-                            ) : (
-                              <SalePriceDisplay 
-                                price={prop.price}
-                                baseCurrency={prop.currency || "AED"}
-                                priceOnRequest={!prop.price || prop.price === 0}
-                              />
-                            )}
+                            {prop.price}
                           </h5>
                         )}
                         <div className="wrap-btn flex">

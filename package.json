@@ -15,7 +15,6 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.7",
-    "currency-converter-lt": "^2.0.1",
     "easy-currencies": "^1.8.3",
     "gsap": "^3.12.7",
     "gsap-trial": "^3.12.7",

@@ -1,52 +1,10 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { RentPriceDisplay, SalePriceDisplay } from "@/components/common/PriceDisplay";
 
 export default function Sidebar({ property }) {
-
-  // Helper function to get listing type
-  const getListingType = () => {
-    const listingType = property?.listingType;
-    if (listingType === 'sale') return 'For Sale';
-    if (listingType === 'rent') return 'For Rent';
-    if (listingType === 'off plan') return 'Off Plan';
-    return property?.propertyType || 'For Sale';
-  };
-
-  // Helper function to get property status
-  const getPropertyStatus = () => {
-    return property?.status || 'Available';
-  };
-
   return (
     <div className="tf-sidebar sticky-sidebar">
-      {/* Property Price Card */}
-      <div className="property-price-card mb-30">
-        <div className="price-info">
-          <h3 className="price text-4 fw-6 text-color-primary mb-10">
-            {property?.listingType === 'rent' ? (
-              <RentPriceDisplay 
-                price={property?.price}
-                period={property?.priceType === 'yearly' ? 'year' : 'month'}
-                priceOnRequest={!property?.price || property?.price === 0}
-              />
-            ) : (
-              <SalePriceDisplay 
-                price={property?.price}
-                priceOnRequest={!property?.price || property?.price === 0}
-              />
-            )}
-          </h3>
-          <div className="listing-type text-2 text-color-default mb-15">
-            {getListingType()}
-          </div>
-          <div className="status text-1 text-color-success">
-            Status: {getPropertyStatus()}
-          </div>
-        </div>
-      </div>
-
       {/*<form
         className="form-contact-seller mb-30"
         onSubmit={(e) => e.preventDefault()}

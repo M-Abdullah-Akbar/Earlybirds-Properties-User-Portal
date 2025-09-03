@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import PropertyGridItems from "./PropertyGridItems";
 import PropertyListItems from "./PropertyListItems";
 import LayoutHandler from "./LayoutHandler";
-import DropdownSelect from "../common/DropdownSelect";
 import FilterModal from "./FilterModal";
+import CurrencyConverter from "../common/CurrencyConverter";
 import { propertyAPI } from "@/utils/api";
 
 
@@ -371,9 +371,20 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
                       </svg>
                     </div>
                   </div>
-                  <ul className="nav-tab-filter group-layout" role="tablist">
-                    <LayoutHandler defaultGrid={defaultGrid} />
-                  </ul>
+                  <div className="d-flex align-items-center">
+                    <ul className="nav-tab-filter group-layout" role="tablist">
+                      <LayoutHandler defaultGrid={defaultGrid} />
+                    </ul>
+                    
+                    <div className="ms-3">
+                      <CurrencyConverter 
+                        price={0} 
+                        showCurrencyName={false} 
+                        compact={true} 
+                        className="filter-section" 
+                      />
+                    </div>
+                  </div>
 
                   {/*<div className="d-flex gap-3 align-items-center">
                     <DropdownSelect

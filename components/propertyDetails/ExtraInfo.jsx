@@ -1,24 +1,7 @@
 import React from "react";
 
 export default function ExtraInfo({ property }) {
-  // Helper function to format price
-  const formatPrice = () => {
-    if (!property?.price) return 'Price on request';
-    
-    const currency = property.currency || 'AED';
-    const priceType = property.priceType || 'fixed';
-    
-    // Format price with commas
-    const formattedPrice = new Intl.NumberFormat('en-US').format(property.price);
-    
-    if (priceType === 'monthly') {
-      return `${currency} ${formattedPrice}/month`;
-    } else if (priceType === 'yearly') {
-      return `${currency} ${formattedPrice}/year`;
-    } else {
-      return `${currency} ${formattedPrice}`;
-    }
-  };
+
 
   // Helper function to get property ID
   const getPropertyId = () => {
@@ -132,12 +115,7 @@ export default function ExtraInfo({ property }) {
             <p className="fw-6">ID</p>
             <p>#{getPropertyId()}</p>
           </li>*/}
-          {(property?.listingType || property?.propertyType) !== 'off plan' && (
-            <li className="flex">
-              <p className="fw-6">Price</p>
-              <p>{formatPrice()}</p>
-            </li>
-          )}
+
           {getBedrooms() !== 'N/A' && (
             <li className="flex">
               <p className="fw-6">Beds</p>

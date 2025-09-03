@@ -1,5 +1,5 @@
 import Brands from "@/components/home/Brands";
-import Cta from "@/components/common/Cta";
+//import Cta from "@/components/common/Cta";
 import About from "@/components/contact/About";
 import InstantValuationForm from "@/components/contact/InstantValuationForm";
 
@@ -8,8 +8,8 @@ import Header from "@/components/headers/Header";
 import React from "react";
 
 export const metadata = {
-  title: "Instant Valuation || Earlybirds Properties",
-  description: "Get an instant valuation for your property with Earlybirds Properties",
+  title: "Instant Property Valuation Online | Earlybirds",
+  description: "Get instant, accurate property valuation online in minutes. Fast, reliable, and hassle-free service.",
 };
 export default function InstantValuationPage() {
   return (

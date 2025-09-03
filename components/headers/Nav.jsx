@@ -145,7 +145,7 @@ export default function Nav() {
         <Link href={`/blog`}>Blog</Link>
       </li>*/}
       <li className={"/faqs" == pathname ? "current-menu" : ""}>
-        <Link href={`/faq`} onClick={() => handleNavClick('/faq', "Faq's")}>Faq's</Link>
+        <Link href={`/faqs`} onClick={() => handleNavClick('/faqs', "Faq's")}>Faq's</Link>
       </li>
       {/*<li
         className={`has-child style-2 ${

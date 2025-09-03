@@ -2,6 +2,7 @@
 import Slider from "rc-slider";
 import React, { useState, useEffect } from "react";
 import { propertyAPI, locationAPI } from "@/utils/api";
+import CurrencyConverter from "../common/CurrencyConverter";
 
 export default function FilterModal({ onFilterChange, onResultsUpdate, listingType = "" }) {
   const [priceRange, setPriceRange] = useState([100000, 5000000]);

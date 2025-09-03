@@ -63,9 +63,11 @@ export default function PropertyOverview({ property }) {
 
   return (
     <>
-      <div className="heading flex justify-between">
-        <div className="title text-5 fw-6 text-color-heading">
-          {property.title}
+      <div className="heading flex justify-between items-start">
+        <div className="title-section flex-1">
+          <div className="title text-5 fw-6 text-color-heading mb-2">
+            {property.title}
+          </div>
         </div>
       </div>
       <div className="info flex justify-between">
