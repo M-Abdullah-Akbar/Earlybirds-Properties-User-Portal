@@ -201,11 +201,22 @@ export default function Facts() {
                 <div className="icon-box">
                   {renderIcon(item.icon, getIconProps(item.iconColor, item.iconBgColor, index)(isDarkMode))}
                 </div>
-                <div className="count" style={{ marginTop: "15px" }}>
+                <div className="count" style={{ 
+                  marginTop: "15px",
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}>
                   <div className="counter-number" style={{ 
                     fontSize: "2.5rem", 
                     fontWeight: "700",
-                    color: isDarkMode ? "#ffffff" : "inherit"
+                    color: isDarkMode ? "#ffffff" : "inherit",
+                    textAlign: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}>
                     <div className={`odometer style-4 ${item.className}`}>
                       <OdometerComponent max={item.value} />
@@ -216,7 +227,10 @@ export default function Facts() {
                   <p className="text-1 mt_-9" style={{ 
                     marginTop: "10px", 
                     fontSize: "1.7rem",
-                    color: isDarkMode ? "rgba(255, 255, 255, 0.7)" : "inherit"
+                    fontWeight: "600",
+                    color: isDarkMode ? "rgba(255, 255, 255, 0.9)" : "#333333",
+                    letterSpacing: "0.5px",
+                    textAlign: "center"
                   }}>{item.label}</p>
                 </div>
               </div>

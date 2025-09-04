@@ -35,8 +35,8 @@ export const counters2 = [
 
 export const counterData = [
   {
-    value: 950,
-    label: "Dream house",
+    value: 50,
+    label: "Satisfied Clients",
     className: "style-4-1",
     icon: "town.png",
     iconColor: "#2A85FF",
@@ -44,7 +44,7 @@ export const counterData = [
   },
   {
     value: 200,
-    label: "Happy clients",
+    label: "Ready Property",
     className: "style-4-2",
     icon: "costumer.png",
     iconColor: "#FF6A55",
@@ -52,15 +52,15 @@ export const counterData = [
   },
   {
     value: 100,
-    label: "Search Volume",
+    label: "Sale Volume",
     className: "style-4-3",
     icon: "paper.png",
     iconColor: "#8E59FF",
     iconBgColor: "rgba(142, 89, 255, 0.1)"
   },
   {
-    value: 2000,
-    label: "Property Available",
+    value: 20,
+    label: "Year’s Experience",
     className: "style-4-4",
     icon: "sold.png",
     iconColor: "#54CB8D",
