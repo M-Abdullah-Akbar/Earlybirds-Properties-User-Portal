@@ -4,13 +4,13 @@ import Partners from "@/components/home/Partners";
 import Contact from "@/components/common/Contact";
 import ProvideSection from "@/components/home/ProvideSection";
 import Hero from "@/components/home/Hero";
-import Locations from "@/components/home/Locations";
+//import Locations from "@/components/home/Locations";
 //import Properties from "@/components/home/Properties";
 import Testimonials from "@/components/common/Testimonials";
 import React, { Suspense } from "react";
 import AboutSection from "@/components/home/AboutSection";
 import OffplanProjects from "@/components/home/OffplanProjects";
-import CtaEnhanced from "@/components/common/CtaEnhanced";
+//import CtaEnhanced from "@/components/common/CtaEnhanced";
 import Facts from "@/components/home/Facts";
 
 export const metadata = {

@@ -48,7 +48,7 @@ export default function About() {
                   </div>
                   <div className="content">
                     <div className="sub">Office address</div>
-                    <p>1502 A prime business center JVC Dubai</p>
+                    <p>1st Floor Al Masraf Bank Al Goze 1, sh. Zayed Road 3-A94 Office</p>
                   </div>
                 </li>
                 <li>
@@ -92,8 +92,7 @@ export default function About() {
                   </div>
                   <div className="content">
                     <div className="sub">Phone Number</div>
-                    <p>+971 566914193</p><br></br>
-                    <p>+971 568577007</p>
+                    <p>+971 561615675</p>
                   </div>
                 </li>
                 <li>

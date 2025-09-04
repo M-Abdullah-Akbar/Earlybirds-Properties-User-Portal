@@ -3,9 +3,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "earlybirds-properties-backend.vercel.app",
-        port: "",
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
         pathname: "/**",
       },
     ]

@@ -4,7 +4,7 @@ import OdometerComponent from "@/components/common/OdometerComponent";
 import { counterData } from "@/data/facts";
 import React, { useEffect, useState } from "react";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
-import { FaHome, FaUsers, FaUserTie, FaBuilding } from "react-icons/fa";
+import { FaHome, FaUsers, FaBuilding } from "react-icons/fa";
 
 const iconStyle = {
   padding: "18px",
@@ -101,7 +101,7 @@ const renderIcon = (iconType, props) => {
     case "users":
       return <FaUsers size={iconSize} style={cleanProps} />;
     case "userTie":
-      return <FaUserTie size={iconSize} style={cleanProps} />;
+      return <FaHome size={iconSize} style={cleanProps} />;
     case "building":
       return <FaBuilding size={iconSize} style={cleanProps} />;
     default:

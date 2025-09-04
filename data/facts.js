@@ -51,8 +51,8 @@ export const counterData = [
     iconBgColor: "rgba(255, 106, 85, 0.1)"
   },
   {
-    value: 470,
-    label: "Local Agent",
+    value: 100,
+    label: "Search Volume",
     className: "style-4-3",
     icon: "userTie",
     iconColor: "#8E59FF",

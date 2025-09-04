@@ -2,7 +2,6 @@ import Brands from "@/components/home/Brands";
 //import Cta from "@/components/common/Cta";
 import About from "@/components/contact/About";
 //import InstantValuationForm from "@/components/contact/InstantValuationForm";
-
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/headers/Header";
 import React from "react";
