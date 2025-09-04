@@ -2,7 +2,7 @@
 import { testimonials } from "@/data/testimonials";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
+//import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 //import { FaGoogle } from "react-icons/fa";

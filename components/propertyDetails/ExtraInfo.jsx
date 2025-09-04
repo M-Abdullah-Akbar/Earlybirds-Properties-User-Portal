@@ -1,6 +1,11 @@
-import React from "react";
+"use client"
+import React, { useState, useEffect } from "react";
+import { renderTiptapJson } from '@/utils/tiptap-html-renderer';
+// SCSS is imported globally in the main.scss file
 
 export default function ExtraInfo({ property }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [descriptionHtml, setDescriptionHtml] = useState("");
 
 
   // Helper function to get property ID
@@ -55,15 +60,80 @@ export default function ExtraInfo({ property }) {
     return totalBeds + totalBaths;
   };
 
+  // Process property description when property data changes
+  useEffect(() => {
+    // Reset state when property changes or is undefined
+    if (!property) {
+      setIsLoading(true);
+      setDescriptionHtml('');
+      return;
+    }
+
+    // Set loading state
+    setIsLoading(true);
+    
+    try {
+      // Short timeout to ensure UI shows loading state
+      setTimeout(() => {
+        // Validate property description
+        if (property.description) {
+          // Check if description is valid (not empty or malformed)
+          const isValidDescription = (
+            typeof property.description === 'object' || 
+            (typeof property.description === 'string' && property.description.trim() !== '')
+          );
+          
+          if (isValidDescription) {
+            // Convert JSON description to HTML using the official TipTap HTML renderer
+            const html = renderTiptapJson(property.description);
+            
+            // Additional validation to ensure HTML was generated
+            if (html && html.trim() !== '') {
+              setDescriptionHtml(html);
+            } else {
+              console.warn('Generated HTML is empty or invalid');
+              setDescriptionHtml('');
+            }
+          } else {
+            console.warn('Property description is empty or invalid');
+            setDescriptionHtml('');
+          }
+        } else {
+          setDescriptionHtml('');
+        }
+        
+        // Complete loading
+        setIsLoading(false);
+      }, 300);
+    } catch (error) {
+      console.error('Error processing property description:', error);
+      setDescriptionHtml('');
+      setIsLoading(false);
+    }
+  }, [property]);
+
   return (
     <>
       <div className="wg-title text-11 fw-6 text-color-heading">
         Property Details
       </div>
       <div className="content">
-        <p className="description text-1">
-          {property?.description || 'No description available for this property.'}
-        </p>
+        {isLoading ? (
+          <div className="loading-placeholder">
+            <div className="loading-line"></div>
+            <div className="loading-line"></div>
+            <div className="loading-line"></div>
+          </div>
+        ) : descriptionHtml ? (
+          <div 
+            className="description text-1" 
+            dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+          />
+        ) : (
+          <p className="description text-1">
+            No description available for this property.
+          </p>
+        )}
         {/*<a href="#" className="tf-btn-link style-hover-rotate">
           <span>Read More </span>
           <svg

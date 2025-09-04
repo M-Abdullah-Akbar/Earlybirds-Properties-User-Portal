@@ -160,7 +160,7 @@ export default function Hero() {
               <div className="heading-title">
                 <h1 className="title">Earlybird Properties</h1>
                 <p className="h6 fw-4" style={{ whiteSpace: 'nowrap' }}>
-                  Discover the Ideal Space for Your Loved Ones
+                  Own Tomorrow’s Dubai, Today
                 </p>
               </div>
               <div className="widget-tabs style-1">

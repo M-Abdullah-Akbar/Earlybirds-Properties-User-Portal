@@ -35,34 +35,36 @@ export default function Features({ property }) {
       <div className="wg-title text-11 fw-6 text-color-heading">
         Amenities And Features
       </div>
-      <div className="wrap-feature">
-        {column1.length > 0 && (
-          <div className="box-feature">
-            <ul>
-              {column1.map((amenity, index) => (
-                <li key={index} className="feature-item">{amenity}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {column2.length > 0 && (
-          <div className="box-feature">
-            <ul>
-              {column2.map((amenity, index) => (
-                <li key={index} className="feature-item">{amenity}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {column3.length > 0 && (
-          <div className="box-feature">
-            <ul>
-              {column3.map((amenity, index) => (
-                <li key={index} className="feature-item">{amenity}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+      <div className="box-amenities">
+        <div className="wrap-feature">
+          {column1.length > 0 && (
+            <div className="box-feature">
+              <ul>
+                {column1.map((amenity, index) => (
+                  <li key={index}>{amenity}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {column2.length > 0 && (
+            <div className="box-feature">
+              <ul>
+                {column2.map((amenity, index) => (
+                  <li key={index}>{amenity}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {column3.length > 0 && (
+            <div className="box-feature">
+              <ul>
+                {column3.map((amenity, index) => (
+                  <li key={index}>{amenity}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

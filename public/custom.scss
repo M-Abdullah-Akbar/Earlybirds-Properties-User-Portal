@@ -291,3 +291,76 @@
     }
   }
 }
+
+/* TipTap Editor List Fixes */
+.description {
+  /* Override global CSS resets for TipTap lists */
+  ul:not([data-type="taskList"]) {
+    list-style: disc !important;
+    margin-left: 20px !important;
+    
+    li {
+      display: list-item !important;
+      list-style: disc !important;
+      
+      ul {
+        list-style: circle !important;
+        
+        li {
+          list-style: circle !important;
+          
+          ul {
+            list-style: square !important;
+            
+            li {
+              list-style: square !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  ol {
+    list-style: decimal !important;
+    margin-left: 20px !important;
+    
+    li {
+      display: list-item !important;
+      list-style: decimal !important;
+      
+      ol {
+        list-style: lower-alpha !important;
+        
+        li {
+          list-style: lower-alpha !important;
+          
+          ol {
+            list-style: lower-roman !important;
+            
+            li {
+              list-style: lower-roman !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* Task list styling */
+  ul[data-type="taskList"] {
+    list-style: none !important;
+    padding-left: 0 !important;
+    
+    li {
+      display: flex !important;
+      align-items: flex-start !important;
+      list-style: none !important;
+      
+      &[data-checked="true"] {
+        opacity: 0.6;
+        text-decoration: line-through;
+      }
+    }
+  }
+}

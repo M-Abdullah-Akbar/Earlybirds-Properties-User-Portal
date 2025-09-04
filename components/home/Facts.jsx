@@ -75,10 +75,9 @@ const getIconProps = (color, bgColor, index) => {
 };
 
 const renderIcon = (iconType, props) => {
-  const iconSize = 32;
   // Create a clean props object with only the necessary properties
   // to avoid hydration mismatches between server and client rendering
-  const cleanProps = {
+  const containerStyle = {
     padding: props.padding,
     borderRadius: props.borderRadius,
     display: props.display,
@@ -92,21 +91,25 @@ const renderIcon = (iconType, props) => {
     cursor: props.cursor,
     animation: props.animation,
     color: props.color,
-    backgroundColor: props.backgroundColor,
+    // backgroundColor removed to eliminate background colors
   };
   
-  switch(iconType) {
-    case "home":
-      return <FaHome size={iconSize} style={cleanProps} />;
-    case "users":
-      return <FaUsers size={iconSize} style={cleanProps} />;
-    case "userTie":
-      return <FaHome size={iconSize} style={cleanProps} />;
-    case "building":
-      return <FaBuilding size={iconSize} style={cleanProps} />;
-    default:
-      return <FaHome size={iconSize} style={cleanProps} />;
-  }
+  const iconStyle = {
+    width: "48px",
+    height: "48px",
+    objectFit: "contain"
+  };
+  
+  // Use custom PNG icons from public/images/icons
+  return (
+    <div style={containerStyle}>
+      <img 
+        src={`/images/icons/${iconType}`} 
+        alt="Icon" 
+        style={iconStyle}
+      />
+    </div>
+  );
 };
 export default function Facts() {
   const [isDarkMode, setIsDarkMode] = useState(false);

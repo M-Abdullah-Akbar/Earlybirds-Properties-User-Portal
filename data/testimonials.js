@@ -14,13 +14,6 @@ export const testimonials = [
     role: "CEO Themesflat",
   },
   {
-    avatarSrc: "/images/avatar/testimonials-4.jpg",
-    description:
-      "Phasellus efficitur dictum urna, non elementum mauris mollis a. Duis lacinia arcu ac lorem ultricies porta. Maecenas eleifend malesuada egestas. In eu eros hendrerit, pharetra justo id, blandit orci.",
-    name: "Ronald Richards",
-    role: "CEO Themesflat",
-  },
-  {
     avatarSrc: "/images/avatar/testimonials-3.jpg",
     description:
       `"I have dealt with plenty of real estate companies in the past, but Early Bird Properties is in a different league—honest, transparent, and proficient."`,
@@ -74,6 +67,42 @@ export const testimonials = [
     description:
       `“Buying property can be overwhelming, but with Early Bird Properties, it felt simple and even exciting. Truly grateful!”`,
     name: "Grace T. – Virginia",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“I had an excellent experience dealing in the same of our apartment. Muhammad was on top of the process, giving feedback, status updates proactively and offering options.
+Overall an excellent service standard led to an satisfying, exhilarating and happy experience.”`,
+    name: "Deepak kamath",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“Thank you for your outstanding service and for making the home buying process an enjoyable and rewarding journey. I will definitely recommend your services to anyone in search of a dedicated and reliable real estate professional...”`,
+    name: "Mariyam Afzal",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“Highly recommend Early bird Properties! Professional, dedicated team made finding our dream home a seamless experience. Excellent communication throughout. 5 stars!”`,
+    name: "UMAIR SARFRAZ",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“Highly recommended!”`,
+    name: "Mian ASAD Sardar",
+    role: "CEO Themesflat",
+  },
+  {
+    avatarSrc: "/images/avatar/testimonials-3.jpg",
+    description:
+      `“After a friend introduced me to this company, I disclosed my property information to it and reached a deal within a week. I was satisfied with the price. The main reason was that their communication was very efficient. They would answer my questions no matter how late it was or even on weekends. I also sell other houses with this company. I appreciate their professional work!”`,
+    name: "Charles Guo",
     role: "CEO Themesflat",
   },
 ];
