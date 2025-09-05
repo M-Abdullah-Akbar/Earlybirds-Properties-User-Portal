@@ -38,7 +38,7 @@ export const counterData = [
     value: 50,
     label: "Satisfied Clients",
     className: "style-4-1",
-    icon: "town.png",
+    icon: "costumer.png",
     iconColor: "#2A85FF",
     iconBgColor: "rgba(42, 133, 255, 0.1)"
   },
@@ -46,7 +46,7 @@ export const counterData = [
     value: 200,
     label: "Ready Property",
     className: "style-4-2",
-    icon: "costumer.png",
+    icon: "auction-house.png",
     iconColor: "#FF6A55",
     iconBgColor: "rgba(255, 106, 85, 0.1)"
   },
@@ -54,7 +54,7 @@ export const counterData = [
     value: 100,
     label: "Sale Volume",
     className: "style-4-3",
-    icon: "paper.png",
+    icon: "proposal.png",
     iconColor: "#8E59FF",
     iconBgColor: "rgba(142, 89, 255, 0.1)"
   },
@@ -62,7 +62,7 @@ export const counterData = [
     value: 20,
     label: "Year’s Experience",
     className: "style-4-4",
-    icon: "sold.png",
+    icon: "paper.png",
     iconColor: "#54CB8D",
     iconBgColor: "rgba(84, 203, 141, 0.1)"
   },
