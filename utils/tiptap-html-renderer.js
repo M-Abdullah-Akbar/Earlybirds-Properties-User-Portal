@@ -11,6 +11,8 @@ import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
 import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
+import TaskList from '@tiptap/extension-task-list'
+import TaskItem from '@tiptap/extension-task-item'
 
 /**
  * Consolidates list content by removing paragraph wrappers inside list items
@@ -71,6 +73,10 @@ export function renderTiptapJson(jsonContent) {
       Highlight,
       Superscript,
       Subscript,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
