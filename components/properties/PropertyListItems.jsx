@@ -94,15 +94,21 @@ export default function PropertyListItems({ properties = [], showItems }) {
                'Location not specified'}
             </p>
             <ul className="meta-list flex">
-              <li className="text-1 flex">
-                <span>{property.details?.bedrooms || property.beds || 0}</span>Beds
-              </li>
-              <li className="text-1 flex">
-                <span>{property.details?.bathrooms || property.baths || 0}</span>Baths
-              </li>
-              <li className="text-1 flex">
-                <span>{property.details?.area || property.sqft || 0}</span>Sqft
-              </li>
+              {(property.details?.bedrooms || property.beds) && (
+                <li className="text-1 flex">
+                  <span>{property.details?.bedrooms || property.beds}</span>Beds
+                </li>
+              )}
+              {(property.details?.bathrooms || property.baths) && (
+                <li className="text-1 flex">
+                  <span>{property.details?.bathrooms || property.baths}</span>Baths
+                </li>
+              )}
+              {(property.details?.area || property.sqft) && (
+                <li className="text-1 flex">
+                  <span>{property.details?.area || property.sqft}</span>Sqft
+                </li>
+              )}
             </ul>
             <div className="bot flex justify-between items-center">
               {property.price && (property.listingType || property.propertyType) !== 'off plan' && (

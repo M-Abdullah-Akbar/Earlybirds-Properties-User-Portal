@@ -59,7 +59,7 @@ export const counterData = [
     iconBgColor: "rgba(142, 89, 255, 0.1)"
   },
   {
-    value: 20,
+    value: 12,
     label: "Year’s Experience",
     className: "style-4-4",
     icon: "paper.png",

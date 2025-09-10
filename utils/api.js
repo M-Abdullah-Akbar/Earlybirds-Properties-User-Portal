@@ -526,6 +526,12 @@ export const emailAPI = {
   sendInstantValuationEmail: async (formData) => {
     const response = await api.post("/email/instant-valuation", formData);
     return response.data;
+  },
+  
+  // Send property inquiry email
+  sendPropertyInquiryEmail: async (formData) => {
+    const response = await api.post("/email/property-inquiry", formData);
+    return response.data;
   }
 };
 

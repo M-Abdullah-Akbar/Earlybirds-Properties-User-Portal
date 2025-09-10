@@ -32,9 +32,9 @@ export default function AboutUsSection() {
               <div className="image-wrap img-animation wow animate__animated">
                 <Image
                   className="lazyload parallax-img"
-                  data-src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence.jpg"
+                  data-src="/images/67ac5a91-6b33-491f-8de3-c60fdb894ccc1.jpg"
                   alt="Early Bird Properties: Trust, transparency, and commitment in real estate."
-                  src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence.jpg"
+                  src="/images/67ac5a91-6b33-491f-8de3-c60fdb894ccc1.jpg"
                   width={300}
                   height={100}
                 />
@@ -42,7 +42,7 @@ export default function AboutUsSection() {
             </div>
           </div>
         </div>
-      </section>
+      </section>  
       <section className="section-pre-approved mt-5">
         <div className="tf-container">
           <div className="row flex items-center">

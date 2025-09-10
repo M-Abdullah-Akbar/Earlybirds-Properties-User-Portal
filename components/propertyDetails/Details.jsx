@@ -9,6 +9,12 @@ import Features from "./Features";
 import Sidebar from "./Sidebar";
 
 export default function Details({ property }) {
+  // Helper function to check if amenities should be displayed
+  const hasValidAmenities = (amenities) => {
+    return amenities && Array.isArray(amenities) && amenities.length > 0 && 
+           amenities.some(amenity => amenity && amenity.trim() !== "" && amenity !== "N/A");
+  };
+
   return (
     <section className="section-property-detail">
       <div className="tf-container">
@@ -23,9 +29,11 @@ export default function Details({ property }) {
             <div className="wg-property box-property-detail">
               <ExtraInfo property={property} />
             </div>
-            <div className="wg-property box-amenities">
-              <Features property={property} />
-            </div>
+            {hasValidAmenities(property?.amenities) && (
+              <div className="wg-property box-amenities">
+                <Features property={property} />
+              </div>
+            )}
             {/*<div className="wg-property single-property-floor">
               <FloorPlan />
             </div>

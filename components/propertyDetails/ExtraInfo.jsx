@@ -7,6 +7,11 @@ export default function ExtraInfo({ property }) {
   const [isLoading, setIsLoading] = useState(true);
   const [descriptionHtml, setDescriptionHtml] = useState("");
 
+  // Helper function to check if a value should be displayed
+  const shouldDisplay = (value) => {
+    return value && value !== "N/A" && value !== "" && value !== 0 && value !== null && value !== undefined;
+  };
+
 
   // Helper function to get property ID
   const getPropertyId = () => {
@@ -114,9 +119,6 @@ export default function ExtraInfo({ property }) {
 
   return (
     <>
-      <div className="wg-title text-11 fw-6 text-color-heading">
-        Property Details
-      </div>
       <div className="content">
         {isLoading ? (
           <div className="loading-placeholder">
@@ -186,19 +188,19 @@ export default function ExtraInfo({ property }) {
             <p>#{getPropertyId()}</p>
           </li>*/}
 
-          {getBedrooms() !== 'N/A' && (
+          {shouldDisplay(getBedrooms()) && (
             <li className="flex">
               <p className="fw-6">Beds</p>
               <p>{getBedrooms()}</p>
             </li>
           )}
-          {getBathrooms() !== 'N/A' && (
+          {shouldDisplay(getBathrooms()) && (
             <li className="flex">
               <p className="fw-6">Baths</p>
               <p>{getBathrooms()}</p>
             </li>
           )}
-          {getPropertyStatus() !== 'N/A' && (
+          {shouldDisplay(getPropertyStatus()) && (
             <li className="flex">
               <p className="fw-6">Status</p>
               <p>{getPropertyStatus()}</p>
@@ -206,25 +208,25 @@ export default function ExtraInfo({ property }) {
           )}
         </ul>
         <ul>
-          {getArea() !== 'N/A' && (
+          {shouldDisplay(getArea()) && (
             <li className="flex">
               <p className="fw-6">Size</p>
               <p>{getArea()}</p>
             </li>
           )}
-          {getYearBuilt() !== 'N/A' && (
+          {shouldDisplay(getYearBuilt()) && (
             <li className="flex">
               <p className="fw-6">Year built</p>
               <p>{getYearBuilt()}</p>
             </li>
           )}
-          {getPropertyType() !== 'N/A' && (
+          {shouldDisplay(getPropertyType()) && (
             <li className="flex">
               <p className="fw-6">Type</p>
               <p>{getPropertyType()}</p>
             </li>
           )}
-          {getParkingSpaces() !== 'N/A' && (
+          {shouldDisplay(getParkingSpaces()) && (
             <li className="flex">
               <p className="fw-6">Garage</p>
               <p>{getParkingSpaces()}</p>

@@ -49,6 +49,59 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
+// Agent Contact Card Styles
+.agent-contact-card {
+  .agent-avatar {
+    img {
+      border-radius: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .agent-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--Heading);
+    margin-bottom: 4px;
+  }
+  
+  .agent-title {
+    font-size: 14px;
+    color: var(--Text);
+    margin-bottom: 16px;
+  }
+  
+  .schedule-header {
+    background-color: var(--Secondary);
+    color: var(--Text-white);
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+    
+    span {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  
+  .contact-buttons {
+    display: flex;
+    gap: 12px;
+    
+    .tf-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 /* PhotoSwipe custom styles */
 .pswp-img-container {
   display: flex;

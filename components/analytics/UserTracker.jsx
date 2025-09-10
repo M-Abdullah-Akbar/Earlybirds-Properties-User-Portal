@@ -90,7 +90,7 @@ const getReferrerInfo = () => {
 };
 
 export default function UserTracker() {
-  const { trackEngagement } = useAnalytics();
+  const { trackWithContext } = useAnalytics();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -120,7 +120,7 @@ export default function UserTracker() {
     localStorage.setItem('earlybirds_returning_visitor', 'true');
 
     // Track session start
-    trackEngagement('session_start', null, {
+    trackWithContext('session_start', {
       visitorId,
       sessionId,
       visitCount,
@@ -130,9 +130,9 @@ export default function UserTracker() {
     // Track page visibility changes
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        trackEngagement('page_hidden', null, { visitorId, sessionId });
+        trackWithContext('page_hidden', { visitorId, sessionId });
       } else {
-        trackEngagement('page_visible', null, { visitorId, sessionId });
+        trackWithContext('page_visible', { visitorId, sessionId });
       }
     };
 
@@ -141,7 +141,7 @@ export default function UserTracker() {
     const updateActivity = () => {
       const now = Date.now();
       if (now - lastActivity > 30000) { // 30 seconds threshold
-        trackEngagement('user_active', null, { visitorId, sessionId });
+        trackWithContext('user_active', { visitorId, sessionId });
         lastActivity = now;
       }
     };
@@ -150,7 +150,8 @@ export default function UserTracker() {
     const startTime = Date.now();
     const trackTimeOnPage = () => {
       const timeSpent = Date.now() - startTime;
-      trackEngagement('time_on_page', Math.round(timeSpent / 1000), {
+      trackWithContext('time_on_page', {
+        timeSpent: Math.round(timeSpent / 1000),
         visitorId,
         sessionId,
         page: window.location.pathname
@@ -171,7 +172,8 @@ export default function UserTracker() {
         try {
           const parsed = JSON.parse(sessionData);
           const sessionDuration = Date.now() - parsed.startTime;
-          trackEngagement('session_duration', Math.round(sessionDuration / 1000), {
+          trackWithContext('session_duration', {
+            duration: Math.round(sessionDuration / 1000),
             visitorId,
             sessionId
           });
@@ -192,9 +194,9 @@ export default function UserTracker() {
       
       // Track session end
       trackTimeOnPage();
-      trackEngagement('session_end', null, { visitorId, sessionId });
+      trackWithContext('session_end', { visitorId, sessionId });
     };
-  }, [trackEngagement]);
+  }, []);
 
   // This component doesn't render anything
   return null;

@@ -44,6 +44,11 @@ export default function PropertyOverview({ property }) {
     return property.details?.yearBuilt || 'N/A';
   };
 
+  // Helper function to check if a value should be displayed
+  const shouldDisplay = (value) => {
+    return value && value !== "N/A" && value !== "" && value !== 0 && value !== null && value !== undefined;
+  };
+
   // Helper function to get bedrooms
   const getBedrooms = () => {
     return property.details?.bedrooms || property.bedrooms || 'N/A';
@@ -77,17 +82,17 @@ export default function PropertyOverview({ property }) {
             {getDisplayLocation()}
           </p>
           <ul className="meta-list flex">
-            {getBedrooms() !== 'N/A' && (
+            {shouldDisplay(getBedrooms()) && (
               <li className="text-1 flex">
                 <span>{getBedrooms()}</span>Bed
               </li>
             )}
-            {getBathrooms() !== 'N/A' && (
+            {shouldDisplay(getBathrooms()) && (
               <li className="text-1 flex">
                 <span>{getBathrooms()}</span>Bath
               </li>
             )}
-            {getArea() !== 'N/A' && (
+            {shouldDisplay(getArea()) && (
               <li className="text-1 flex">
                 <span>{getArea()}</span>
               </li>
@@ -106,7 +111,7 @@ export default function PropertyOverview({ property }) {
               <div className="text-1 text-color-heading">{getPropertyId()}</div>
             </div>
           </div>*/}
-          {getBedrooms() !== 'N/A' && (
+          {shouldDisplay(getBedrooms()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-Bed-2" />
@@ -117,7 +122,7 @@ export default function PropertyOverview({ property }) {
               </div>
             </div>
           )}
-          {getBathrooms() !== 'N/A' && (
+          {shouldDisplay(getBathrooms()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-Bathtub" />
@@ -130,7 +135,7 @@ export default function PropertyOverview({ property }) {
           )}
         </div>
         <div className="wrap-box">
-          {getPropertyType() !== 'N/A' && (
+          {shouldDisplay(getPropertyType()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-SlidersHorizontal" />
@@ -141,7 +146,7 @@ export default function PropertyOverview({ property }) {
               </div>
             </div>
           )}
-          {getParkingSpaces() !== 'N/A' && (
+          {shouldDisplay(getParkingSpaces()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-Garage-1" />
@@ -154,7 +159,7 @@ export default function PropertyOverview({ property }) {
           )}
         </div>
         <div className="wrap-box">
-          {getArea() !== 'N/A' && (
+          {shouldDisplay(getArea()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-Ruler" />
@@ -165,7 +170,7 @@ export default function PropertyOverview({ property }) {
               </div>
             </div>
           )}
-          {getLandSize() !== 'N/A' && (
+          {shouldDisplay(getLandSize()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-Crop" />
@@ -178,7 +183,7 @@ export default function PropertyOverview({ property }) {
           )}
         </div>
         <div className="wrap-box">
-          {getYearBuilt() !== 'N/A' && (
+          {shouldDisplay(getYearBuilt()) && (
             <div className="box-icon">
               <div className="icons">
                 <i className="icon-Hammer" />

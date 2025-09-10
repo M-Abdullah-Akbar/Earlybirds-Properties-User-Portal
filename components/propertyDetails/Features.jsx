@@ -1,28 +1,26 @@
 import React from "react";
 
 export default function Features({ property }) {
-  // Get amenities from property data
-  const amenities = property?.amenities || [];
-  
-  // If no amenities, show default ones
-  const defaultAmenities = [
-    "Smoke alarm",
-    "Carbon monoxide alarm", 
-    "First aid kit",
-    "Self check-in with lockbox",
-    "Security cameras",
-    "Hangers",
-    "Bed linens",
-    "Extra pillows & blankets",
-    "Iron",
-    "TV with standard cable",
-    "Refrigerator",
-    "Microwave",
-    "Dishwasher",
-    "Coffee maker"
-  ];
+  // Helper function to check if amenities should be displayed
+  const hasValidAmenities = (amenities) => {
+    return amenities && Array.isArray(amenities) && amenities.length > 0 && 
+           amenities.some(amenity => amenity && amenity.trim() !== "" && amenity !== "N/A");
+  };
 
-  const displayAmenities = amenities.length > 0 ? amenities : defaultAmenities;
+  // Filter out invalid amenities
+  const filterValidAmenities = (amenities) => {
+    return amenities.filter(amenity => amenity && amenity.trim() !== "" && amenity !== "N/A");
+  };
+
+  // Use property amenities if available and valid, otherwise don't show any
+  const displayAmenities = hasValidAmenities(property?.amenities) 
+    ? filterValidAmenities(property.amenities)
+    : null;
+
+  // If no valid amenities, don't render the component
+  if (!displayAmenities) {
+    return null;
+  }
 
   // Split amenities into columns (3 columns)
   const itemsPerColumn = Math.ceil(displayAmenities.length / 3);

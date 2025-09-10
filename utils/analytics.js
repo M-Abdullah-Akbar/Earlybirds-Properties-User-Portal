@@ -203,5 +203,8 @@ export const analyticsService = {
 // Export the analytics instance for advanced usage
 export { analytics };
 
+// Export individual functions
+export const { trackClick, trackNavigation, trackSearch, trackPropertyView, trackContactForm, trackFilterUsage, trackScrollDepth, trackError: trackAnalyticsError } = analyticsService;
+
 // Export default
 export default analyticsService;
