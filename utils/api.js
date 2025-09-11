@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Base API configuration
 //add this
-const API_BASE_URL = "https://api.earlybirdsproperties.com/api";
+const API_BASE_URL = "http://168.231.121.2/api";
 
 // Create axios instance
 const api = axios.create({  
