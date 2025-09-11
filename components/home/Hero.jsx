@@ -3,12 +3,11 @@ import DropdownSelect from "@/components/common/DropdownSelect";
 //import SearchForm from "@/components/common/SearchForm";
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useAnalytics } from "@/contexts/AnalyticsContext";
+
 
 export default function Hero() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { trackSearch, trackClick, trackNavigation, trackFilterUsage } = useAnalytics();
   
   // State to track the active item (For sale/For rent)
   const [activeItem, setActiveItem] = useState("For sale");
@@ -97,12 +96,7 @@ export default function Hero() {
       listingType
     }));
     
-    // Track listing type selection
-    trackClick(`Listing Type: ${item}`, {
-      source: 'hero_search',
-      listingType: listingType,
-      previousType: searchFilters.listingType
-    });
+
   };
 
   // Handle search button click
@@ -127,21 +121,8 @@ export default function Hero() {
       targetPage = "/off-plan-properties";
     }
     
-    // Track search action
-    trackSearch(
-      `${searchFilters.propertyType || 'Any'} in ${searchFilters.location || 'Any Location'}`,
-      {
-        propertyType: searchFilters.propertyType || null,
-        location: searchFilters.location || null,
-        listingType: searchFilters.listingType
-      },
-      0 // Results count will be updated on the results page
-    );
-    
-    // Track navigation
     const queryString = queryParams.toString();
     const fullTargetUrl = queryString ? `${targetPage}?${queryString}` : targetPage;
-    trackNavigation('/', fullTargetUrl, 'search');
     
     // Navigate to results page
     if (queryString) {

@@ -2,11 +2,10 @@
 import React, { useState } from "react";
 import { emailAPI, uploadAPI, staticDataAPI, locationAPI } from "@/utils/api";
 import { toast } from "react-toastify";
-import { useAnalytics } from "@/contexts/AnalyticsContext";
+
 import DropdownSelect from "../common/DropdownSelect";
 
 export default function Hero() {
-  const { trackContactForm, trackClick } = useAnalytics();
   
   const [formData, setFormData] = useState({
     name: "",
@@ -224,12 +223,7 @@ export default function Hero() {
       const response = await emailAPI.sendInstantValuationEmail(valuationData);
 
       if (response.success) {
-        // Track successful form submission
-        trackClick('Form Submitted Successfully', {
-          formType: 'instant_valuation',
-          success: true,
-          userEmail: formData.email
-        });
+
         
         setMessage({
           type: "success",
@@ -249,12 +243,7 @@ export default function Hero() {
           images: [],
         });
       } else {
-        // Track failed form submission
-        trackClick('Form Submission Failed', {
-          formType: 'instant_valuation',
-          success: false,
-          error: response.message || 'API response unsuccessful'
-        });
+
         
         setMessage({
           type: "error",
@@ -266,13 +255,7 @@ export default function Hero() {
     } catch (error) {
       console.error("Error submitting valuation form:", error.message || "An error occurred");
       
-      // Track form submission error
-      trackClick('Form Submission Error', {
-        formType: 'instant_valuation',
-        success: false,
-        error: error.message || 'Unknown error',
-        status: error.status || 'unknown'
-      });
+
       
       // Set user-friendly error message
       const errorMessage = error.message || 'Failed to send your valuation request. Please try again later.';

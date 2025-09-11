@@ -2,52 +2,15 @@
 import React from "react";
 import Nav from "./Nav";
 import Link from "next/link";
-import { useAnalytics } from "@/contexts/AnalyticsContext";
+
 export default function Header8() {
-  const { trackClick, trackNavigation } = useAnalytics();
-
-  const handleLogoClick = () => {
-    trackClick({
-      element_type: 'logo',
-      element_text: 'Earlybirds Properties Logo',
-      page_location: window.location.pathname
-    });
-    trackNavigation({
-      destination: '/',
-      source: 'header_logo'
-    });
-  };
-
-  const handleConsultationClick = () => {
-    trackClick({
-      element_type: 'cta_button',
-      element_text: 'Book a Consultation',
-      page_location: window.location.pathname
-    });
-    trackNavigation({
-      destination: '/book-a-consultation',
-      source: 'header_cta'
-    });
-  };
-
-  const handleValuationClick = () => {
-    trackClick({
-      element_type: 'cta_button',
-      element_text: 'Instant Valuation',
-      page_location: window.location.pathname
-    });
-    trackNavigation({
-      destination: '/instant-valuation',
-      source: 'header_cta'
-    });
-  };
 
   return (
     <header id="header-main" className="header style-7">
       <div className="header-inner">
         <div className="header-inner-wrap">
           <div className="header-logo">
-            <Link href={`/`} className="site-logo" onClick={handleLogoClick}>
+            <Link href={`/`} className="site-logo">
               <img
                 className="logo_header"
                 alt="Earlybirds-Properties-Logo"
@@ -67,7 +30,6 @@ export default function Header8() {
               <Link
                 className="tf-btn style-border rounded-cycle height-3 pd-23"
                 href={`/book-a-consultation`}
-                onClick={handleConsultationClick}
               >
                 Book a Consultation
                 <span>
@@ -100,7 +62,6 @@ export default function Header8() {
               <Link
                 className="tf-btn style-border rounded-cycle height-3 pd-23"
                 href={`/instant-valuation`}
-                onClick={handleValuationClick}
               >
                 Instant Valuation 
                 <span>

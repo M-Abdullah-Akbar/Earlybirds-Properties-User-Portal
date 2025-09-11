@@ -4,35 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { useAnalytics } from "@/contexts/AnalyticsContext";
 
 export default function MobileMenu() {
   const pathname = usePathname();
-  const { trackClick, trackNavigation } = useAnalytics();
-
-  const handleMobileNavClick = (destination, label, source = 'mobile_nav') => {
-    trackClick({
-      element_type: 'mobile_navigation_link',
-      element_text: label,
-      page_location: pathname
-    });
-    trackNavigation({
-      destination,
-      source
-    });
-  };
-
-  const handleLogoClick = () => {
-    trackClick({
-      element_type: 'mobile_logo',
-      element_text: 'Earlybirds Properties Logo',
-      page_location: pathname
-    });
-    trackNavigation({
-      destination: '/',
-      source: 'mobile_logo'
-    });
-  };
   const isParentActive = (menus) =>
     menus.some((menu) =>
       menu.submenu
@@ -54,7 +28,7 @@ export default function MobileMenu() {
     >
       <div className="offcanvas-header top-nav-mobile">
         <div className="offcanvas-title">
-          <Link href={`/`} onClick={handleLogoClick}>
+          <Link href={`/`}>
             <Image
               alt=""
               src="/images/logo/Earlybird_Logo.png"
@@ -71,7 +45,7 @@ export default function MobileMenu() {
         <div className="mb-body">
           <ul id="menu-mobile-menu">
             <li className={`menu-item ${"/" == pathname ? "current-item" : ""}`}>
-              <Link href={`/`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/', 'Home')}>Home</Link>
+              <Link href={`/`} className="item-menu-mobile">Home</Link>
             </li>
             <li
               className={`menu-item menu-item-has-children-mobile ${
@@ -108,14 +82,14 @@ export default function MobileMenu() {
                           : "menu-item"
                       }
                     >
-                      <Link href={item.href} className="item-menu-mobile" onClick={() => handleMobileNavClick(item.href, item.label, 'mobile_buy_submenu')}>{item.label}</Link>
+                      <Link href={item.href} className="item-menu-mobile">{item.label}</Link>
                     </li>
                   ))}
                 </ul>
               </div>
             </li>
             <li className={`menu-item ${"/sell" == pathname ? "current-item" : ""}`}>
-              <Link href={`/sell`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/sell', 'Sell')}>Sell</Link>
+              <Link href={`/sell`} className="item-menu-mobile">Sell</Link>
             </li>
             <li
               className={`menu-item menu-item-has-children-mobile ${
@@ -152,7 +126,7 @@ export default function MobileMenu() {
                           : "menu-item"
                       }
                     >
-                      <Link href={item.href} className="item-menu-mobile" onClick={() => handleMobileNavClick(item.href, item.label, 'mobile_rent_submenu')}>{item.label}</Link>
+                      <Link href={item.href} className="item-menu-mobile">{item.label}</Link>
                     </li>
                   ))}
                 </ul>
@@ -193,7 +167,7 @@ export default function MobileMenu() {
                           : "menu-item"
                       }
                     >
-                      <Link href={item.href} className="item-menu-mobile" onClick={() => handleMobileNavClick(item.href, item.label, 'mobile_offplan_submenu')}>{item.label}</Link>
+                      <Link href={item.href} className="item-menu-mobile">{item.label}</Link>
                     </li>
                   ))}
                 </ul>
@@ -206,7 +180,7 @@ export default function MobileMenu() {
               <Link href={`/developers-in-uae`} className="item-menu-mobile">Developers in UAE</Link>
             </li>*/}
             <li className={`menu-item ${"/about-us" == pathname ? "current-item" : ""}`}>
-              <Link href={`/about-us`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/about-us', 'About Us')}>About Us</Link>
+              <Link href={`/about-us`} className="item-menu-mobile">About Us</Link>
             </li>
             <li
               className={`menu-item menu-item-has-children-mobile ${
@@ -243,7 +217,7 @@ export default function MobileMenu() {
                           : "menu-item"
                       }
                     >
-                      <Link href={item.href} className="item-menu-mobile" onClick={() => handleMobileNavClick(item.href, item.label, 'mobile_services_submenu')}>{item.label}</Link>
+                      <Link href={item.href} className="item-menu-mobile">{item.label}</Link>
                     </li>
                   ))}
                 </ul>
@@ -253,7 +227,7 @@ export default function MobileMenu() {
               <Link href={`/blog`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/blog', 'Blog')}>Blog</Link>
             </li>*/}
             <li className={`menu-item ${"/faqs" == pathname ? "current-item" : ""}`}>
-              <Link href={`/faqs`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/faqs', "Faq's")}>Faq's</Link>
+              <Link href={`/faqs`} className="item-menu-mobile">Faq's</Link>
             </li>
           </ul>
           {/*<div className="support">

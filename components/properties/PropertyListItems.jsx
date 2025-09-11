@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useAnalytics } from "@/contexts/AnalyticsContext";
+
 import CurrencyConverter from "@/components/common/CurrencyConverter";
 
 export default function PropertyListItems({ properties = [], showItems }) {
-  const { trackPropertyView, trackClick } = useAnalytics();
   
   // If no properties provided, return empty
   if (!properties || properties.length === 0) {
@@ -16,26 +15,6 @@ export default function PropertyListItems({ properties = [], showItems }) {
   const displayProperties = showItems
     ? properties.slice(0, showItems)
     : properties;
-    
-  // Handle property click tracking
-  const handlePropertyClick = (property) => {
-    trackPropertyView(property._id || property.id, {
-      title: property.title || property.name,
-      type: property.propertyType,
-      price: property.price,
-      location: typeof property.location === 'string' ? property.location : property.location?.emirate,
-      listingType: property.listingType,
-      source: 'property_list',
-      featured: property.featured || false
-    });
-    
-    trackClick('Property Card', {
-      propertyId: property._id || property.id,
-      propertyTitle: property.title || property.name,
-      source: 'list_view',
-      listingType: property.listingType
-    });
-  };
 
   return (
     <>
@@ -81,7 +60,6 @@ export default function PropertyListItems({ properties = [], showItems }) {
             <h5 className="title">
               <Link 
                 href={`/property-detail/${property._id || property.id}`}
-                onClick={() => handlePropertyClick(property)}
               >
                 {property.title || property.name}
               </Link>
