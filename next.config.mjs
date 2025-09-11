@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "earlybirds-properties-backend.vercel.app",
+        hostname: "api.earlybirdsproperties.com",
         port: "",
         pathname: "/**",
       },
