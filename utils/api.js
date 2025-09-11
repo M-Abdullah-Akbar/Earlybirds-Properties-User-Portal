@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // Base API configuration
+//add this
 const API_BASE_URL = "https://api.earlybirdsproperties.com/api";
 
 // Create axios instance
