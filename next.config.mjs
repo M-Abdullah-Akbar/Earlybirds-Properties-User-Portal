@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "168.231.121.2",
+        protocol: "https",
+        hostname: "api.earlybirdsproperties.com",
         port: "",
         pathname: "/**",
       },

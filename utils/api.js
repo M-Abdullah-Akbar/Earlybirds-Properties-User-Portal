@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Base API configuration
 //add this
-const API_BASE_URL = "http://168.231.121.2/api";
+const API_BASE_URL = "https://api.earlybirdsproperties.com/api";
 
 // Create axios instance
 const api = axios.create({  
@@ -39,8 +39,8 @@ api.interceptors.response.use(
     
     // Check for ngrok-specific errors
     if (error.response?.status === 0 || error.code === 'ERR_NETWORK') {
-      console.error('Network error - ngrok tunnel may be down:', error);
-      throw new Error('Unable to connect to the API server. The ngrok tunnel may have expired or the backend server is not running. Please check the backend connection.');
+      console.error('Network error', error);
+      throw new Error('Unable to connect to the API server. Please check the backend connection.');
     }
     
     // Check for ngrok warning page
