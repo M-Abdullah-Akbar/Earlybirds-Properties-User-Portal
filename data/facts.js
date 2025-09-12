@@ -35,7 +35,7 @@ export const counters2 = [
 
 export const counterData = [
   {
-    value: 50,
+    value: 500,
     label: "Satisfied Clients",
     className: "style-4-1",
     icon: "costumer.png",
@@ -52,6 +52,7 @@ export const counterData = [
   },
   {
     value: 100,
+    subText: "M",
     label: "Sale Volume",
     className: "style-4-3",
     icon: "proposal.png",
