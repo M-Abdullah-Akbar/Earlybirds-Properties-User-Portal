@@ -157,18 +157,18 @@ export default function Hero() {
     setMessage({ type: "", text: "" });
     setErrors({});
 
-    // Track form submission attempt
-    trackContactForm('Instant Valuation Form', null, {
-      propertyStatus: formData.propertyStatus,
-      propertyType: formData.propertyType,
-      emirate: formData.emirate,
-      beds: formData.beds,
-      size: formData.size,
-      hasPrice: !!formData.price,
-      hasImages: formData.images.length > 0,
-      imageCount: formData.images.length,
-      source: 'sell_hero_form'
-    });
+    // Track form submission attempt - function removed to fix ReferenceError
+    // trackContactForm('Instant Valuation Form', null, {
+    //   propertyStatus: formData.propertyStatus,
+    //   propertyType: formData.propertyType,
+    //   emirate: formData.emirate,
+    //   beds: formData.beds,
+    //   size: formData.size,
+    //   hasPrice: !!formData.price,
+    //   hasImages: formData.images.length > 0,
+    //   imageCount: formData.images.length,
+    //   source: 'sell_hero_form'
+    // });
 
     try {
       // First, upload images if any
