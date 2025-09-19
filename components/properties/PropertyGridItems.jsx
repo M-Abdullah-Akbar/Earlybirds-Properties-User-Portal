@@ -24,7 +24,6 @@ export default function PropertyGridItems({ properties = [], showItems }) {
           <div className="image-wrap">
             <Link 
               href={`/property-detail/${property._id || property.id}`}
-              onClick={() => handlePropertyClick(property)}
             >
               <Image
                 className="lazyload"

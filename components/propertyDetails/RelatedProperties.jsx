@@ -123,7 +123,7 @@ export default function RelatedProperties({ property }) {
                       </h5>
                       <p className="location text-1 flex items-center gap-8">
                         <i className="icon-location" />
-                        {prop.location?.address || prop.location || 'Location not specified'}
+                        {prop.location?.address || (typeof prop.location === 'object' ? `${prop.location.area || ''} ${prop.location.emirate || ''}`.trim() : prop.location) || 'Location not specified'}
                       </p>
                       <ul className="meta-list flex">
                         {(prop.details?.bedrooms || 0) > 0 && (

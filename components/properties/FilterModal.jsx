@@ -152,8 +152,8 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
     if (typeof value === 'number') return value.toString();
     if (typeof value === 'object') {
       // Handle location objects specifically
-      if (value.area || value.emirate) {
-        return `${value.area || ''} ${value.emirate || ''}`.trim() || 'Location not specified';
+      if (value.address || value.area || value.emirate) {
+        return value.address || `${value.area || ''} ${value.emirate || ''}`.trim() || 'Location not specified';
       }
       // For other objects, return fallback
       return fallback;
@@ -355,7 +355,7 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
             title: property.title || property.name || 'Property',
             // Ensure location is safely handled
             location: property.location && typeof property.location === 'object' 
-              ? `${property.location.area || ''} ${property.location.emirate || ''}`.trim() || 'Location not specified'
+              ? property.location.address || `${property.location.area || ''} ${property.location.emirate || ''}`.trim() || 'Location not specified'
               : property.location || 'Location not specified',
             // Ensure price is safely handled
             price: typeof property.price === 'number' ? property.price : 0

@@ -5,8 +5,7 @@
 
 import { generateHTML } from '@tiptap/html'
 import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import Link from '@tiptap/extension-link'
+// Note: Underline and Link are included in StarterKit, so we don't import them separately
 import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
 import Subscript from '@tiptap/extension-subscript'
@@ -68,8 +67,7 @@ export function renderTiptapJson(jsonContent) {
   try {
     const html = generateHTML(content, [
       StarterKit,
-      Underline,
-      Link,
+      // Note: Link and Underline are already included in StarterKit, so we don't add them again
       Highlight,
       Superscript,
       Subscript,
