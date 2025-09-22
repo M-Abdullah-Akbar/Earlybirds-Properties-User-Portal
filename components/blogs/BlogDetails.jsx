@@ -231,14 +231,14 @@ export default function BlogDetails({ blogId }) {
               )}
 
               {/* Featured Image */}
-              {blog.featuredImage && (
+              {blog.images?.[0]?.url && (
                 <figure className="image-wrap mb-30">
                   <Image
                     className="lazyload"
                     alt={blog.title}
                     width={840}
                     height={473}
-                    src={blog.featuredImage}
+                    src={blog.images?.[0]?.url}
                     loading="lazy"
                   />
                 </figure>

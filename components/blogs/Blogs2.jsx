@@ -219,7 +219,7 @@ const Blogs2 = () => {
                           alt={blog.title}
                           width={600}
                           height={396}
-                          src={blog.featuredImage || "/images/blog-placeholder.jpg"}
+                          src={blog.images?.[0]?.url || "/images/blog-placeholder.jpg"}
                         />
                         <div className="box-tag">
                           {blog.category && (
