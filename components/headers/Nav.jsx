@@ -204,27 +204,9 @@ export default function Nav() {
           ))}
         </ul>
       </li>*/}
-      {/*<li
-        className={`has-child ${
-          isParentActive(blogMenu) ? "current-menu" : ""
-        } `}
-      >
-        <a href="#">Blog</a>
-        <ul className="submenu">
-          {blogMenu.map((item, index) => (
-            <li
-              key={index}
-              className={
-                item.href.split("/")[1] == pathname.split("/")[1]
-                  ? "current-item"
-                  : ""
-              }
-            >
-              <Link href={item.href}>{item.label}</Link>
-            </li>
-          ))}
-        </ul>
-      </li>*/}
+      <li className={"/blogs" == pathname ? "current-menu" : ""}>
+        <Link href={`/blogs`}>Blogs</Link>
+      </li>
       {/*<li className={"/contact-us" == pathname ? "current-menu" : ""}>
         <Link href={`/contact-us`}>Contact Us</Link>
       </li>*/}

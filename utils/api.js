@@ -549,5 +549,118 @@ export const uploadAPI = {
   }
 };
 
+// Blog API functions for user portal
+export const blogAPI = {
+  // Get all published blogs with filtering and pagination
+  getBlogs: async (params = {}) => {
+    try {
+      const queryParams = new URLSearchParams();
+      
+      // Add pagination parameters
+      if (params.page) queryParams.append('page', params.page);
+      if (params.limit) queryParams.append('limit', params.limit);
+      
+      // Add filtering parameters
+      if (params.category) queryParams.append('category', params.category);
+      if (params.search) queryParams.append('search', params.search);
+      if (params.tags) queryParams.append('tags', params.tags);
+      if (params.featured !== undefined) queryParams.append('featured', params.featured);
+      
+      // Only show published blogs for user portal
+      queryParams.append('status', 'published');
+      
+      const response = await api.get(`/blogs?${queryParams.toString()}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+      throw error;
+    }
+  },
+
+  // Get single blog by ID or slug
+  getBlog: async (identifier) => {
+    try {
+      const response = await api.get(`/blogs/${identifier}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blog:', error);
+      throw error;
+    }
+  },
+
+  // Get single blog by ID (alias for getBlog for backward compatibility)
+  getBlogById: async (id) => {
+    try {
+      const response = await api.get(`/blogs/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blog by ID:', error);
+      throw error;
+    }
+  },
+
+  // Get featured blogs
+  getFeaturedBlogs: async (limit = 3) => {
+    try {
+      const response = await api.get(`/blogs?featured=true&status=published&limit=${limit}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching featured blogs:', error);
+      throw error;
+    }
+  },
+
+  // Get related blogs (by category or tags)
+  getRelatedBlogs: async (blogId, limit = 3) => {
+    try {
+      // First get the current blog to find its category and tags
+      const currentBlog = await blogAPI.getBlog(blogId);
+      
+      const queryParams = new URLSearchParams();
+      queryParams.append('status', 'published');
+      queryParams.append('limit', limit);
+      
+      // Exclude current blog
+      queryParams.append('exclude', blogId);
+      
+      // Filter by category if available
+      if (currentBlog.data.blog && currentBlog.data.blog.category) {
+        queryParams.append('category', currentBlog.data.blog.category._id || currentBlog.data.blog.category);
+      }
+      
+      const response = await api.get(`/blogs?${queryParams.toString()}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching related blogs:', error);
+      throw error;
+    }
+  }
+};
+
+// Blog Category API functions for user portal
+export const blogCategoryAPI = {
+  // Get all blog categories
+  getCategories: async () => {
+    try {
+      const response = await api.get('/blog-categories');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blog categories:', error);
+      throw error;
+    }
+  },
+
+  // Get single blog category
+  getCategory: async (id) => {
+    try {
+      const response = await api.get(`/blog-categories/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching blog category:', error);
+      throw error;
+    }
+  }
+};
+
 // Export the main API instance for direct use if needed
 export default api;
