@@ -95,7 +95,7 @@ export default function Footer2({ parentClass = "" }) {
                     <div className="title text-1">Office Address</div>
                     <h6>
                       <a href="#">
-                        1st Floor Al Masraf Bank Al Goze 1, sh. Zayed Road 3-A94
+                        1st Floor Al Masraf Bank Al Qouze 1, sh. Zayed Road 3-A94
                         Office
                       </a>
                     </h6>
