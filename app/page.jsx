@@ -12,6 +12,7 @@ import AboutSection from "@/components/home/AboutSection";
 import OffplanProjects from "@/components/home/OffplanProjects";
 //import CtaEnhanced from "@/components/common/CtaEnhanced";
 import Facts from "@/components/home/Facts";
+import Brands from "@/components/home/Brands";
 
 export const metadata = {
   title: "Buy, Sell & Rent Properties in Dubai | Earlybird",
@@ -32,6 +33,7 @@ export default function Home() {
           {/*<Locations />*/}
           <OffplanProjects />
           <Facts />
+          <Brands />
           <Partners />
           <Testimonials />
           {/*<CtaEnhanced />*/}

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
+import { newsletterAPI } from "@/utils/api";
 import { footerData } from "@/data/footerLinks";
 export default function Footer2({ parentClass = "" }) {
   // Mobile footer links are now always visible, no need for toggle functionality
@@ -21,25 +21,36 @@ export default function Footer2({ parentClass = "" }) {
     e.preventDefault(); // Prevent default form submission behavior
     const email = e.target.email.value;
 
-    try {
-      const response = await axios.post(
-        "https://express-brevomail.vercel.app/api/contacts",
-        {
-          email,
-        }
-      );
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setSuccess(false);
+      handleShowMessage();
+      return;
+    }
 
-      if ([200, 201].includes(response.status)) {
-        e.target.reset(); // Reset the form
-        setSuccess(true); // Set success state
-        handleShowMessage();
-      } else {
-        setSuccess(false); // Handle unexpected responses
-        handleShowMessage();
-      }
+    try {
+      const response = await newsletterAPI.subscribeToNewsletter(email);
+
+      // Success response from API
+      e.target.reset(); // Reset the form
+      setSuccess(true); // Set success state
+      handleShowMessage();
     } catch (error) {
-      console.error("Error:", error.response?.data || "An error occurred");
-      setSuccess(false); // Set error state
+      console.error("Newsletter subscription error:", error);
+      
+      // Handle specific error cases
+      if (error.status === 409) {
+        // Email already subscribed
+        setSuccess(false);
+      } else if (error.status === 400) {
+        // Invalid email format
+        setSuccess(false);
+      } else {
+        // General error
+        setSuccess(false);
+      }
+      
       handleShowMessage();
       e.target.reset(); // Reset the form
     }
@@ -97,7 +108,8 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Call us</div>
                     <h6>
-                      <a href="#"> +971 561615675</a>
+                      <a href="#"> +971 561615675</a><br />
+                      <a href="#"> +971 566914193</a>
                     </h6>
                   </div>
                 </div>
@@ -249,10 +261,12 @@ export default function Footer2({ parentClass = "" }) {
                         >
                           {success ? (
                             <p style={{ color: "rgb(52, 168, 83)" }}>
-                              You have successfully subscribed.
+                              You have successfully subscribed to our newsletter.
                             </p>
                           ) : (
-                            <p style={{ color: "red" }}>Something went wrong</p>
+                            <p style={{ color: "red" }}>
+                              Subscription failed. Please check your email and try again.
+                            </p>
                           )}
                         </div>
                         <form onSubmit={sendEmail} id="sib-form">
@@ -267,17 +281,17 @@ export default function Footer2({ parentClass = "" }) {
                             <div className="form__entry entry_block">
                               <div className="form__label-row mb-10">
                                 <fieldset className="entry__field">
-                                  <input
-                                    className="input input-nl "
-                                    type="text"
-                                    id="EMAIL"
-                                    name="email"
-                                    autoComplete="off"
-                                    placeholder="Your email address"
-                                    data-required="true"
-                                    required
-                                  />
-                                </fieldset>
+                                <input
+                                  className="input input-nl "
+                                  type="email"
+                                  id="EMAIL"
+                                  name="email"
+                                  autoComplete="email"
+                                  placeholder="Your email address"
+                                  data-required="true"
+                                  required
+                                />
+                              </fieldset>
                               </div>
                               <label className="entry__error entry__error--primary"></label>
                             </div>

@@ -26,7 +26,7 @@ export default function RelatedProperties({ property }) {
         if (response.success && response.data?.properties) {
           // Filter out the current property
           const filtered = response.data.properties.filter(p => p._id !== property._id);
-          setRelatedProperties(filtered.slice(0, 4)); // Show max 4 properties
+          setRelatedProperties(filtered.slice(0, 3)); // Show max 4 properties
           console.log("Found related properties:", filtered.length);
         }
       } catch (error) {
@@ -84,11 +84,11 @@ export default function RelatedProperties({ property }) {
         <div className="row">
           <div className="col-12">
             <div className="heading-section mb-32">
-              <h2 className="title">Similar Properties ({relatedProperties.length})</h2>
+              <h2 className="title">Similar Properties</h2>
             </div>
             <div className="row">
               {relatedProperties.map((prop) => (
-                <div key={prop._id} className="col-lg-3 col-md-6 mb-4">
+                <div key={prop._id} className="col-lg-4 col-md-6 mb-4">
                   <div className="box-house hover-img">
                     <div className="image-wrap">
                       <Link href={`/property-detail/${prop._id}`}>
@@ -97,7 +97,13 @@ export default function RelatedProperties({ property }) {
                           alt={prop.title}
                           width={400}
                           height={300}
-                          className="w-100"
+                          className="w-100 related-property-image"
+                          style={{
+                            width: '100%',
+                            height: '250px',
+                            objectFit: 'cover',
+                            objectPosition: 'center'
+                          }}
                         />
                       </Link>
                       <ul className="box-tag flex gap-8">

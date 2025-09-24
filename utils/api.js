@@ -536,6 +536,21 @@ export const emailAPI = {
   }
 };
 
+// Newsletter API functions for user portal
+export const newsletterAPI = {
+  // Subscribe to newsletter
+  subscribeToNewsletter: async (email) => {
+    const response = await api.post("/newsletter/subscribe", { email });
+    return response.data;
+  },
+  
+  // Unsubscribe from newsletter
+  unsubscribeFromNewsletter: async (email) => {
+    const response = await api.post("/newsletter/unsubscribe", { email });
+    return response.data;
+  }
+};
+
 // Upload API functions for user portal
 export const uploadAPI = {
   // Upload images
@@ -565,6 +580,7 @@ export const blogAPI = {
       if (params.search) queryParams.append('search', params.search);
       if (params.tags) queryParams.append('tags', params.tags);
       if (params.featured !== undefined) queryParams.append('featured', params.featured);
+      if (params.exclude) queryParams.append('exclude', params.exclude);
       
       // Only show published blogs for user portal
       queryParams.append('status', 'published');
@@ -642,7 +658,7 @@ export const blogCategoryAPI = {
   // Get all blog categories
   getCategories: async () => {
     try {
-      const response = await api.get('/blog-categories');
+      const response = await api.get('/blog-categories?isActive=true&approvalStatus=approved');
       return response.data;
     } catch (error) {
       console.error('Error fetching blog categories:', error);

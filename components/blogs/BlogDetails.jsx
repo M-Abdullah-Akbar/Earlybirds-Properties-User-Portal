@@ -10,6 +10,7 @@ export default function BlogDetails({ blogId }) {
   const [blog, setBlog] = useState(null);
   const [categories, setCategories] = useState([]);
   const [relatedBlogs, setRelatedBlogs] = useState([]);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,25 +19,22 @@ export default function BlogDetails({ blogId }) {
     try {
       setLoading(true);
       setError(null);
-      
+
       const response = await blogAPI.getBlogById(blogId);
-      
+
       if (response.success) {
         const blogData = response.data.blog;
-        
+
         // Process tags - simplified since backend now sends clean data
         if (blogData.tags && Array.isArray(blogData.tags)) {
-          blogData.tags = blogData.tags.filter(tag => tag && typeof tag === 'string' && tag.trim().length > 0);
+          blogData.tags = blogData.tags.filter(
+            (tag) => tag && typeof tag === "string" && tag.trim().length > 0
+          );
         } else {
           blogData.tags = [];
         }
-        
+
         setBlog(blogData);
-        
-        // Fetch related blogs if category exists
-        if (blogData.category) {
-          fetchRelatedBlogs(blogData.category._id, blogData._id);
-        }
       } else {
         setError("Blog not found");
       }
@@ -48,16 +46,21 @@ export default function BlogDetails({ blogId }) {
     }
   };
 
-  // Fetch related blogs
-  const fetchRelatedBlogs = async (categoryId, excludeBlogId) => {
+  // Fetch featured blogs
+  const fetchFeaturedBlogs = async (categoryId, excludeBlogId) => {
     try {
-      const response = await blogAPI.getRelatedBlogs(excludeBlogId, 3);
-      
+      const response = await blogAPI.getFeaturedBlogs(4);
+
       if (response.success) {
-        setRelatedBlogs(response.data || []);
+        const blogsData = response.data?.blogs || response.data || [];
+        // Filter out current blog if it exists in featured blogs
+        const filteredBlogs = blogsData.filter(
+          (blog) => blog._id !== excludeBlogId
+        );
+        setFeaturedBlogs(filteredBlogs);
       }
     } catch (err) {
-      console.error("Error fetching related blogs:", err);
+      console.error("Error fetching featured blogs:", err);
     }
   };
 
@@ -65,8 +68,14 @@ export default function BlogDetails({ blogId }) {
   const fetchCategories = async () => {
     try {
       const response = await blogCategoryAPI.getCategories();
-      if (response.success && Array.isArray(response.data)) {
-        setCategories(response.data);
+      console.log("Categories response:", response);
+      if (
+        response.success &&
+        response.data &&
+        Array.isArray(response.data.categories)
+      ) {
+        console.log("Categories data:", response.data.categories);
+        setCategories(response.data.categories);
       } else {
         setCategories([]);
       }
@@ -83,13 +92,21 @@ export default function BlogDetails({ blogId }) {
     }
   }, [blogId]);
 
+  // Separate useEffect to fetch related content after blog details are loaded
+  useEffect(() => {
+    if (blog && blog._id) {
+      // Fetch featured blogs
+      fetchFeaturedBlogs(blog.category?._id, blog._id);
+    }
+  }, [blog]);
+
   // Format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -104,10 +121,7 @@ export default function BlogDetails({ blogId }) {
   const ErrorMessage = ({ message, onRetry }) => (
     <div className="text-center py-12">
       <div className="text-red-600 mb-4 fs-5">{message}</div>
-      <button
-        onClick={onRetry}
-        className="tf-btn-primary"
-      >
+      <button onClick={onRetry} className="tf-btn-primary">
         Try Again
       </button>
     </div>
@@ -155,7 +169,9 @@ export default function BlogDetails({ blogId }) {
           <div className="col-lg-8">
             <article role="main" aria-labelledby="blog-title">
               <header className="heading">
-                <h2 id="blog-title" className="title-heading">{blog.title}</h2>
+                <h2 id="blog-title" className="title-heading">
+                  {blog.title}
+                </h2>
                 <div className="meta flex flex-wrap gap-3" role="contentinfo">
                   {blog.author && (
                     <div className="meta-item flex align-center">
@@ -182,12 +198,17 @@ export default function BlogDetails({ blogId }) {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <p className="text-color-primary" aria-label={`Author: ${blog.author.name || blog.author}`}>
+                      <p
+                        className="text-color-primary"
+                        aria-label={`Author: ${
+                          blog.author.name || blog.author
+                        }`}
+                      >
                         {blog.author.name || blog.author}
                       </p>
                     </div>
                   )}
-                  
+
                   {blog.category && (
                     <div className="meta-item flex align-center">
                       <svg
@@ -206,14 +227,33 @@ export default function BlogDetails({ blogId }) {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <p className="text-color-primary" aria-label={`Category: ${blog.category.name}`}>
+                      <p
+                        className="text-color-primary"
+                        aria-label={`Category: ${blog.category.name}`}
+                      >
                         {blog.category.name}
                       </p>
                     </div>
                   )}
 
                   <div className="meta-item flex align-center">
-                    <time 
+                    <span className="icon">
+                      <svg
+                        width={16}
+                        height={17}
+                        viewBox="0 0 16 17"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M4.5 2.5V4M11.5 2.5V4M2 13V5.5C2 5.10218 2.15804 4.72064 2.43934 4.43934C2.72064 4.15804 3.10218 4 3.5 4H12.5C12.8978 4 13.2794 4.15804 13.5607 4.43934C13.842 4.72064 14 5.10218 14 5.5V13M2 13C2 13.3978 2.15804 13.7794 2.43934 14.0607C2.72064 14.342 3.10218 14.5 3.5 14.5H12.5C12.8978 14.5 13.2794 14.342 13.5607 14.0607C13.842 13.7794 14 13.3978 14 13M2 13V8C2 7.60218 2.15804 7.22064 2.43934 6.93934C2.72064 6.65804 3.10218 6.5 3.5 6.5H12.5C12.8978 6.5 13.2794 6.65804 13.5607 6.93934C13.842 7.22064 14 7.60218 14 8V13"
+                          stroke="#A8ABAE"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <time
                       dateTime={blog.createdAt}
                       aria-label={`Published on ${formatDate(blog.createdAt)}`}
                     >
@@ -225,7 +265,10 @@ export default function BlogDetails({ blogId }) {
 
               {/* Excerpt */}
               {blog.excerpt && (
-                <p className="fw-5 text-color-heading mb-30" role="doc-subtitle">
+                <p
+                  className="fw-5 text-color-heading mb-30"
+                  role="doc-subtitle"
+                >
                   {blog.excerpt}
                 </p>
               )}
@@ -246,10 +289,12 @@ export default function BlogDetails({ blogId }) {
 
               {/* Blog Content */}
               <div className="wrap-content mb-20" role="doc-content">
-                <div 
+                <div
                   className="blog-content"
-                  dangerouslySetInnerHTML={{ 
-                    __html: blog.content ? renderTiptapJson(blog.content) : '<p>No content available</p>' 
+                  dangerouslySetInnerHTML={{
+                    __html: blog.content
+                      ? renderTiptapJson(blog.content)
+                      : "<p>No content available</p>",
                   }}
                 />
               </div>
@@ -260,10 +305,14 @@ export default function BlogDetails({ blogId }) {
                   {blog.tags && blog.tags.length > 0 && (
                     <>
                       <p className="mb-2">Tags:</p>
-                      <div className="tags d-flex flex-wrap gap-2" role="list" aria-label="Article tags">
+                      <div
+                        className="tags d-flex flex-wrap gap-2"
+                        role="list"
+                        aria-label="Article tags"
+                      >
                         {blog.tags.map((tag, index) => (
-                          <a 
-                            key={index} 
+                          <a
+                            key={index}
                             href={`/blogs?tag=${encodeURIComponent(tag)}`}
                             className="tag-link"
                             role="listitem"
@@ -278,35 +327,36 @@ export default function BlogDetails({ blogId }) {
                 </div>
                 <div className="wrap-social">
                   <p className="mb-2">Share this post:</p>
-                  <ul className="tf-social style-1" role="list" aria-label="Share on social media">
+                  <ul
+                    className="tf-social style-1"
+                    role="list"
+                    aria-label="Share on social media"
+                  >
                     <li role="listitem">
-                      <a 
-                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                      <a
+                        href="https://web.facebook.com/Earlybirdproperties"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Share on Facebook"
                       >
-                        <i className="icon-fb" aria-hidden="true" />
+                        <i className="icon-fb" />
                       </a>
                     </li>
                     <li role="listitem">
-                      <a 
-                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(blog.title)}`}
+                      <a
+                        href="http://linkedin.com/in/earlybirds-managing"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Share on Twitter"
                       >
-                        <i className="icon-X" aria-hidden="true" />
+                        <i className="icon-linked" />
                       </a>
                     </li>
                     <li role="listitem">
-                      <a 
-                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                      <a
+                        href="https://www.instagram.com/earlybirdsproperties"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Share on LinkedIn"
                       >
-                        <i className="icon-linked" aria-hidden="true" />
+                        <i className="icon-ins" />
                       </a>
                     </li>
                   </ul>
@@ -316,109 +366,124 @@ export default function BlogDetails({ blogId }) {
           </div>
 
           {/* Sidebar */}
-          <aside className="col-lg-4" role="complementary" aria-label="Blog sidebar">
+          <aside
+            className="col-lg-4"
+            role="complementary"
+            aria-label="Blog sidebar"
+          >
             <div className="tf-sidebar">
-              {/* Categories */}
-              {Array.isArray(categories) && categories.length > 0 && (
-                <nav className="sidebar-item sidebar-categories" aria-labelledby="categories-heading">
-                  <h4 id="categories-heading" className="sidebar-title">Categories</h4>
-                  <ul className="list-categories" role="list">
-                    {categories.map((category) => (
-                      <li key={category._id} className="flex items-center justify-between" role="listitem">
-                        <Link 
-                          href={`/blogs?category=${category._id}`} 
-                          className="text-1 lh-20 fw-5"
-                          aria-label={`View ${category.blogCount || 0} posts in ${category.name} category`}
-                        >
-                          {category.name}
-                        </Link>
-                        <span className="number" aria-label={`${category.blogCount || 0} posts`}>
-                          ({category.blogCount || 0})
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              )}
-
-              {/* Related Blogs */}
-              {relatedBlogs.length > 0 && (
-                <section className="sidebar-item sidebar-featured pb-36" aria-labelledby="related-posts-heading">
-                  <h4 id="related-posts-heading" className="sidebar-title">Related Posts</h4>
-                  <ul role="list">
-                    {relatedBlogs.map((relatedBlog) => (
-                      <li key={relatedBlog._id} className="box-listings hover-img" role="listitem">
-                        <article className="d-flex">
-                          <div className="image-wrap">
+              {/* Featured Blogs */}
+              {featuredBlogs.length > 0 && (
+                <section
+                  className="sidebar-item sidebar-featured"
+                  aria-labelledby="featured-blogs-heading"
+                >
+                  <h4 id="featured-blogs-heading" className="sidebar-title">
+                    Featured Blogs
+                  </h4>
+                  <ul>
+                    {featuredBlogs.map((featuredBlog) => (
+                      <li key={featuredBlog._id} className="box-listings">
+                        <div className="image-wrap">
+                          <Link
+                            href={`/blogs/${
+                              featuredBlog.slug || featuredBlog._id
+                            }`}
+                          >
                             <Image
+                              src={
+                                featuredBlog.featuredImage ||
+                                featuredBlog.images?.[0]?.url ||
+                                "/images/blog-placeholder.jpg"
+                              }
+                              alt={featuredBlog.title}
+                              width={112}
+                              height={80}
                               className="lazyload"
-                              alt={relatedBlog.title}
-                              width={224}
-                              height={148}
-                              src={relatedBlog.featuredImage || "/images/blog-placeholder.jpg"}
-                              loading="lazy"
                             />
-                          </div>
-                          <div className="content">
-                            <h5 className="text-1 title fw-5">
-                              <Link 
-                                href={`/blogs/${relatedBlog.slug || relatedBlog._id}`}
-                                aria-label={`Read related post: ${relatedBlog.title}`}
+                          </Link>
+                        </div>
+                        <div className="content">
+                          <h5 className="title fw-5">
+                            <Link
+                              href={`/blogs/${
+                                featuredBlog.slug || featuredBlog._id
+                              }`}
+                            >
+                              {featuredBlog.title}
+                            </Link>
+                          </h5>
+                          <p>
+                            <span className="icon">
+                              <svg
+                                width={16}
+                                height={17}
+                                viewBox="0 0 16 17"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
                               >
-                                {relatedBlog.title}
-                              </Link>
-                            </h5>
-                            <p>
-                              <span className="icon">
-                                <svg
-                                  width={16}
-                                  height={17}
-                                  viewBox="0 0 16 17"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    d="M4.5 2.5V4M11.5 2.5V4M2 13V5.5C2 5.10218 2.15804 4.72064 2.43934 4.43934C2.72064 4.15804 3.10218 4 3.5 4H12.5C12.8978 4 13.2794 4.15804 13.5607 4.43934C13.842 4.72064 14 5.10218 14 5.5V13M2 13C2 13.3978 2.15804 13.7794 2.43934 14.0607C2.72064 14.342 3.10218 14.5 3.5 14.5H12.5C12.8978 14.5 13.2794 14.342 13.5607 14.0607C13.842 13.7794 14 13.3978 14 13M2 13V8C2 7.60218 2.15804 7.22064 2.43934 6.93934C2.72064 6.65804 3.10218 6.5 3.5 6.5H12.5C12.8978 6.5 13.2794 6.65804 13.5607 6.93934C13.842 7.22064 14 7.60218 14 8V13"
-                                    stroke="#A8ABAE"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </span>
-                              <time 
-                                dateTime={relatedBlog.createdAt}
-                                aria-label={`Published ${formatDate(relatedBlog.createdAt)}`}
-                              >
-                                {formatDate(relatedBlog.createdAt)}
-                              </time>
-                            </p>
-                          </div>
-                        </article>
+                                <path
+                                  d="M4.5 2.5V4M11.5 2.5V4M2 13V5.5C2 5.10218 2.15804 4.72064 2.43934 4.43934C2.72064 4.15804 3.10218 4 3.5 4H12.5C12.8978 4 13.2794 4.15804 13.5607 4.43934C13.842 4.72064 14 5.10218 14 5.5V13M2 13C2 13.3978 2.15804 13.7794 2.43934 14.0607C2.72064 14.342 3.10218 14.5 3.5 14.5H12.5C12.8978 14.5 13.2794 14.342 13.5607 14.0607C13.842 13.7794 14 13.3978 14 13M2 13V8C2 7.60218 2.15804 7.22064 2.43934 6.93934C2.72064 6.65804 3.10218 6.5 3.5 6.5H12.5C12.8978 6.5 13.2794 6.65804 13.5607 6.93934C13.842 7.22064 14 7.60218 14 8V13"
+                                  stroke="#A8ABAE"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </span>
+                            <time dateTime={featuredBlog.createdAt}>
+                              {formatDate(featuredBlog.createdAt)}
+                            </time>
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
                 </section>
               )}
 
-              {/* Popular Tags */}
-              {blog.tags && blog.tags.length > 0 && (
-                <nav className="sidebar-item sidebar-tags" aria-labelledby="popular-tags-heading">
-                  <h4 id="popular-tags-heading" className="sidebar-title">Popular Tags</h4>
-                  <ul className="tags-list d-flex flex-wrap gap-2" role="list">
-                    {blog.tags.map((tag, index) => (
-                      <li key={index} role="listitem">
-                        <Link 
-                          href={`/blogs?tag=${encodeURIComponent(tag)}`} 
-                          className="tags-item"
-                          aria-label={`View posts tagged with ${tag}`}
+              {/* Categories */}
+              {Array.isArray(categories) && categories.length > 0 && (
+                <nav
+                  className="sidebar-item sidebar-categories"
+                  aria-labelledby="categories-heading"
+                >
+                  <h4 id="categories-heading" className="sidebar-title">
+                    Categories
+                  </h4>
+                  <ul>
+                    {categories.map((category) => (
+                      <li key={category._id}>
+                        <Link
+                          href={`/blogs?category=${category._id}`}
+                          aria-label={`View ${
+                            category.blogCount || 0
+                          } posts in ${category.name} category`}
                         >
-                          {tag}
+                          {category.name} ({category.blogCount || 0})
                         </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
+              )}
+
+              {/* Popular Tags */}
+              {blog.tags && blog.tags.length > 0 && (
+                <div className="sidebar-item sidebar-tags">
+                  <h4 className="sidebar-title">Popular Tags</h4>
+                  <div className="tags-list">
+                    {blog.tags.map((tag, index) => (
+                      <Link
+                        key={index}
+                        href={`/blogs?tag=${encodeURIComponent(tag)}`}
+                        className="tags-item"
+                        aria-label={`View posts tagged with ${tag}`}
+                      >
+                        {tag}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               )}
 
               <Sidebar />

@@ -26,7 +26,7 @@ export default function PropertyGridItems({ properties = [], showItems }) {
               href={`/property-detail/${property._id || property.id}`}
             >
               <Image
-                className="lazyload"
+                className="lazyload property-image"
                 data-src={
                   property.images?.[0]?.url ||
                   property.imageSrc ||
@@ -40,6 +40,12 @@ export default function PropertyGridItems({ properties = [], showItems }) {
                 }
                 width={400}
                 height={300}
+                style={{
+                  width: '100%',
+                  height: '250px',
+                  objectFit: 'cover',
+                  objectPosition: 'center'
+                }}
               />
             </Link>
             <ul className="box-tag flex gap-8">

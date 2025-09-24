@@ -11,6 +11,7 @@ const Blogs2 = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [totalBlogs, setTotalBlogs] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const blogsPerPage = 6;
@@ -32,10 +33,18 @@ const Blogs2 = () => {
       const response = await blogAPI.getBlogs(params);
       
       if (response.success) {
-        setBlogs(response.data.blogs || []);
-        console.log(response.data.blogs);
-        setTotalPages(response.data.totalPages || 1);
-        setCurrentPage(response.data.currentPage || 1);
+        // Handle different possible response structures
+        const responseData = response.data.data || response.data;
+        
+        // Extract blogs
+        setBlogs(responseData.blogs || responseData.data || []);
+        
+        // Extract pagination data - check if it's nested under pagination object
+        const paginationData = responseData.pagination || responseData;
+        
+        setTotalPages(paginationData.totalPages || 1);
+        setTotalBlogs(paginationData.totalCount || 0);
+        setCurrentPage(paginationData.currentPage || 1);
       } else {
         setError("Failed to fetch blogs");
       }
@@ -51,8 +60,8 @@ const Blogs2 = () => {
   const fetchCategories = async () => {
     try {
       const response = await blogCategoryAPI.getCategories();
-      if (response.success && Array.isArray(response.data)) {
-        setCategories(response.data);
+      if (response.success && response.data && Array.isArray(response.data.categories)) {
+        setCategories(response.data.categories);
       } else {
         setCategories([]);
       }
@@ -317,21 +326,21 @@ const Blogs2 = () => {
                             <g clipPath="url(#clip0_2450_13860)">
                               <path
                                 d="M10.0013 18.3334C14.6037 18.3334 18.3346 14.6024 18.3346 10C18.3346 5.39765 14.6037 1.66669 10.0013 1.66669C5.39893 1.66669 1.66797 5.39765 1.66797 10C1.66797 14.6024 5.39893 18.3334 10.0013 18.3334Z"
-                                stroke="#F1913D"
+                                stroke="#bd8c31"
                                 strokeWidth="1.5"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                               />
                               <path
                                 d="M6.66797 10H13.3346"
-                                stroke="#F1913D"
+                                stroke="#bd8c31"
                                 strokeWidth="1.5"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                               />
                               <path
                                 d="M10 13.3334L13.3333 10L10 6.66669"
-                                stroke="#F1913D"
+                                stroke="#bd8c31"
                                 strokeWidth="1.5"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -351,79 +360,75 @@ const Blogs2 = () => {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <ul className="wg-pagination justify-center">
-                    {/* Previous Button */}
-                    <li className={`arrow ${currentPage === 1 ? 'disabled' : ''}`}>
-                      <a 
-                        href="#" 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (currentPage > 1) handlePageChange(currentPage - 1);
-                        }}
-                      >
-                        <i className="icon-arrow-left" />
-                      </a>
-                    </li>
+                  <div className="wrap-pagination">
+                    <p className="text-1">
+                      Showing {((currentPage - 1) * blogsPerPage) + 1}-{Math.min(currentPage * blogsPerPage, totalBlogs)} of {totalBlogs} results.
+                    </p>
+                    <ul className="wg-pagination">
+                      {/* Previous Button */}
+                      <li className={`arrow ${currentPage === 1 ? 'disabled' : ''}`}>
+                        <a 
+                          href="#" 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (currentPage > 1) handlePageChange(currentPage - 1);
+                          }}
+                        >
+                          <i className="icon-arrow-left" />
+                        </a>
+                      </li>
 
-                    {/* Page Numbers */}
-                    {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                      let pageNum;
-                      if (totalPages <= 5) {
-                        pageNum = i + 1;
-                      } else if (currentPage <= 3) {
-                        pageNum = i + 1;
-                      } else if (currentPage >= totalPages - 2) {
-                        pageNum = totalPages - 4 + i;
-                      } else {
-                        pageNum = currentPage - 2 + i;
-                      }
+                      {/* Page Numbers */}
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        const pageNum = i + 1;
+                        return (
+                          <li key={pageNum} className={pageNum === currentPage ? 'active' : ''}>
+                            <a 
+                              href="#" 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handlePageChange(pageNum);
+                              }}
+                            >
+                              {pageNum}
+                            </a>
+                          </li>
+                        );
+                      })}
                       
-                      return (
-                        <li key={pageNum} className={currentPage === pageNum ? 'active' : ''}>
-                          <a 
-                            href="#" 
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handlePageChange(pageNum);
-                            }}
-                          >
-                            {pageNum}
-                          </a>
-                        </li>
-                      );
-                    })}
+                      {totalPages > 5 && (
+                        <>
+                          <li>
+                            <a href="#">...</a>
+                          </li>
+                          <li>
+                            <a 
+                              href="#" 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handlePageChange(totalPages);
+                              }}
+                            >
+                              {totalPages}
+                            </a>
+                          </li>
+                        </>
+                      )}
 
-                    {/* Show ellipsis and last page if needed */}
-                    {totalPages > 5 && currentPage < totalPages - 2 && (
-                      <>
-                        <li><a href="#">...</a></li>
-                        <li>
-                          <a 
-                            href="#" 
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handlePageChange(totalPages);
-                            }}
-                          >
-                            {totalPages}
-                          </a>
-                        </li>
-                      </>
-                    )}
-
-                    {/* Next Button */}
-                    <li className={`arrow ${currentPage === totalPages ? 'disabled' : ''}`}>
-                      <a 
-                        href="#" 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (currentPage < totalPages) handlePageChange(currentPage + 1);
-                        }}
-                      >
-                        <i className="icon-arrow-right" />
-                      </a>
-                    </li>
-                  </ul>
+                      {/* Next Button */}
+                      <li className={`arrow ${currentPage === totalPages ? 'disabled' : ''}`}>
+                        <a 
+                          href="#" 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (currentPage < totalPages) handlePageChange(currentPage + 1);
+                          }}
+                        >
+                          <i className="icon-arrow-right" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 )}
               </>
             )}
