@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { blogAPI } from "@/utils/api";
@@ -10,7 +10,7 @@ export default function RelatedBlogs({ currentBlogId, limit = 3 }) {
   const [error, setError] = useState(null);
 
   // Fetch related blogs based on current blog
-  const fetchRelatedBlogs = async () => {
+  const fetchRelatedBlogs = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -38,11 +38,11 @@ export default function RelatedBlogs({ currentBlogId, limit = 3 }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentBlogId, limit]);
 
   useEffect(() => {
     fetchRelatedBlogs();
-  }, [currentBlogId, limit]);
+  }, [currentBlogId, limit, fetchRelatedBlogs]);
 
   // Format date
   const formatDate = (dateString) => {

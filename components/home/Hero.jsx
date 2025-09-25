@@ -3,6 +3,7 @@ import DropdownSelect from "@/components/common/DropdownSelect";
 //import SearchForm from "@/components/common/SearchForm";
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { trackSearch } from "@/utils/analytics";
 
 
 export default function Hero() {
@@ -101,6 +102,13 @@ export default function Hero() {
 
   // Handle search button click
   const handleSearch = () => {
+    // Track the search event
+    trackSearch("property_search", {
+      listingType: searchFilters.listingType,
+      propertyType: searchFilters.propertyType,
+      location: searchFilters.location
+    });
+
     // Build query parameters
     const queryParams = new URLSearchParams();
     

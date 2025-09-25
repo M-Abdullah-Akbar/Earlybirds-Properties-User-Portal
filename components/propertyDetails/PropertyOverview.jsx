@@ -102,6 +102,30 @@ export default function PropertyOverview({ property }) {
       </div>
       <div className="info-detail">
         <div className="wrap-box">
+          {shouldDisplay(getPropertyType()) && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-SlidersHorizontal" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Type:</div>
+                <div className="text-1 text-color-heading">{getPropertyType()}</div>
+              </div>
+            </div>
+          )}
+          {shouldDisplay(getParkingSpaces()) && (
+            <div className="box-icon">
+              <div className="icons">
+                <i className="icon-Garage-1" />
+              </div>
+              <div className="content">
+                <div className="text-4 text-color-default">Garages</div>
+                <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="wrap-box">
           {/*<div className="box-icon">
             <div className="icons">
               <i className="icon-HouseLine" />
@@ -130,30 +154,6 @@ export default function PropertyOverview({ property }) {
               <div className="content">
                 <div className="text-4 text-color-default">Bathrooms:</div>
                 <div className="text-1 text-color-heading">{getBathrooms()} Rooms</div>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="wrap-box">
-          {shouldDisplay(getPropertyType()) && (
-            <div className="box-icon">
-              <div className="icons">
-                <i className="icon-SlidersHorizontal" />
-              </div>
-              <div className="content">
-                <div className="text-4 text-color-default">Type:</div>
-                <div className="text-1 text-color-heading">{getPropertyType()}</div>
-              </div>
-            </div>
-          )}
-          {shouldDisplay(getParkingSpaces()) && (
-            <div className="box-icon">
-              <div className="icons">
-                <i className="icon-Garage-1" />
-              </div>
-              <div className="content">
-                <div className="text-4 text-color-default">Garages</div>
-                <div className="text-1 text-color-heading">{getParkingSpaces()}</div>
               </div>
             </div>
           )}

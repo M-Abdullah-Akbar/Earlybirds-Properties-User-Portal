@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 const optionsDefault = ["Newest", "Oldest", "3 days"];
 export default function DropdownSelect({
   onChange = (elm) => {},
+  onSelectionChange = (elm) => {}, // New prop for tracking
   options = optionsDefault,
   defaultOption,
   selectedValue,
@@ -40,6 +41,13 @@ export default function DropdownSelect({
     };
   }, []);
 
+  const handleOptionClick = (elm) => {
+    setSelected(elm);
+    onChange(elm);
+    onSelectionChange(elm); // Call the new tracking callback
+    toggleDropdown();
+  };
+
   return (
     <>
       <div className={`nice-select ${addtionalParentClass}`} ref={selectRef}>
@@ -50,11 +58,7 @@ export default function DropdownSelect({
           {options.map((elm, i) => (
             <li
               key={i}
-              onClick={() => {
-                setSelected(elm);
-                onChange(elm);
-                toggleDropdown();
-              }}
+              onClick={() => handleOptionClick(elm)}
               className={`option ${
                 !selectedValue
                   ? selected == elm

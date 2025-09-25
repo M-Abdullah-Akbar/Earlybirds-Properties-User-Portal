@@ -2,6 +2,8 @@
 import React from "react";
 import Nav from "./Nav";
 import Link from "next/link";
+import Image from "next/image";
+import { trackNavigation } from "@/utils/analytics";
 
 export default function Header8() {
 
@@ -10,13 +12,18 @@ export default function Header8() {
       <div className="header-inner">
         <div className="header-inner-wrap">
           <div className="header-logo">
-            <Link href={`/`} className="site-logo">
-              <img
+            <Link 
+              href={`/`} 
+              className="site-logo"
+              onClick={() => trackNavigation("Logo", "/")}
+            >
+              <Image
                 className="logo_header"
                 alt="Earlybirds-Properties-Logo"
-                data-light="/images/logo/Earlybird_Logo.png"
-                data-dark="/images/logo/Earlybird_Logo.png"
                 src="/images/logo/Earlybird_Logo.png"
+                width={200}
+                height={60}
+                priority
               />
             </Link>
           </div>
@@ -30,6 +37,7 @@ export default function Header8() {
               <Link
                 className="tf-btn style-border rounded-cycle height-3 pd-23"
                 href={`/book-a-consultation`}
+                onClick={() => trackNavigation("Book a Consultation", "/book-a-consultation")}
               >
                 Book a Consultation
                 <span>
@@ -62,6 +70,7 @@ export default function Header8() {
               <Link
                 className="tf-btn style-border rounded-cycle height-3 pd-23"
                 href={`/instant-valuation`}
+                onClick={() => trackNavigation("Instant Valuation", "/instant-valuation")}
               >
                 Instant Valuation 
                 <span>
@@ -95,6 +104,7 @@ export default function Header8() {
               data-bs-toggle="offcanvas"
               data-bs-target="#menu-mobile"
               aria-controls="menu-mobile"
+              onClick={() => trackNavigation("Mobile Menu", "mobile-menu")}
             >
               <i className="icon-menu" />
             </div>

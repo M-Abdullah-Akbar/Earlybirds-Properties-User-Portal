@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { propertyAPI } from "@/utils/api";
 import PropertyGridItems from "@/components/properties/PropertyGridItems";
@@ -17,18 +17,7 @@ export default function SearchResults() {
   const propertyType = searchParams.get("propertyType");
   const emirate = searchParams.get("emirate");
 
-  useEffect(() => {
-    // Only search if we have search parameters
-    if (listingType || propertyType || emirate) {
-      setHasSearched(true);
-      performSearch();
-    } else {
-      setHasSearched(false);
-      setProperties([]);
-    }
-  }, [listingType, propertyType, emirate]);
-
-  const performSearch = async () => {
+  const performSearch = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -71,7 +60,18 @@ export default function SearchResults() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [listingType, propertyType, emirate]);
+
+  useEffect(() => {
+    // Only search if we have search parameters
+    if (listingType || propertyType || emirate) {
+      setHasSearched(true);
+      performSearch();
+    } else {
+      setHasSearched(false);
+      setProperties([]);
+    }
+  }, [listingType, propertyType, emirate, performSearch]);
 
   // Don't render anything if no search has been performed
   if (!hasSearched) {

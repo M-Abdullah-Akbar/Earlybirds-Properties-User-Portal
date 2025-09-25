@@ -3,6 +3,7 @@ import Slider from "rc-slider";
 import React, { useState, useEffect } from "react";
 import { propertyAPI, locationAPI } from "@/utils/api";
 import CurrencyConverter from "../common/CurrencyConverter";
+import { trackFilterUsage, trackCustomEvent } from "@/utils/analytics";
 
 export default function FilterModal({ onFilterChange, onResultsUpdate, listingType = "" }) {
   const [priceRange, setPriceRange] = useState([100000, 5000000]);
@@ -85,6 +86,15 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
     setFilters(prev => ({ ...prev, emirate, area: "" }));
     setAreas([]);
     
+    // Track emirate filter usage
+    if (emirate) {
+      trackFilterUsage('emirate', emirate, {
+        source: 'filter_modal',
+        listingType: listingType,
+        hasOtherFilters: !!(filters.propertyType || filters.area)
+      });
+    }
+    
     if (emirate) {
       try {
         const response = await locationAPI.getAreas(emirate);
@@ -117,6 +127,13 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
   // Handle dropdown option selection
   const handleOptionSelect = (dropdownName, value) => {
     setFilters(prev => ({ ...prev, [dropdownName]: value }));
+    
+    // Track filter usage for all dropdown selections
+    trackFilterUsage(dropdownName, value, {
+      source: 'filter_modal',
+      listingType: listingType,
+      hasOtherFilters: Object.values(filters).some(filter => filter && filter !== value)
+    });
     
     // Special handling for emirate change
     if (dropdownName === 'emirate') {
@@ -429,10 +446,32 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
       listingType: listingType
     };
     
+    // Track filter application
+    trackCustomEvent('filter_applied', {
+      source: 'filter_modal',
+      listingType: listingType,
+      filterCount: getActiveFiltersSummary().length,
+      filters: {
+        propertyType: filters.propertyType || null,
+        emirate: filters.emirate || null,
+        area: filters.area || null,
+        priceRange: `${priceRange[0]}-${priceRange[1]}`,
+        sizeRange: `${sizeRange[0]}-${sizeRange[1]}`
+      }
+    });
+    
     // Validate filters before applying
     const validation = validateFilters(allFilters);
     if (!validation.isValid) {
       setError(validation.error);
+      
+      // Track validation error
+      trackCustomEvent('filter_validation_error', {
+        source: 'filter_modal',
+        error: validation.error,
+        attemptedFilters: allFilters
+      });
+      
       return;
     }
     
@@ -516,6 +555,19 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
 
   // Reset filters
   const resetFilters = () => {
+    // Track filter reset action
+    trackCustomEvent('filter_reset', {
+      source: 'filter_modal',
+      listingType: listingType,
+      previousFilters: {
+        propertyType: filters.propertyType,
+        emirate: filters.emirate,
+        area: filters.area,
+        priceRange: priceRange,
+        sizeRange: sizeRange
+      }
+    });
+
     setPriceRange([100000, 5000000]);
     setSizeRange([200, 5000]);
     setFilters({
@@ -550,6 +602,22 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
       // Include listing type from page context
       listingType: listingType
     };
+    
+    // Track filter preview action
+    trackCustomEvent('filter_preview', {
+      source: 'filter_modal',
+      listingType: listingType,
+      filterCount: Object.keys(allFilters).filter(key => 
+        allFilters[key] && allFilters[key] !== "" && allFilters[key] !== null
+      ).length,
+      filters: {
+        propertyType: allFilters.propertyType,
+        emirate: allFilters.emirate,
+        area: allFilters.area,
+        priceRange: [allFilters.minPrice, allFilters.maxPrice],
+        sizeRange: [allFilters.minSize, allFilters.maxSize]
+      }
+    });
     
     // Validate filters before previewing
     const validation = validateFilters(allFilters);
@@ -630,7 +698,18 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
                   max={10000000}
                   min={0}
                   value={priceRange}
-                  onChange={setPriceRange}
+                  onChange={(newRange) => {
+                    setPriceRange(newRange);
+                    
+                    // Track price range changes
+                    trackFilterUsage('priceRange', `${newRange[0]}-${newRange[1]}`, {
+                      source: 'filter_modal',
+                      listingType: listingType,
+                      minPrice: newRange[0],
+                      maxPrice: newRange[1],
+                      hasOtherFilters: !!(filters.propertyType || filters.emirate || filters.area)
+                    });
+                  }}
                 />
               </div>
               {/*<div className="widget-price">
@@ -652,7 +731,18 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
                   max={10000}
                   min={0}
                   value={sizeRange}
-                  onChange={setSizeRange}
+                  onChange={(newRange) => {
+                    setSizeRange(newRange);
+                    
+                    // Track size range changes
+                    trackFilterUsage('sizeRange', `${newRange[0]}-${newRange[1]}`, {
+                      source: 'filter_modal',
+                      listingType: listingType,
+                      minSize: newRange[0],
+                      maxSize: newRange[1],
+                      hasOtherFilters: !!(filters.propertyType || filters.emirate || filters.area)
+                    });
+                  }}
                 />
               </div>*/}
             </div>
@@ -1009,7 +1099,7 @@ export default function FilterModal({ onFilterChange, onResultsUpdate, listingTy
                 <p className="mb-0">{error}</p>
                 <div className="mt-2">
                   <small>
-                    💡 Tip: Make sure you've selected at least one filter field before applying.
+                    💡 Tip: Make sure you&apos;ve selected at least one filter field before applying.
                   </small>
                 </div>
               </div>

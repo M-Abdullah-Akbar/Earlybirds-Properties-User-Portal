@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { emailAPI, uploadAPI, staticDataAPI, locationAPI } from "@/utils/api";
 import { toast } from "react-toastify";
+import { trackContactForm } from "@/utils/analytics";
 
 import DropdownSelect from "../common/DropdownSelect";
 
@@ -158,18 +160,18 @@ const InstantValuationForm = () => {
     setMessage({ type: "", text: "" });
     setErrors({});
 
-    // Track form submission attempt - function removed to fix ReferenceError
-    // trackContactForm('Instant Valuation Form', null, {
-    //   propertyStatus: formData.propertyStatus,
-    //   propertyType: formData.propertyType,
-    //   emirate: formData.emirate,
-    //   beds: formData.beds,
-    //   size: formData.size,
-    //   hasPrice: !!formData.price,
-    //   hasImages: formData.images.length > 0,
-    //   imageCount: formData.images.length,
-    //   source: 'valuation_form'
-    // });
+    // Track form submission attempt
+    trackContactForm('instant_valuation', null, {
+      propertyStatus: formData.propertyStatus,
+      propertyType: formData.propertyType,
+      emirate: formData.emirate,
+      beds: formData.beds,
+      size: formData.size,
+      hasPrice: !!formData.price,
+      hasImages: formData.images.length > 0,
+      imageCount: formData.images.length,
+      source: 'valuation_form'
+    });
 
     try {
       // First, upload images if any
@@ -296,7 +298,7 @@ const InstantValuationForm = () => {
               )}
               <div className="heading-section text-center mb-4">
                 <h2 className="title fw-bold mb-2" style={{ color: 'var(--Primary)' }}>Get an Instant Valuation</h2>
-                <p style={{ color: 'var(--Text)' }}>Get a professional property valuation instantly. Fill out the form below and we'll provide you with an accurate market assessment.</p>
+                <p style={{ color: 'var(--Text)' }}>Get a professional property valuation instantly. Fill out the form below and we&apos;ll provide you with an accurate market assessment.</p>
               </div>
               <div className="row mb-4">
                 <div className="col-md-6">
@@ -507,11 +509,13 @@ const InstantValuationForm = () => {
                       <div className="gallery-box mt-3">
                         {formData.images.map((image, index) => (
                           <div key={index} className="image-box position-relative d-inline-block me-2 mb-2">
-                            <img 
+                            <Image 
                               src={image.preview} 
                               alt={`Preview ${index}`} 
                               className="img-thumbnail"
-                              style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+                              width={80}
+                              height={80}
+                              style={{ objectFit: 'cover' }}
                             />
                             <button
                               type="button"

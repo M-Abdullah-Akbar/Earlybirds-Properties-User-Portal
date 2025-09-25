@@ -1,25 +1,14 @@
-import Cta from "@/components/common/Cta";
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/headers/Header";
-import Properties from "@/components/properties/Properties";
-import React from "react";
+import PropertiesClient from "@/components/properties/PropertiesClient";
 
 export const metadata = {
-  title:
-    "Property List || Earlybirds - Real Estate",
-  description: "Earlybirds - Real Estate",
+  title: "All Properties in UAE | Earlybirds",
+  description: "Browse all available properties in UAE. Find your perfect home or investment opportunity with Earlybirds Properties.",
 };
-export default function PropertiesPage() {
 
+export default async function PropertiesPage({ searchParams }) {
   return (
     <>
-      <div id="wrapper" className="counter-scroll">
-        <Header />
-        <div className="main-content ">
-          <Properties defaultGrid />
-        </div>
-        <Footer parentClass="style-2" />
-      </div>
+      <PropertiesClient searchParams={searchParams} />
     </>
   );
 }

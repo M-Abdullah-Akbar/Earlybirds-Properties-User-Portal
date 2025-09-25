@@ -18,10 +18,10 @@ export default function About() {
                       and selling
                     </h2>
                     <p className="text-1 wow animate__fadeInUp animate__animated">
-                      At Earlybird Properties, we're more than just a real estate company;
-                      we're architects of dreams, crafting spaces where life
+                      At Earlybird Properties, we&apos;re more than just a real estate company;
+                      we&apos;re architects of dreams, crafting spaces where life
                       flourishes and businesses thrive. With a rich history
-                      spanning 12 years, we've established ourselves as a
+                      spanning 12 years, we&apos;ve established ourselves as a
                       trusted leader in the real estate market, renowned for our
                       unwavering commitment to excellence, innovation, and
                       client satisfaction.

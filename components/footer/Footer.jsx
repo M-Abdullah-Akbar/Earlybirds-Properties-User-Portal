@@ -4,56 +4,87 @@ import Image from "next/image";
 import Link from "next/link";
 import { newsletterAPI } from "@/utils/api";
 import { footerData } from "@/data/footerLinks";
-export default function Footer2({ parentClass = "" }) {
+import { trackNavigation, trackCustomEvent, trackSocialShare } from "@/utils/analytics";
+
+export default function Footer({ parentClass = "" }) {
   // Mobile footer links are now always visible, no need for toggle functionality
 
   const [success, setSuccess] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
+  const [email, setEmail] = useState("");
 
-  const handleShowMessage = () => {
-    setShowMessage(true);
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 2000);
+  // Tracking functions
+  const handleContactClick = (type, value) => {
+    trackCustomEvent("contact_interaction", {
+      contact_type: type,
+      contact_value: value,
+      location: "footer"
+    });
   };
 
-  const sendEmail = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    const email = e.target.email.value;
+  const handleSocialClick = (platform, url) => {
+    trackSocialShare(platform, url, "footer");
+  };
 
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setSuccess(false);
       handleShowMessage();
+      trackCustomEvent("newsletter_signup", {
+        email: email,
+        source: "footer",
+        success: false,
+        error: "invalid_email"
+      });
       return;
     }
 
     try {
       const response = await newsletterAPI.subscribeToNewsletter(email);
-
+      
       // Success response from API
-      e.target.reset(); // Reset the form
+      setEmail(""); // Reset the form
       setSuccess(true); // Set success state
+      trackCustomEvent("newsletter_signup", {
+        email: email,
+        source: "footer",
+        success: true
+      });
       handleShowMessage();
     } catch (error) {
       console.error("Newsletter subscription error:", error);
       
       // Handle specific error cases
       if (error.status === 409) {
-        // Email already subscribed
         setSuccess(false);
-      } else if (error.status === 400) {
-        // Invalid email format
-        setSuccess(false);
+        trackCustomEvent("newsletter_signup", {
+          email: email,
+          source: "footer",
+          success: false,
+          error: "already_subscribed"
+        });
       } else {
-        // General error
         setSuccess(false);
+        trackCustomEvent("newsletter_signup", {
+          email: email,
+          source: "footer",
+          success: false,
+          error: "api_error"
+        });
       }
-      
       handleShowMessage();
-      e.target.reset(); // Reset the form
     }
+  };
+        
+  const handleShowMessage = () => {
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 2000);
   };
 
   return (
@@ -69,7 +100,10 @@ export default function Footer2({ parentClass = "" }) {
                 flexWrap: 'wrap'
               }}>
               <div className="footer-logo">
-                <Link href={`/`}>
+                <Link 
+                  href={`/`}
+                  onClick={() => trackNavigation("Footer Logo", "/")}
+                >
                   <Image
                     id="logo_footer"
                     alt="logo-footer"
@@ -94,7 +128,10 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Office Address</div>
                     <h6>
-                      <a href="#">
+                      <a 
+                        href="#"
+                        onClick={() => handleContactClick("address", "1st Floor Al Masraf Bank Al Qouze 1, sh. Zayed Road 3-A94 Office")}
+                      >
                         1st Floor Al Masraf Bank Al Qouze 1, sh. Zayed Road 3-A94
                         Office
                       </a>
@@ -108,8 +145,18 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Call us</div>
                     <h6>
-                      <a href="#"> +971 561615675</a><br />
-                      <a href="#"> +971 566914193</a>
+                      <a 
+                        href="tel:+971561615675"
+                        onClick={() => handleContactClick("phone", "+971 561615675")}
+                      >
+                        +971 561615675
+                      </a><br />
+                      <a 
+                        href="tel:+971566914193"
+                        onClick={() => handleContactClick("phone", "+971 566914193")}
+                      >
+                        +971 566914193
+                      </a>
                     </h6>
                   </div>
                 </div>
@@ -120,99 +167,121 @@ export default function Footer2({ parentClass = "" }) {
                   <div className="content">
                     <div className="title text-1">Email Address</div>
                     <h6 className="fw-4">
-                      <a href="#">info@earlybirdsproperties.com</a>
+                      <a 
+                        href="mailto:info@earlybirdsproperties.com"
+                        onClick={() => handleContactClick("email", "info@earlybirdsproperties.com")}
+                      >
+                        info@earlybirdsproperties.com
+                      </a>
                     </h6>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="footer-main">
-            <div className="row">
-              <div className="footer-description col-lg-5 col-md-6">
-                <h5 className="title text-white lh-30 mb-2">About Us</h5>
-                <p className="text-1">
-                  Welcome to EarlyBirds Properties, your trusted partner in the
-                  dynamic world of Dubai real estate. We stand proud as a
-                  leading real estate company with over a decade of unwavering
-                  dedication and expertise.
-                </p>
-                <div className="wrap-social mt-5">
-                  <div className="text-3 fw-6 text_white">Follow us</div>
-                  <ul className="tf-social">
-                    <li>
-                      <a
-                        href="https://web.facebook.com/Earlybirdproperties"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="icon-fb" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.youtube.com/@EarlybirdProperties"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          src="/icons/youtube-icon.svg"
-                          alt="YouTube"
-                          width="24"
-                          height="24"
-                          style={{ filter: "invert(1)" }}
-                        />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="http://linkedin.com/in/earlybirds-managing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="icon-linked" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.instagram.com/earlybirdsproperties"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="icon-ins" />
-                      </a>
-                    </li>
+        </div>
+      </div>
+      <div className="tf-container">
+        <div className="footer-main">
+          <div className="row">
+            <div className="footer-description col-lg-5 col-md-6">
+              <h5 className="title text-white lh-30 mb-2">About Us</h5>
+              <p className="text-1">
+                Welcome to EarlyBirds Properties, your trusted partner in the
+                dynamic world of Dubai real estate. We stand proud as a
+                leading real estate company with over a decade of unwavering
+                dedication and expertise.
+              </p>
+              <div className="wrap-social mt-5">
+                <div className="text-3 fw-6 text_white">Follow us</div>
+                <ul className="tf-social">
+                  <li>
+                    <a
+                      href="https://web.facebook.com/Earlybirdproperties"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialClick("facebook", "https://web.facebook.com/Earlybirdproperties")}
+                    >
+                      <i className="icon-fb" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.youtube.com/@EarlybirdProperties"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialClick("youtube", "https://www.youtube.com/@EarlybirdProperties")}
+                    >
+                      <Image
+                        src="/icons/youtube-icon.svg"
+                        alt="YouTube"
+                        width={24}
+                        height={24}
+                        style={{ filter: "invert(1)" }}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="http://linkedin.com/in/earlybirds-managing"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialClick("linkedin", "http://linkedin.com/in/earlybirds-managing")}
+                    >
+                      <i className="icon-linked" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/earlybirdsproperties"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialClick("instagram", "https://www.instagram.com/earlybirdsproperties")}
+                    >
+                      <i className="icon-ins" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {footerData.map((column, index) => (
+              <div className="col-lg-3 col-md-6" key={index}>
+                <div
+                  className={`footer-menu-list footer-col-block ${
+                    column.className || ""
+                  }`}
+                >
+                  <h5 className="title lh-30 title-desktop">
+                    {column.title}
+                  </h5>
+                  <h5 className="title lh-30 title-mobile footer-heading-mobile">
+                    {column.title}
+                  </h5>
+                  <ul className="tf-collapse-content">
+                    {column.links.map((link, linkIndex) => (
+                      <li key={linkIndex}>
+                        {link.href.startsWith("/") ? (
+                          <Link 
+                            href={link.href}
+                            onClick={() => trackNavigation(`Footer ${link.text}`, link.href)}
+                          >
+                            {link.text}
+                          </Link>
+                        ) : (
+                            <a 
+                              href={link.href}
+                              onClick={() => trackNavigation(`Footer ${link.text}`, link.href)}
+                            >
+                              {link.text}
+                            </a>
+                          )}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
-              {footerData.map((column, index) => (
-                <div className="col-lg-3 col-md-6" key={index}>
-                  <div
-                    className={`footer-menu-list footer-col-block ${
-                      column.className || ""
-                    }`}
-                  >
-                    <h5 className="title lh-30 title-desktop">
-                      {column.title}
-                    </h5>
-                    <h5 className="title lh-30 title-mobile footer-heading-mobile">
-                      {column.title}
-                    </h5>
-                    <ul className="tf-collapse-content">
-                      {column.links.map((link, linkIndex) => (
-                        <li key={linkIndex}>
-                          {link.href.startsWith("/") ? (
-                            <Link href={link.href}>{link.text}</Link>
-                          ) : (
-                            <a href={link.href}>{link.text}</a>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-              <div className="col-lg-4 col-md-6">
+            ))}
+            <div className="col-lg-4 col-md-6">
                 <div className="footer-menu-list newsletter">
                   <h5 className="title lh-30 mb-19">Newsletter</h5>
                   <div className="sib-form">
@@ -269,7 +338,7 @@ export default function Footer2({ parentClass = "" }) {
                             </p>
                           )}
                         </div>
-                        <form onSubmit={sendEmail} id="sib-form">
+                        <form onSubmit={handleNewsletterSubmit} id="sib-form">
                           <div className="sib-form-block">
                             <div className="sib-text-form-block">
                               <p className="text-1">
@@ -290,6 +359,8 @@ export default function Footer2({ parentClass = "" }) {
                                   placeholder="Your email address"
                                   data-required="true"
                                   required
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
                                 />
                               </fieldset>
                               </div>
@@ -348,16 +419,19 @@ export default function Footer2({ parentClass = "" }) {
                     </form>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
-        <div className="col-12">
-          <div className="footer-bottom">
-            <p>
-              Copyright © {new Date().getFullYear()}{" "}
-              <span className="fw-7">Earlybird Real Estate LLC.</span>
-            </p>
+      </div>
+      <div className="tf-container">
+        <div className="row">
+          <div className="col-12">
+            <div className="footer-bottom">
+              <p>
+                Copyright © {new Date().getFullYear()}{" "}
+                <span className="fw-7">Earlybird Real Estate LLC.</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

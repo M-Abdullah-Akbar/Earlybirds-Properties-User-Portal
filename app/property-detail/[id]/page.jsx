@@ -7,6 +7,7 @@ import Slider from "@/components/propertyDetails/Slider";
 import React from "react";
 import { propertyAPI } from "@/utils/api";
 import { notFound } from "next/navigation";
+import PropertyDetailClient from "@/components/propertyDetails/PropertyDetailClient";
 
 export const metadata = {
   title: "Property Details || Earlybirds - Real Estate",
@@ -30,6 +31,7 @@ export default async function PropertyDetailPage({ params }) {
 
     return (
       <>
+        <PropertyDetailClient property={property} />
         <div id="wrapper">
           <Header />
           <div className="main-content mt-5">

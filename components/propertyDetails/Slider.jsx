@@ -47,9 +47,11 @@ export default function Slider4({ property }) {
                       height={680}
                       content={
                         <div className="pswp-img-container">
-                          <img 
+                          <Image 
                             src={elm.src} 
                             alt={elm.alt} 
+                            width={1280}
+                            height={680}
                             style={{ maxWidth: '100%', height: 'auto' }} 
                             crossOrigin="anonymous"
                           />
@@ -70,6 +72,10 @@ export default function Slider4({ property }) {
                             width={1280}
                             height={680}
                             priority={i === 0} // Add priority to first image (LCP)
+                            loading={i === 0 ? "eager" : "lazy"}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1280px"
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                             style={{ width: '100%', height: 'auto' }} // Maintain aspect ratio
                           />
                         </a>

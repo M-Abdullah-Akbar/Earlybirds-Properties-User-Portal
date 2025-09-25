@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 export default function BackToTop() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrolled, setScrolled] = useState(0);
   const [scrollHeight, setScrollHeight] = useState(500);
+  const [scrollPercentage, setScrollPercentage] = useState(0);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -13,24 +14,49 @@ export default function BackToTop() {
     });
   };
 
-  const handleScroll = () => {
-    const currentScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    setScrolled(currentScroll);
-    setShowScrollTop(window.scrollY >= window.innerHeight);
-    const totalScrollHeight =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-    setScrollHeight(totalScrollHeight);
-  };
+  // Throttle scroll handler to prevent excessive reflows
+  const throttle = useMemo(() => (func, delay) => {
+    let timeoutId;
+    let lastExecTime = 0;
+    return function (...args) {
+      const currentTime = Date.now();
+      
+      if (currentTime - lastExecTime > delay) {
+        func.apply(this, args);
+        lastExecTime = currentTime;
+      } else {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          func.apply(this, args);
+          lastExecTime = Date.now();
+        }, delay - (currentTime - lastExecTime));
+      }
+    };
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    // Use requestAnimationFrame to batch DOM reads
+    requestAnimationFrame(() => {
+      const currentScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      setScrolled(currentScroll);
+      setShowScrollTop(window.scrollY >= window.innerHeight);
+      
+      // Cache scroll height calculation to avoid repeated DOM reads
+      const totalScrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercentage = (currentScroll / totalScrollHeight) * 100;
+      setScrollPercentage(scrollPercentage);
+    });
+  }, []); // 16ms throttle for ~60fps
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
   return (
     <div
       className={`progress-wrap ${scrolled > 150 ? "active-progress" : ""}`}

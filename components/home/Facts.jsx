@@ -5,6 +5,7 @@ import { counterData } from "@/data/facts";
 import React, { useEffect, useState } from "react";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { FaHome, FaUsers, FaBuilding } from "react-icons/fa";
+import Image from "next/image";
 
 const iconStyle = {
   padding: "18px",
@@ -94,7 +95,7 @@ const renderIcon = (iconType, props) => {
     // backgroundColor removed to eliminate background colors
   };
   
-  const iconStyle = {
+  const iconImageStyle = {
     width: "48px",
     height: "48px",
     objectFit: "contain"
@@ -103,10 +104,12 @@ const renderIcon = (iconType, props) => {
   // Use custom PNG icons from public/images/icons
   return (
     <div style={containerStyle}>
-      <img 
+      <Image 
         src={`/images/icons/${iconType}`} 
         alt="Icon" 
-        style={iconStyle}
+        width={44}
+        height={44}
+        style={iconImageStyle}
       />
     </div>
   );
@@ -197,6 +200,7 @@ export default function Facts() {
                     : "0 2px 10px rgba(0, 0, 0, 0.03)";
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
+                suppressHydrationWarning={true}
               >
                 <div className="icon-box">
                   {renderIcon(item.icon, getIconProps(item.iconColor, item.iconBgColor, index)(isDarkMode))}

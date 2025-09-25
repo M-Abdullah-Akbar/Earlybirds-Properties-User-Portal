@@ -61,7 +61,7 @@ export default function Services() {
                     <a href="/services#holiday-homes">Holiday Homes</a>
                   </h5>
                   <p className="text-1">
-                    Are you seeking a vacation home or short-term? Our holiday homes are picked with care, furnished to the highest standard, and in prime locations for ultimate comfort and convenience. Whether you're on a family break or a business trip, we ensure you feel at home.
+                    Are you seeking a vacation home or short-term? Our holiday homes are picked with care, furnished to the highest standard, and in prime locations for ultimate comfort and convenience. Whether you&apos;re on a family break or a business trip, we ensure you feel at home.
                   </p>
                   {/*<a href="/services#holiday-homes" className="tf-btn-link color-3">
                     <span>Learn More</span>

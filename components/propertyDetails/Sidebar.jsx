@@ -89,7 +89,7 @@ export default function Sidebar({ property }) {
           
           {submitStatus === 'success' && (
             <div className="alert alert-success mb-3" style={{ padding: '12px', backgroundColor: 'var(--Color-7)', color: 'white', borderRadius: '8px', textAlign: 'center' }}>
-              Message sent successfully! We'll contact you soon.
+              Message sent successfully! We&apos;ll contact you soon.
             </div>
           )}
           
@@ -141,7 +141,7 @@ export default function Sidebar({ property }) {
                 name="message"
                 cols={30}
                 rows={4}
-                placeholder="I'm interested in ..."
+                placeholder="I&apos;m interested in ..."
                 id="message1"
                 value={formData.message}
                 onChange={handleInputChange}

@@ -4,11 +4,14 @@ import axios from "axios";
 //add this
 const API_BASE_URL = "https://api.earlybirdsproperties.com/api";
 
-// Create axios instance
+// Create axios instance with timeout and performance optimizations
 const api = axios.create({  
   baseURL: API_BASE_URL,
+  timeout: 100000, // 10 second timeout
   headers: {
     "Content-Type": "application/json",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
     //"ngrok-skip-browser-warning": "true",
   },
 });

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
 import CurrencyConverter from "@/components/common/CurrencyConverter";
+import { trackPropertyView } from "@/utils/analytics";
 
 export default function PropertyListItems({ properties = [], showItems }) {
   
@@ -28,6 +28,10 @@ export default function PropertyListItems({ properties = [], showItems }) {
                 src={property.images?.[0]?.url || property.imageSrc || "/images/section/placeholder.jpg"}
                 width={600}
                 height={401}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </Link>
             <ul className="box-tag flex gap-8">
@@ -60,6 +64,14 @@ export default function PropertyListItems({ properties = [], showItems }) {
             <h5 className="title">
               <Link 
                 href={`/property-detail/${property._id || property.id}`}
+                onClick={() => trackPropertyView(property._id || property.id, {
+                  title: property.title || property.name,
+                  propertyType: property.propertyType || property.listingType,
+                  price: property.price,
+                  location: typeof property.location === "string" 
+                    ? property.location 
+                    : property.location?.address || `${property.area || ""} ${property.emirate || ""}`.trim()
+                })}
               >
                 {property.title || property.name}
               </Link>

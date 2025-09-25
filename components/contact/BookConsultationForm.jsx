@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import DropdownSelect from "../common/DropdownSelect";
 import { emailAPI } from "../../utils/api";
+import { trackConsultationBooking } from "@/utils/analytics";
 
 //import MapComponent from "../common/MapComponent";
 
@@ -115,6 +116,15 @@ export default function BookConsultationForm() {
       const response = await emailAPI.sendContactEmail(submitData);
 
       if (response.success) {
+        // Track successful consultation booking
+        trackConsultationBooking("consultation_booking", {
+          propertyStatus: formData.propertyStatus,
+          userInfo: formData.userInfo,
+          maxPrice: formData.maxPrice,
+          bedrooms: formData.bedrooms,
+          bathrooms: formData.bathrooms
+        });
+
         // Reset form
         setFormData({
           firstName: "",
@@ -182,7 +192,7 @@ export default function BookConsultationForm() {
                 <div className="heading-section text-center mb-5">
                   <h2 className="title mb-3" style={{ color: 'var(--Primary)' }}>We Would Love to Hear From You</h2>
                   <p className="text-1" style={{ color: 'var(--Text)' }}>
-                    We'll get to know you to understand your selling goals,
+                    We&apos;ll get to know you to understand your selling goals,
                     explain the selling process so you know what to expect.
                   </p>
                 </div>

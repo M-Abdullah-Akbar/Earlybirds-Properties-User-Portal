@@ -1,42 +1,10 @@
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/headers/Header";
-import React from "react";
-//import Cta from "@/components/common/Cta";
-import Properties from "@/components/properties/Properties";
-import RentAbout from "@/components/rent/About";
-import Faqs from "@/components/common/Faqs";
-import CtaEnhanced from "@/components/common/CtaEnhanced";
+import RentClient from "@/components/rent/RentClient";
 
 export const metadata = {
-  title: "Rent || Earlybirds - Properties User Portal",
-  description: "Earlybirds - Properties User Portal",
+  title: "Rent Properties in UAE | Earlybirds",
+  description: "Find apartments, villas & commercial spaces for rent in UAE with Earlybirds Properties. Flexible rental options available.",
 };
 
 export default async function RentPage({ searchParams }) {
-
-  const params = await searchParams;
-  const propertyType = params?.propertyType || "";
-  const emirate = params?.emirate || "";
-
-  return (
-    <>
-      <div id="wrapper" className="counter-scroll">
-        <Header />
-        <div className="main-content overflow-hidden">
-            <Properties 
-              defaultGrid 
-              propertyType="rent" 
-              initialFilters={{
-                propertyType: propertyType || "",
-                emirate: emirate || ""
-              }}
-            />
-            <RentAbout />
-            <Faqs pageType="rent" />
-            <CtaEnhanced />
-        </div>
-        <Footer parentClass="style-2" />
-      </div>
-    </>
-  );
+  return <RentClient searchParams={searchParams}/>;
 }

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import { emailAPI, uploadAPI, staticDataAPI, locationAPI } from "@/utils/api";
 import { toast } from "react-toastify";
 
@@ -314,7 +315,7 @@ export default function Hero() {
                   Get an Instant Valuation
                 </h2>
                 <p className="text-1 text-color-default fw-3 split-text split-lines-transform">
-                  Get a professional property valuation instantly. Fill out the form below and we'll provide you with an accurate market assessment.
+                  Get a professional property valuation instantly. Fill out the form below and we&apos;ll provide you with an accurate market assessment.
                 </p>
                 <div className="grid-2">
                   <fieldset>
@@ -488,11 +489,13 @@ export default function Hero() {
                       <div className="gallery-box mt-3">
                         {formData.images.map((image, index) => (
                           <div key={index} className="image-box position-relative d-inline-block me-2 mb-2">
-                            <img 
+                            <Image 
                               src={image.preview} 
                               alt={`Preview ${index}`} 
                               className="img-thumbnail"
-                              style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                              width={60}
+                              height={60}
+                              style={{ objectFit: 'cover' }}
                             />
                             <button
                               type="button"

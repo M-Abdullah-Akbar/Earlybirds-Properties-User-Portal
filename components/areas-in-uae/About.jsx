@@ -25,10 +25,10 @@ export default function AreasInUaeAbout() {
                   </div>
                   <div className="mb-3">
                     <h4 className="mb-2">Can I reside in Dubai if I buy property there?</h4>
-                    <p>Yes, you may also get a residency visa by investing in a property in Dubai, usually under the "Property Investor Visa" programme. This is available for properties worth more than AED 1 million.</p>
+                    <p>Yes, you may also get a residency visa by investing in a property in Dubai, usually under the &quot;Property Investor Visa&quot; programme. This is available for properties worth more than AED 1 million.</p>
                   </div>
                   <div className="mb-3">
-                    <h4 className="mb-2">What does the UAE's future for real estate hold?</h4>
+                    <h4 className="mb-2">What does the UAE&apos;s future for real estate hold?</h4>
                     <p>The prospect of realty in the UAE is promising because of the Expo 2020 legacy and other infrastructure projects. More and more people want luxurious homes and ecologically green and tech-enabled developments. Dubai will be a leading international business center, and the market will continue to allure investors from around the world.</p>
                   </div>
                   <div className="mb-3">
@@ -41,7 +41,7 @@ export default function AreasInUaeAbout() {
                   </div>
                   <div className="mb-3">
                     <h4 className="mb-2">Is there a Dubai property tax?</h4>
-                    <p>There is not a typical property tax in Dubai, but it does charge a 4% registration fee for property transactions. Landlords also pay an incredibly small yearly fee based on the amount of rent that they receive. This is known as the "Dubai Land Department fee.</p>
+                    <p>There is not a typical property tax in Dubai, but it does charge a 4% registration fee for property transactions. Landlords also pay an incredibly small yearly fee based on the amount of rent that they receive. This is known as the &quot;Dubai Land Department fee.</p>
                   </div>
                 </div>
               </div>

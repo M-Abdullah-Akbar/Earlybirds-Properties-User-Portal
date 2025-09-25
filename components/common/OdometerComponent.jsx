@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
 const OdometerComponent = ({ max }) => {
   const odometerRef = useRef(null);
@@ -19,16 +19,16 @@ const OdometerComponent = ({ max }) => {
         });
       }
     });
-  }, []);
+  }, [value]);
   useEffect(() => {
     if (odometerRef.current && odometerInitRef.current) {
       odometerInitRef.current.update(value); // Update odometer when value changes
     }
   }, [value]);
 
-  const startCountup = () => {
+  const startCountup = useCallback(() => {
     setValue(max);
-  };
+  }, [max]);
 
   useEffect(() => {
     const handleIntersection = (entries, observer) => {
@@ -40,23 +40,21 @@ const OdometerComponent = ({ max }) => {
       });
     };
 
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+    });
 
-    const observer = new IntersectionObserver(handleIntersection, options);
-    if (odometerRef.current) {
-      observer.observe(odometerRef.current);
+    const currentRef = odometerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (odometerRef.current) {
-        observer.unobserve(odometerRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, []);
+  }, [startCountup]);
 
   return (
     <>

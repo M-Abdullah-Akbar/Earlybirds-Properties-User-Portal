@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
 import CurrencyConverter from "@/components/common/CurrencyConverter";
+import { trackPropertyView } from "@/utils/analytics";
 
 export default function PropertyGridItems({ properties = [], showItems }) {
   
@@ -24,6 +24,14 @@ export default function PropertyGridItems({ properties = [], showItems }) {
           <div className="image-wrap">
             <Link 
               href={`/property-detail/${property._id || property.id}`}
+              onClick={() => trackPropertyView(property._id || property.id, {
+                title: property.title || property.name,
+                propertyType: property.propertyType || property.listingType,
+                price: property.price,
+                location: typeof property.location === "string" 
+                  ? property.location 
+                  : property.location?.address || `${property.area || ""} ${property.emirate || ""}`.trim()
+              })}
             >
               <Image
                 className="lazyload property-image"
@@ -40,6 +48,9 @@ export default function PropertyGridItems({ properties = [], showItems }) {
                 }
                 width={400}
                 height={300}
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Rj5m1leRPj4VCbdkVZeQBHNK9w7Q/rbj7SS6wzSM0k+RLkksSUdSeaUqfPDfTcn0OiPyMfM2srwA8/9k="
                 style={{
                   width: '100%',
                   height: '250px',
@@ -82,6 +93,14 @@ export default function PropertyGridItems({ properties = [], showItems }) {
             <h5 className="title">
               <Link 
                 href={`/property-detail/${property._id || property.id}`}
+                onClick={() => trackPropertyView(property._id || property.id, {
+                  title: property.title || property.name,
+                  propertyType: property.propertyType || property.listingType,
+                  price: property.price,
+                  location: typeof property.location === "string" 
+                    ? property.location 
+                    : property.location?.address || `${property.area || ""} ${property.emirate || ""}`.trim()
+                })}
               >
                 {property.title || property.name}
               </Link>

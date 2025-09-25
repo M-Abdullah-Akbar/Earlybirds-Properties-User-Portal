@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { blogAPI, blogCategoryAPI } from "@/utils/api";
@@ -15,7 +15,7 @@ export default function BlogDetails({ blogId }) {
   const [error, setError] = useState(null);
 
   // Fetch blog details
-  const fetchBlogDetails = async () => {
+  const fetchBlogDetails = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -44,7 +44,7 @@ export default function BlogDetails({ blogId }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [blogId]);
 
   // Fetch featured blogs
   const fetchFeaturedBlogs = async (categoryId, excludeBlogId) => {
@@ -90,7 +90,7 @@ export default function BlogDetails({ blogId }) {
       fetchBlogDetails();
       fetchCategories();
     }
-  }, [blogId]);
+  }, [blogId, fetchBlogDetails]);
 
   // Separate useEffect to fetch related content after blog details are loaded
   useEffect(() => {

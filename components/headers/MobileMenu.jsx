@@ -224,7 +224,7 @@ export default function MobileMenu() {
               </div>
             </li>
             <li className={`menu-item ${"/faqs" == pathname ? "current-item" : ""}`}>
-              <Link href={`/faqs`} className="item-menu-mobile">Faq's</Link>
+              <Link href={`/faqs`} className="item-menu-mobile">Faq&apos;s</Link>
             </li>
             <li className={`menu-item ${"/blogs" == pathname ? "current-item" : ""}`}>
               <Link href={`/blogs`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/blogs', 'Blogs')}>Blogs</Link>

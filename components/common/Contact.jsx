@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { trackContactForm } from "@/utils/analytics";
 
 export default function Contact() {
   return (
@@ -10,13 +11,19 @@ export default function Contact() {
             <div className="col-md-6">
               <form
                 className="form-get-in-touch"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  trackContactForm("contact_form", {
+                    form_type: "general_contact",
+                    page: "contact_us"
+                  });
+                }}
               >
                 <h2 className="text-color-heading title-form fw-5 mb-0">
                   Get in touch
                 </h2>
                 <p className="text-1 text-color-default fw-3 split-text split-lines-transform">
-                  We'll get to know you to understand your selling goals,
+                  We&apos;ll get to know you to understand your selling goals,
                   explain the selling process so you know what to expect.
                 </p>
                 <div className="grid-2">

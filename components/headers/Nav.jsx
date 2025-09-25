@@ -3,6 +3,7 @@ import { buyMenu, offPlanMenu, rentMenu, services } from "@/data/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { trackNavigation } from "@/utils/analytics";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -21,7 +22,12 @@ export default function Nav() {
   return (
     <>
       <li className={"/" == pathname ? "current-menu" : ""}>
-        <Link href={`/`}>Home</Link>
+        <Link 
+          href={`/`}
+          onClick={() => trackNavigation("Home", "/")}
+        >
+          Home
+        </Link>
       </li>
       <li
         className={`has-child ${
@@ -34,20 +40,35 @@ export default function Nav() {
             : ""
         }`}
       >
-        <Link href={`/buy`}>Buy</Link>
+        <Link 
+          href={`/buy`}
+          onClick={() => trackNavigation("Buy", "/buy")}
+        >
+          Buy
+        </Link>
         <ul className="submenu">
           {buyMenu.map((item, index) => (
             <li
               key={index}
               className={pathname == item.href ? "current-item" : ""}
             >
-              <Link href={item.href}>{item.label}</Link>
+              <Link 
+                href={item.href}
+                onClick={() => trackNavigation(item.label, item.href)}
+              >
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
       </li>
       <li className={"/sell" == pathname ? "current-menu" : ""}>
-        <Link href={`/sell`}>Sell</Link>
+        <Link 
+          href={`/sell`}
+          onClick={() => trackNavigation("Sell", "/sell")}
+        >
+          Sell
+        </Link>
       </li>
       <li
         className={`has-child ${
@@ -60,14 +81,24 @@ export default function Nav() {
             : ""
         }`}
       >
-        <Link href={`/rent`}>Rent</Link>
+        <Link 
+          href={`/rent`}
+          onClick={() => trackNavigation("Rent", "/rent")}
+        >
+          Rent
+        </Link>
         <ul className="submenu">
           {rentMenu.map((item, index) => (
               <li
                 key={index}
                 className={pathname == item.href ? "current-item" : ""}
               >
-                <Link href={item.href}>{item.label}</Link>
+                <Link 
+                  href={item.href}
+                  onClick={() => trackNavigation(item.label, item.href)}
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
         </ul>
@@ -83,14 +114,24 @@ export default function Nav() {
             : ""
         }`}
       >
-        <Link href={`/off-plan-properties`}>Off-Plan Properties</Link>
+        <Link 
+          href={`/off-plan-properties`}
+          onClick={() => trackNavigation("Off-Plan Properties", "/off-plan-properties")}
+        >
+          Off-Plan Properties
+        </Link>
         <ul className="submenu">
           {offPlanMenu.map((item, index) => (
               <li
                 key={index}
                 className={pathname == item.href ? "current-item" : ""}
               >
-                <Link href={item.href}>{item.label}</Link>
+                <Link 
+                  href={item.href}
+                  onClick={() => trackNavigation(item.label, item.href)}
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
         </ul>
@@ -102,7 +143,12 @@ export default function Nav() {
         <Link href={`/developers-in-uae`}>Developers in UAE</Link>
       </li>*/}
       <li className={"/about-us" == pathname ? "current-menu" : ""}>
-        <Link href={`/about-us`}>About Us</Link>
+        <Link 
+          href={`/about-us`}
+          onClick={() => trackNavigation("About Us", "/about-us")}
+        >
+          About Us
+        </Link>
       </li>
       <li
         className={`has-child ${
@@ -115,14 +161,24 @@ export default function Nav() {
             : ""
         }`}
       >
-        <Link href={`/services`}>Services</Link>
+        <Link 
+          href={`/services`}
+          onClick={() => trackNavigation("Services", "/services")}
+        >
+          Services
+        </Link>
         <ul className="submenu">
           {services.map((item, index) => (
               <li
                 key={index}
                 className={pathname == item.href ? "current-item" : ""}
               >
-                <Link href={item.href}>{item.label}</Link>
+                <Link 
+                  href={item.href}
+                  onClick={() => trackNavigation(item.label, item.href)}
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
         </ul>
@@ -131,7 +187,12 @@ export default function Nav() {
         <Link href={`/blog`}>Blog</Link>
       </li>*/}
       <li className={"/faqs" == pathname ? "current-menu" : ""}>
-        <Link href={`/faqs`}>Faq's</Link>
+        <Link 
+          href={`/faqs`}
+          onClick={() => trackNavigation("FAQ&apos;s", "/faqs")}
+        >
+          Faq&apos;s
+        </Link>
       </li>
       {/*<li
         className={`has-child style-2 ${
@@ -205,7 +266,12 @@ export default function Nav() {
         </ul>
       </li>*/}
       <li className={"/blogs" == pathname ? "current-menu" : ""}>
-        <Link href={`/blogs`}>Blogs</Link>
+        <Link 
+          href={`/blogs`}
+          onClick={() => trackNavigation("Blogs", "/blogs")}
+        >
+          Blogs
+        </Link>
       </li>
       {/*<li className={"/contact-us" == pathname ? "current-menu" : ""}>
         <Link href={`/contact-us`}>Contact Us</Link>

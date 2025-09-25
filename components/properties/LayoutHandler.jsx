@@ -10,6 +10,9 @@ export default function LayoutHandler({ defaultGrid = true }) {
             defaultGrid ? "active" : ""
           }`}
           data-bs-toggle="tab"
+          role="tab"
+          aria-selected={defaultGrid ? "true" : "false"}
+          tabIndex={defaultGrid ? "0" : "-1"}
         >
           <svg
             width={25}
@@ -64,6 +67,9 @@ export default function LayoutHandler({ defaultGrid = true }) {
             !defaultGrid ? "active" : ""
           } list`}
           data-bs-toggle="tab"
+          role="tab"
+          aria-selected={!defaultGrid ? "true" : "false"}
+          tabIndex={!defaultGrid ? "0" : "-1"}
         >
           <svg
             width={25}

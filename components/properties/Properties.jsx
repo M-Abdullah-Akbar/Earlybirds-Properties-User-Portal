@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropertyGridItems from "./PropertyGridItems";
 import PropertyListItems from "./PropertyListItems";
 import LayoutHandler from "./LayoutHandler";
@@ -43,60 +43,45 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
   const [filteredResultsCount, setFilteredResultsCount] = useState(0);
 
   // Fetch properties from backend
-  const fetchProperties = async (page = 1, filterParams = {}) => {
+  const fetchProperties = useCallback(async (page = 1, filterParams = {}) => {
     try {
       setLoading(true);
       setError(null);
       
-      console.log("fetchProperties called with filterParams:", filterParams);
-      
-      // Filter out empty values to avoid validation errors
-      const cleanFilters = Object.fromEntries(
-        Object.entries(filterParams).filter(([key, value]) => {
-          if (value === null || value === undefined || value === "") return false;
-          if (Array.isArray(value) && value.length === 0) return false;
-          return true;
-        })
-      );
-      
-      const params = {
-        page,
+      // Build query parameters
+      const queryParams = {
+        page: page,
         limit: pagination.itemsPerPage,
-        status: "available",
-        // Always include listing type from page context
-        ...(listingType && { listingType: listingType }),
-        ...cleanFilters
+        status: "available", // Only show available properties
+        ...filterParams
       };
 
-      console.log("fetchProperties - final API params:", params);
-      
-      const response = await propertyAPI.getProperties(params);
-      
+      console.log("Fetching properties with params:", queryParams);
+
+      const response = await propertyAPI.getProperties(queryParams);
+
       if (response.success) {
-        const fetchedProperties = response.data.properties || [];
-        console.log(`Fetched ${fetchedProperties.length} properties`);
-        
-        setProperties(fetchedProperties);
-        setPagination(prev => ({
-          ...prev,
-          currentPage: response.data.pagination?.current || page,
-          totalPages: response.data.pagination?.pages || 1,
-          totalItems: response.data.pagination?.total || 0,
-          itemsPerPage: response.data.pagination?.limit || 12
-        }));
+        setProperties(response.data.properties || []);
+        setPagination({
+          currentPage: response.data.currentPage || page,
+          totalPages: response.data.totalPages || 1,
+          totalItems: response.data.totalItems || 0,
+          itemsPerPage: response.data.itemsPerPage || 12
+        });
+        console.log(`Loaded ${response.data.properties?.length || 0} properties`);
       } else {
-        console.error("API response error:", response);
-        setError(response.message || "Failed to fetch properties");
+        console.error("Failed to fetch properties:", response);
+        setError(response.message || "Failed to load properties");
         setProperties([]);
       }
     } catch (err) {
       console.error("Error fetching properties:", err);
-      setError("Failed to load properties. Please try again later.");
+      setError("Failed to load properties. Please try again.");
       setProperties([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [pagination.itemsPerPage]);
 
   // Handle filter changes
   const handleFilterChange = (newFilters) => {
@@ -269,7 +254,7 @@ export default function Properties({ defaultGrid = false, propertyType = "", ini
     
     // Fetch properties with the updated filters
     fetchProperties(1, updatedFilters);
-  }, [listingType, initialFilters]); // Re-fetch when listingType or initialFilters change
+  }, [listingType, initialFilters, fetchProperties]); // Re-fetch when listingType or initialFilters change
 
   return (
     <>

@@ -426,8 +426,13 @@ export default class WOW {
     }
   }
 
-  // Calculate element offset top
+  // Calculate element offset top with performance optimization
   offsetTop(element) {
+    // Cache the result to avoid repeated calculations
+    if (element._cachedOffsetTop !== undefined) {
+      return element._cachedOffsetTop;
+    }
+    
     // SVG elements don't have an offsetTop in Firefox.
     // This will use their nearest parent that has an offsetTop.
     // Also, using ('offsetTop' of element) causes an exception in Firefox.
@@ -439,19 +444,33 @@ export default class WOW {
       element = element.offsetParent;
       top += element.offsetTop;
     }
+    
+    // Cache the result for performance
+    element._cachedOffsetTop = top;
+    
+    // Clear cache on next frame to ensure accuracy
+    requestAnimationFrame(() => {
+      delete element._cachedOffsetTop;
+    });
+    
     return top;
   }
 
-  // check if box is visible
+  // check if box is visible with optimized calculations
   isVisible(box) {
     const offset = box.getAttribute("data-wow-offset") || this.config.offset;
+    
+    // Use cached values when possible
     const viewTop =
       (this.config.scrollContainer && this.config.scrollContainer.scrollTop) ||
       window.pageYOffset;
     const viewBottom =
       viewTop + Math.min(this.element.clientHeight, getInnerHeight()) - offset;
-    const top = this.offsetTop(box);
-    const bottom = top + box.clientHeight;
+    
+    // Batch DOM reads to minimize reflows
+    const boxRect = box.getBoundingClientRect();
+    const top = boxRect.top + viewTop;
+    const bottom = top + boxRect.height;
 
     return top <= viewBottom && bottom >= viewTop;
   }

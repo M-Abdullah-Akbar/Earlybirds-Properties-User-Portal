@@ -8,7 +8,7 @@ export default function ThemeController({ themeColor }) {
     return () => {
       document.body.classList.remove(themeColor);
     };
-  }, []);
+  }, [themeColor]);
 
   return <></>;
 }

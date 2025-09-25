@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Convert } from 'easy-currencies';
 
 const SUPPORTED_CURRENCIES = [
@@ -128,7 +128,7 @@ export default function CurrencyConverter({
   };
 
   // Handle currency change
-  const handleCurrencyChange = async (newCurrency) => {
+  const handleCurrencyChange = useCallback(async (newCurrency) => {
     if (newCurrency === selectedCurrency) return;
     
     const converted = await convertCurrency(baseCurrency, newCurrency, price);
@@ -143,7 +143,7 @@ export default function CurrencyConverter({
         baseCurrency
       });
     }
-  };
+  }, [selectedCurrency, baseCurrency, price, onCurrencyChange]);
 
   // Initialize conversion on mount
   useEffect(() => {
@@ -152,7 +152,7 @@ export default function CurrencyConverter({
     } else {
       setConvertedPrice(price);
     }
-  }, [price, baseCurrency]);
+  }, [price, baseCurrency, selectedCurrency, handleCurrencyChange]);
 
 
 

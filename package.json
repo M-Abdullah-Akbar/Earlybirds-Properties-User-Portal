@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "^15.5.4",
     "@react-google-maps/api": "^2.20.6",
     "@tiptap/extension-highlight": "^3.4.0",
     "@tiptap/extension-link": "^3.4.0",
@@ -23,6 +24,7 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.7",
+    "critters": "^0.0.23",
     "easy-currencies": "^1.8.3",
     "gsap": "^3.12.7",
     "gsap-trial": "^3.12.7",
@@ -39,5 +41,9 @@
     "react-toastify": "^11.0.5",
     "sass": "^1.85.0",
     "swiper": "^11.2.4"
+  },
+  "devDependencies": {
+    "eslint": "9.36.0",
+    "eslint-config-next": "15.5.4"
   }
 }

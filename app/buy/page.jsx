@@ -1,41 +1,10 @@
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/headers/Header";
-import React from "react";
-//import Cta from "@/components/common/Cta";
-import Properties from "@/components/properties/Properties";
-import BuyAbout from "@/components/buy/About";
-import Faqs from "@/components/common/Faqs";
-import CtaEnhanced from "@/components/common/CtaEnhanced";
+import BuyClient from "@/components/buy/BuyClient";
 
 export const metadata = {
   title: "Buy Properties in UAE | Earlybirds",
   description: "Find villas, apartments & townhouses for sale in UAE with Earlybirds Properties. Your dream home awaits!",
 };
 
-export default async function BuyPage({ searchParams }) {
-  const params = await searchParams;
-  const propertyType = params?.propertyType || "";
-  const emirate = params?.emirate || "";
-
-  return (
-    <>
-      <div id="wrapper" className="counter-scroll">
-        <Header />
-        <div className="main-content overflow-hidden">
-            <Properties 
-              defaultGrid 
-              propertyType="sale" 
-              initialFilters={{
-                propertyType: propertyType || "",
-                emirate: emirate || ""
-              }}
-            />
-            <BuyAbout />
-            <Faqs pageType="buy" />
-            <CtaEnhanced />
-        </div>
-        <Footer parentClass="style-2" />
-      </div>
-    </>
-  );
+export default function BuyPage({ searchParams }) {
+  return <BuyClient searchParams={searchParams} />;
 }
