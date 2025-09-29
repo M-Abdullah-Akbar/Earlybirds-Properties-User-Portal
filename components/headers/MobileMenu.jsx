@@ -229,6 +229,15 @@ export default function MobileMenu() {
             <li className={`menu-item ${"/blogs" == pathname ? "current-item" : ""}`}>
               <Link href={`/blogs`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/blogs', 'Blogs')}>Blogs</Link>
             </li>
+            <li className={`menu-item ${"/contact-us" == pathname ? "current-item" : ""}`}>
+              <Link href={`/contact-us`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/contact-us', 'Contact Us')}>Contact Us</Link>
+            </li>
+            <li className={`menu-item ${"/book-a-consultation" == pathname ? "current-item" : ""}`}>
+              <Link href={`/book-a-consultation`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/book-a-consultation', 'Book a Consultation')}>Book a Consultation</Link>
+            </li>
+            <li className={`menu-item ${"/instant-valuation" == pathname ? "current-item" : ""}`}>
+              <Link href={`/instant-valuation`} className="item-menu-mobile" onClick={() => handleMobileNavClick('/instant-valuation', 'Instant Valuation')}>Instant Valuation</Link>
+            </li>
           </ul>
           {/*<div className="support">
             <a href="#" className="text-need">
