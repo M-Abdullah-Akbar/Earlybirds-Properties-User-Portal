@@ -34,7 +34,7 @@ export default function AboutUsSection() {
                   className="lazyload parallax-img"
                   data-src="/images/67ac5a91-6b33-491f-8de3-c60fdb894ccc1.jpg"
                   alt="Early Bird Properties: Trust, transparency, and commitment in real estate."
-                  src="/images/67ac5a91-6b33-491f-8de3-c60fdb894ccc1.jpg"
+                  src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence.jpg"
                   width={300}
                   height={100}
                 />
