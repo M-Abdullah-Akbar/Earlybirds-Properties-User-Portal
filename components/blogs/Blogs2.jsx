@@ -312,7 +312,7 @@ const Blogs2 = () => {
                         )}*/}
 
                         <Link
-                          href={`/blogs/${blog.slug || blog._id}`}
+                          href={`/blogs/${blog.focusKeyword || blog.slug || blog._id}`}
                           className="tf-btn-link"
                         >
                           <span> Read More </span>

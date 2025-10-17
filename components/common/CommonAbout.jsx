@@ -38,7 +38,12 @@ export default function CommonAbout({
                   <h4 className="title split-text effect-right text-color-heading">
                     {section.title}
                   </h4>
-                  {section.description && (
+                  {section.descriptionHtml ? (
+                    <p 
+                      className="text-1 split-text split-lines-transform text-color-default"
+                      dangerouslySetInnerHTML={{ __html: section.descriptionHtml }}
+                    />
+                  ) : section.description && (
                     <p className="text-1 split-text split-lines-transform text-color-default">
                       {section.description}
                     </p>

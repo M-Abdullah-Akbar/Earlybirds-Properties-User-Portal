@@ -33,7 +33,7 @@ export default function Properties({ title }) {
                   <div key={i} className="swiper-slide">
                     <div className="box-house hover-img ">
                       <div className="image-wrap">
-                        <Link href={`/property-detail/${property.id}`}>
+                        <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
                           <Image
                             className="lazyload"
                             alt=""
@@ -66,7 +66,7 @@ export default function Properties({ title }) {
                       </div>
                       <div className="content">
                         <h5 className="title">
-                          <Link href={`/property-detail/${property.id}`}>
+                          <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
                             {property.title}
                           </Link>
                         </h5>
@@ -100,7 +100,7 @@ export default function Properties({ title }) {
                               Compare
                             </a>*/}
                             <Link
-                              href={`/property-detail/${property.id}`}
+                              href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
                               className="tf-btn style-border pd-4"
                             >
                               Details
@@ -128,7 +128,7 @@ export default function Properties({ title }) {
                 <SwiperSlide key={i} className="swiper-slide">
                   <div className="box-house hover-img ">
                     <div className="image-wrap">
-                      <Link href={`/property-detail-v1/${property.id}`}>
+                      <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
                         <Image
                           className="lazyload"
                           alt=""
@@ -158,7 +158,7 @@ export default function Properties({ title }) {
                     </div>
                     <div className="content">
                       <h5 className="title">
-                        <Link href={`/property-detail-v1/${property.id}`}>
+                        <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
                           {property.title}
                         </Link>
                       </h5>
@@ -192,7 +192,7 @@ export default function Properties({ title }) {
                             Compare
                           </a>
                           <Link
-                            href={`/property-detail-v1/${property.id}`}
+                            href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
                             className="tf-btn style-border pd-4"
                           >
                             Details

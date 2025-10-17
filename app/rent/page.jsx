@@ -6,5 +6,10 @@ export const metadata = {
 };
 
 export default async function RentPage({ searchParams }) {
-  return <RentClient searchParams={searchParams}/>;
+  // Await searchParams for Next.js 15 compatibility
+  const params = await searchParams;
+  const propertyType = params?.propertyType || "";
+  const emirate = params?.emirate || "";
+  
+  return <RentClient propertyType={propertyType} emirate={emirate} />;
 }

@@ -23,7 +23,7 @@ export default function PropertyGridItems({ properties = [], showItems }) {
         <div className="box-house hover-img" key={property._id || property.id}>
           <div className="image-wrap">
             <Link 
-              href={`/property-detail/${property._id || property.id}`}
+              href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
               onClick={() => trackPropertyView(property._id || property.id, {
                 title: property.title || property.name,
                 propertyType: property.propertyType || property.listingType,
@@ -92,7 +92,7 @@ export default function PropertyGridItems({ properties = [], showItems }) {
           <div className="content">
             <h5 className="title">
               <Link 
-                href={`/property-detail/${property._id || property.id}`}
+                href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
                 onClick={() => trackPropertyView(property._id || property.id, {
                   title: property.title || property.name,
                   propertyType: property.propertyType || property.listingType,
@@ -153,7 +153,7 @@ export default function PropertyGridItems({ properties = [], showItems }) {
                   Compare
                 </a>*/}
                 <Link
-                  href={`/property-detail/${property._id || property.id}`}
+                  href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
                   className="tf-btn style-border pd-4"
                 >
                   Details

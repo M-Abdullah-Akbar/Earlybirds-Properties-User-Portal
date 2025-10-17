@@ -13,6 +13,8 @@ export default function BuyAbout() {
         title: "Properties for Sale in Dubai",
         description:
           "Dubai's real estate market has a great variety of properties for various investment, such as:",
+        descriptionHtml:
+          '<a href="https://earlybirdsproperties.com/blogs/what-to-keep-an-eye-on-dubai-real-estate-market-q4-2025" target="_blank">Dubai\'s real estate market</a> has a great variety of properties for various investment, such as:',
         listItems: [
           {
             title: "Apartments",

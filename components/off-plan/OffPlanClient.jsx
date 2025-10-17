@@ -8,10 +8,7 @@ import Faqs from "@/components/common/Faqs";
 import CtaEnhanced from "@/components/common/CtaEnhanced";
 import { setupPageTracking } from "@/utils/pageTracking";
 
-export default function OffPlanClient({ searchParams }) {
-  const params = React.use(searchParams);
-  const propertyType = params?.propertyType || "";
-  const emirate = params?.emirate || "";
+export default function OffPlanClient({ propertyType = "", emirate = "" }) {
 
   // Memoize initialFilters to prevent unnecessary re-renders
   const initialFilters = useMemo(() => {

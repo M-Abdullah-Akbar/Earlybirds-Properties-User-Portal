@@ -256,10 +256,13 @@ const transformPropertyData = (property) => {
     propertyType: property.listingType || property.propertyType,
     // Add beds and baths for compatibility
     beds: property.details?.bedrooms || property.bedrooms || 0,
-    baths: property.details?.bathrooms || property.baths || 0
+    baths: property.details?.bathrooms || property.baths || 0,
+    // Ensure focusKeyword and slug are preserved for URL generation
+    focusKeyword: property.focusKeyword,
+    slug: property.slug
   };
   
-  console.log("Transformed property:", transformed.title);
+  console.log("Transformed property:", transformed.title, "focusKeyword:", transformed.focusKeyword);
   return transformed;
 };
 

@@ -6,9 +6,10 @@ export const metadata = {
 };
 
 export default async function OffPlanPropertiesPage({ searchParams }) {
-  return (
-    <>
-      <OffPlanClient searchParams={searchParams} />
-    </>
-  );
+  // Await searchParams for Next.js 15 compatibility
+  const params = await searchParams;
+  const propertyType = params?.propertyType || "";
+  const emirate = params?.emirate || "";
+  
+  return <OffPlanClient propertyType={propertyType} emirate={emirate} />;
 }

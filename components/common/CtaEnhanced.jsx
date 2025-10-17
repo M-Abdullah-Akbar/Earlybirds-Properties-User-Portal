@@ -57,7 +57,7 @@ function CtaEnhanced() {
               >
                 <Image
                   alt=""
-                  src="/images/person-1.webp"
+                  src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence(Background-removed).png"
                   width={366}
                   height={491}
                 />

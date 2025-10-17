@@ -71,7 +71,7 @@ export default function Sidebar({ property }) {
             <div className="agent-avatar mb-3">
               <Image
                 alt="Muhammad Zohaib Saleem"
-                src="/images/founder-avatar.jpg"
+                src="/images/Founder’s-Vision-at-Early-Bird-Properties-Trust-&-Real-Estate-Excellence.jpg"
                 width={100}
                 height={100}
                 className="rounded-circle"

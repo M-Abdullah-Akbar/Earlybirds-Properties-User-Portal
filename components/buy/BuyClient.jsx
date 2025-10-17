@@ -9,11 +9,7 @@ import Faqs from "@/components/common/Faqs";
 import CtaEnhanced from "@/components/common/CtaEnhanced";
 import { setupPageTracking } from "@/utils/pageTracking";
 
-export default function BuyClient({ searchParams }) {
-  // Unwrap searchParams using React.use() for Next.js 15 compatibility
-  const params = React.use(searchParams);
-  const propertyType = params?.propertyType || "";
-  const emirate = params?.emirate || "";
+export default function BuyClient({ propertyType = "", emirate = "" }) {
 
   // Memoize initialFilters to prevent unnecessary re-renders
   const initialFilters = useMemo(() => {

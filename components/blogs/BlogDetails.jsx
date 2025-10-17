@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { blogAPI, blogCategoryAPI } from "@/utils/api";
-import { renderTiptapJson } from "@/utils/tiptap-html-renderer";
+import { renderContentWithFallback } from "@/utils/lexkit-html-renderer";
 import Sidebar from "../propertyDetails/Sidebar";
 
 export default function BlogDetails({ blogId }) {
@@ -20,7 +20,7 @@ export default function BlogDetails({ blogId }) {
       setLoading(true);
       setError(null);
 
-      const response = await blogAPI.getBlogById(blogId);
+      const response = await blogAPI.getBlog(blogId);
 
       if (response.success) {
         const blogData = response.data.blog;
@@ -293,7 +293,7 @@ export default function BlogDetails({ blogId }) {
                   className="blog-content"
                   dangerouslySetInnerHTML={{
                     __html: blog.content
-                      ? renderTiptapJson(blog.content)
+                      ? renderContentWithFallback(blog.content)
                       : "<p>No content available</p>",
                   }}
                 />

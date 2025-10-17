@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { renderTiptapJson } from '@/utils/tiptap-html-renderer';
+import { renderContentWithFallback } from '@/utils/lexkit-html-renderer';
 // SCSS is imported globally in the main.scss file
 
 export default function ExtraInfo({ property }) {
@@ -89,8 +89,8 @@ export default function ExtraInfo({ property }) {
           );
           
           if (isValidDescription) {
-            // Convert JSON description to HTML using the official TipTap HTML renderer
-            const html = renderTiptapJson(property.description);
+            // Convert description to HTML using the lexkit HTML renderer with fallback
+            const html = renderContentWithFallback(property.description);
             
             // Additional validation to ensure HTML was generated
             if (html && html.trim() !== '') {

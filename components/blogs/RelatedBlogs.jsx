@@ -132,7 +132,7 @@ export default function RelatedBlogs({ currentBlogId, limit = 3 }) {
                   <article key={blog._id} className="blog-article-item style-3">
                     <div className="image-wrap">
                       <Link
-                        href={`/blogs/${blog.slug || blog._id}`}
+                        href={`/blogs/${blog.focusKeyword || blog.slug || blog._id}`}
                         aria-label={`Read full article: ${blog.title}`}
                       >
                         <Image
@@ -190,7 +190,7 @@ export default function RelatedBlogs({ currentBlogId, limit = 3 }) {
                     </div>
                     <h3 className="title">
                       <Link
-                        href={`/blogs/${blog.slug || blog._id}`}
+                        href={`/blogs/${blog.focusKeyword || blog.slug || blog._id}`}
                         aria-label={`Read full article: ${blog.title}`}
                       >
                         {blog.title}
@@ -204,7 +204,7 @@ export default function RelatedBlogs({ currentBlogId, limit = 3 }) {
                       </p>
                     )}
                     <Link
-                      href={`/blogs/${blog.slug || blog._id}`}
+                      href={`/blogs/${blog.focusKeyword || blog.slug || blog._id}`}
                       className="tf-btn-link"
                     >
                       <span> Read More </span>

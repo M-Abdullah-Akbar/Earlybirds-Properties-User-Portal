@@ -62,7 +62,7 @@ export default function Partners() {
               
               <div className="text-content">
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  At <Link href="/about-us">Early Bird Properties</Link>, we present to you a well-selected range of luxury apartments, chic townhouses, and luxury villas available throughout the UAE.
+                  At <Link href="/about-us">Early Bird Properties</Link>, we present to you a well-selected range of luxury {" "}<a href="https://www.bayut.com/property/details-12950689.html" target="_blank">apartments</a>{""}, chic townhouses, and luxury villas available throughout the UAE.
                 </p>
                 
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">

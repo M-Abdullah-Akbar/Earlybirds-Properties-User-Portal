@@ -18,7 +18,11 @@ export default function LoanCalculator() {
                     <SplitTextAnimation text=" Your Dream Home" />
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    Explore handpicked <a href="/buy?propertyType=apartment">apartments</a>, <a href="/buy?propertyType=villa">villas</a>, <a href="/buy?propertyType=penthouse">penthouse</a>, and <a href="/buy?propertyType=townhouse">townhouses</a> all designed to match your lifestyle. Your
+                    Explore handpicked{" "}
+                    <a href="/buy?propertyType=apartment">apartments</a>,{" "}
+                    <a href="/buy?propertyType=villa">villas</a>,{" "}
+                    <a href="/buy?propertyType=penthouse">penthouse</a>, and{" "}
+                    <a href="/buy?propertyType=townhouse">townhouses</a> all designed to match your lifestyle. Your
                     perfect home is just a click away.
                   </p>
                 </div>
@@ -144,8 +148,9 @@ export default function LoanCalculator() {
                     <SplitTextAnimation text="Rental Homes for Everyone" />
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    Discover a curated collection of premium rental properties
-                    from modern apartments to spacious <a href="/rent?propertyType=villa">villas</a> offering
+                    Discover a curated collection of premium{" "}
+                    <a href="https://www.bayut.com/property/details-9504805.html" target="_blank">rental properties</a> from modern apartments to spacious{" "}
+                    <a href="/rent?propertyType=villa">villas</a> offering
                     comfort, style, and a refined lifestyle for every budget.
                   </p>
                 </div>

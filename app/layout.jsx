@@ -14,7 +14,8 @@ const loadNonCriticalCSS = () => {
       "/css/photoswipe.css", 
       "/css/rc-slider.css",
       "/css/scroll-fix.css",
-      "/css/testimonial-google-icon.css"
+      "/css/testimonial-google-icon.css",
+      "/css/lexkit-styles.css"
     ];
     
     cssFiles.forEach(href => {

@@ -91,7 +91,7 @@ export default function RelatedProperties({ property }) {
                 <div key={prop._id} className="col-lg-4 col-md-6 mb-4">
                   <div className="box-house hover-img">
                     <div className="image-wrap">
-                      <Link href={`/property-detail/${prop._id}`}>
+                      <Link href={`/property-detail/${prop.focusKeyword || prop.slug || prop._id}`}>
                         <Image
                           src={prop.images?.[0]?.url || '/images/section/property-detail-3.jpg'}
                           alt={prop.title}
@@ -127,7 +127,7 @@ export default function RelatedProperties({ property }) {
                     </div>
                     <div className="content">
                       <h5 className="title">
-                        <Link href={`/property-detail/${prop._id}`}>
+                        <Link href={`/property-detail/${prop.focusKeyword || prop.slug || prop._id}`}>
                           {prop.title}
                         </Link>
                       </h5>
@@ -160,7 +160,7 @@ export default function RelatedProperties({ property }) {
                         )}
                         <div className="wrap-btn flex">
                           <Link
-                            href={`/property-detail/${prop._id}`}
+                            href={`/property-detail/${prop.focusKeyword || prop.slug || prop._id}`}
                             className="tf-btn style-border pd-4"
                           >
                             Details
