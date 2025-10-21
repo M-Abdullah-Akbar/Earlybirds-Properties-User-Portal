@@ -12,7 +12,7 @@ export default function Partners() {
     },
     {
       type: "Townhouse",
-      image: "/images/Townhouse.jpg", 
+      image: "/images/Townhouse-Image.jpg", 
       alt: "Luxury Townhouse, for sale in Dubai, available through EarlyBird Properties."
     },
     {
@@ -36,7 +36,7 @@ export default function Partners() {
                       <div className="property-image">
                         <Image
                           src={property.image}
-                          alt={property.type}
+                          alt={property.alt}
                           width={300}
                           height={300}
                         />
