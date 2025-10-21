@@ -7,7 +7,7 @@ export default function Partners() {
   const propertyTypes = [
     {
       type: "Apartment",
-      image: "/images/Luxury-Apartments.jpg",
+      image: "/images/a1336f10-e6d1-4065-b5aa-e06e0dd0afbb.jpg",
       alt: "Luxury apartments, for sale in Dubai, available through EarlyBird Properties."
     },
     {
@@ -17,7 +17,7 @@ export default function Partners() {
     },
     {
       type: "Villa",
-      image: "/images/Villas-in-Dubai.jpg",
+      image: "/images/PHOTO-2025-10-02-17-29-12.jpg",
       alt: "Elegant villas, for sale in Dubai, available through EarlyBird Properties."
     }
   ];

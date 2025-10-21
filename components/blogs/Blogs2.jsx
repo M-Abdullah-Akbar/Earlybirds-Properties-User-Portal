@@ -284,7 +284,7 @@ const Blogs2 = () => {
                           <p className="fw-5">{formatDate(blog.createdAt)}</p>
                         </div>
                         <h4 className="title line-clamp-3">
-                          <Link href={`/blogs/${blog.slug || blog._id}`}>
+                          <Link href={`/blogs/${blog.focusKeyword || blog.slug || blog._id}`}>
                             {blog.title}
                           </Link>
                         </h4>

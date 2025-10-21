@@ -387,7 +387,7 @@ export default function BlogDetails({ blogId }) {
                         <div className="image-wrap">
                           <Link
                             href={`/blogs/${
-                              featuredBlog.slug || featuredBlog._id
+                              featuredBlog.focusKeyword || featuredBlog.slug || featuredBlog._id
                             }`}
                           >
                             <Image
@@ -407,7 +407,7 @@ export default function BlogDetails({ blogId }) {
                           <h5 className="title fw-5">
                             <Link
                               href={`/blogs/${
-                                featuredBlog.slug || featuredBlog._id
+                                featuredBlog.focusKeyword || featuredBlog.slug || featuredBlog._id
                               }`}
                             >
                               {featuredBlog.title}

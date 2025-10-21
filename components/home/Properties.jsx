@@ -70,7 +70,7 @@ export default function Properties({ title }) {
                             {property.title}
                           </Link>
                         </h5>
-                        <p className="location text-1 line-clamp-1 ">
+                        <p className="location text-1 line-clamp ">
                           <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
                            property.location?.address || 
                            `${property.area || ''} ${property.emirate || ''}`.trim() || 
@@ -162,7 +162,7 @@ export default function Properties({ title }) {
                           {property.title}
                         </Link>
                       </h5>
-                      <p className="location text-1 line-clamp-1 ">
+                      <p className="location text-1 line-clamp ">
                         <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
                          property.location?.address || 
                          `${property.area || ''} ${property.emirate || ''}`.trim() || 
