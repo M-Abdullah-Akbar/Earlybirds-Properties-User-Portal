@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import dynamic from "next/dynamic";
+//import dynamic from "next/dynamic";
 
 // Critical CSS - load immediately (compiled CSS, not SCSS)
 import "../public/css/main.css";

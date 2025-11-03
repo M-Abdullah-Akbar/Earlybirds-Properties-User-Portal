@@ -5,7 +5,7 @@ import Partners from "@/components/home/Partners";
 import Contact from "@/components/common/Contact";
 import ProvideSection from "@/components/home/ProvideSection";
 import Hero from "@/components/home/Hero";
-import Locations from "@/components/home/Locations";
+//import Locations from "@/components/home/Locations";
 import Testimonials from "@/components/common/Testimonials";
 import React, { Suspense, useEffect } from "react";
 import AboutSection from "@/components/home/AboutSection";
