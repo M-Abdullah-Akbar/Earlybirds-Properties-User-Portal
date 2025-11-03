@@ -29,6 +29,20 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## SEO & Sitemap
+
+This project includes automatic sitemap generation and robots.txt configuration:
+
+- **Sitemap**: Automatically generated at `/sitemap.xml` (includes all static pages, blogs, and properties)
+- **Robots.txt**: Available at `/robots.txt` (configured to allow search engines)
+- **Documentation**: See [SEO_SITEMAP_SETUP.md](./SEO_SITEMAP_SETUP.md) for detailed setup and maintenance guide
+
+The sitemap is generated at build time and includes:
+- All static pages (homepage, about-us, buy, rent, sell, etc.)
+- All published blog posts from `/blogs/[slug]` **with images**
+- All available properties from `/property-detail/[slug]` **with images**
+- Image metadata (URLs, titles, captions) for Google Image Search
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

@@ -10,6 +10,9 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+    // Allow SVG images (blank.png is actually an SVG file)
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
   // Enable experimental features for better performance

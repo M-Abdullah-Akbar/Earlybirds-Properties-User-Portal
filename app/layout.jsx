@@ -122,6 +122,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href={`https://earlybirds-properties.com${pathname}`} />
+        <link rel="sitemap" type="application/xml" href="https://earlybirds-properties.com/sitemap.xml" />
         
         {/* Enhanced preconnect and dns-prefetch for critical origins */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
