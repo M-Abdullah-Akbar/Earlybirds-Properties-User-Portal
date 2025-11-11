@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+import Link from "next/link";
 //import DropdownSelect from "@/components/common/DropdownSelect";
 export default function LoanCalculator() {
   return (
@@ -19,10 +20,10 @@ export default function LoanCalculator() {
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
                     Explore handpicked{" "}
-                    <a href="/buy?propertyType=apartment">apartments</a>,{" "}
-                    <a href="/buy?propertyType=villa">villas</a>,{" "}
-                    <a href="/buy?propertyType=penthouse">penthouse</a>, and{" "}
-                    <a href="/buy?propertyType=townhouse">townhouses</a> all designed to match your lifestyle. Your
+                    <Link href="/buy/apartments">apartments</Link>,{" "}
+                    <Link href="/buy/villas">villas</Link>,{" "}
+                    <Link href="/buy/penthouses">penthouse</Link>, and{" "}
+                    <Link href="/buy/townhouses">townhouses</Link> all designed to match your lifestyle. Your
                     perfect home is just a click away.
                   </p>
                 </div>
@@ -150,7 +151,7 @@ export default function LoanCalculator() {
                   <p className="text-1 split-text split-lines-transform">
                     Discover a curated collection of premium{" "}
                     <a href="https://www.bayut.com/property/details-9504805.html" target="_blank">rental properties</a> from modern apartments to spacious{" "}
-                    <a href="/rent?propertyType=villa">villas</a> offering
+                    <Link href="/rent/villas">villas</Link> offering
                     comfort, style, and a refined lifestyle for every budget.
                   </p>
                 </div>
