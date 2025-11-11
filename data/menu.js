@@ -6,29 +6,29 @@ export const services = [
 ];
 
 export const buyMenu = [
-  { href: "/buy?propertyType=apartment", label: "Apartments" },
-  { href: "/buy?propertyType=villa", label: "Villas" },
-  { href: "/buy?propertyType=townhouse", label: "Townhouses" },
-  { href: "/buy?propertyType=penthouse", label: "Penthouses" },
-  { href: "/buy?propertyType=office", label: "Offices" },
-  { href: "/buy?propertyType=studio", label: "Studios" }
+  { href: "/buy/apartments", label: "Apartments" },
+  { href: "/buy/villas", label: "Villas" },
+  { href: "/buy/townhouses", label: "Townhouses" },
+  { href: "/buy/penthouses", label: "Penthouses" },
+  { href: "/buy/offices", label: "Offices" },
+  { href: "/buy/studios", label: "Studios" }
 ];
 
 export const rentMenu = [
-  { href: "/rent?propertyType=apartment", label: "Apartments" },
-  { href: "/rent?propertyType=villa", label: "Villas" },
-  { href: "/rent?propertyType=townhouse", label: "Townhouses" },
-  { href: "/rent?propertyType=penthouse", label: "Penthouses" },
-  { href: "/rent?propertyType=office", label: "Offices" },
-  { href: "/rent?propertyType=studio", label: "Studios" }
+  { href: "/rent/apartments", label: "Apartments" },
+  { href: "/rent/villas", label: "Villas" },
+  { href: "/rent/townhouses", label: "Townhouses" },
+  { href: "/rent/penthouses", label: "Penthouses" },
+  { href: "/rent/offices", label: "Offices" },
+  { href: "/rent/studios", label: "Studios" }
 ];
 
 export const offPlanMenu = [
-  { href: "/off-plan-properties?emirate=Dubai", label: "Dubai" },
-  { href: "/off-plan-properties?emirate=Abu+Dhabi", label: "Abu Dhabi" },
-  { href: "/off-plan-properties?emirate=Sharjah", label: "Sharjah" },
-  { href: "/off-plan-properties?emirate=Ajman", label: "Ajman" },
-  { href: "/off-plan-properties?emirate=Ras+Al+Khaimah", label: "Ras al Khaimah" },
-  { href: "/off-plan-properties?emirate=Umm+Al+Quwain", label: "Umm al Quwain" },
-  { href: "/off-plan-properties?emirate=Fujairah", label: "Fujairah" },
+  { href: "/off-plan-properties/dubai", label: "Dubai" },
+  { href: "/off-plan-properties/abu-dhabi", label: "Abu Dhabi" },
+  { href: "/off-plan-properties/sharjah", label: "Sharjah" },
+  { href: "/off-plan-properties/ajman", label: "Ajman" },
+  { href: "/off-plan-properties/ras-al-khaimah", label: "Ras al Khaimah" },
+  { href: "/off-plan-properties/umm-al-quwain", label: "Umm al Quwain" },
+  { href: "/off-plan-properties/fujairah", label: "Fujairah" },
 ];

@@ -9,6 +9,7 @@ export default function Services() {
           <div className="col-12">
             <div className="tf-grid-layout md-col-2 mb-3">
               <div
+                id="commercial-properties"
                 className="icons-box style-3 wow animate__zoomIn animate__animated"
                 data-wow-duration="1.5s"
                 data-wow-delay="0s"
@@ -29,6 +30,7 @@ export default function Services() {
                 </div>
               </div>
               <div
+                id="property-management"
                 className="icons-box style-3 wow animate__zoomIn animate__animated"
                 data-wow-duration="1.5s"
                 data-wow-delay="0s"
@@ -49,6 +51,7 @@ export default function Services() {
                 </div>
               </div>
               <div
+                id="holiday-homes"
                 className="icons-box style-3 wow animate__zoomIn animate__animated"
                 data-wow-duration="1.5s"
                 data-wow-delay="0s"
@@ -69,6 +72,7 @@ export default function Services() {
                 </div>
               </div>
               <div
+                id="mortgage"
                 className="icons-box style-3 wow animate__zoomIn animate__animated"
                 data-wow-duration="1.5s"
                 data-wow-delay="0s"

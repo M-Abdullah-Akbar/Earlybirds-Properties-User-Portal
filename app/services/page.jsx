@@ -1,8 +1,4 @@
-import React from "react";
-import Header from "@/components/headers/Header";
-import Footer from "@/components/footer/Footer";
-import Services from '@/components/services/Services';
-import WelcomeSection from "@/components/services/WelcomeSection";
+import ServicesClient from "@/components/services/ServicesClient";
 
 export const metadata = {
   title: "Real Estate Services UAE | Earlybirds",
@@ -10,17 +6,5 @@ export const metadata = {
 };
 
 export default function ServicesPage() {
-
-  return (
-    <>
-      <div id="wrapper">
-        <Header />
-        <div className="main-content mb-10">
-          <WelcomeSection />
-          <Services />
-        </div>
-        <Footer parentClass="style-2" />
-      </div>
-    </>
-  );
+  return <ServicesClient />;
 }
