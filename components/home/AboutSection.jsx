@@ -28,9 +28,9 @@ export default function LoanCalculator() {
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <a href="/buy" className="tf-btn bg-color-primary pd-6 fw-7">
+                  <Link href="/buy" className="tf-btn bg-color-primary pd-6 fw-7">
                     Find More
-                  </a>
+                  </Link>
                 </div>
                 {/*<form
                 onSubmit={(e) => e.preventDefault()}
@@ -156,9 +156,9 @@ export default function LoanCalculator() {
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <a href="/rent" className="tf-btn bg-color-primary pd-6 fw-7">
+                  <Link href="/rent" className="tf-btn bg-color-primary pd-6 fw-7">
                     Find More
-                  </a>
+                  </Link>
                 </div>
                 {/*<form
               onSubmit={(e) => e.preventDefault()}
