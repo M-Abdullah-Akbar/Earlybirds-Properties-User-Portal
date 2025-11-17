@@ -1,7 +1,7 @@
 import { blogAPI, propertyAPI } from "@/utils/api";
 
 // Base URL for the site
-const baseUrl = "https://earlybirds-properties.com";
+const baseUrl = "https://earlybirdsproperties.com";
 
 // Static routes with their priorities
 const staticRoutes = [
