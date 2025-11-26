@@ -4,6 +4,7 @@ import { useState } from "react";
 import { EffectFade, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
+// Swiper is automatically code-split by webpack config into its own chunk
 const images = [
   { src: "/images/page-title/thumbs-main-3.jpg", alt: "" },
   { src: "/images/page-title/thumbs-main-4.jpg", alt: "" },

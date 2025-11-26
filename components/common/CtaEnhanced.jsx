@@ -1,33 +1,37 @@
-"use client"
+"use client";
 import React from "react";
-import SplitTextAnimation from "./SplitTextAnimation";
+// import SplitTextAnimation from "./SplitTextAnimation";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 function CtaEnhanced() {
   const pathname = usePathname();
-  
+
   // Determine the appropriate href and button text based on the current page
   const getCtaDetails = () => {
-    if (pathname.includes('/sell')) {
+    if (pathname.includes("/sell")) {
       return {
         href: "/instant-valuation",
-        text: "Get your instant valuation"
+        text: "Get your instant valuation",
       };
-    } else if (pathname.includes('/buy') || pathname.includes('/rent') || pathname.includes('/off-plan-properties')) {
+    } else if (
+      pathname.includes("/buy") ||
+      pathname.includes("/rent") ||
+      pathname.includes("/off-plan-properties")
+    ) {
       return {
         href: "/book-a-consultation",
-        text: "Book a Consultation"
+        text: "Book a Consultation",
       };
     }
     return {
       href: "/book-a-consultation",
-      text: "Book a Consultation"
+      text: "Book a Consultation",
     }; // Default fallback
   };
-  
+
   const ctaDetails = getCtaDetails();
-  
+
   return (
     <div className="wg-appraisal ">
       <div className="tf-container">
@@ -36,9 +40,9 @@ function CtaEnhanced() {
             <div className="content">
               <div className="heading-section mb-30">
                 <h2 className="title split-text effect-right">
-                  <SplitTextAnimation text="Are You Selling Or" />
+                  Are You Selling Or
                   <br />
-                  <SplitTextAnimation text="Renting Your Property?" />
+                  Renting Your Property?
                 </h2>
                 <p
                   className="text-1 split-text split-lines-transform"
@@ -48,7 +52,10 @@ function CtaEnhanced() {
                   website.
                 </p>
               </div>
-              <a href={ctaDetails.href} className="tf-btn bg-color-primary fw-7 pd-11">
+              <a
+                href={ctaDetails.href}
+                className="tf-btn bg-color-primary fw-7 pd-11"
+              >
                 {ctaDetails.text}
               </a>
               <div

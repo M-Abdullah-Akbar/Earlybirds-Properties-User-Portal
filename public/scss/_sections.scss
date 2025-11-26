@@ -189,10 +189,13 @@
     }
   }
   &.home02 {
+    /* Background image moved to Next.js Image component for better LCP performance */
+    /* Fallback background for when Image component is not available */
     background-image: url(../images/Buy-and-Rent-Properties-in-Dubai-Earlybird-Properties.jpg);
     padding: 232px 0 294px;
     background-size: cover;
-    background-attachment: fixed;
+    background-position: center;
+    /* Removed background-attachment: fixed to prevent forced reflow (causes performance issues) */
     .heading-title {
       margin-bottom: 80px;
     }

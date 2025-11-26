@@ -3,9 +3,10 @@ import { boxHelpData } from "@/data/helpCenter";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import Image from "next/image";
 import { Pagination, Autoplay } from "swiper/modules";
+// Swiper is automatically code-split by webpack config into its own chunk
 
 export default function ProvideSection() {
   return (
@@ -15,7 +16,7 @@ export default function ProvideSection() {
           <div className="col-12">
             <div className="heading-section text-center mb-68 gap-33">
               <h2 className="title split-text effect-right">
-                <SplitTextAnimation text="What We Provide" />
+                What We Provide
               </h2>
               {/*<p className="text-1 text-color-default split-text split-lines-transform">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce

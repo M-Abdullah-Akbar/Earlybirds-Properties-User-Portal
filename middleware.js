@@ -9,8 +9,17 @@ export function middleware(request) {
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
 
-  // Add compression hint
+  // Add compression hint and optimize response
   response.headers.set('Vary', 'Accept-Encoding');
+  
+  // Add early hints for critical resources to reduce latency
+  if (request.nextUrl.pathname === '/') {
+    response.headers.set('Link', '</images/Buy-and-Rent-Properties-in-Dubai-Earlybird-Properties.jpg>; rel=preload; as=image; fetchpriority=high, </icons/icomoon/fonts/icomoon.woff?6ufuj>; rel=preload; as=font; type=font/woff; crossorigin');
+  }
+
+  // Optimize server response time with connection keep-alive
+  response.headers.set('Connection', 'keep-alive');
+  response.headers.set('Keep-Alive', 'timeout=5, max=1000');
 
   // Set cache control for static assets
   if (request.nextUrl.pathname.startsWith('/_next/static/') || 

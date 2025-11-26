@@ -2,6 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
+// Swiper is automatically code-split by webpack config into its own chunk
 
 export default function BrandSlider({
   parentClass = "infiniteslide wrap-partners mt-5",

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import Link from "next/link";
 
 export default function Locations() {
@@ -57,7 +57,7 @@ export default function Locations() {
               <div className="dubai-content-panel">
                 <div className="heading-section">
                   <h2 className="title split-text effect-right">
-                    <SplitTextAnimation text="Find the Best Residential Areas in Dubai" />
+                    Find the Best Residential Areas in Dubai
                   </h2>
                   <p className="text-1 split-text split-lines-transform text-color-default">
                     Top Areas In Dubai, UAE

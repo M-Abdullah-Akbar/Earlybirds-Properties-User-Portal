@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import Link from "next/link";
 
 export default function OffplanProjects() {
@@ -48,7 +48,7 @@ export default function OffplanProjects() {
             {/* Heading Section */}
             <div className="heading-section mb-48">
               <h2 className="title split-text effect-right">
-                <SplitTextAnimation text="Off Plan Projects" />
+                Off Plan Projects
               </h2>
               <p className="text-1 split-text split-lines-transform">
                 New off-plan developments
@@ -68,35 +68,44 @@ export default function OffplanProjects() {
                         height={300}
                         className="lazyload"
                         style={{
-                          width: '100%',
-                          height: '300px',
-                          objectFit: 'cover',
-                          borderRadius: '16px'
+                          width: "100%",
+                          height: "300px",
+                          objectFit: "cover",
+                          borderRadius: "16px",
                         }}
                       />
                       {/* Property Count Overlay */}
-                      <div className="box-tag" style={{
-                        position: 'absolute',
-                        bottom: '0',
-                        left: '0',
-                        right: '0',
-                        padding: '20px',
-                        borderRadius: '0 0 16px 16px'
-                      }}>
-                        <h6 className="text_white fw-6" style={{
-                          margin: '0',
-                          fontSize: '18px',
-                          fontWeight: '600'
-                        }}>
+                      <div
+                        className="box-tag"
+                        style={{
+                          position: "absolute",
+                          bottom: "0",
+                          left: "0",
+                          right: "0",
+                          padding: "20px",
+                          borderRadius: "0 0 16px 16px",
+                        }}
+                      >
+                        <h6
+                          className="text_white fw-6"
+                          style={{
+                            margin: "0",
+                            fontSize: "18px",
+                            fontWeight: "600",
+                          }}
+                        >
                           {city.propertyCount} + Properties
                         </h6>
                       </div>
                     </div>
                     {/* City Name */}
-                    <div className="box-location" style={{
-                      marginTop: '15px',
-                      textAlign: 'center',
-                    }}>
+                    <div
+                      className="box-location"
+                      style={{
+                        marginTop: "15px",
+                        textAlign: "center",
+                      }}
+                    >
                       <h6 className="text-1 fw-6">
                         <Link href={city.pageUrl}>{city.city}</Link>
                       </h6>

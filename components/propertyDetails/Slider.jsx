@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import { Navigation } from "swiper/modules";
+// Swiper is automatically code-split by webpack config into its own chunk
 
 export default function Slider4({ property }) {
   // Use images from property data if available, otherwise use fallback

@@ -1,6 +1,6 @@
 import BrandSlider from "./BrandSlider";
 import React from "react";
-import SplitTextAnimation from "./SplitTextAnimation";
+// import SplitTextAnimation from "./SplitTextAnimation";
 
 export default function CommonBrands({
   parentClass = "section-work-together style-2 mt-5",
@@ -17,17 +17,15 @@ export default function CommonBrands({
           <div className="row">
             <div className="col-12 wrap-partners">
               <div className="heading-section text-center mb-48">
-                <h2 className="title split-text effect-right">
-                  <SplitTextAnimation text={title} />
-                </h2>
-                <p className="text-1 split-text effect-right">
-                  <SplitTextAnimation text={description} />
-                </p>
+                <h2 className="title split-text effect-right">{title}</h2>
+                <p className="text-1 split-text effect-right">{description}</p>
               </div>
               <BrandSlider parentClass="infiniteslide wrap-partners mb-40" />
               {sliderCount > 1 && (
                 <BrandSlider
-                  parentClass={`infiniteslide wrap-partners ${reverseSecondSlider ? 'partner-slider-reverse' : ''}`}
+                  parentClass={`infiniteslide wrap-partners ${
+                    reverseSecondSlider ? "partner-slider-reverse" : ""
+                  }`}
                 />
               )}
             </div>

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import Link from "next/link";
 //import DropdownSelect from "@/components/common/DropdownSelect";
 export default function LoanCalculator() {
@@ -14,21 +14,25 @@ export default function LoanCalculator() {
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">
-                    <SplitTextAnimation text="Find, Buy & Own" />
+                    Find, Buy & Own
                     <br />
-                    <SplitTextAnimation text=" Your Dream Home" />
+                    Your Dream Home
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
                     Explore handpicked{" "}
                     <Link href="/buy/apartments">apartments</Link>,{" "}
                     <Link href="/buy/villas">villas</Link>,{" "}
                     <Link href="/buy/penthouses">penthouse</Link>, and{" "}
-                    <Link href="/buy/townhouses">townhouses</Link> all designed to match your lifestyle. Your
-                    perfect home is just a click away.
+                    <Link href="/buy/townhouses">townhouses</Link> all designed
+                    to match your lifestyle. Your perfect home is just a click
+                    away.
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <Link href="/buy" className="tf-btn bg-color-primary pd-6 fw-7">
+                  <Link
+                    href="/buy"
+                    className="tf-btn bg-color-primary pd-6 fw-7"
+                  >
                     Find More
                   </Link>
                 </div>
@@ -146,17 +150,26 @@ export default function LoanCalculator() {
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">
-                    <SplitTextAnimation text="Rental Homes for Everyone" />
+                    Rental Homes for Everyone
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
                     Discover a curated collection of premium{" "}
-                    <a href="https://www.bayut.com/property/details-9504805.html" target="_blank">rental properties</a> from modern apartments to spacious{" "}
-                    <Link href="/rent/villas">villas</Link> offering
-                    comfort, style, and a refined lifestyle for every budget.
+                    <a
+                      href="https://www.bayut.com/property/details-9504805.html"
+                      target="_blank"
+                    >
+                      rental properties
+                    </a>{" "}
+                    from modern apartments to spacious{" "}
+                    <Link href="/rent/villas">villas</Link> offering comfort,
+                    style, and a refined lifestyle for every budget.
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <Link href="/rent" className="tf-btn bg-color-primary pd-6 fw-7">
+                  <Link
+                    href="/rent"
+                    className="tf-btn bg-color-primary pd-6 fw-7"
+                  >
                     Find More
                   </Link>
                 </div>

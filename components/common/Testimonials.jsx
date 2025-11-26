@@ -3,8 +3,9 @@ import { testimonials } from "@/data/testimonials";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 //import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+// Swiper is automatically code-split by webpack config into its own chunk
 //import { FaGoogle } from "react-icons/fa";
 export default function Testimonials() {
   return (
@@ -15,7 +16,7 @@ export default function Testimonials() {
             <div className="col-12">
               <div className="heading-section text-center mb-48">
                 <h2 className="title split-text effect-right">
-                  <SplitTextAnimation text="What Our Clients Say" />
+                  What Our Clients Say
                 </h2>
                 <p className="text-1 split-text split-lines-transform">
                   We are thrilled to have served so many investors in finding

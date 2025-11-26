@@ -15,47 +15,65 @@ export default function BackToTop() {
   };
 
   // Throttle scroll handler to prevent excessive reflows
-  const throttle = useMemo(() => (func, delay) => {
-    let timeoutId;
-    let lastExecTime = 0;
-    return function (...args) {
-      const currentTime = Date.now();
-      
-      if (currentTime - lastExecTime > delay) {
-        func.apply(this, args);
-        lastExecTime = currentTime;
-      } else {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
+  const throttle = useMemo(
+    () => (func, delay) => {
+      let timeoutId;
+      let lastExecTime = 0;
+      return function (...args) {
+        const currentTime = Date.now();
+
+        if (currentTime - lastExecTime > delay) {
           func.apply(this, args);
-          lastExecTime = Date.now();
-        }, delay - (currentTime - lastExecTime));
-      }
-    };
-  }, []);
+          lastExecTime = currentTime;
+        } else {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            func.apply(this, args);
+            lastExecTime = Date.now();
+          }, delay - (currentTime - lastExecTime));
+        }
+      };
+    },
+    []
+  );
 
   const handleScroll = useCallback(() => {
-    // Use requestAnimationFrame to batch DOM reads
-    requestAnimationFrame(() => {
-      const currentScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      setScrolled(currentScroll);
-      setShowScrollTop(window.scrollY >= window.innerHeight);
-      
-      // Cache scroll height calculation to avoid repeated DOM reads
-      const totalScrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercentage = (currentScroll / totalScrollHeight) * 100;
-      setScrollPercentage(scrollPercentage);
+    if (!window.requestAnimationFrame) return;
+
+    window.requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const innerH = window.innerHeight;
+
+      setScrolled(scrollY);
+      setShowScrollTop(scrollY >= innerH);
+
+      // Only calculate percentage if needed (e.g. for the circle progress)
+      // Using document.documentElement.scrollHeight causes reflow, so we throttle it or accept it's needed
+      // But we can check if we really need to update the percentage every frame
+      if (scrollY > 100) {
+        const totalHeight = document.documentElement.scrollHeight - innerH;
+        if (totalHeight > 0) {
+          setScrollPercentage((scrollY / totalHeight) * 100);
+        }
+      }
     });
-  }, []); // 16ms throttle for ~60fps
+  }, []);
 
+  // Throttle the scroll event listener
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [handleScroll]);
   return (
     <div

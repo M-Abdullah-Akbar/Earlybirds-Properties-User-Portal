@@ -6,6 +6,8 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
+    "start:prod": "next start -p 3000",
+    "build:analyze": "ANALYZE=true next build",
     "lint": "next lint"
   },
   "dependencies": {
@@ -26,8 +28,6 @@
     "chart.js": "^4.4.7",
     "critters": "^0.0.23",
     "easy-currencies": "^1.8.3",
-    "gsap": "^3.12.7",
-    "gsap-trial": "^3.12.7",
     "next": "15.1.7",
     "odometer": "^0.4.8",
     "photoswipe": "^5.4.4",

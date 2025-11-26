@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 //import DropdownSelect from "@/components/common/DropdownSelect";
 export default function AboutUsSection() {
   return (
@@ -13,18 +13,31 @@ export default function AboutUsSection() {
               <div className="content">
                 <div className="heading-section ">
                   <h2 className="title split-text effect-right">
-                    <SplitTextAnimation text="From Our Founder&apos;s Vision" />
+                    From Our Founder&apos;s Vision
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    At Early Bird Properties, We think that real estate is more than selling or buying. It&apos;s about assisting people with beginning new chapters of their lives. When I started this business, my goal was straightforward: <strong>&quot;to give each client an experience that is founded upon trust, openness, and genuine commitment&quot;</strong>
+                    At Early Bird Properties, We think that real estate is more
+                    than selling or buying. It&apos;s about assisting people
+                    with beginning new chapters of their lives. When I started
+                    this business, my goal was straightforward:{" "}
+                    <strong>
+                      &quot;to give each client an experience that is founded
+                      upon trust, openness, and genuine commitment&quot;
+                    </strong>
                   </p>
                   <p className="text-1 split-text split-lines-transform">
-                    Early Bird Properties isn&apos;t simply a business, it&apos;s a guarantee of dedication, creativity, and outcomes. Our experience is fueled by a single cause: to turn your property ambitions into reality, with satisfying, and stress-free experience.
+                    Early Bird Properties isn&apos;t simply a business,
+                    it&apos;s a guarantee of dedication, creativity, and
+                    outcomes. Our experience is fueled by a single cause: to
+                    turn your property ambitions into reality, with satisfying,
+                    and stress-free experience.
                   </p>
                 </div>
                 <div className="wrap-btn">
                   <h3 className="text-1 fw-6">Muhammad Zohaib Saleem</h3>
-                  <h3 className="text-1 fw-6">Founder & CEO, Early Bird Properties</h3>
+                  <h3 className="text-1 fw-6">
+                    Founder & CEO, Early Bird Properties
+                  </h3>
                 </div>
               </div>
             </div>
@@ -42,7 +55,7 @@ export default function AboutUsSection() {
             </div>
           </div>
         </div>
-      </section>  
+      </section>
       <section className="section-pre-approved mt-5">
         <div className="tf-container">
           <div className="row flex items-center">
@@ -61,14 +74,20 @@ export default function AboutUsSection() {
             <div className="col-lg-6 order-lg-2 order-1">
               <div className="content">
                 <div className="heading-section ">
-                  <h2 className="title split-text effect-right">
-                    <SplitTextAnimation text="Our Team" />
-                  </h2>
+                  <h2 className="title split-text effect-right">Our Team</h2>
                   <p className="text-1 split-text split-lines-transform">
-                    Behind every successful real estate journey is a team that cares. At Early Bird Properties, we unite real estate experts, market analysts, and client advisors who are dedicated to converting opportunities into success stories.
+                    Behind every successful real estate journey is a team that
+                    cares. At Early Bird Properties, we unite real estate
+                    experts, market analysts, and client advisors who are
+                    dedicated to converting opportunities into success stories.
                   </p>
                   <p className="text-1 split-text split-lines-transform">
-                    Strength through diversity, each member of our team has different skills and insights, which allows us to provide individualized solutions for buyers, sellers, and investors.You&apos;re not working with an agent here, you&apos;re working with a partner who listens, understands, and works in your best interest.
+                    Strength through diversity, each member of our team has
+                    different skills and insights, which allows us to provide
+                    individualized solutions for buyers, sellers, and
+                    investors.You&apos;re not working with an agent here,
+                    you&apos;re working with a partner who listens, understands,
+                    and works in your best interest.
                   </p>
                 </div>
               </div>

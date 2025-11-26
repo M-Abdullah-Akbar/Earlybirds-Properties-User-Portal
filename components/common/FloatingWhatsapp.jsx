@@ -2,9 +2,22 @@ import React, { useEffect } from "react";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 
 const FloatingWhatsapp = () => {
+  const [isMounted, setIsMounted] = React.useState(false);
+
   useEffect(() => {
+    // Delay loading of WhatsApp widget to improve TBT
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 4000); // 4 second delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     // Inject custom CSS and JavaScript for left-side animation
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       .floating-whatsapp-chatbox {
         transform-origin: left bottom !important;
@@ -42,39 +55,45 @@ const FloatingWhatsapp = () => {
       }
     `;
     document.head.appendChild(style);
-    
+
     // Use MutationObserver to detect chatbox visibility changes
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "style"
+        ) {
           const chatbox = mutation.target;
-          if (chatbox.classList.contains('floating-whatsapp-chatbox')) {
-            const isVisible = chatbox.style.opacity === '1' || chatbox.style.display === 'block';
-            const isHidden = chatbox.style.opacity === '0' || chatbox.style.display === 'none';
-            
+          if (chatbox.classList.contains("floating-whatsapp-chatbox")) {
+            const isVisible =
+              chatbox.style.opacity === "1" ||
+              chatbox.style.display === "block";
+            const isHidden =
+              chatbox.style.opacity === "0" || chatbox.style.display === "none";
+
             if (isVisible) {
-              chatbox.classList.remove('slide-out-left');
-              chatbox.classList.add('slide-in-left');
+              chatbox.classList.remove("slide-out-left");
+              chatbox.classList.add("slide-in-left");
             } else if (isHidden) {
-              chatbox.classList.remove('slide-in-left');
-              chatbox.classList.add('slide-out-left');
+              chatbox.classList.remove("slide-in-left");
+              chatbox.classList.add("slide-out-left");
             }
           }
         }
       });
     });
-    
+
     // Start observing after a short delay to ensure the component is mounted
     const timeoutId = setTimeout(() => {
-      const chatboxes = document.querySelectorAll('.floating-whatsapp-chatbox');
-      chatboxes.forEach(chatbox => {
+      const chatboxes = document.querySelectorAll(".floating-whatsapp-chatbox");
+      chatboxes.forEach((chatbox) => {
         observer.observe(chatbox, {
           attributes: true,
-          attributeFilter: ['style']
+          attributeFilter: ["style"],
         });
       });
     }, 1000);
-    
+
     return () => {
       clearTimeout(timeoutId);
       observer.disconnect();
@@ -82,7 +101,9 @@ const FloatingWhatsapp = () => {
         document.head.removeChild(style);
       }
     };
-  }, []);
+  }, [isMounted]);
+
+  if (!isMounted) return null;
 
   return (
     <FloatingWhatsApp

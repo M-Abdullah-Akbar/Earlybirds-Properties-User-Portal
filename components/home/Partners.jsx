@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import Link from "next/link";
 
 export default function Partners() {
@@ -56,7 +56,7 @@ export default function Partners() {
             <div className="content-section">
               <div className="heading-section">
                 <h2 className="title split-text effect-right">
-                  <SplitTextAnimation text="Find Your Dream Home in Dubai." />
+                  Find Your Dream Home in Dubai.
                 </h2>
               </div>
               

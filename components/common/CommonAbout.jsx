@@ -1,5 +1,5 @@
 import React from "react";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 
 export default function CommonAbout({
   title,
@@ -15,7 +15,7 @@ export default function CommonAbout({
             <div className="content">
               <div className="heading-section">
                 <h3 className="title split-text effect-right">
-                  <SplitTextAnimation text={title} />
+                  {title}
                 </h3>
                 {Array.isArray(description) ? (
                   description.map((paragraph, index) => (

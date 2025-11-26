@@ -2,7 +2,7 @@
 // This file generates /robots.txt at build time
 
 export default function robots() {
-  const baseUrl = "https://earlybirds-properties.com";
+  const baseUrl = "https://earlybirdsproperties.com";
   
   return {
     rules: [

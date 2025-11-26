@@ -2,10 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import SplitTextAnimation from "@/components/common/SplitTextAnimation";
+// import SplitTextAnimation from "@/components/common/SplitTextAnimation";
 import { properties } from "@/data/properties";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+// Swiper is automatically code-split by webpack config into its own chunk
 export default function Properties({ title }) {
   return (
     <section className="section-listing mt-5">
@@ -13,9 +14,7 @@ export default function Properties({ title }) {
         <div className="row">
           <div className="col-12">
             <div className="heading-section text-center ">
-              <h2 className="title split-text effect-right">
-                <SplitTextAnimation text={title} />
-              </h2>
+              <h2 className="title split-text effect-right">{title}</h2>
               {/*<p className="text-1 split-text split-lines-transform">
                 Thousands of luxury home enthusiasts just like you visit our
                 website.
@@ -33,7 +32,14 @@ export default function Properties({ title }) {
                   <div key={i} className="swiper-slide">
                     <div className="box-house hover-img ">
                       <div className="image-wrap">
-                        <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
+                        <Link
+                          href={`/property-detail/${
+                            property.focusKeyword ||
+                            property.slug ||
+                            property._id ||
+                            property.id
+                          }`}
+                        >
                           <Image
                             className="lazyload"
                             alt=""
@@ -66,15 +72,26 @@ export default function Properties({ title }) {
                       </div>
                       <div className="content">
                         <h5 className="title">
-                          <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
+                          <Link
+                            href={`/property-detail/${
+                              property.focusKeyword ||
+                              property.slug ||
+                              property._id ||
+                              property.id
+                            }`}
+                          >
                             {property.title}
                           </Link>
                         </h5>
                         <p className="location text-1 line-clamp ">
-                          <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
-                           property.location?.address || 
-                           `${property.area || ''} ${property.emirate || ''}`.trim() || 
-                           'Location not specified'}
+                          <i className="icon-location" />{" "}
+                          {typeof property.location === "string"
+                            ? property.location
+                            : property.location?.address ||
+                              `${property.area || ""} ${
+                                property.emirate || ""
+                              }`.trim() ||
+                              "Location not specified"}
                         </p>
                         <ul className="meta-list flex">
                           <li className="text-1 flex">
@@ -100,7 +117,12 @@ export default function Properties({ title }) {
                               Compare
                             </a>*/}
                             <Link
-                              href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
+                              href={`/property-detail/${
+                                property.focusKeyword ||
+                                property.slug ||
+                                property._id ||
+                                property.id
+                              }`}
                               className="tf-btn style-border pd-4"
                             >
                               Details
@@ -128,7 +150,14 @@ export default function Properties({ title }) {
                 <SwiperSlide key={i} className="swiper-slide">
                   <div className="box-house hover-img ">
                     <div className="image-wrap">
-                      <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
+                      <Link
+                        href={`/property-detail/${
+                          property.focusKeyword ||
+                          property.slug ||
+                          property._id ||
+                          property.id
+                        }`}
+                      >
                         <Image
                           className="lazyload"
                           alt=""
@@ -158,15 +187,26 @@ export default function Properties({ title }) {
                     </div>
                     <div className="content">
                       <h5 className="title">
-                        <Link href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}>
+                        <Link
+                          href={`/property-detail/${
+                            property.focusKeyword ||
+                            property.slug ||
+                            property._id ||
+                            property.id
+                          }`}
+                        >
                           {property.title}
                         </Link>
                       </h5>
                       <p className="location text-1 line-clamp ">
-                        <i className="icon-location" /> {typeof property.location === 'string' ? property.location : 
-                         property.location?.address || 
-                         `${property.area || ''} ${property.emirate || ''}`.trim() || 
-                         'Location not specified'}
+                        <i className="icon-location" />{" "}
+                        {typeof property.location === "string"
+                          ? property.location
+                          : property.location?.address ||
+                            `${property.area || ""} ${
+                              property.emirate || ""
+                            }`.trim() ||
+                            "Location not specified"}
                       </p>
                       <ul className="meta-list flex">
                         <li className="text-1 flex">
@@ -192,7 +232,12 @@ export default function Properties({ title }) {
                             Compare
                           </a>
                           <Link
-                            href={`/property-detail/${property.focusKeyword || property.slug || property._id || property.id}`}
+                            href={`/property-detail/${
+                              property.focusKeyword ||
+                              property.slug ||
+                              property._id ||
+                              property.id
+                            }`}
                             className="tf-btn style-border pd-4"
                           >
                             Details
