@@ -27723,7 +27723,6 @@ tr {
 .section-pre-approved .property-image {
   position: relative;
   height: 300px;
-  overflow: hidden;
 }
 .section-pre-approved .property-image img {
   width: 100%;

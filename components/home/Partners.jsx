@@ -8,18 +8,18 @@ export default function Partners() {
     {
       type: "Apartment",
       image: "/images/a1336f10-e6d1-4065-b5aa-e06e0dd0afbb.jpg",
-      alt: "Luxury apartments, for sale in Dubai, available through EarlyBird Properties."
+      alt: "Luxury apartments, for sale in Dubai, available through EarlyBird Properties.",
     },
     {
       type: "Townhouse",
-      image: "/images/Townhouse-Image.jpg", 
-      alt: "Luxury Townhouse, for sale in Dubai, available through EarlyBird Properties."
+      image: "/images/Townhouse-Image.jpg",
+      alt: "Luxury Townhouse, for sale in Dubai, available through EarlyBird Properties.",
     },
     {
       type: "Villa",
       image: "/images/PHOTO-2025-10-02-17-29-12.jpg",
-      alt: "Elegant villas, for sale in Dubai, available through EarlyBird Properties."
-    }
+      alt: "Elegant villas, for sale in Dubai, available through EarlyBird Properties.",
+    },
   ];
 
   return (
@@ -33,7 +33,11 @@ export default function Partners() {
                 {propertyTypes.map((property, index) => (
                   <div key={index} className="col-md-4">
                     <div className="property-card">
-                      <div className="property-image">
+                      <Link
+                        href="/off-plan-properties"
+                        className="property-image"
+                        style={{display: ""}}
+                      >
                         <Image
                           src={property.image}
                           alt={property.alt}
@@ -43,7 +47,7 @@ export default function Partners() {
                         <div className="property-overlay">
                           <h3 className="property-type">{property.type}</h3>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -59,15 +63,29 @@ export default function Partners() {
                   Find Your Dream Home in Dubai.
                 </h2>
               </div>
-              
+
               <div className="text-content">
                 <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  At <Link href="/about-us">Early Bird Properties</Link>, we present to you a well-selected range of luxury {" "}<a href="https://www.bayut.com/property/details-12950689.html" target="_blank">apartments</a>{""}, chic townhouses, and luxury villas available throughout the UAE.
+                  At <Link href="/about-us">Early Bird Properties</Link>, we
+                  present to you a well-selected range of luxury{" "}
+                  <a
+                    href="https://www.bayut.com/property/details-12950689.html"
+                    target="_blank"
+                  >
+                    apartments
+                  </a>
+                  {""}, chic townhouses, and luxury villas available throughout
+                  the UAE.
                 </p>
-                
-                <p className="text-1 split-text split-lines-transform text-color-default mb-3">
-                  Are you looking for a <Link href="/buy">dream home</Link>? Dubai’s property market is full of stylish, luxurious options. People who value elegance can find their comfort choice. Whether you’re chasing the high life or simply want to upgrade your lifestyle, let one of Dubai’s most trusted real estate experts guide you. Find the perfect place to call home and start living the refined life you deserve.
 
+                <p className="text-1 split-text split-lines-transform text-color-default mb-3">
+                  Are you looking for a <Link href="/buy">dream home</Link>?
+                  Dubai’s property market is full of stylish, luxurious options.
+                  People who value elegance can find their comfort choice.
+                  Whether you’re chasing the high life or simply want to upgrade
+                  your lifestyle, let one of Dubai’s most trusted real estate
+                  experts guide you. Find the perfect place to call home and
+                  start living the refined life you deserve.
                 </p>
               </div>
 
