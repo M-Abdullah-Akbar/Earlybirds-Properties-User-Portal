@@ -21,7 +21,7 @@ export default function Testimonials() {
                 <p className="text-1 split-text split-lines-transform">
                   We are thrilled to have served so many investors in finding
                   their ideal properties. Below are testimonies from some of our
-                  clients regarding their experience with Early Bird Properties:
+                  clients regarding their experience with <a href="https://www.bayut.com/property/details-12950689.html" target="_blank">Early Bird Properties</a>:
                 </p>
               </div>
               <Swiper

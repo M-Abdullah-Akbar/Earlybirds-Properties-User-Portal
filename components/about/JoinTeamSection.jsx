@@ -18,7 +18,7 @@ export default function JoinTeamSection() {
                   <p className="text-1 split-text split-lines-transform">
                     At Early Bird Properties, we’re always looking for
                     passionate and customer-focused individuals who want to grow
-                    in the real estate industry. If you’re someone who values
+                    in the <a href="https://www.sciencedirect.com/topics/computer-science/real-estate-industry" target="_blank">real estate industry</a>. If you’re someone who values
                     integrity, innovation, and teamwork, we’d love to hear from
                     you.
                   </p>

@@ -5,7 +5,7 @@ export default function BuyAbout() {
   const buyData = {
     title: "Find the Properties for Sale in Dubai",
     description: [
-      "Dubai is a major business hub in the Middle East. It is famous for its tall buildings, luxurious lifestyle, and record growth. With one of the busiest real estate markets globally, Dubai boasts a chain of investment opportunities ranging from affordable apartments to luxurious villas. As the real estate industry is growing, Dubai is a great place for investors.",
+      'Dubai is a major business hub in the Middle East. It is famous for its tall buildings, luxurious lifestyle, and record growth. With one of the busiest real estate markets globally, Dubai boasts a chain of <a href="https://www.bayut.com/property/details-12950689.html" target="_blank">investment opportunities</a> ranging from affordable apartments to luxurious villas. As the real estate industry is growing, Dubai is a great place for investors.',
       "The real estate market in Dubai is booming with properties for sale offering great returns to investors. Some of these properties feature apartments and spacious villas in most popular locales like Downtown Dubai, Palm Jumeirah, and Dubai Marina. Whether you're on a low budget or you want a luxurious estate, Dubai has everything. Here's an elaboration of properties available for sale.",
     ],
     sections: [
@@ -39,7 +39,7 @@ export default function BuyAbout() {
           {
             title: "Off-Plan Properties",
             content:
-              "Dubai off-plan properties, offer the investor the chance of early investment in new properties at a lower price.",
+              'Dubai <a href="https://earlybirdsproperties.com/off-plan-properties" target="_blank">off-plan properties</a>, offer the investor the chance of early investment in new properties at a lower price.',
           },
           {
             title: "Land Plots",
@@ -57,7 +57,8 @@ export default function BuyAbout() {
               "Sub-market opportunity investors can seek distressed property for sale in Dubai. Such homes are normally sold at sub-market prices, giving the investor an opportunity to renovate and make a profit.",
           },
           {
-            title: "Affordable Property for Sale in Dubai",
+            title:
+              'Affordable <a href="https://earlybirdsproperties.com/sell" target="_blank">Property for Sale in Dubai</a>',
             content:
               "If your budget is lower, then affordable property for sale is available in less high-demand areas, providing an entry-level position in the market for beginners or investors.",
           },
@@ -93,8 +94,8 @@ export default function BuyAbout() {
       {
         title: "Sales Trends in Dubai Property Market",
         description: [
-          "The property market in Dubai has had tremendous growth over the past few years, with 2025 being any exception. According to the Dubai Land Department, 30,097 real estate transactions were concluded during the first two months of 2025. This is a clear reflection of a strong and sustained demand for real estate in Dubai.",
-          "Most significantly, Dubai Palm Jumeirah and Downtown Dubai real estate for sale have seen the greatest appreciation, after the strong demand for upscale residences. The overall property market will keep growing, with projected returns on investment (ROI) ranging from 5% to 8%, and therefore it is a good destination for local as well as foreign investors.",
+          'The <a href="https://earlybirdsproperties.com/blogs/dubai-real-estate-market-q4-2025" target="_blank">property market in Dubai</a> has had tremendous growth over the past few years, with 2025 being any exception. According to the Dubai Land Department, 30,097 real estate transactions were concluded during the first two months of 2025. This is a clear reflection of a strong and sustained demand for real estate in Dubai.',
+          'Most significantly, Dubai Palm Jumeirah and Downtown Dubai real estate for sale have seen the greatest appreciation, after the strong demand for upscale residences. The overall property market will keep growing, with projected returns on investment (ROI) ranging from 5% to 8%, and therefore it is a good destination for local as well as foreign investors.',
         ],
       },
       {
@@ -146,7 +147,7 @@ export default function BuyAbout() {
           {
             title: "Hire the Services of a Real Estate Agent",
             content:
-              "A real estate agent will assist you in the buying process, and you will receive the best possible deal. They will also help you with paperwork, negotiations, and legal formalities.",
+              'A <a href="https://earlybirdsproperties.com/about-us" target="_blank">real estate agent</a> will assist you in the buying process, and you will receive the best possible deal. They will also help you with paperwork, negotiations, and legal formalities.',
           },
           {
             title: "Make an Offer",
@@ -158,7 +159,7 @@ export default function BuyAbout() {
       {
         title: "Why Invest in Property in Dubai?",
         description:
-          "Due to the strong economy, tax advantages, and ideal location make it best for real estate investors. If you're seeking budget-friendly property, there’s something for every investment goal. With no capital gains tax, low property fees, and the potential to gain residency, Dubai continues to attract buyers from around the world.",
+          'Due to the strong economy, tax advantages, and ideal location make it best for <a href="https://x1developments.com/" target="_blank">real estate investors</a>. If you\'re seeking budget-friendly property, there’s something for every investment goal. With no capital gains tax, low property fees, and the potential to gain residency, Dubai continues to attract buyers from around the world.',
       },
     ],
   };

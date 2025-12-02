@@ -10,7 +10,7 @@ export default function RentAbout() {
       {
         title: "Living Luxury like Never Before with Early Bird Properties",
         paragraphs: [
-          "For individuals looking for top-notch rental homes in Dubai, Early Bird Properties offers an unmatched range. With round-the-clock competition between real estate companies, tenants are presented with a plethora of choices, and each one is more luxurious than the next. From spacious apartments with breathtaking skyline views, spacious villas with panoramic views, or snug studios that work ideally for city dwelling, Early Bird Properties has something that fits your unique taste.",
+          'For individuals looking for top-notch rental homes in Dubai, <a href="https://earlybirdsproperties.com/" target="_blank">Early Bird Properties</a> offers an unmatched range. With round-the-clock competition between real estate companies, tenants are presented with a plethora of choices, and each one is more luxurious than the next. From spacious apartments with breathtaking skyline views, spacious villas with panoramic views, or snug studios that work ideally for city dwelling, Early Bird Properties has something that fits your unique taste.',
           "Dubai offers you a variety of properties that suit all. From low-budget apartments to singles or couples, to cozy family apartments and penthouse apartments that provide you with luxurious living, mansions, townhouses, and villas for those who can afford the comforts of life, here you will find everything you're searching for.",
           "Where tradition meets modernity, your dream home is just a lease away. At Early Bird Properties, you are treated to an existence where sophistication and ease go hand in hand. Your mythic city skyline, combined with masterpieces of design, is the setting for your new existence.",
         ],
@@ -29,9 +29,9 @@ export default function RentAbout() {
           "The range of property available in Dubai is as wide as the residents. Whether one is in search of residential, commercial, or retail property, Early Bird Properties has a vast collection of properties to suit your needs.",
         subsections: [
           {
-            title: "Dubai Apartments on Rent",
+            title: 'Dubai <a href="https://www.bayut.com/property/details-9504805.html" target="_blank">Apartments on Rent</a>',
             description:
-              "Apartments are just as sought after when it comes to renting a property in Dubai, and Early Bird Properties has an impressive collection with different sizes and facilities to suit every taste and budget.",
+              'Apartments are just as sought after when it comes to <a href="https://earlybirdsproperties.com/blogs/renting-out-apartment-in-dubai" target="_blank">renting a property in Dubai</a>, and Early Bird Properties has an impressive collection with different sizes and facilities to suit every taste and budget.',
           },
           {
             title: "Villas for Rent in Dubai",
@@ -55,7 +55,7 @@ export default function RentAbout() {
               "Ideal for couples or individuals, studio flats achieve form and price in complete harmony. With an open-plan, they create a cozy but private living area.",
           },
           {
-            title: "Hotel Apartments for Extended Visits",
+            title: '<a href="https://www.bayut.com/to-rent/hotel-apartments/dubai/" target="_blank">Hotel Apartments</a> for Extended Visits',
             description:
               "Hotel apartments are the ideal answer for extended stay convenience of hotel services and home comfort.",
           },
@@ -75,7 +75,7 @@ export default function RentAbout() {
               "From small storage units to large logistics facilities, Early Bird Properties offers warehouses with all the features required to run efficient operations.",
           },
           {
-            title: "Tailoring Your Search for Dubai Rental Properties",
+            title: 'Tailoring Your Search for <a href="https://earlybirdsproperties.com/blogs/dubai-rental-index" target="_blank">Dubai Rental Properties</a>',
             description:
               "Whether you want a long-term residence or short term, Early Bird Properties can assist in pairing you with what you want. Houses and condos can be sorted according to key parameters like the amenities one wishes to view sea views or be close to popular landmarks or just have access to top-class facilities, making searching easy and fun.",
           },

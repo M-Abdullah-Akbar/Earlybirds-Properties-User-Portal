@@ -16,7 +16,7 @@ export default function AboutUsSection() {
                     From Our Founder&apos;s Vision
                   </h2>
                   <p className="text-1 split-text split-lines-transform">
-                    At Early Bird Properties, We think that real estate is more
+                    At <a href="https://earlybirdsproperties.com/about-us" target="_blank">Early Bird Properties</a>, We think that real estate is more
                     than selling or buying. It&apos;s about assisting people
                     with beginning new chapters of their lives. When I started
                     this business, my goal was straightforward:{" "}
@@ -34,7 +34,7 @@ export default function AboutUsSection() {
                   </p>
                 </div>
                 <div className="wrap-btn">
-                  <h3 className="text-1 fw-6">Muhammad Zohaib Saleem</h3>
+                  <h3 className="text-1 fw-6"><a href="https://www.instagram.com/official_zohaibs?igsh=MWhscGxjNG9qb2Y4OA==" target="_blank">Muhammad Zohaib Saleem</a></h3>
                   <h3 className="text-1 fw-6">
                     Founder & CEO, Early Bird Properties
                   </h3>

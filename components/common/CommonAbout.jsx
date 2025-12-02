@@ -14,46 +14,72 @@ export default function CommonAbout({
           <div className="col-lg-12">
             <div className="content">
               <div className="heading-section">
-                <h3 className="title split-text effect-right">
-                  {title}
-                </h3>
+                <h3
+                  className="title split-text effect-right"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
                 {Array.isArray(description) ? (
                   description.map((paragraph, index) => (
                     <p
                       key={index}
                       className="text-1 split-text split-lines-transform text-color-default"
-                    >
-                      {paragraph}
-                    </p>
+                      dangerouslySetInnerHTML={{ __html: paragraph }}
+                    />
                   ))
                 ) : (
-                  <p className="text-1 split-text split-lines-transform text-color-default">
-                    {description}
-                  </p>
+                  <p
+                    className="text-1 split-text split-lines-transform text-color-default"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  />
                 )}
               </div>
 
               {sections.map((section, index) => (
                 <div className="heading-section" key={index}>
-                  <h4 className="title split-text effect-right text-color-heading">
-                    {section.title}
-                  </h4>
+                  <h4
+                    className="title split-text effect-right text-color-heading"
+                    dangerouslySetInnerHTML={{ __html: section.title }}
+                  />
                   {section.descriptionHtml ? (
-                    <p 
+                    <p
                       className="text-1 split-text split-lines-transform text-color-default"
-                      dangerouslySetInnerHTML={{ __html: section.descriptionHtml }}
+                      dangerouslySetInnerHTML={{
+                        __html: section.descriptionHtml,
+                      }}
                     />
-                  ) : section.description && (
-                    <p className="text-1 split-text split-lines-transform text-color-default">
-                      {section.description}
-                    </p>
+                  ) : (
+                    section.description &&
+                    (Array.isArray(section.description) ? (
+                      section.description.map((desc, i) => (
+                        <p
+                          key={i}
+                          className="text-1 split-text split-lines-transform text-color-default"
+                          dangerouslySetInnerHTML={{ __html: desc }}
+                        />
+                      ))
+                    ) : (
+                      <p
+                        className="text-1 split-text split-lines-transform text-color-default"
+                        dangerouslySetInnerHTML={{
+                          __html: section.description,
+                        }}
+                      />
+                    ))
                   )}
                   {section.listItems && (
                     <ul className="text-1 split-text split-lines-transform text-color-default">
                       {section.listItems.map((item, itemIndex) => (
                         <li key={itemIndex}>
-                          {item.title && <strong>{item.title}:</strong>}{" "}
-                          {item.content}
+                          {item.title && (
+                            <strong
+                              dangerouslySetInnerHTML={{
+                                __html: `${item.title}:`,
+                              }}
+                            />
+                          )}{" "}
+                          <span
+                            dangerouslySetInnerHTML={{ __html: item.content }}
+                          />
                         </li>
                       ))}
                     </ul>
@@ -63,22 +89,27 @@ export default function CommonAbout({
                       <p
                         key={paragraphIndex}
                         className="text-1 split-text split-lines-transform text-color-default"
-                      >
-                        {paragraph}
-                      </p>
+                        dangerouslySetInnerHTML={{ __html: paragraph }}
+                      />
                     ))}
                   {section.subsections &&
                     section.subsections.map((subsection, subIndex) => (
                       <div className="subsection" key={subIndex}>
                         {subsection.title && (
-                          <h5 className="subtitle text-color-heading">
-                            {subsection.title}
-                          </h5>
+                          <h5
+                            className="subtitle text-color-heading"
+                            dangerouslySetInnerHTML={{
+                              __html: subsection.title,
+                            }}
+                          />
                         )}
                         {subsection.description && (
-                          <p className="text-1 split-text split-lines-transform text-color-default">
-                            {subsection.description}
-                          </p>
+                          <p
+                            className="text-1 split-text split-lines-transform text-color-default"
+                            dangerouslySetInnerHTML={{
+                              __html: subsection.description,
+                            }}
+                          />
                         )}
                         {subsection.listItems && (
                           <ul className="text-1 split-text split-lines-transform text-color-default">

@@ -27,16 +27,16 @@ const nextConfig = {
   // Enable experimental features for better performance
   experimental: {
     // Enable optimized CSS loading
-    optimizeCss: true,
+    // optimizeCss: true,
     // Enable modern bundling
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
+    // turbo: {
+    //   rules: {
+    //     '*.svg': {
+    //       loaders: ['@svgr/webpack'],
+    //       as: '*.js',
+    //     },
+    //   },
+    // },
   },
 
   // Optimize webpack bundle

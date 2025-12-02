@@ -14,9 +14,23 @@ export default function ServicesAboutSection() {
                 data-wow-duration="1.5s"
                 data-wow-delay="0s"
               >
-                We make property easy and hassle-free at Early Bird Properties.
-                We will assist you at each step if you are looking to buy, sell,
-                or rent your property. We assist buyers in finding their ideal
+                We make property easy and hassle-free at{" "}
+                <a href="https://earlybirdsproperties.com/" target="_blank">
+                  Early Bird Properties
+                </a>
+                . We will assist you at each step if you are looking to{" "}
+                <a href="https://earlybirdsproperties.com/buy" target="_blank">
+                  buy
+                </a>
+                ,{" "}
+                <a href="https://earlybirdsproperties.com/sell" target="_blank">
+                  sell
+                </a>
+                , or{" "}
+                <a href="https://earlybirdsproperties.com/rent" target="_blank">
+                  rent
+                </a>{" "}
+                your property. We assist buyers in finding their ideal
                 investment property. Sellers can rely on us for showcasing their
                 property and linking them with serious purchasers for an optimal
                 price.
@@ -56,10 +70,16 @@ export default function ServicesAboutSection() {
                     </a>
                   </h5>
                   <p className="text-1">
-                    We deal with suitable commercial properties. Be it an
-                    office, showroom, or retail store, we find properties that
-                    provide optimal locations, high growth prospects, and full
-                    visibility to boost your business.
+                    We deal with suitable{" "}
+                    <a
+                      href="https://earlybirdsproperties.com/services#commercial-properties"
+                      target="_blank"
+                    >
+                      commercial properties
+                    </a>
+                    . Be it an office, showroom, or retail store, we find
+                    properties that provide optimal locations, high growth
+                    prospects, and full visibility to boost your business.
                   </p>
                   {/*<a href="/services#commercial-properties" className="tf-btn-link color-3">
                     <span>Learn More</span>
@@ -81,7 +101,10 @@ export default function ServicesAboutSection() {
                     </a>
                   </h5>
                   <p className="text-1">
-                    Managing a property is very stressful. But we make it
+                    <a
+                      href="https://earlybirdsproperties.com/services#property-management"
+                      target="_blank"
+                    >Managing a property</a> is very stressful. But we make it
                     problem-free for you. From tenant searching and rent
                     collection to normal maintenance and compliance with the
                     law. We deal with everything so that your property remains
@@ -105,8 +128,11 @@ export default function ServicesAboutSection() {
                     <a href="/services#holiday-homes">Holiday Homes</a>
                   </h5>
                   <p className="text-1">
-                    Are you seeking a vacation home or short-term? Our holiday
-                    homes are picked with care, furnished to the highest
+                    Are you seeking a vacation home or short-term? Our <a
+                      href="https://earlybirdsproperties.com/services#holiday-homes"
+                      target="_blank"
+                    >holiday
+                    homes</a> are picked with care, furnished to the highest
                     standard, and in prime locations for ultimate comfort and
                     convenience. Whether you&apos;re on a family break or a
                     business trip, we ensure you feel at home.
@@ -131,7 +157,10 @@ export default function ServicesAboutSection() {
                   <p className="text-1">
                     We make property financing more accessible with our
                     guidance. We offer access to reliable lenders, competitive
-                    mortgage schemes, and step-by-step assistance through the
+                    <a
+                      href="https://earlybirdsproperties.com/services#mortgage"
+                      target="_blank"
+                    >mortgage schemes</a>, and step-by-step assistance through the
                     approval process. We make sure to enable property ownership
                     to be smooth and reachable to all.
                   </p>

@@ -41,10 +41,9 @@ export default function WelcomeSection() {
                   data-wow-duration="1.5s"
                   data-wow-delay="0s"
                 >
-                  We make property easy and hassle-free at Early Bird
-                  Properties. We will assist you at each step if you are looking
-                  to buy, sell, or rent your property. We assist buyers in
-                  finding their ideal investment property. Sellers can rely on
+                  We make property easy and hassle-free at <a href="https://earlybirdsproperties.com/" target="_blank">Early Bird Properties</a>. We will assist you at each step if you are looking
+                  to <a href="https://earlybirdsproperties.com/buy" target="_blank">buy</a>, <a href="https://earlybirdsproperties.com/sell" target="_blank">sell</a>, or <a href="https://earlybirdsproperties.com/rent" target="_blank">rent</a> your property. We assist buyers in
+                  finding their ideal <a href="https://www.bayut.com/property/details-12950689.html" target="_blank">investment property</a>. Sellers can rely on
                   us for showcasing their property and linking them with serious
                   purchasers for an optimal price.
                 </p>
@@ -58,7 +57,7 @@ export default function WelcomeSection() {
                   can prove to be complicated at times, but our specialists are
                   there to get you connected with our trusted lenders. If you
                   are relocating to a new city, we have relocation assistance as
-                  well to ease your relocation. At Early Bird Properties, our
+                  well to ease your relocation. At <a href="https://www.instagram.com/earlybirdsproperties/" target="_blank">Early Bird Properties</a>, our
                   aim is plain and simple:{" "}
                   <strong>
                     helping you make your real estate aspirations a reality with

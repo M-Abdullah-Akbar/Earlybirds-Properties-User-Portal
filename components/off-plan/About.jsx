@@ -5,21 +5,21 @@ export default function OffPlanAbout() {
   const offPlanData = {
     title: "Off-Plan Properties for Sale in Dubai through Early Birds Properties",
     description: [
-      "Off-plan property in Dubai has become extremely popular in recent years with the city's property market continuing to grow and flourish. With new projects appearing in all the different neighborhoods of the emirate, many investors and would-be homebuyers are searching for the ideal opportunity to invest or buy their dream home.",
+      '<a href="https://earlybirdsproperties.com/off-plan-properties/" target="_blank">Off-plan property</a> in Dubai has become extremely popular in recent years with the city\'s property market continuing to grow and flourish. With new projects appearing in all the different neighborhoods of the emirate, many investors and would-be homebuyers are searching for the ideal opportunity to invest or buy their dream home.',
       "At Early Birds Properties, we have numerous years of experience in the Dubai off-plan real estate market, so you can be confident to select the perfect property that meets all your needs even before completion. We also assist with each aspect of your property purchase to give you a smooth experience from start to completion."
     ],
     sections: [
       {
-        title: "What Are Off-Plan Properties?",
-        description: "Off-plan properties are properties in construction or not yet begun. For the purpose of helping buyers imagine the ultimate product, developers use devices such as floor plans, computer-generated images (CGIs), and accurate architectural drawings to present how the finished property will look."
+        title: '<a href="https://earlybirdsproperties.com/blogs/properties-in-dubai" target="_blank">What Are Off-Plan Properties?</a>',
+        description: '<a href="https://www.bayut.com/for-sale/off-plan/property/dubai/business-bay/" target="_blank">Off-plan properties</a> are properties in construction or not yet begun. For the purpose of helping buyers imagine the ultimate product, developers use devices such as floor plans, computer-generated images (CGIs), and accurate architectural drawings to present how the finished property will look.'
       },
       {
         title: "Types of Off-Plan Properties in Dubai",
-        description: "Those who would like to buy off-plan properties in Dubai can get access to an extensive variety of options, which include: Apartments Villas Townhouses Duplexes Commercial Spaces Most of the off-plan developments in Dubai provide a vast array of configurations, including various numbers of bedrooms, property sizes, and designs to suit diversified needs and preferences."
+        description: 'Those who would like to buy off-plan properties in Dubai can get access to an extensive variety of options, which include: <a href="https://www.bayut.com/to-rent/hotel-apartments/dubai/" target="_blank">Apartments</a> Villas Townhouses Duplexes Commercial Spaces Most of the off-plan developments in Dubai provide a vast array of configurations, including various numbers of bedrooms, property sizes, and designs to suit diversified needs and preferences.'
       },
       {
         title: "Advantages and Disadvantages of Off-Plan Property Investment",
-        description: "Just like any investment option, off-plan property purchase has its advantages and disadvantages. The following is a summary of the key advantages and disadvantages to consider:",
+        description: 'Just like any investment option, <a href="https://earlybirdsproperties.com/blogs/dubai-off-plan-property-for-sale" target="_blank">off-plan property purchase</a> has its advantages and disadvantages. The following is a summary of the key advantages and disadvantages to consider:',
         subsections: [
           {
             title: "Advantages:",
@@ -81,7 +81,7 @@ export default function OffPlanAbout() {
       },
       {
         title: "Start Your Investment Journey with Early Birds Properties",
-        description: "When you're ready to dive into Dubai's property market, off-plan buildings are an excellent place to begin. Early Birds Properties has experienced and trained staff that can be your trusted partner. It can help you find the perfect property that matches your needs and expectations. We'll walk you through every step of the way. Our expertise will provide you with a hassle- and stress-free property buying experience."
+        description: 'When you\'re ready to dive into <a href="https://earlybirdsproperties.com/blogs/dubai-real-estate-market-q4-2025" target="_blank">Dubai\'s property market</a>, off-plan buildings are an excellent place to begin. Early Birds Properties has experienced and trained staff that can be your trusted partner. It can help you find the perfect property that matches your needs and expectations. We\'ll walk you through every step of the way. Our expertise will provide you with a hassle- and stress-free property buying experience.'
       }
     ]
   };

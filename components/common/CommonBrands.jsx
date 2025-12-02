@@ -17,8 +17,14 @@ export default function CommonBrands({
           <div className="row">
             <div className="col-12 wrap-partners">
               <div className="heading-section text-center mb-48">
-                <h2 className="title split-text effect-right">{title}</h2>
-                <p className="text-1 split-text effect-right">{description}</p>
+                <h2
+                  className="title split-text effect-right"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
+                <p
+                  className="text-1 split-text effect-right"
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
               </div>
               <BrandSlider parentClass="infiniteslide wrap-partners mb-40" />
               {sliderCount > 1 && (

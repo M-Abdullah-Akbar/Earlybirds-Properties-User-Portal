@@ -48,8 +48,8 @@ function CtaEnhanced() {
                   className="text-1 split-text split-lines-transform"
                   data-wow-duration="1.5s"
                 >
-                  Thousands of luxury home enthusiasts just like you visit our
-                  website.
+                  Thousands of luxury home enthusiasts just like you <a href="https://earlybirdsproperties.com/" target="_blank">visit our
+                  website</a>.
                 </p>
               </div>
               <a
