@@ -12,12 +12,12 @@ export default function Partners() {
     },
     {
       type: "Townhouse",
-      image: "/images/Townhouse-Image.jpg",
+      image: "/images/Townhouse.jpg",
       alt: "Luxury Townhouse, for sale in Dubai, available through EarlyBird Properties.",
     },
     {
       type: "Villa",
-      image: "/images/PHOTO-2025-10-02-17-29-12.jpg",
+      image: "/images/Villas-in-Dubai.jpg",
       alt: "Elegant villas, for sale in Dubai, available through EarlyBird Properties.",
     },
   ];
