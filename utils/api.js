@@ -5,7 +5,7 @@ import axios from "axios";
 const API_BASE_URL = "https://api.earlybirdsproperties.com/api";
 
 // Create axios instance with timeout and performance optimizations
-const api = axios.create({  
+const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 100000, // 10 second timeout
   headers: {
@@ -39,19 +39,19 @@ api.interceptors.response.use(
       console.error('Received HTML response instead of JSON. This usually means the API endpoint is not accessible or ngrok requires the warning to be bypassed.');
       throw new Error('API server returned HTML instead of JSON. The ngrok tunnel may have expired or the backend server is not running. Please check the backend connection.');
     }
-    
+
     // Check for ngrok-specific errors
     if (error.response?.status === 0 || error.code === 'ERR_NETWORK') {
       console.error('Network error', error);
       throw new Error('Unable to connect to the API server. Please check the backend connection.');
     }
-    
+
     // Check for ngrok warning page
     if (error.response?.data && typeof error.response.data === 'string' && error.response.data.includes('ngrok')) {
       console.error('Ngrok warning page detected. User needs to accept the ngrok warning.');
       throw new Error('Ngrok security warning detected. Please visit the API URL in your browser and accept the warning, then refresh this page.');
     }
-    
+
     // Log detailed error information
     const errorDetails = {
       status: error.response?.status,
@@ -61,12 +61,12 @@ api.interceptors.response.use(
       url: error.config?.url,
       method: error.config?.method
     };
-    
+
     console.error("API Error Details:", errorDetails);
-    
+
     // Create a more informative error message
     let errorMessage = 'An error occurred while connecting to the server.';
-    
+
     if (error.response) {
       // Server responded with error status
       if (error.response.data?.message) {
@@ -82,20 +82,20 @@ api.interceptors.response.use(
       // Request was made but no response received
       errorMessage = 'Unable to connect to the server. Please check your internet connection and try again.';
     }
-    
+
     // Create enhanced error object
     const enhancedError = new Error(errorMessage);
     enhancedError.originalError = error;
     enhancedError.response = error.response;
     enhancedError.status = error.response?.status;
-    
+
     return Promise.reject(enhancedError);
   }
 );
 
 // Static data for user portal (since backend doesn't provide these endpoints for users)
 const PROPERTY_TYPES = [
-  "apartment", "villa", "house", "townhouse", "penthouse", 
+  "apartment", "villa", "house", "townhouse", "penthouse",
   "studio", "duplex", "commercial", "land"
 ];
 
@@ -115,7 +115,7 @@ const COUNTRIES = ["UAE"];
 
 // Emirates and areas mapping for user portal
 const EMIRATES = [
-  "Dubai", "Abu Dhabi", "Sharjah", "Ajman", 
+  "Dubai", "Abu Dhabi", "Sharjah", "Ajman",
   "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"
 ];
 
@@ -155,68 +155,68 @@ const EMIRATE_AREA_MAP = {
 // Property Type - Amenities mapping for user portal
 const PROPERTY_TYPE_AMENITIES_MAP = {
   apartment: [
-    "Air Conditioning", "Central Heating", "Built-in Wardrobes", "Balcony", "City View", 
-    "Sea View", "Marina View", "High Floor", "Elevator", "Swimming Pool", "Gym", 
-    "Security", "24/7 Security", "CCTV", "Concierge", "Parking", "Covered Parking", 
-    "Internet Ready", "Cable TV Ready", "Intercom", "Maintenance", "Cleaning Service", 
+    "Air Conditioning", "Central Heating", "Built-in Wardrobes", "Balcony", "City View",
+    "Sea View", "Marina View", "High Floor", "Elevator", "Swimming Pool", "Gym",
+    "Security", "24/7 Security", "CCTV", "Concierge", "Parking", "Covered Parking",
+    "Internet Ready", "Cable TV Ready", "Intercom", "Maintenance", "Cleaning Service",
     "Pets Allowed", "Furnished", "Semi Furnished", "Unfurnished"
   ],
   villa: [
-    "Private Pool", "Private Garden", "Garage", "Maid Room", "Driver Room", "Study Room", 
-    "Walk-in Closet", "Multiple Living Areas", "Formal Dining", "Family Room", "Home Office", 
-    "Storage Room", "Laundry Room", "BBQ Area", "Outdoor Kitchen", "Jacuzzi", "Fireplace", 
-    "High Ceilings", "Marble Floors", "Wooden Floors", "Smart Home", "Solar Panels", 
-    "Generator Backup", "Security System", "CCTV", "Landscaped Garden", "Tree-lined Street", 
+    "Private Pool", "Private Garden", "Garage", "Maid Room", "Driver Room", "Study Room",
+    "Walk-in Closet", "Multiple Living Areas", "Formal Dining", "Family Room", "Home Office",
+    "Storage Room", "Laundry Room", "BBQ Area", "Outdoor Kitchen", "Jacuzzi", "Fireplace",
+    "High Ceilings", "Marble Floors", "Wooden Floors", "Smart Home", "Solar Panels",
+    "Generator Backup", "Security System", "CCTV", "Landscaped Garden", "Tree-lined Street",
     "Gated Community", "Beach Access"
   ],
   house: [
-    "Garden", "Garage", "Maid Room", "Study Room", "Storage Room", "Laundry Room", 
-    "Fireplace", "High Ceilings", "Wooden Floors", "Modern Kitchen", "Built-in Wardrobes", 
-    "Walk-in Closet", "Multiple Bathrooms", "Family Room", "Dining Room", "Home Office", 
-    "BBQ Area", "Covered Parking", "Air Conditioning", "Central Heating", "Security System", 
+    "Garden", "Garage", "Maid Room", "Study Room", "Storage Room", "Laundry Room",
+    "Fireplace", "High Ceilings", "Wooden Floors", "Modern Kitchen", "Built-in Wardrobes",
+    "Walk-in Closet", "Multiple Bathrooms", "Family Room", "Dining Room", "Home Office",
+    "BBQ Area", "Covered Parking", "Air Conditioning", "Central Heating", "Security System",
     "Intercom", "Internet Ready", "Furnished", "Semi Furnished", "Unfurnished"
   ],
   townhouse: [
-    "Private Garden", "Garage", "Maid Room", "Study Room", "Storage Room", "Laundry Room", 
-    "Multiple Levels", "Terrace", "Rooftop Access", "Modern Kitchen", "Built-in Wardrobes", 
-    "Walk-in Closet", "Family Room", "Dining Room", "Home Office", "BBQ Area", "Covered Parking", 
-    "Air Conditioning", "Central Heating", "Community Pool", "Community Gym", "Playground", 
+    "Private Garden", "Garage", "Maid Room", "Study Room", "Storage Room", "Laundry Room",
+    "Multiple Levels", "Terrace", "Rooftop Access", "Modern Kitchen", "Built-in Wardrobes",
+    "Walk-in Closet", "Family Room", "Dining Room", "Home Office", "BBQ Area", "Covered Parking",
+    "Air Conditioning", "Central Heating", "Community Pool", "Community Gym", "Playground",
     "Security", "Gated Community", "Maintenance", "Landscaping"
   ],
   penthouse: [
-    "Private Pool", "Private Terrace", "Rooftop Access", "Panoramic Views", "Sky Lounge", 
-    "Private Elevator", "High-end Finishes", "Marble Floors", "Floor-to-ceiling Windows", 
-    "Smart Home System", "Home Automation", "Premium Kitchen", "Wine Cellar", "Walk-in Closet", 
-    "Master Suite", "Jacuzzi", "Steam Room", "Home Theater", "Study Room", "Maid Room", 
-    "Driver Room", "Laundry Room", "Storage Room", "Private Garage", "Concierge Service", 
+    "Private Pool", "Private Terrace", "Rooftop Access", "Panoramic Views", "Sky Lounge",
+    "Private Elevator", "High-end Finishes", "Marble Floors", "Floor-to-ceiling Windows",
+    "Smart Home System", "Home Automation", "Premium Kitchen", "Wine Cellar", "Walk-in Closet",
+    "Master Suite", "Jacuzzi", "Steam Room", "Home Theater", "Study Room", "Maid Room",
+    "Driver Room", "Laundry Room", "Storage Room", "Private Garage", "Concierge Service",
     "24/7 Security", "Valet Parking"
   ],
   studio: [
-    "Air Conditioning", "Built-in Wardrobes", "Balcony", "City View", "Sea View", "High Floor", 
-    "Modern Kitchen", "Marble Floors", "Wooden Floors", "Swimming Pool", "Gym", "Security", 
-    "Elevator", "Parking", "Covered Parking", "Internet Ready", "Cable TV Ready", "Intercom", 
+    "Air Conditioning", "Built-in Wardrobes", "Balcony", "City View", "Sea View", "High Floor",
+    "Modern Kitchen", "Marble Floors", "Wooden Floors", "Swimming Pool", "Gym", "Security",
+    "Elevator", "Parking", "Covered Parking", "Internet Ready", "Cable TV Ready", "Intercom",
     "Maintenance", "Furnished", "Semi Furnished", "Unfurnished", "Compact Design", "Efficient Layout"
   ],
   duplex: [
-    "Two Levels", "Private Entrance", "Terrace", "Garden", "Garage", "Maid Room", "Study Room", 
-    "Storage Room", "Laundry Room", "Multiple Living Areas", "Formal Dining", "Modern Kitchen", 
-    "Built-in Wardrobes", "Walk-in Closet", "Master Suite", "Family Room", "Home Office", 
-    "BBQ Area", "Air Conditioning", "Central Heating", "High Ceilings", "Wooden Floors", 
+    "Two Levels", "Private Entrance", "Terrace", "Garden", "Garage", "Maid Room", "Study Room",
+    "Storage Room", "Laundry Room", "Multiple Living Areas", "Formal Dining", "Modern Kitchen",
+    "Built-in Wardrobes", "Walk-in Closet", "Master Suite", "Family Room", "Home Office",
+    "BBQ Area", "Air Conditioning", "Central Heating", "High Ceilings", "Wooden Floors",
     "Marble Floors", "Smart Home", "Security System", "Covered Parking"
   ],
   commercial: [
-    "Prime Location", "High Visibility", "Street Frontage", "Parking Available", "Air Conditioning", 
-    "Central Heating", "Elevator", "Loading Dock", "Storage Space", "Conference Room", 
-    "Reception Area", "Private Offices", "Open Plan Layout", "Kitchen Facilities", "Bathroom Facilities", 
-    "Security System", "CCTV", "Fire Safety System", "Backup Generator", "High Speed Internet", 
-    "Phone Lines", "Disabled Access", "24/7 Access", "Maintenance Service", "Cleaning Service", 
+    "Prime Location", "High Visibility", "Street Frontage", "Parking Available", "Air Conditioning",
+    "Central Heating", "Elevator", "Loading Dock", "Storage Space", "Conference Room",
+    "Reception Area", "Private Offices", "Open Plan Layout", "Kitchen Facilities", "Bathroom Facilities",
+    "Security System", "CCTV", "Fire Safety System", "Backup Generator", "High Speed Internet",
+    "Phone Lines", "Disabled Access", "24/7 Access", "Maintenance Service", "Cleaning Service",
     "Signage Rights", "Public Transport Access"
   ],
   land: [
-    "Residential Zoning", "Commercial Zoning", "Mixed Use Zoning", "Corner Plot", "Main Road Access", 
-    "Utilities Connected", "Electricity Ready", "Water Connection", "Sewage Connection", "Internet Ready", 
-    "Planning Permission", "Building Permit Ready", "Flat Terrain", "Elevated Position", "Sea Frontage", 
-    "Beach Access", "Investment Opportunity", "Development Potential", "Gated Community", "Security", 
+    "Residential Zoning", "Commercial Zoning", "Mixed Use Zoning", "Corner Plot", "Main Road Access",
+    "Utilities Connected", "Electricity Ready", "Water Connection", "Sewage Connection", "Internet Ready",
+    "Planning Permission", "Building Permit Ready", "Flat Terrain", "Elevated Position", "Sea Frontage",
+    "Beach Access", "Investment Opportunity", "Development Potential", "Gated Community", "Security",
     "Landscaping Allowed", "No Restrictions", "Freehold", "Leasehold"
   ]
 };
@@ -236,7 +236,7 @@ export const getDisplayLocation = (property) => {
 // Helper function to transform backend property data to frontend format
 const transformPropertyData = (property) => {
   console.log("Transforming property:", property.title);
-  
+
   const transformed = {
     ...property,
     // Ensure we have clean string values for display
@@ -261,7 +261,7 @@ const transformPropertyData = (property) => {
     focusKeyword: property.focusKeyword,
     slug: property.slug
   };
-  
+
   console.log("Transformed property:", transformed.title, "focusKeyword:", transformed.focusKeyword);
   return transformed;
 };
@@ -271,64 +271,64 @@ export const propertyAPI = {
   // Get all properties with filtering and pagination - GET /api/properties
   getProperties: async (params = {}) => {
     console.log("getProperties called with params:", params);
-    
+
     const response = await api.get("/properties", { params });
-    
+
     console.log("getProperties response:", response.data);
-    
+
     // Transform the response data to match frontend expectations
     if (response.data && response.data.properties) {
       response.data.properties = response.data.properties.map(transformPropertyData);
     }
-    
+
     return response.data;
   },
 
   // Get single property - GET /api/properties/:id
   getProperty: async (id) => {
     const response = await api.get(`/properties/${id}`);
-    
+
     // Transform the response data to match frontend expectations
     if (response.data && response.data.property) {
       response.data.property = transformPropertyData(response.data.property);
     }
-    
+
     return response.data;
   },
 
   // Get featured properties
   getFeaturedProperties: async (limit = 6) => {
-    const response = await api.get("/properties", { 
-      params: { 
-        featured: true, 
+    const response = await api.get("/properties", {
+      params: {
+        featured: true,
         limit,
         status: 'available'
-      } 
+      }
     });
-    
+
     // Transform the response data to match frontend expectations
     if (response.data && response.data.properties) {
       response.data.properties = response.data.properties.map(transformPropertyData);
     }
-    
+
     return response.data;
   },
 
   // Get properties by type (buy/rent)
   getPropertiesByType: async (type, params = {}) => {
-    const response = await api.get("/properties", { 
-      params: { 
+    const response = await api.get("/properties", {
+      params: {
         listingType: type,
         status: 'available',
         ...params
-      } 
+      }
     });
-    
+
     // Transform the response data to match frontend expectations
     if (response.data && response.data.properties) {
       response.data.properties = response.data.properties.map(transformPropertyData);
     }
-    
+
     return response.data;
   },
 
@@ -336,24 +336,24 @@ export const propertyAPI = {
   searchProperties: async (filters = {}) => {
     // Handle exclude parameter by filtering out the excluded property
     const { exclude, ...apiFilters } = filters;
-    
+
     console.log("API call with filters:", apiFilters);
-    
-    const response = await api.get("/properties", { 
+
+    const response = await api.get("/properties", {
       params: {
         status: 'available',
         ...apiFilters
-      } 
+      }
     });
-    
+
     console.log("Raw API response:", response.data);
-    
+
     // Transform the response data to match frontend expectations
     if (response.data && response.data.properties) {
       let properties = response.data.properties.map(transformPropertyData);
-      
+
       console.log("Transformed properties:", properties);
-      
+
       // Filter out excluded property if specified
       if (exclude) {
         properties = properties.filter(property => {
@@ -366,32 +366,32 @@ export const propertyAPI = {
         });
         console.log(`Filtered out property ${exclude}, remaining: ${properties.length}`);
       }
-      
+
       response.data.properties = properties;
     }
-    
+
     return response.data;
   },
 
   // Get related properties (exclude current property)
   getRelatedProperties: async (currentPropertyId, params = {}) => {
-    const response = await api.get("/properties", { 
+    const response = await api.get("/properties", {
       params: {
         status: 'available',
         ...params
-      } 
+      }
     });
-    
+
     // Transform and filter out current property
     if (response.data && response.data.properties) {
       let properties = response.data.properties
         .map(transformPropertyData)
         .filter(property => property._id !== currentPropertyId)
         .slice(0, 4); // Limit to 4 related properties
-      
+
       response.data.properties = properties;
     }
-    
+
     return response.data;
   }
 };
@@ -528,13 +528,13 @@ export const emailAPI = {
     const response = await api.post("/email/contact", formData);
     return response.data;
   },
-  
+
   // Send instant valuation email
   sendInstantValuationEmail: async (formData) => {
     const response = await api.post("/email/instant-valuation", formData);
     return response.data;
   },
-  
+
   // Send property inquiry email
   sendPropertyInquiryEmail: async (formData) => {
     const response = await api.post("/email/property-inquiry", formData);
@@ -549,7 +549,7 @@ export const newsletterAPI = {
     const response = await api.post("/newsletter/subscribe", { email });
     return response.data;
   },
-  
+
   // Unsubscribe from newsletter
   unsubscribeFromNewsletter: async (email) => {
     const response = await api.post("/newsletter/unsubscribe", { email });
@@ -576,21 +576,21 @@ export const blogAPI = {
   getBlogs: async (params = {}) => {
     try {
       const queryParams = new URLSearchParams();
-      
+
       // Add pagination parameters
       if (params.page) queryParams.append('page', params.page);
       if (params.limit) queryParams.append('limit', params.limit);
-      
+
       // Add filtering parameters
       if (params.category) queryParams.append('category', params.category);
       if (params.search) queryParams.append('search', params.search);
       if (params.tags) queryParams.append('tags', params.tags);
       if (params.featured !== undefined) queryParams.append('featured', params.featured);
       if (params.exclude) queryParams.append('exclude', params.exclude);
-      
+
       // Only show published blogs for user portal
       queryParams.append('status', 'published');
-      
+
       const response = await api.get(`/blogs?${queryParams.toString()}`);
       return response.data;
     } catch (error) {
@@ -637,19 +637,19 @@ export const blogAPI = {
     try {
       // First get the current blog to find its category and tags
       const currentBlog = await blogAPI.getBlog(blogId);
-      
+
       const queryParams = new URLSearchParams();
       queryParams.append('status', 'published');
       queryParams.append('limit', limit);
-      
+
       // Exclude current blog
       queryParams.append('exclude', blogId);
-      
+
       // Filter by category if available
       if (currentBlog.data.blog && currentBlog.data.blog.category) {
         queryParams.append('category', currentBlog.data.blog.category._id || currentBlog.data.blog.category);
       }
-      
+
       const response = await api.get(`/blogs?${queryParams.toString()}`);
       return response.data;
     } catch (error) {
@@ -685,4 +685,29 @@ export const blogCategoryAPI = {
 };
 
 // Export the main API instance for direct use if needed
+// Job API functions for user portal
+export const jobAPI = {
+  // Get all active jobs
+  getJobs: async () => {
+    const response = await api.get("/jobs");
+    return response.data;
+  },
+
+  // Get single job details
+  getJob: async (id) => {
+    const response = await api.get(`/jobs/${id}`);
+    return response.data;
+  },
+
+  // Apply for a job
+  applyForJob: async (formData) => {
+    const response = await api.post("/jobs/apply", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  }
+};
+
 export default api;
