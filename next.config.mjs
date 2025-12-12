@@ -39,6 +39,10 @@ const nextConfig = {
     // },
   },
 
+  // Turbopack configuration (empty to acknowledge Turbopack is default in Next.js 16)
+  // The webpack config below will only be used when explicitly running with --webpack flag
+  turbopack: {},
+
   // Optimize webpack bundle
   webpack: (config, { dev, isServer }) => {
     // Optimize bundle splitting for better code splitting
