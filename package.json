@@ -28,7 +28,7 @@
     "chart.js": "^4.4.7",
     "critters": "^0.0.23",
     "easy-currencies": "^1.8.3",
-    "next": "^15.1.9",
+    "next": "15.5.9",
     "odometer": "^0.4.8",
     "photoswipe": "^5.4.4",
     "rc-slider": "^11.1.8",
