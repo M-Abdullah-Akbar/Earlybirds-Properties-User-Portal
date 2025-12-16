@@ -6,6 +6,8 @@ import MobileMenu from "@/components/headers/MobileMenu";
 import SettingsHandler from "@/components/common/SettingsHandler";
 import FloatingWhatsapp from "@/components/common/FloatingWhatsapp";
 import { trackPageView } from "@/utils/analytics";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 // Lazy load heavy dependencies
 let bootstrapLoaded = false;
@@ -212,6 +214,17 @@ export default function LayoutClient({ children }) {
       )}
       <BackToTop />
       <FloatingWhatsapp />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

@@ -25,7 +25,7 @@ export default function page() {
           <Reviews />
           <Cta />*/}
         </div>
-        <Footer />
+        <Footer parentClass="style-2" />
       </div>
     </>
   );
