@@ -272,7 +272,10 @@ export const propertyAPI = {
   getProperties: async (params = {}) => {
     console.log("getProperties called with params:", params);
 
-    const response = await api.get("/properties", { params });
+    // Add cache-busting timestamp to prevent stale data
+    const response = await api.get("/properties", {
+      params: { ...params, _t: Date.now() }
+    });
 
     console.log("getProperties response:", response.data);
 
@@ -298,11 +301,13 @@ export const propertyAPI = {
 
   // Get featured properties
   getFeaturedProperties: async (limit = 6) => {
+    // Add cache-busting timestamp to prevent stale data
     const response = await api.get("/properties", {
       params: {
         featured: true,
         limit,
-        status: 'available'
+        status: 'available',
+        _t: Date.now()
       }
     });
 
@@ -316,11 +321,13 @@ export const propertyAPI = {
 
   // Get properties by type (buy/rent)
   getPropertiesByType: async (type, params = {}) => {
+    // Add cache-busting timestamp to prevent stale data
     const response = await api.get("/properties", {
       params: {
         listingType: type,
         status: 'available',
-        ...params
+        ...params,
+        _t: Date.now()
       }
     });
 
@@ -339,10 +346,12 @@ export const propertyAPI = {
 
     console.log("API call with filters:", apiFilters);
 
+    // Add cache-busting timestamp to prevent stale data
     const response = await api.get("/properties", {
       params: {
         status: 'available',
-        ...apiFilters
+        ...apiFilters,
+        _t: Date.now()
       }
     });
 
@@ -375,10 +384,12 @@ export const propertyAPI = {
 
   // Get related properties (exclude current property)
   getRelatedProperties: async (currentPropertyId, params = {}) => {
+    // Add cache-busting timestamp to prevent stale data
     const response = await api.get("/properties", {
       params: {
         status: 'available',
-        ...params
+        ...params,
+        _t: Date.now()
       }
     });
 
@@ -590,6 +601,8 @@ export const blogAPI = {
 
       // Only show published blogs for user portal
       queryParams.append('status', 'published');
+      // Add cache-busting timestamp to prevent stale data
+      queryParams.append('_t', Date.now());
 
       const response = await api.get(`/blogs?${queryParams.toString()}`);
       return response.data;
@@ -624,7 +637,8 @@ export const blogAPI = {
   // Get featured blogs
   getFeaturedBlogs: async (limit = 3) => {
     try {
-      const response = await api.get(`/blogs?featured=true&status=published&limit=${limit}`);
+      // Add cache-busting timestamp to prevent stale data
+      const response = await api.get(`/blogs?featured=true&status=published&limit=${limit}&_t=${Date.now()}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching featured blogs:', error);
@@ -649,6 +663,8 @@ export const blogAPI = {
       if (currentBlog.data.blog && currentBlog.data.blog.category) {
         queryParams.append('category', currentBlog.data.blog.category._id || currentBlog.data.blog.category);
       }
+      // Add cache-busting timestamp to prevent stale data
+      queryParams.append('_t', Date.now());
 
       const response = await api.get(`/blogs?${queryParams.toString()}`);
       return response.data;
@@ -664,7 +680,8 @@ export const blogCategoryAPI = {
   // Get all blog categories
   getCategories: async () => {
     try {
-      const response = await api.get('/blog-categories?isActive=true&approvalStatus=approved');
+      // Add cache-busting timestamp to prevent stale data
+      const response = await api.get(`/blog-categories?isActive=true&approvalStatus=approved&_t=${Date.now()}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching blog categories:', error);
@@ -689,7 +706,10 @@ export const blogCategoryAPI = {
 export const jobAPI = {
   // Get all active jobs
   getJobs: async () => {
-    const response = await api.get("/jobs");
+    // Add cache-busting timestamp to prevent stale data
+    const response = await api.get("/jobs", {
+      params: { _t: Date.now() }
+    });
     return response.data;
   },
 
