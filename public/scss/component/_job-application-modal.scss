@@ -29,20 +29,27 @@
   animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.1s;
   overflow: hidden;
-  font-family: var(--font-manrope), sans-serif;
+  font-family: "Manrope", sans-serif;
+
+  // Split modal variant - wider with two columns
+  &.job-application-modal--split {
+    max-width: 1100px;
+    max-height: 90vh;
+  }
 
   .modal-header-custom {
-    padding: 28px 40px;
+    padding: 20px 32px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #fff;
+    flex-shrink: 0;
 
     .title {
       margin: 0;
-      font-family: var(--font-lexend), sans-serif;
-      font-size: 1.75rem;
+      font-family: "Lexend", sans-serif;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--Heading);
     }
@@ -69,7 +76,324 @@
     }
   }
 
-  .modal-body-custom {
+  // Split content wrapper
+  .modal-content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  // Left side - Job Details
+  .job-details-section {
+    flex: 1;
+    background: #fff;
+    border-right: 1px solid var(--Line);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 768px) {
+      border-right: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      max-height: 40vh;
+    }
+
+    .job-details-header {
+      padding: 28px;
+      background: var(--Primary);
+      color: white;
+
+      .job-title {
+        font-family: "Lexend", sans-serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        line-height: 1.3;
+      }
+
+      .job-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .job-meta-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.1rem;
+          opacity: 0.95;
+          background: rgba(255, 255, 255, 0.2);
+          padding: 10px 16px;
+          border-radius: 20px;
+
+          .meta-icon {
+            font-size: 1rem;
+          }
+
+          .job-type-badge {
+            font-weight: 600;
+
+            &.full-time {
+              color: #ffffff;
+            }
+
+            &.part-time {
+              color: #fde68a;
+            }
+          }
+
+          .salary {
+            font-weight: 700;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+    .job-details-body {
+      padding: 28px;
+      flex: 1;
+
+      .job-section {
+        margin-bottom: 24px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .section-title {
+          font-family: "Lexend", sans-serif;
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: var(--Heading);
+          margin: 0 0 14px 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          &::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 22px;
+            background: var(--Primary);
+            border-radius: 2px;
+          }
+        }
+
+        .section-content {
+          font-size: 1.15rem;
+          line-height: 1.8;
+          color: var(--Text);
+          margin: 0;
+        }
+
+        .section-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--Text);
+
+            &::before {
+              content: "•";
+              position: absolute;
+              left: 0;
+              color: var(--Primary);
+              font-weight: bold;
+              font-size: 1.4rem;
+              line-height: 1.3;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Right side - Application Form
+  .application-form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #fff;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .form-header {
+      padding: 28px 32px;
+      background: var(--Sub-primary-1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+      h4 {
+        font-family: "Lexend", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--Heading);
+        margin: 0 0 8px 0;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: var(--Text);
+        margin: 0;
+      }
+    }
+
+    .modal-body-custom {
+      padding: 24px;
+      flex: 1;
+      overflow-y: auto;
+
+      .form-group-custom {
+        margin-bottom: 18px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--Heading);
+        }
+
+        input,
+        textarea,
+        select {
+          width: 100%;
+          padding: 14px 18px;
+          border: 2px solid #edf2f7;
+          border-radius: 10px;
+          font-size: 1.05rem;
+          color: var(--Heading);
+          transition: all 0.3s ease;
+          background-color: #f8fafc;
+          font-family: inherit;
+          line-height: 1.5;
+
+          &:focus {
+            outline: none;
+            border-color: var(--Primary);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px var(--Sub-primary-3);
+          }
+
+          &::placeholder {
+            color: var(--Note-2);
+            font-weight: 400;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 80px;
+        }
+
+        .file-input-wrapper {
+          position: relative;
+          overflow: hidden;
+          display: inline-block;
+          width: 100%;
+
+          input[type="file"] {
+            font-size: 0.9rem;
+            background: white;
+            padding: 12px;
+            border: 2px dashed #cbd5e0;
+            cursor: pointer;
+            height: auto;
+
+            &:hover {
+              border-color: var(--Note);
+              background-color: #f7fafc;
+            }
+
+            &:focus {
+              border-color: var(--Primary);
+            }
+          }
+        }
+      }
+    }
+
+    .modal-footer-custom {
+      padding: 16px 24px;
+      background-color: #f8fafc;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+
+      .btn-custom {
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        font-family: "Lexend", sans-serif;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+
+        &.btn-secondary-custom {
+          background-color: white;
+          color: var(--Text);
+          border: 1px solid #e2e8f0;
+
+          &:hover {
+            background-color: #f1f5f9;
+            color: var(--Heading);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          }
+        }
+
+        &.btn-primary-custom {
+          background: var(--Primary);
+          color: white;
+          box-shadow: 0 4px 6px -1px var(--shadown);
+
+          &:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px var(--shadown);
+          }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+
+  // Original modal body styles (for non-split modal)
+  > form > .modal-body-custom {
     padding: 40px;
     max-height: 75vh;
     overflow-y: auto;
@@ -145,7 +469,8 @@
     }
   }
 
-  .modal-footer-custom {
+  // Original modal footer styles (for non-split modal)
+  > form > .modal-footer-custom {
     padding: 28px 40px;
     background-color: #f8fafc;
     display: flex;
@@ -161,7 +486,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       border: none;
-      font-family: var(--font-lexend), sans-serif;
+      font-family: "Lexend", sans-serif;
       text-transform: capitalize;
       letter-spacing: 0.5px;
 
