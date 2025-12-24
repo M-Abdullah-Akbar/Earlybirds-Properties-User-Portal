@@ -82,7 +82,7 @@ export default function Jobs() {
                     data-wow-delay="0s"
                   >
                     <div className="content">
-                      <h5 className="lh-28 name">{item.title}</h5>
+                      <h5 className="lh-28 name" onClick={(e) => handleApplyClick(e, item)}>{item.title}</h5>
                       <ul className="list-info">
                         <li className="text-4">
                           <i className="icon-bag" />
