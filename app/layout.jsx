@@ -1,6 +1,8 @@
 import { GoogleTagManager } from "@next/third-parties/google";
 import LayoutClient from "@/components/common/LayoutClient";
+import MetaPixel from "@/components/common/MetaPixel";
 import Script from "next/script";
+import { Suspense } from "react";
 import { Lexend, Manrope, Mulish, Poppins } from "next/font/google";
 
 // Critical CSS - load immediately (compiled CSS, not SCSS)
@@ -57,6 +59,9 @@ export default function RootLayout({ children }) {
       <body className="popup-loader">
         {/* GTM loads after page becomes interactive */}
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
 
         <LayoutClient>{children}</LayoutClient>
 
